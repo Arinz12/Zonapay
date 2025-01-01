@@ -78,7 +78,7 @@ document.getElementById("form").onsubmit = async (e)=>{
   e.preventDefault();
   setLoading(true)
   const formdata= new FormData(e.target)
- try{ const url="http://localhost:3000/zonapay/airtime"
+ try{ const url="https://zonapay.onrender.com/zonapay/airtime"
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
   const res1=await res.json();

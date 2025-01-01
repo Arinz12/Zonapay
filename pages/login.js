@@ -11,7 +11,7 @@ import {io} from "socket.io-client"
     <Head>
         <title>Login</title>
     </Head>
-    <form action="http://localhost:3000/login" method="post" autoComplete="off">
+    <form action="https://zonapay.onrender.com/login" method="post" autoComplete="off">
 
 <Box sx={{height:"100svh",backgroundImage:"url('img.jpg')",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
     <div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  border-2 rounded-3xl  items-center">
@@ -62,7 +62,7 @@ import {io} from "socket.io-client"
         </button>
 
         <div className="text-white" style={{fontSize:"16px"}}>
-            Don't have an account yet? then <span className="text-blue-200 underline" > <Link href="http://localhost:3000/signup">Signup</Link></span>
+            Don't have an account yet? then <span className="text-blue-200 underline" > <Link href="https://zonapay.onrender.com/signup">Signup</Link></span>
         </div>
 
     </div>

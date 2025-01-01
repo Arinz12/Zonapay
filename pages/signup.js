@@ -20,7 +20,7 @@ function showF(){
     }
     
     useEffect(()=>{
-        const socket = io('http://localhost:3000', {
+        const socket = io('https://zonapay.onrender.com', {
             query: { userId: "123" } // Send user ID on connection
         });
                 socket.on("createdS",showS)
@@ -30,7 +30,7 @@ function showF(){
     <Head>
         <title>Signup</title>
     </Head>
-    <form action="http://localhost:3000/signup" method="post" autoComplete="off">
+    <form action="https://zonapay.onrender.com/signup" method="post" autoComplete="off">
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
         <Card id="fai" className=" hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="error">Account creation failed!!!</Button> </Card>
 <Box sx={{height:"100svh",backgroundImage:"url('img.jpg')",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
@@ -94,7 +94,7 @@ function showF(){
         </button>
 
         <div className="text-white" style={{fontSize:"16px"}}>
-            Already have an account ? then <span className="text-blue-200 underline" > <Link href="http://localhost:3000/login">Login</Link></span>
+            Already have an account ? then <span className="text-blue-200 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
         </div>
 
     </div>

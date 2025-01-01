@@ -14,7 +14,7 @@ const Footer=()=>{
     
         {(router.pathname=="/a")?   <div className="flex flex-col justify-center items-center"  ><AddCard className="text-blue-600 bg-none"  sx={{fontSize:"30px"}}/><div className="rubik-h text-blue-600">Wallet</div>  </div> :<div className="flex flex-col justify-center items-center" ><Wallet  sx={{fontSize:"30px",color:"#36454F"}}/><div className="rubik-b" >Wallet</div></div>}
 
-        {(router.pathname=="/b")?   <div className="flex flex-col justify-center items-center" ><Wallet className="text-blue-600 bg-none" sx={{fontSize:"30px"}}/><div className="rubik-h text-blue-600">Fund</div> </div> :<Link href={"http://localhost:3000/dashboard/fund"}>{<div className="flex flex-col justify-center items-center" ><AddCard  sx={{fontSize:"30px",color:"#36454F"}}/><div className="rubik-b">Fund</div></div>}</Link>}
+        {(router.pathname=="/b")?   <div className="flex flex-col justify-center items-center" ><Wallet className="text-blue-600 bg-none" sx={{fontSize:"30px"}}/><div className="rubik-h text-blue-600">Fund</div> </div> :<Link href={"https://zonapay.onrender.com/dashboard/fund"}>{<div className="flex flex-col justify-center items-center" ><AddCard  sx={{fontSize:"30px",color:"#36454F"}}/><div className="rubik-b">Fund</div></div>}</Link>}
         
         {(router.pathname=="/dashboard/settings")?   <div className="flex flex-col justify-center items-center" ><Settings className="text-blue-600 bg-none"  sx={{fontSize:"30px"}}/><div className="rubik-h text-blue-600">Settings</div> </div> : <Link href="dashboard/settings">{<div className="flex flex-col justify-center items-center" >  <Settings  sx={{fontSize:"30px",color:"#36454F"}}/><div className="rubik-b">Settings</div></div>}</Link> } 
     </div>

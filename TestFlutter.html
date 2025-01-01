@@ -108,7 +108,7 @@ to{
     <script>
 async function val(data){
   try{
-  const res=await fetch("http://localhost:3000/validatefundform",{method:"post",headers: {
+  const res=await fetch("https://zonapay.onrender.com/validatefundform",{method:"post",headers: {
     'Content-Type': 'application/json',  // Specify content type as JSON
   },body:JSON.stringify(data)});
   if(res.ok){
@@ -153,7 +153,7 @@ setTimeout(()=>{document.getElementById("note").style.display="none"
     amount: amount ,
     currency: "NGN",
     payment_options: "card, mobilemoneyghana, ussd",
-    redirect_url: "http://localhost:3000/done",
+    redirect_url: "https://zonapay.onrender.com/done",
     meta: {
       consumer_id: 23,
       consumer_mac: "92a3-912ba-1192a",
