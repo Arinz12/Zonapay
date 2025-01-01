@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fund</title>
+    <style>
+      #note{
+        animation-name: slide;
+        animation-duration: 0.6s;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+      }
+      @keyframes slide {
+        from {
+transform: translateX(200px);}
+to{
+  transform: translateX(0px);
+}
+      }
+    </style>
+    <!-- Include Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.flutterwave.com/v3.js"></script></head>
+<body class="bg-gray-100">
+
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+            <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Fund details</h2>
+            <form id="contact-form">
+                <!-- Name Field -->
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="name" name="name" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+                <!-- Email Field -->
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+                <!-- Phone Field -->
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input type="text" id="phone" name="phone" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+                <!-- Amount Field -->
+                <div class="mb-6">
+                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
+                    <input type="number" id="amount" name="amount" step="0.01" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                </div>
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                  <button class="py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-500 text-white hover:bg-blue-600" type="button" onclick="makePayment()">Pay Now</button>
+                </div>
+            </form>
+
+<div id="note" class="fixed top-2 right-1  flex-col gap-2 w-60 sm:w-72 text-[10px] sm:text-5xl z-50 hidden ">
+  <div
+    class="error-alert cursor-default flex items-center justify-between w-full h-20 sm:h-20 rounded-lg bg-[#232531] px-[10px]"
+  >
+    <div class="flex gap-2">
+      <div class="text-[#d65563] bg-white/5 backdrop-blur-xl p-1 rounded-lg">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
+          ></path>
+        </svg>
+      </div>
+      <div>
+        <p class="text-white" style="font-size: 13px;">Error</p>
+        <p class="text-gray-500" style="font-size: 13px;" id="mnote"></p>
+      </div>
+    </div>
+    <button
+      class="text-gray-600 hover:bg-white/10 p-1 rounded-md transition-colors ease-linear"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18 18 6M6 6l12 12"
+        ></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+        </div>
+    </div>
+
+    <!-- Script to handle form submission and store values -->
+    <script>
+async function val(data){
+  try{
+  const res=await fetch("http://localhost:3000/validatefundform",{method:"post",headers: {
+    'Content-Type': 'application/json',  // Specify content type as JSON
+  },body:JSON.stringify(data)});
+  if(res.ok){
+const res2=await res.json();
+return res2.guid;
+  }
+  else{
+    if(res){
+const res3=await res.json();
+
+document.getElementById("mnote").innerHTML=res3.errors[0].msg
+document.getElementById("note").style.display="flex"
+setTimeout(()=>{document.getElementById("note").style.display="none"
+},3000)
+console.log(res3.errors);
+return
+    }
+    console.log("bad response")
+    return
+  }
+    }
+      catch(e){
+console.log(e)
+document.getElementById("mnote").innerHTML="check your connection"
+document.getElementById("note").style.display="flex"
+setTimeout(()=>{document.getElementById("note").style.display="none"
+},3000)
+      }
+}
+           async function makePayment() {
+              const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const amount = document.getElementById('amount').value;
+            const uid=  await val({name:name,email:email,phone:phone,amount:amount});
+            if(!uid){
+              return
+            }
+  FlutterwaveCheckout({
+    public_key: "FLWPUBK-254af65d33d3f2e4cbfa5e025673d67f-X",
+    tx_ref: uid,
+    amount: amount ,
+    currency: "NGN",
+    payment_options: "card, mobilemoneyghana, ussd",
+    redirect_url: "http://localhost:3000/done",
+    meta: {
+      consumer_id: 23,
+      consumer_mac: "92a3-912ba-1192a",
+    },
+    customer: {
+      email: email,
+      phone_number: phone,
+      name: name,
+    },
+    customizations: {
+      title: "The Titanic Store",
+      description: "Payment for an awesome cruise",
+      logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+    }
+  });
+
+};
+    </script>
+
+</body>
+</html>
