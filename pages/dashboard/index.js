@@ -40,8 +40,8 @@ const Dashboard = ({obj}) => {
                     <div className='text-white rubik-b' style={{fontSize:"25px"}} >{visible? obj.Balance.toLocaleString() :"****"}</div>
                     </div>
                     <div className='flex flex-col justify-center items-center '>
-                    <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<div className='rubik-b text-white'>Txn History</div>}</Link>
- <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px"}}/>}</Link></div>
+                    <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
+ <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
                 </div>
                 <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div>
 
