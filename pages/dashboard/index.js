@@ -77,13 +77,13 @@ const Dashboard = ({obj}) => {
                  <Paper elevation={5} className='flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
 <Tungsten className='text-blue-600'  />
-                <div className="text-black text-center rubik-h">Electricity</div></div>
+                <div className="text-black text-center rubik-h">Power</div></div>
                  </Paper>
 
                  <Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
 <School className='text-blue-600'  />
-                <div className="text-black text-center rubik-h">Education</div></div>
+                <div className="text-black text-center rubik-h">School</div></div>
                  </Paper>
                 
 
