@@ -133,3 +133,18 @@ button:active {
   opacity: 0;
 }
 
+.shp{
+  animation-name: showup;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  
+}
+@keyframes showup {
+  from{
+    transform: translateY(50%);
+  }
+  to{
+    transform: translateY(0px);
+  }
+}

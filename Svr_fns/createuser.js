@@ -6,7 +6,8 @@ const Userschema= new mongoose.Schema(
         Username:{type:String},
         Email:{type:String},
         Password:{type:String},
-        Balance:{type:Number}
+        Balance:{type:Number},
+        Pin:{type:String}
     })
     const User = mongoose.models.User || mongoose.model("User", Userschema);
 
@@ -22,7 +23,8 @@ console.log("Db connected")
     Username:username,
     Email:email,
     Password:password,
-    Balance:1000
+    Balance:500,
+    Pin:null,
 })
 console.log("user saved successfully...")
 }

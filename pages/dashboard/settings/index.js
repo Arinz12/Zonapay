@@ -4,6 +4,7 @@ import { ArrowForwardIosRounded } from "@mui/icons-material"
 import { Settings as Seticon } from "@mui/icons-material";
 import Head from "next/head"
 import Num from "../../../components/Number";
+import Link from "next/link"
 
 const Settings=()=>{
 return(<>
@@ -35,7 +36,7 @@ return(<>
    <div className="flex flex-row justify-start items-center">
     <div style={{height:"40px",width:"40px", borderRadius:"50%",backgroundColor:"white"}}className="flex flex-row items-center justify-center" >
     <Seticon sx={{color:"black"}}/>  </div>
-<div style={{fontSize:"20px"}} className="ml-3 rubik-b  ">Pin reset</div>
+<Link href="dashboard/settings/pin">{<div style={{fontSize:"20px"}} className="ml-3 rubik-b  ">Pin reset</div>}</Link>
 </div>
     <ArrowForwardIosRounded />
    </div>

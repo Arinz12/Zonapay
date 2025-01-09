@@ -25,7 +25,7 @@ const { saveHistory } = require('./Svr_fns/saveHistory');
 const vet = require('./Svr_fns/verifyT');
 const {body,validationResult}= require("express-validator");
 const { error } = require('console');
-
+const bcrypt=require("bcrypt")
 
 
 
@@ -333,7 +333,42 @@ return;
   }
 })
 
+//Setting pin
+server.post("/zonapay/setpin", async (req,res)=>{
+  if(!req.isAuthenticated()){
+console.log("YOU HAVE TO LOG IN FIRST!!!");
+return;
+  }
 
+  const pin =req.body.pin
+  const pinrefined=bcrypt.hashSync(pin, 10)
+  try{await User.findByIdAndUpdate(req.user._id,{$set:{Pin:pinrefined}},{new:true})
+console.log("pin has been set")
+res.status(200).json({status:"success"})
+}
+  catch(e){
+    res.status(400).send("failed")
+  }
+
+
+})
+//confirming pin
+server.post("/zonapay/confirmPin",(req,res)=>{
+  if(!req.isAuthenticated()){
+    console.log("login please")
+    return
+  }
+  const pin= req.body.pinn
+  console.log(pin)
+  console.log(req.user.Pin)
+  const okay= bcrypt.compareSync(pin,req.user.Pin);
+  if(okay){
+    res.status(200).json({status:"success"})
+  }
+  else{
+    res.status(401).send("failed");
+  }
+})
 
 
 //funding
