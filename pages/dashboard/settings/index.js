@@ -32,14 +32,14 @@ return(<>
     <ArrowForwardIosRounded />
    </div>
 
-   <div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
+   <Link href={"/dashboard/settings/pin"} >{<div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
    <div className="flex flex-row justify-start items-center">
     <div style={{height:"40px",width:"40px", borderRadius:"50%",backgroundColor:"white"}}className="flex flex-row items-center justify-center" >
     <Seticon sx={{color:"black"}}/>  </div>
-<Link href="dashboard/settings/pin">{<div style={{fontSize:"20px"}} className="ml-3 rubik-b  ">Pin reset</div>}</Link>
+<div style={{fontSize:"20px"}} className="ml-3 rubik-b ">Pin reset</div>
 </div>
     <ArrowForwardIosRounded />
-   </div>
+   </div>}</Link>
      </div>
 </>)
 }

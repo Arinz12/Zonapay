@@ -28,11 +28,8 @@ const { error } = require('console');
 const bcrypt=require("bcrypt")
 
 
-
-
-
-
 mongoose.set("strictQuery",false)
+//DB CONNECTION
 mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.error('MongoDB connection error:', err));
@@ -104,6 +101,7 @@ passport.use(new LocalStrategy({
       // Step 5: Authentication successful, return the user object
       return done(null, user);
     } catch (err) {
+      console.log(" Error From passport auth")
       return done(err);
     }
   }
@@ -359,8 +357,7 @@ server.post("/zonapay/confirmPin",(req,res)=>{
     return
   }
   const pin= req.body.pinn
-  console.log(pin)
-  console.log(req.user.Pin)
+  
   const okay= bcrypt.compareSync(pin,req.user.Pin);
   if(okay){
     res.status(200).json({status:"success"})
