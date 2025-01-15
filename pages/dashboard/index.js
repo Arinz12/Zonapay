@@ -44,18 +44,15 @@ const Dashboard = ({obj}) => {
  <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
                 </div>
                 <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div>
-
             </Carousel>
         </div>
         <div className='ml-1 mr-1 p-3 mt-4'>
             <div className='grid grid-cols-3 mx-auto gap-5 justify-center items-center justify-items-center'>
-
                <Link href={"/dashboard/airtime"}>{<Paper elevation={5} className='flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                 <div className="flex flex-col justify-center items-center">
                 <PhoneOutlined className='text-blue-600'/>
                 <div className="text-black text-center rubik-h">Buy Airtime</div></div>
                  </Paper> }</Link>
-
            <Link href={"/dashboard/data"}>{ <Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
            <div className="flex flex-col justify-center items-center">
 <LanguageRounded className='text-blue-600'  />

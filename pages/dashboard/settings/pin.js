@@ -1,4 +1,4 @@
-import { ArrowBack, CheckCircle } from "@mui/icons-material";
+import { ArrowBack, ArrowBackIosRounded, ArrowForward, CheckCircle } from "@mui/icons-material";
 import { Button } from "@mui/material"
 import Head from "next/head"
 import { useEffect, useState } from "react"
@@ -30,7 +30,6 @@ if(resdata.ok){
 catch(e){
     console.log("An error occured check connectivity")
     }}
-
         }
     ,[])
         if(set){
@@ -52,20 +51,21 @@ return(<>
 </Head>
 
 <div className="mx-auto flex flex-col gap-6 justify-center items-start h-full">
-    <form id="form" action="" method="post" autoComplete="off">
-    <div>Create Pin</div>
-    <label htmlFor="fp">Enter pin</label><br/>
-<input className="border-4 border-black w-9/12"  type="password" id="fp"  /><br/>
+   <Link href="/dashboard/settings">{<div className="absolute left-2 p-3 top-1 inline-block rounded-full bg-blue-500"><ArrowBackIosRounded sx={{color:"white"}}/> </div>}</Link>
+    <form className=" w-full mx-auto flex flex-col gap-3 justify-center items-start h-full" id="form" action="" method="post" autoComplete="off">
+    <div className="text-5xl mt-8 mb-10 mx-auto text-center rubik-h">Create Pin</div>
+   <div className="mx-auto rubik-b w-full text-center">
+     <label className="rubik-b" htmlFor="fp">Enter pin</label><br/>
+<input maxLength="4" inputMode="numeric" className="border-0 border-b-2 text-center focus:outline-none border-black w-9/12"  type="password" id="fp"/></div>
 
-<label htmlFor="sp">Re-enter pin</label><br/>
-<input className="border-4 border-black w-9/12"  type='password'  id="sp"/><br/>
+<div className="mx-auto rubik-b w-full text-center mt-11"> 
+<label className="rubik-b" htmlFor="sp">Re-enter pin</label><br/>
+<input maxLength="4" inputMode="numeric" className="border-0 border-b-2 text-center focus:outline-none border-black w-9/12 "  type='password'  id="sp"/></div>
+
 <span className="text-red-600" id="message">...</span>
-<Button type="submit">Continue</Button>
+<div className="absolute w-full flex bottom-0 mx-auto justify-center text-center"><Button endIcon={<ArrowForward/>} className="p-5 w-3/4 rounded-full bg-blue-600 " variant="contained" type="submit">Continue</Button></div>
 </form>
 </div>
-
-
 </>)
 }
 export default Pin
-
