@@ -108,7 +108,7 @@ button {
 }
 
 button:hover {
-  background: darkgray;
+  background: rgba(39, 77, 235,0.3);
 }
 
 button > svg {

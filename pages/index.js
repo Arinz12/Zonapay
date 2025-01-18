@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import "@fontsource/roboto/500.css";
 import Link from "next/link"
@@ -36,6 +36,12 @@ import FadeOutComponent from '../components/Fadeout';
 import Num from '../components/Number';
 
  const Dash=(props)=>{
+useEffect(()=>{
+const source= new EventSource("https://zonapay.onrender.com/stream");
+source.onmessage= function(e){console.log(e.data)}
+source.onerror= ()=>{console.log("An error occured")}
+},[])
+
     return (<>
     <Head>
         <title>Zona</title>
@@ -44,13 +50,14 @@ import Num from '../components/Number';
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 
+
 </Head>
-<Stack className='absolute bg-transparent top-2 z-10  w-full p-2 pt-1 pr-1 right-1 items-center' direction={"row"} justifyContent="space-between" sx={{bgcolor:"none"}} >
+<Stack className='focus:outline-none absolute bg-transparent top-2 z-10  w-full p-2 pt-1 pr-1 right-1 items-center' direction={"row"} justifyContent="space-between" sx={{bgcolor:"none"}} >
     <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-white '>Zona</Button>
     
 <Button href="https://zonapay.onrender.com/signup"  variant="contained" className="mr-2 sticky top-1">Get started</Button>
 </Stack>
-       <div className='relative w-full'> <Carousel className='w-full'  animation='fade' interval={6000}>
+       <div className='relative w-full focus:outline-none'> <Carousel className='w-full focus:outline-none'  animation='fade' interval={6000}>
             <Box className="flex flex-col gap-2 justify-center items-center" sx={{height:"80vh",width:"100%", textAlign:"center",backgroundImage:"url('https://www.shutterstock.com/shutterstock/photos/1932042689/display_1500/stock-photo-businessman-using-mobile-smart-phone-business-global-internet-connection-application-technology-1932042689.jpg')",backgroundSize:"cover"}}>
                 <div style={ {backgroundColor: "rgba(0, 0, 0, 0.553)",cursor: 'pointer'}} className="h-full  flex flex-row justify-center p-1 md:justify-end items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Simplify Your Payments</Typography>
@@ -162,13 +169,13 @@ import Num from '../components/Number';
     </div>
     <div className='flex flex-col '>
       <h3 className='rubik-h text-center'style={{fontSize:"17px"}}>Social media</h3>
- <Link href={"https://www.instagram.com/gift.igwebuike.37?igsh=MWt4bW93Zm15eTg3OA=="}>
-   {<><Button  startIcon={<InstagramIcon />} variant="text" sx={{textTransform:"none"}}className="text-center">Instagram</Button></>}
-   </Link>
+ <a href={"https://www.instagram.com/gift.igwebuike.37?igsh=MWt4bW93Zm15eTg3OA=="}>
+   {<Button  startIcon={<InstagramIcon />} variant="text" sx={{textTransform:"none"}}className="text-center">Instagram</Button>}
+   </a>
 
-     <Link href={"https://x.com/Zona_it_is?t=HDE0ckMLkV-DJgGBrfQJQA&s=09"}> 
-     {<><Button startIcon={<XIcon />} sx={{textTransform:"none"}} variant="text" className="text-center">Twitter</Button></>}
-     </Link>
+     <a href={"https://x.com/Zona_it_is?t=HDE0ckMLkV-DJgGBrfQJQA&s=09"}> 
+     {<Button startIcon={<XIcon />} sx={{textTransform:"none"}} variant="text" className="text-center">Twitter</Button>}
+     </a>
       </div>
       <div className="mx-auto font-bold md:col-span-4">&copy;2024 Zona enterprise</div>
 </div>

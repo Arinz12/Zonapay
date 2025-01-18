@@ -1,11 +1,13 @@
 import  Box from "@mui/material/Box"
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {io} from "socket.io-client"
 import Card from "@mui/material/Card"
 import { Button } from "@mui/material"
+import {Visibility, VisibilityOff} from "@mui/icons-material"
  const Signup=()=>{
+    const [visible, setVis]=useState(false)
 function showS(){
 document.getElementById("succ").style.display="block";
 setTimeout(()=>{
@@ -18,39 +20,161 @@ function showF(){
         document.getElementById("fai").style.display="none";
     },2000)
     }
+    function val() {
+        let isValid = true;
+    
+        // Username Validation
+        const username = document.getElementsByName("Username")[0].value.trim();
+        const usernameError = document.getElementById("usernameError");
+    
+        if (username === "") {
+          usernameError.textContent = "Name field cannot be empty";
+          isValid = false;
+        } else if (username.length < 3 || username.length > 10) {
+          usernameError.textContent = "Character must be between 3 to 10 characters long";
+          isValid = false;
+        } else {
+          usernameError.textContent = "";
+        }
+    
+        // Email Validation
+        const email = document.getElementsByName("Email")[0].value.trim();
+        const emailError = document.getElementById("emailError");
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (email === "") {
+          emailError.textContent = "Email cannot be empty";
+          isValid = false;
+        } else if (!emailRegex.test(email)) {
+          emailError.textContent = "Please enter a valid email";
+          isValid = false;
+        } else {
+          emailError.textContent = "";
+        }
+    
+        // Password Validation
+        const password = document.getElementsByName("Password")[0].value;
+        const passwordError = document.getElementById("passwordError");
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    
+        if (password.length < 8) {
+          passwordError.textContent = "Password must be at least 8 characters long";
+          isValid = false;
+        } else if (!password.match(/[A-Z]/)) {
+          passwordError.textContent = "Password must contain at least one uppercase letter";
+          isValid = false;
+        } else if (!password.match(/[a-z]/)) {
+          passwordError.textContent = "Password must contain at least one lowercase letter";
+          isValid = false;
+        } else if (!password.match(/\d/)) {
+          passwordError.textContent = "Password must contain at least one number";
+          isValid = false;
+        } else if (!password.match(/[@$!%*?&]/)) {
+          passwordError.textContent = "Password must contain at least one special character (e.g., @$!%*?&)";
+          isValid = false;
+        } else {
+          passwordError.textContent = "";
+        }
+    
+        // after validations 
+        return isValid;
+      }
+    const handle=(e)=>{
+        if(!val()){
+        e.preventDefault()
+        }
+    }
+
+    function valN(){
+        const username = document.getElementsByName("Username")[0].value.trim();
+    const usernameError = document.getElementById("usernameError");
+
+    if (username === "") {
+      usernameError.textContent = "Name field cannot be empty";
+      
+    } else if (username.length < 3 || username.length > 10) {
+      usernameError.textContent = "Character must be between 3 to 10 characters long";
+      
+    } else {
+      usernameError.textContent = "";
+    }
+
+    }
+    function valE(){
+        const email = document.getElementsByName("Email")[0].value.trim();
+        const emailError = document.getElementById("emailError");
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (email === "") {
+          emailError.textContent = "Email cannot be empty";
+        } else if (!emailRegex.test(email)) {
+          emailError.textContent = "Please enter a valid email";
+        } else {
+          emailError.textContent = "";
+        }
+    }
+    function valP(){
+        const password = document.getElementsByName("Password")[0].value;
+    const passwordError = document.getElementById("passwordError");
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if (password.length < 8) {
+      passwordError.textContent = "Password must be at least 8 characters long";
+    } else if (!password.match(/[A-Z]/)) {
+      passwordError.textContent = "Password must contain at least one uppercase letter";
+    } else if (!password.match(/[a-z]/)) {
+      passwordError.textContent = "Password must contain at least one lowercase letter";
+    } else if (!password.match(/\d/)) {
+      passwordError.textContent = "Password must contain at least one number";
+    } else if (!password.match(/[@$!%*?&]/)) {
+      passwordError.textContent = "Password must contain at least one special character (e.g., @$!%*?&)";
+    } else {
+      passwordError.textContent = "";
+    }
+
+    }
     
     useEffect(()=>{
-        const socket = io('https://zonapay.onrender.com', {
-            query: { userId: "123" } // Send user ID on connection
-        });
-                socket.on("createdS",showS)
-        socket.on("createdF",showF)
+        // const socket = io('https://zonapay.onrender.com', {
+        //     query: { userId: "123" } // Send user ID on connection
+        // });
+        //         socket.on("createdS",showS)
+        // socket.on("createdF",showF)
+        if(visible){
+            document.getElementsByName("Password")[0].type="text"
+        }
+        else{
+            document.getElementsByName("Password")[0].type="password"
+
+        }
+    
+
     })
     return(<>
     <Head>
         <title>Signup</title>
     </Head>
-    <form action="https://zonapay.onrender.com/signup" method="post" autoComplete="off">
+    <form action="https://zonapay.onrender.com/signup" method="post" autoComplete="off" onSubmit={handle}>
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
         <Card id="fai" className=" hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="error">Account creation failed!!!</Button> </Card>
-<Box sx={{height:"100svh",backgroundImage:"url('img.jpg')",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
+<Box sx={{height:"100svh",backgroundColor:"rgba(37, 99, 253, 0.253)",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
 
-    <div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  border-2 rounded-3xl  items-center">
+    <div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-2 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  border-2 border-blue-500 rounded-3xl  items-center">
 <div className=" rubik-h text-white">Signup</div>
-<div className="form-control rubik-b">
-    <input type="text" name="Username" required/>
+<div className="form-control py-2 rubik-b">
+    <input onKeyUp={valN} type="text" name="Username" required/>
     <label>
     <span style={{transitionDelay:"0ms"}}>N</span>
 <span style={{transitionDelay:"50ms"}}>a</span>
 <span style={{transitionDelay:"100ms"}}>m</span>
 <span style={{transitionDelay:"150ms"}}>e</span>
     </label>
-        <span className="text-red-700 absolute" style={{fontSize:"15px"}}></span>
+        <span style={{fontSize:"11px"}} id="usernameError" className="text-yellow-700 absolute rubik-b" ></span>
 </div>
 
 
-<div className="form-control rubik-b">
-    <input type="text" name="Email" required/>
+<div className="form-control py-2 rubik-b">
+    <input onKeyUp={valE} type="text" name="Email" required/>
     <label>
 <span style={{transitionDelay:"0ms"}}>E</span>
 <span style={{transitionDelay:"50ms"}}>m</span>
@@ -59,9 +183,12 @@ function showF(){
 <span style={{transitionDelay:"200ms"}}>l</span>
 
     </label>
+    <span id="emailError" className="text-yellow-700 absolute rubik-b" style={{fontSize:"11px"}}></span>
+
 </div>
-<div className="form-control rubik-b">
-    <input type="password" name="Password" required/>
+
+<div className="form-control py-2 rubik-b relative">
+    <input onKeyUp={valP} type="password" name="Password" required/>
     <label>
     <span style={{transitionDelay:"0ms"}}>P</span>
 <span style={{transitionDelay:"50ms"}}>a</span>
@@ -73,11 +200,15 @@ function showF(){
 <span style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
+    <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-blue-700" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-blue-500" onClick={()=>{setVis(true)}}/>}</span>
+
+    <span id="passwordError" className="text-yellow-700 absolute rubik-b " style={{fontSize:"11px"}}></span>
+
 </div>
 
 
 <button className="mt-4 bg-blue-600" type="submit">
-            <span className="text-white">Continue</span>
+            <span className="text-white">Sign up</span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

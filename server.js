@@ -26,6 +26,7 @@ const vet = require('./Svr_fns/verifyT');
 const {body,validationResult}= require("express-validator");
 const { error } = require('console');
 const bcrypt=require("bcrypt")
+const cors= require("cors")
 
 
 mongoose.set("strictQuery",false)
@@ -218,28 +219,80 @@ console.log(e+"wronggg")
 }
   })
 
+  server.post("/zonapay/valUser",async (req,res)=>{
+const {email,password}=req.body;
+console.log(email+" and "+ password)
+try{
+const detail= await User.findOne({Email:email},{Password:password});
+console.log(detail)
+if(detail){
+  console.log("verified..")
+  return res.status(200).send("verified")
+}
+else{
+  console.log("Not verified")
+  return res.status(400).send("verificatin failed")
+}}
+catch(e){
+  console.log("connection error: "+e)
+}
+  })
+
 
 
 //signup a user
-  server.post("/signup",async (req,res)=>{
+const validateInfo=[
+  body("Username")
+  .trim() // First trim whitespace
+  .escape() // Escape any HTML characters
+  .notEmpty().withMessage("Name field Cannot be empty") // Check that it's not empty
+  .isLength({ min: 3, max: 10 }).withMessage("Character must be between 3 to 10 characters long")
+  ,
+
+// Email Validation
+body("Email")
+  .trim()
+  .escape()
+  .notEmpty().withMessage("Email Cannot be empty")
+  .isEmail().withMessage("Please enter a valid email"),
+
+  body('Password')
+    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
+    .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
+    .matches(/[a-z]/).withMessage('Password must contain at least one lowercase letter')
+    .matches(/\d/).withMessage('Password must contain at least one number')
+    .matches(/[@$!%*?&]/).withMessage('Password must contain at least one special character (e.g., @$!%*?&)'),
+]
+  server.post("/signup",validateInfo ,async (req,res)=>{
+    const errors=validationResult(req);
+    console.log(errors.isEmpty())
+    console.log(errors)
+    if(errors.isEmpty()){
     const {Username,Email,Password}=req.body;
 try{
   
   await createUser(Username,Email,Password);
-  io.to(Userss["123"]).emit("createdS")
 console.log("Done")
+
 setTimeout(()=>{
   res.redirect("/login")
 },1000);
+
 }
 catch(e){
-  io.to(Userss["123"]).emit("createdF")
   console.log("something went wrong")
+
   setTimeout(()=>{
     res.redirect("/signup")
   },1000);
+
   }
+    }
+    else{
+      return res.status(400).json({errors:errors.array()})
+    }
 })
+
 
 //login for a user
 server.post("/login",passport.authenticate("local",{
@@ -380,6 +433,24 @@ server.get("/dashboard/fund",(req,res)=>{
     }
 })})
 
+//Server sent events
+server.get("/stream",cors(),(req,res)=>{
+res.writeHead(200,
+  {'Content-Type':"text/event-stream",
+"cache-control":"no-cache",
+"Connection":"keep-alive"
+
+})
+const data="Connection to server is maintained"
+const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
+
+    // Cleanup when the connection is closed
+    req.on('close', () => {
+        clearInterval(interval);
+        res.end();
+    });
+
+})
 
 
 //verifying flutterwave transactions
