@@ -157,10 +157,10 @@ function showF(){
     <form action="https://zonapay.onrender.com/signup" method="post" autoComplete="off" onSubmit={handle}>
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
         <Card id="fai" className=" hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="error">Account creation failed!!!</Button> </Card>
-<Box sx={{height:"100svh",backgroundColor:"rgba(37, 99, 253, 0.253)",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
+<Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
 
-    <div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-2 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  border-2 border-blue-500 rounded-3xl  items-center">
-<div className=" rubik-h text-white">Signup</div>
+    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-2 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  border-4 border-blue-500 rounded-3xl  items-center">
+<div className=" rubik-h text-black">Signup</div>
 <div className="form-control py-2 rubik-b">
     <input onKeyUp={valN} type="text" name="Username" required/>
     <label>
@@ -169,7 +169,7 @@ function showF(){
 <span style={{transitionDelay:"100ms"}}>m</span>
 <span style={{transitionDelay:"150ms"}}>e</span>
     </label>
-        <span style={{fontSize:"11px"}} id="usernameError" className="text-yellow-700 absolute rubik-b" ></span>
+        <span style={{fontSize:"12px"}} id="usernameError" className="text-yellow-700 absolute rubik-b" ></span>
 </div>
 
 
@@ -183,7 +183,7 @@ function showF(){
 <span style={{transitionDelay:"200ms"}}>l</span>
 
     </label>
-    <span id="emailError" className="text-yellow-700 absolute rubik-b" style={{fontSize:"11px"}}></span>
+    <span id="emailError" className="text-yellow-700 absolute rubik-b" style={{fontSize:"12px"}}></span>
 
 </div>
 
@@ -200,15 +200,15 @@ function showF(){
 <span style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
-    <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-blue-700" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-blue-500" onClick={()=>{setVis(true)}}/>}</span>
+    <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>}</span>
 
-    <span id="passwordError" className="text-yellow-700 absolute rubik-b " style={{fontSize:"11px"}}></span>
+    <span id="passwordError" className="text-yellow-700 absolute rubik-b " style={{fontSize:"12px"}}></span>
 
 </div>
 
 
 <button className="mt-4 bg-blue-600" type="submit">
-            <span className="text-white">Sign up</span>
+            <span className="text-white">Sign up</span> 
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -224,8 +224,8 @@ function showF(){
             </svg>
         </button>
 
-        <div className="text-white" style={{fontSize:"16px"}}>
-            Already have an account ? then <span className="text-blue-200 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
+        <div className="text-black" style={{fontSize:"16px"}}>
+            Already have an account ? then <span className="text-blue-500 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
         </div>
 
     </div>

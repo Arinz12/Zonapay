@@ -275,13 +275,13 @@ catch(e){
 
 <div className="pt-7">
     <label HtmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input autoComplete={"off"} style={{fontSize:"25px"}} type="string"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
+<input inputMode="numeric" autoComplete={"off"} style={{fontSize:"25px"}} type="string"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
 
 { loading? <Button variant="contained" className="text-white mt-12 p-4"  sx={{backgroundColor:"#1E3A5F",textTransform:"none",borderRadius:"30px"}}>Processing...</Button> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{backgroundColor:"#1E3A5F",textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
 <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Back</Button>}</Link>
 
-   <NumericPad maxLength={6} onSubmit={handlePinSubmit}/>
+   <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
    <div id="wrongpin" className=" z-10 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
     </div>
     </>)
