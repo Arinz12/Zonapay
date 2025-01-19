@@ -11,7 +11,7 @@ const Userschema= new mongoose.Schema(
     })
     const User = mongoose.models.User || mongoose.model("User", Userschema);
 
-const dbOptions={
+const dbOptions={ 
     useNewUrlParser: true,
     useUnifiedTopology: true,}
     
@@ -32,13 +32,7 @@ catch(e){
 console.log("User creation failed!!!")
 }
 finally{
-   await mongoose.disconnect((err)=>{
-if(err){
-    console.log("error occured during Db disconnection")
-}
-else{
-console.log("db disconnected")
-    }})
+   console.log("DONE...")
 }
 
 }

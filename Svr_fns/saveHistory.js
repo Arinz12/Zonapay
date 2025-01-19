@@ -4,7 +4,7 @@ mongoose.set("strictQuery",false);
 const historySch= new mongoose.Schema(
     {
         User:{type:String},
-        TransactionId:{type:String},
+        TransactionId:{type:String}, 
         Time:{type:String},
         Amount:{type:Number},
         Phoneno:{type:String},

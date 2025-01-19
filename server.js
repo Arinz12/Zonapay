@@ -226,6 +226,9 @@ try{
 const detail= await User.findOne({Email:email},{Password:password});
 console.log(detail)
 if(detail){
+  if(detail.Password!==password){
+    return res.status(400).send("verificatin failed")
+  }
   console.log("verified..")
   return res.status(200).send("verified")
 }
@@ -277,6 +280,7 @@ console.log("Done")
 setTimeout(()=>{
   res.redirect("/login")
 },1000);
+return;
 
 }
 catch(e){
