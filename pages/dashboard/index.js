@@ -24,8 +24,8 @@ const Dashboard = ({obj}) => {
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>Hi, {obj.Username}</div>
             </div>
-           <Link href={"https://zonapay.onrender.com/logout"} ><div className='flex flex-row items-center'>
-                <LogoutRounded  sx={{backgroundColor:"",padding:"10px"}}/>
+           <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div className='flex flex-row items-center'>
+                <LogoutRounded  sx={{backgroundColor:"",padding:"10px",height:"36px",width:"36px",color:"black"}}/>
             </div></Link> 
         </div>
         <div className=''>
