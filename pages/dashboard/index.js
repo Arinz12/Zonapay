@@ -4,12 +4,13 @@ import Link from "next/link";
 //import styles from 'Home.module.css'
 import Carousel from 'react-material-ui-carousel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { ConnectWithoutContactIcon} from '@mui/icons-material';
+import { ConnectWithoutContactIcon, LogoutRounded} from '@mui/icons-material';
 import { LocalAirportRounded,LanguageRounded,CardGiftcard, TvRounded, Tungsten, School, History, Visibility, VisibilityOff, PhoneOutlined } from '@mui/icons-material';
 import { Paper } from '@mui/material';
 
 const Dashboard = ({obj}) => {
-    const [visible,setVisible]=useState(true)
+    const [visible,setVisible]=useState(true);
+    
      return (<>
     <Head>
         <title>Dashboard</title>
@@ -23,9 +24,9 @@ const Dashboard = ({obj}) => {
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>Hi, {obj.Username}</div>
             </div>
-            {/* <div className='flex flex-row items-center'>
-                <ConnectWithoutContactIcon sx={{backgroundColor:"",padding:"10px"}} />
-            </div> */}
+           <Link href={"https://zonapay.onrender.com/logout"} ><div className='flex flex-row items-center'>
+                <LogoutRounded  sx={{backgroundColor:"",padding:"10px"}}/>
+            </div></Link> 
         </div>
         <div className=''>
             <Carousel animation='slide' autoPlay={false} navButtonsAlwaysVisible={false} activeIndicatorIconButtonProps={{

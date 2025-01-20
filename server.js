@@ -218,7 +218,7 @@ catch(e){
 console.log(e+"wronggg")
 }
   })
-
+// validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
 const {email,password}=req.body;
 console.log(email+" and "+ password)
@@ -236,6 +236,15 @@ else{
 catch(e){
   console.log("connection error: "+e)
 }
+  })
+// logout
+  server.get("/zonapay/logout",(req,res,next)=>{
+req.logout((err)=>{
+if(err){
+  next(err);
+}
+res.redirect("/")
+});
   })
 
 
