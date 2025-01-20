@@ -223,9 +223,12 @@ console.log(e+"wronggg")
 const {email,password}=req.body;
 console.log(email+" and "+ password)
 try{
-const detail= await User.findOne({Email:email,Password:password});
+const detail= await User.findOne({Email:email});
 console.log(detail)
 if(detail){
+  if(!bcrypt.compareSync(password,detail.Password)){
+    return res.status(400).send("verificatin failed")
+  }
   console.log("verified..");
   return res.status(200).send("verified");
 }

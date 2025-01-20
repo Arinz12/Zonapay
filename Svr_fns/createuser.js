@@ -6,7 +6,7 @@ mongoose.set("strictQuery",false)
 const Userschema= new mongoose.Schema(
     {
         Username:{type:String},
-        Email:{type:String},
+        Email:{type:String,unique:true},
         Password:{type:String},
         Balance:{type:Number},
         Pin:{type:String}
