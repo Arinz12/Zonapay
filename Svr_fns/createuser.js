@@ -1,5 +1,7 @@
 require("dotenv").config()
 const mongoose=require("mongoose")
+const bcrypt=require("bcrypt")
+
 mongoose.set("strictQuery",false)
 const Userschema= new mongoose.Schema(
     {
@@ -22,7 +24,7 @@ console.log("Db connected")
     await User.create({
     Username:username,
     Email:email,
-    Password:password,
+    Password:bcrypt.hashSync(password,10),
     Balance:500,
     Pin:null,
 })

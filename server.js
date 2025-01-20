@@ -90,7 +90,7 @@ passport.use(new LocalStrategy({
         return done(null, false, { message: 'Incorrect username.' });
       }
 
-      const isit= user.Password==password
+      const isit= bcrypt.compareSync(password,user.Password)
       // Step 3: Compare the provided password with the stored hash
       //const isMatch = await user.comparePassword(password);
 
