@@ -13,7 +13,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const mongoose=require("mongoose")
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const upload=multer()
+const upload=multer();
 const passport = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
@@ -25,19 +25,15 @@ const { saveHistory } = require('./Svr_fns/saveHistory');
 const vet = require('./Svr_fns/verifyT');
 const {body,validationResult}= require("express-validator");
 const { error } = require('console');
-const bcrypt=require("bcrypt")
-const cors= require("cors")
-
-
+const bcrypt=require("bcrypt");
+const cors= require("cors");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected successfully'))
   .catch(err => console.error('MongoDB connection error:', err));
-
 app.prepare().then(() => {
   const server = express();
-
   const httpServer = http.createServer(server);
   const io = new Server(httpServer);
 Userss={}
@@ -71,15 +67,11 @@ cookie:{
   path:"/"
 }
 }));
-
 // Passport session initialization
 server.use(passport.initialize());
 server.use(passport.session());
-
-
 passport.use(new LocalStrategy({
   usernameField: 'email'},
-  
   async (username, password, done) => {
     try {
       // Step 1: Find the user by username
@@ -112,7 +104,6 @@ passport.use(new LocalStrategy({
 passport.serializeUser((user, done) => {
   done(null, user.id); // Store only the user ID in the session
 });
-
 // Deserialize user from session
 passport.deserializeUser(async (id, done) => {
   try {
@@ -122,12 +113,6 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
-
-
-
-
-
-
 const fundvals = [
   // Name Validation
   body("name")
@@ -172,11 +157,9 @@ const fundvals = [
  }
 res.status(200).json({guid:uuidv4()})
   })
-
   server.get('/api/some-endpoint', (req, res) => {
     res.json({ message: 'Hello from API' });
   });
-
   //for buying airtime
   server.post("/zonapay/airtime", upload.none(),async (req,res)=>{
     if(!req.isAuthenticated()){
@@ -221,7 +204,6 @@ console.log(e+"wronggg")
 // validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
 const {email,password}=req.body;
-console.log(email+" and "+ password)
 try{
 const detail= await User.findOne({Email:email});
 console.log(detail)
@@ -282,10 +264,8 @@ body("Email")
     if(errors.isEmpty()){
     const {Username,Email,Password}=req.body;
 try{
-  
   await createUser(Username,Email,Password);
 console.log("Done")
-
 setTimeout(()=>{
   res.redirect("/login")
 },1000);
@@ -306,6 +286,21 @@ catch(e){
     }
 })
 
+server.post("/zonapay/ValEmail", async (req,res)=>{
+const {val}= req.body;
+console.log(val)
+try{
+const ans = await User.findOne({Email:val});
+if(!ans){
+  res.status(200).send("Done..")
+}
+else{
+  res.status(400).send("failed")
+}}
+catch(e){
+  res.status(400).send("internet connection error "+e)
+}
+  })
 
 //login for a user
 server.post("/login",passport.authenticate("local",{

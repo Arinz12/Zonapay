@@ -148,3 +148,7 @@ button:active {
     transform: translateY(0px);
   }
 }
+
+.keypad:focus{
+  outline: none;
+}

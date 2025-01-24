@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from 'next/image';
 import Head from "next/head"
 import { Button } from "@mui/material";
-import { ArrowBack, ArrowForward ,Cancel,CheckCircle} from "@mui/icons-material";
+import { ArrowBack, ArrowForward ,Cancel,CheckCircle, HomeMiniRounded} from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import NumericPad from "../../components/Numpad";
 
@@ -31,7 +31,7 @@ const AirtimeForm=()=>{
     
       setLoading(true)
       const formdata= new FormData(e.target)
-     try{ const url="https://zonapay.onrender.com/zonapay/airtime"
+     try{ const url="http://localhost:3000/zonapay/airtime"
       const res= await fetch(url,{method:"POST",body:formdata})
       if(res.ok){
       const res1=await res.json();
@@ -145,7 +145,7 @@ document.getElementById("keyPad").style.display="none";
 
   setLoading(true)
   const formdata= new FormData(e.target)
- try{ const url="https://zonapay.onrender.com/zonapay/airtime"
+ try{ const url="http://localhost:3000/zonapay/airtime"
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
   const res1=await res.json();
@@ -198,11 +198,11 @@ if(processed){
   return (<>
   {sucessfull? <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
       <div className="flex flex-col gap-8 justify-center items-center w-full">
-        <div className="flex flex-col gap-2 items-center justify-center">
+        <div className="flex flex-col gap-4 items-center justify-center">
       <CheckCircle sx={{color:"green",height:"130px",width:"130px"}}/>
-      <div style={{fontSize:"25px"}} className="text-black rubik-b">{details.message}</div>
+      <div style={{fontSize:"20px"}} className="text-black rubik-b">{details.message}</div>
       </div>
-        <div style={{border:"4px solid green"}} className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
+        <div style={{backgroundColor:"gray" ,fontSize:"15px"}} className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Transaction id</span><span>{details.data.order_id}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
@@ -210,7 +210,7 @@ if(processed){
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Code</span><span>{details.code}</span></div>
               
           </div>
-          <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
+          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<HomeMiniRounded /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>GO to Home</Button>}</Link>
           </div>
   </div> : <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
     <div className="flex flex-col gap-8 justify-center items-center">
@@ -226,7 +226,7 @@ if(processed){
 const handlePinSubmit= async (pin)=>{
   const data={pinn:pin}
   try{
-const rep= await fetch("https://zonapay.onrender.com/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+const rep= await fetch("http://localhost:3000/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
 if(rep.ok){
   setPincon(true);
   console.log(pincon);

@@ -8,7 +8,7 @@ const val= async (e)=>{
     e.preventDefault();
     console.log("entered")
        try{
-        const exist= await fetch("https://zonapay.onrender.com/zonapay/valUser",
+        const exist= await fetch("http://localhost:3000/zonapay/valUser",
         {method:"post",body:JSON.stringify({email:document.getElementsByName("email")[0].value,password:document.getElementsByName("password")[0].value}),headers:{"Content-Type":"application/json"}});
 
       if(!exist.ok){
@@ -34,7 +34,7 @@ const val= async (e)=>{
     <Head>
         <title>Login</title>
     </Head>
-    <form action="https://zonapay.onrender.com/login" method="post" autoComplete="off" onSubmit={val}>
+    <form action="http://localhost:3000/login" method="post" autoComplete="off" onSubmit={val}>
     <div
   id="note"
   className="fixed top-2 right-2 flex-col gap-4 w-60 sm:w-72 text-xs sm:text-sm z-50 hidden"
@@ -90,11 +90,11 @@ const val= async (e)=>{
 <div className="form-control rubik-b">
     <input type="text" name="email" required/>
     <label>
-<span style={{transitionDelay:"0ms"}}>E</span>
-<span style={{transitionDelay:"50ms"}}>m</span>
-<span style={{transitionDelay:"100ms"}}>a</span>
-<span style={{transitionDelay:"150ms"}}>i</span>
-<span style={{transitionDelay:"200ms"}}>l</span>
+<span className="rubik-b" style={{transitionDelay:"0ms"}}>E</span>
+<span className="rubik-b" style={{transitionDelay:"50ms"}}>m</span>
+<span className="rubik-b" style={{transitionDelay:"100ms"}}>a</span>
+<span className="rubik-b" style={{transitionDelay:"150ms"}}>i</span>
+<span className="rubik-b" style={{transitionDelay:"200ms"}}>l</span>
 
     </label>
 </div>
@@ -102,13 +102,13 @@ const val= async (e)=>{
     <input type="password" name="password" required/>
     <label>
     <span style={{transitionDelay:"0ms"}}>P</span>
-<span style={{transitionDelay:"50ms"}}>a</span>
-<span style={{transitionDelay:"100ms"}}>s</span>
-<span style={{transitionDelay:"150ms"}}>s</span>
-<span style={{transitionDelay:"200ms"}}>w</span>
-<span style={{transitionDelay:"250ms"}}>o</span>
-<span style={{transitionDelay:"300ms"}}>r</span>
-<span style={{transitionDelay:"350ms"}}>d</span>
+<span className="rubik-b" style={{transitionDelay:"50ms"}}>a</span>
+<span className="rubik-b" style={{transitionDelay:"100ms"}}>s</span>
+<span className="rubik-b" style={{transitionDelay:"150ms"}}>s</span>
+<span className="rubik-b" style={{transitionDelay:"200ms"}}>w</span>
+<span className="rubik-b" style={{transitionDelay:"250ms"}}>o</span>
+<span className="rubik-b" style={{transitionDelay:"300ms"}}>r</span>
+<span className="rubik-b" style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
 </div>
@@ -132,7 +132,7 @@ const val= async (e)=>{
         </button>
 
         <div className="text-black" style={{fontSize:"16px"}}>
-            Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://zonapay.onrender.com/signup">Signup</Link></span>
+            Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="http://localhost:3000/signup">Signup</Link></span>
         </div>
 
     </div>

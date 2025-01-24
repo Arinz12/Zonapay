@@ -20,7 +20,7 @@ function showF(){
         document.getElementById("fai").style.display="none";
     },2000)
     }
-    function val() {
+     async function val() {
         let isValid = true;
     
         // Username Validation
@@ -48,7 +48,23 @@ function showF(){
         } else if (!emailRegex.test(email)) {
           emailError.textContent = "Please enter a valid email";
           isValid = false;
-        } else {
+        }
+        else if(email){
+          try{
+const already= await fetch("http://localhost:3000/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:email}),headers:{"Content-Type":"application/json"}});
+if(!already.ok){
+  isValid=false;
+  document.getElementById("fai").style.display="block";
+  setTimeout(()=>{  document.getElementById("fai").style.display="none";
+},3000)
+}
+        }
+        catch(e){
+          console.log("internet connection error"+e)
+        }
+      }
+        
+        else {
           emailError.textContent = "";
         }
     
@@ -78,10 +94,12 @@ function showF(){
     
         // after validations 
         return isValid;
-      }
-    const handle=(e)=>{
-        if(!val()){
-        e.preventDefault()
+      } 
+    const   handle= async(e)=>{
+      e.preventDefault()
+
+        if(await val()){
+          e.target.submit()
         }
     }
 
@@ -135,7 +153,7 @@ function showF(){
     }
     
     useEffect(()=>{
-        // const socket = io('https://zonapay.onrender.com', {
+        // const socket = io('http://localhost:3000', {
         //     query: { userId: "123" } // Send user ID on connection
         // });
         //         socket.on("createdS",showS)
@@ -154,9 +172,9 @@ function showF(){
     <Head>
         <title>Signup</title>
     </Head>
-    <form action="https://zonapay.onrender.com/signup" method="post" autoComplete="off" onSubmit={handle}>
+    <form action="http://localhost:3000/signup" method="post" autoComplete="off" onSubmit={handle}>
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
-        <Card id="fai" className=" hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="error">Account creation failed!!!</Button> </Card>
+        <Card id="fai" className="z-10 hidden ml-1 mr-1 p-3 absolute top-1 left-1 font-bold" sx={{maxWidth:"400px"}}> <Button color="error">Email already exist !!!</Button> </Card>
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
 
     <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-2 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  border-4 border-blue-500 rounded-3xl  items-center">
@@ -164,10 +182,10 @@ function showF(){
 <div className="form-control py-2 rubik-b">
     <input onKeyUp={valN} type="text" name="Username" required/>
     <label>
-    <span style={{transitionDelay:"0ms"}}>N</span>
-<span style={{transitionDelay:"50ms"}}>a</span>
-<span style={{transitionDelay:"100ms"}}>m</span>
-<span style={{transitionDelay:"150ms"}}>e</span>
+    <span className="rubik-b" style={{transitionDelay:"0ms"}}>N</span>
+<span className="rubik-b" style={{transitionDelay:"50ms"}}>a</span>
+<span className="rubik-b" style={{transitionDelay:"100ms"}}>m</span>
+<span className="rubik-b" style={{transitionDelay:"150ms"}}>e</span>
     </label>
         <span style={{fontSize:"12px"}} id="usernameError" className="text-yellow-700 absolute rubik-b" ></span>
 </div>
@@ -176,11 +194,11 @@ function showF(){
 <div className="form-control py-2 rubik-b">
     <input onKeyUp={valE} type="text" name="Email" required/>
     <label>
-<span style={{transitionDelay:"0ms"}}>E</span>
-<span style={{transitionDelay:"50ms"}}>m</span>
-<span style={{transitionDelay:"100ms"}}>a</span>
-<span style={{transitionDelay:"150ms"}}>i</span>
-<span style={{transitionDelay:"200ms"}}>l</span>
+<span className="rubik-b" style={{transitionDelay:"0ms"}}>E</span>
+<span className="rubik-b" style={{transitionDelay:"50ms"}}>m</span>
+<span className="rubik-b" style={{transitionDelay:"100ms"}}>a</span>
+<span className="rubik-b" style={{transitionDelay:"150ms"}}>i</span>
+<span className="rubik-b" style={{transitionDelay:"200ms"}}>l</span>
 
     </label>
     <span id="emailError" className="text-yellow-700 absolute rubik-b" style={{fontSize:"12px"}}></span>
@@ -190,14 +208,14 @@ function showF(){
 <div className="form-control py-2 rubik-b relative">
     <input onKeyUp={valP} type="password" name="Password" required/>
     <label>
-    <span style={{transitionDelay:"0ms"}}>P</span>
-<span style={{transitionDelay:"50ms"}}>a</span>
-<span style={{transitionDelay:"100ms"}}>s</span>
-<span style={{transitionDelay:"150ms"}}>s</span>
-<span style={{transitionDelay:"200ms"}}>w</span>
-<span style={{transitionDelay:"250ms"}}>o</span>
-<span style={{transitionDelay:"300ms"}}>r</span>
-<span style={{transitionDelay:"350ms"}}>d</span>
+    <span className="rubik-b" style={{transitionDelay:"0ms"}}>P</span>
+<span className="rubik-b" style={{transitionDelay:"50ms"}}>a</span>
+<span className="rubik-b" style={{transitionDelay:"100ms"}}>s</span>
+<span className="rubik-b" style={{transitionDelay:"150ms"}}>s</span>
+<span className="rubik-b" style={{transitionDelay:"200ms"}}>w</span>
+<span className="rubik-b" style={{transitionDelay:"250ms"}}>o</span>
+<span className="rubik-b" style={{transitionDelay:"300ms"}}>r</span>
+<span className="rubik-b" style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
     <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>}</span>
@@ -225,7 +243,7 @@ function showF(){
         </button>
 
         <div className="text-black" style={{fontSize:"16px"}}>
-            Already have an account ? then <span className="text-blue-500 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
+            Already have an account ? then <span className="text-blue-500 underline" > <Link href="http://localhost:3000/login">Login</Link></span>
         </div>
 
     </div>

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-
 const NumericPad = ({ maxLength = 4, onSubmit }) => {
   const [pin, setPin] = useState("");
 
@@ -30,7 +28,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
         readOnly
         maxLength={maxLength}
         placeholder="Enter PIN"
-        className="w-48 text-center text-2xl border-1 border-blue-500 rounded-full py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-48 text-center text-2xl  rounded-full py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
       {/* Numeric Pad */}
@@ -40,7 +38,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
           style={{borderRadius:"50%"}}
             key={item}
             onClick={() => handleButtonClick(item.toString())}
-            className={`w-12 h-12 focus:outline-none text-xl  shadow-md
+            className={`w-12 h-12 keypad text-xl  shadow-md
               ${
                 item === "clear"
                   ? "bg-none text-black hover:bg-none"

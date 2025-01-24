@@ -20,7 +20,7 @@ setTimeout(()=>{document.getElementById("message").innerHTML=""},4000)
 }
 const data={pin:pin1.value}
 try{
-const resdata= await fetch("https://zonapay.onrender.com/zonapay/setpin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+const resdata= await fetch("http://localhost:3000/zonapay/setpin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
 if(resdata.ok){
     console.log("done")
     setSet(true)
@@ -51,7 +51,7 @@ return(<>
 </Head>
 
 <div className="mx-auto flex flex-col gap-6 justify-center items-start h-full">
-   <Link href="/dashboard/settings">{<div className="absolute left-2 p-3 top-1 inline-block rounded-full bg-blue-500"><ArrowBackIosRounded sx={{color:"white"}}/> </div>}</Link>
+   <Link href="/dashboard/settings">{<div className="absolute left-2 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"white"}}/> </div>}</Link>
     <form className=" w-full mx-auto flex flex-col gap-3 justify-center items-start h-full" id="form" action="" method="post" autoComplete="off">
     <div className="text-5xl mt-8 mb-10 mx-auto text-center rubik-h">Create Pin</div>
    <div className="mx-auto rubik-b w-full text-center">
@@ -62,8 +62,8 @@ return(<>
 <label className="rubik-b" htmlFor="sp">Re-enter pin</label><br/>
 <input maxLength="4" inputMode="numeric" className="border-0 border-b-2 text-center focus:outline-none border-black w-9/12 "  type='password'  id="sp"/></div>
 
-<span className="text-red-600" id="message">...</span>
-<div className="absolute w-full flex bottom-0 mx-auto justify-center text-center"><Button endIcon={<ArrowForward/>} className="p-5 w-3/4 rounded-full bg-blue-600 " variant="contained" type="submit">Continue</Button></div>
+<span className="text-red-600 rubik-l mx-auto" id="message"></span>
+<div className="absolute w-full flex bottom-1 mx-auto justify-center text-center"><Button endIcon={<ArrowForward/>} className="p-5 w-full rounded-full bg-blue-600 " variant="contained" type="submit">Continue</Button></div>
 </form>
 </div>
 </>)
