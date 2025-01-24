@@ -37,7 +37,7 @@ import SplitText from '../components/SplitText';
 
  const Dash=(props)=>{
 useEffect(()=>{
-const source= new EventSource("http://localhost:3000/stream");
+const source= new EventSource("https://zonapay.onrender.com/stream");
 source.onmessage= function(e){console.log(e.data)}
 source.onerror= ()=>{console.log("An error occured")}
 },[])
@@ -55,7 +55,7 @@ source.onerror= ()=>{console.log("An error occured")}
 <Stack className='focus:outline-none absolute bg-transparent top-2 z-10  w-full p-2 pt-1 pr-1 right-1 items-center' direction={"row"} justifyContent="space-between" sx={{bgcolor:"none"}} >
     <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-white '>Zona</Button>
     
-<Button href="http://localhost:3000/signup"  variant="contained" className="mr-2 sticky top-1">Get started</Button>
+<Button href="https://zonapay.onrender.com/signup"  variant="contained" className="mr-2 sticky top-1">Get started</Button>
 </Stack>
        <div className='relative w-full focus:outline-none'> <Carousel className='w-full focus:outline-none'  animation='fade' interval={6000}>
             <Box className="flex flex-col gap-2 justify-center items-center" sx={{height:"80vh",width:"100%", textAlign:"center",backgroundImage:"url('https://www.shutterstock.com/shutterstock/photos/1932042689/display_1500/stock-photo-businessman-using-mobile-smart-phone-business-global-internet-connection-application-technology-1932042689.jpg')",backgroundSize:"cover"}}>
@@ -82,7 +82,7 @@ source.onerror= ()=>{console.log("An error occured")}
                 </div></Box>
         </Carousel>
         <div className="absolute w-full flex justify-center mx-auto bottom-16 z-10">
-        <Button sx={{fontSize:"20px",textTransform: 'none'}} endIcon={<ArrowForwardTwoToneIcon/>} className="mx-auto" variant='contained' href="http://localhost:3000/signup">Sign up</Button></div>
+        <Button sx={{fontSize:"20px",textTransform: 'none'}} endIcon={<ArrowForwardTwoToneIcon/>} className="mx-auto" variant='contained' href="https://zonapay.onrender.com/signup">Sign up</Button></div>
         </div>
         <div className='flex flex-col'>
 
