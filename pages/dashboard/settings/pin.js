@@ -51,7 +51,7 @@ return(<>
 </Head>
 
 <div className="mx-auto flex flex-col gap-6 justify-center items-start h-full">
-   <Link href="/dashboard/settings">{<div className="absolute left-2 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"white"}}/> </div>}</Link>
+   <Link href="/dashboard/settings">{<div className="absolute left-2 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>}</Link>
     <form className=" w-full mx-auto flex flex-col gap-3 justify-center items-start h-full" id="form" action="" method="post" autoComplete="off">
     <div className="text-5xl mt-8 mb-10 mx-auto text-center rubik-h">Create Pin</div>
    <div className="mx-auto rubik-b w-full text-center">
