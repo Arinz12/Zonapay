@@ -182,10 +182,10 @@ if(!already.ok){
 <div className="form-control py-2 rubik-b">
     <input onKeyUp={valN} type="text" name="Username" required/>
     <label>
-    <span className="rubik-b" style={{transitionDelay:"0ms"}}>N</span>
-<span className="rubik-b" style={{transitionDelay:"50ms"}}>a</span>
-<span className="rubik-b" style={{transitionDelay:"100ms"}}>m</span>
-<span className="rubik-b" style={{transitionDelay:"150ms"}}>e</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"0ms"}}>N</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"50ms"}}>a</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"100ms"}}>m</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"150ms"}}>e</span>
     </label>
         <span style={{fontSize:"12px"}} id="usernameError" className="text-yellow-700 absolute rubik-b" ></span>
 </div>
@@ -194,11 +194,11 @@ if(!already.ok){
 <div className="form-control py-2 rubik-b">
     <input onKeyUp={valE} type="text" name="Email" required/>
     <label>
-<span className="rubik-b" style={{transitionDelay:"0ms"}}>E</span>
-<span className="rubik-b" style={{transitionDelay:"50ms"}}>m</span>
-<span className="rubik-b" style={{transitionDelay:"100ms"}}>a</span>
-<span className="rubik-b" style={{transitionDelay:"150ms"}}>i</span>
-<span className="rubik-b" style={{transitionDelay:"200ms"}}>l</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"0ms"}}>E</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"50ms"}}>m</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"100ms"}}>a</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"150ms"}}>i</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"200ms"}}>l</span>
 
     </label>
     <span id="emailError" className="text-yellow-700 absolute rubik-b" style={{fontSize:"12px"}}></span>
@@ -208,14 +208,14 @@ if(!already.ok){
 <div className="form-control py-2 rubik-b relative">
     <input onKeyUp={valP} type="password" name="Password" required/>
     <label>
-    <span className="rubik-b" style={{transitionDelay:"0ms"}}>P</span>
-<span className="rubik-b" style={{transitionDelay:"50ms"}}>a</span>
-<span className="rubik-b" style={{transitionDelay:"100ms"}}>s</span>
-<span className="rubik-b" style={{transitionDelay:"150ms"}}>s</span>
-<span className="rubik-b" style={{transitionDelay:"200ms"}}>w</span>
-<span className="rubik-b" style={{transitionDelay:"250ms"}}>o</span>
-<span className="rubik-b" style={{transitionDelay:"300ms"}}>r</span>
-<span className="rubik-b" style={{transitionDelay:"350ms"}}>d</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"0ms"}}>P</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"50ms"}}>a</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"100ms"}}>s</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"150ms"}}>s</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"200ms"}}>w</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"250ms"}}>o</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"300ms"}}>r</span>
+<span className="rubik-b font-bold" style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
     <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>}</span>
@@ -242,7 +242,7 @@ if(!already.ok){
             </svg>
         </button>
 
-        <div className="text-black" style={{fontSize:"16px"}}>
+        <div className="text-black rubik-b font-bold" style={{fontSize:"16px"}}>
             Already have an account ? then <span className="text-blue-500 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
         </div>
 

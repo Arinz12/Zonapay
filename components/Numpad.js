@@ -35,7 +35,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
       <div className="grid grid-cols-3 gap-8">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, "clear", 0, "delete"].map((item) => (
           <button
-          style={{borderRadius:"50%"}}
+          style={{all:"unset",borderRadius:"50%", outline:"none"}}
             key={item}
             onClick={() => handleButtonClick(item.toString())}
             className={`w-12 h-12 keypad text-xl  shadow-md
