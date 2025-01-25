@@ -89,25 +89,25 @@ const val= async (e)=>{
 <div className="form-control rubik-b">
     <input type="text" name="email" required/>
     <label>
-<span className="rubik-b font-bold" style={{transitionDelay:"0ms"}}>E</span>
-<span className="rubik-b font-bold" style={{transitionDelay:"50ms"}}>m</span>
-<span className="rubik-b font-bold" style={{transitionDelay:"100ms"}}>a</span>
-<span className="rubik-b font-bold" style={{transitionDelay:"150ms"}}>i</span>
-<span className="rubik-b font-bold" style={{transitionDelay:"200ms"}}>l</span>
+<span className="rubik-h" style={{transitionDelay:"0ms"}}>E</span>
+<span className="rubik-h" style={{transitionDelay:"50ms"}}>m</span>
+<span className="rubik-h" style={{transitionDelay:"100ms"}}>a</span>
+<span className="rubik-h" style={{transitionDelay:"150ms"}}>i</span>
+<span className="rubik-h" style={{transitionDelay:"200ms"}}>l</span>
 
     </label>
 </div>
 <div className="form-control rubik-b">
     <input type="password" name="password" required/>
     <label>
-<span  className="rubik-b font-bold" style={{transitionDelay:"0ms"}}>P</span>
-<span  className="rubik-b font-bold" style={{transitionDelay:"50ms"}}>a</span>
-<span  className="rubik-b font-bold" style={{transitionDelay:"100ms"}}>s</span>
-<span  className="rubik-b font-bold" style={{transitionDelay:"150ms"}}>s</span>
-<span  className="rubik-b font-bold" style={{transitionDelay:"200ms"}}>w</span>
-<span  className="rubik-b font-bold" style={{transitionDelay:"250ms"}}>o</span>
-<span  className="rubik-b font-bold" style={{transitionDelay:"300ms"}}>r</span>
-<span  className="rubik-b font-bold" style={{transitionDelay:"350ms"}}>d</span>
+<span  className="rubik-h" style={{transitionDelay:"0ms"}}>P</span>
+<span  className="rubik-h" style={{transitionDelay:"50ms"}}>a</span>
+<span  className="rubik-h" style={{transitionDelay:"100ms"}}>s</span>
+<span  className="rubik-h" style={{transitionDelay:"150ms"}}>s</span>
+<span  className="rubik-h" style={{transitionDelay:"200ms"}}>w</span>
+<span  className="rubik-h" style={{transitionDelay:"250ms"}}>o</span>
+<span  className="rubik-h" style={{transitionDelay:"300ms"}}>r</span>
+<span  className="rubik-h" style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
 </div>
