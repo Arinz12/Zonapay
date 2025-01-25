@@ -241,7 +241,7 @@ if(!already.ok){
             </svg>
         </button>
 
-        <div className="text-black rubik-b font-bold" style={{fontSize:"16px"}}>
+        <div className="text-black rubik-h " style={{fontSize:"16px"}}>
             Already have an account ? then <span className="text-blue-500 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
         </div>
 

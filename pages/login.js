@@ -130,7 +130,7 @@ const val= async (e)=>{
             </svg>
         </button>
 
-        <div className="text-black rubik-b font-bold" style={{fontSize:"16px"}}>
+        <div className="text-black rubik-h " style={{fontSize:"16px"}}>
             Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://zonapay.onrender.com/signup">Signup</Link></span>
         </div>
 
