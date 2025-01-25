@@ -151,4 +151,8 @@ button:active {
 
 .keypad:focus{
   outline: none;
+  background-color: none;
+}
+.keypad:hover{
+  background-color: none;
 }

@@ -38,7 +38,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
           style={{borderRadius:"50%"}}
             key={item}
             onClick={() => handleButtonClick(item.toString())}
-            className={`w-12 h-12 focus:bg-none text-xl  shadow-md
+            className={`w-12 h-12 keypad text-xl  shadow-md
               ${
                 item === "clear"
                   ? "bg-none text-black hover:bg-none"
