@@ -28,13 +28,13 @@ const { error } = require('console');
 const bcrypt=require("bcrypt");
 const cors= require("cors");
 mongoose.set("strictQuery",false)
-
-app.prepare().then(() => {
 //DB CONNECTION
 
-  mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected successfully'))
-  .catch(err => console.error('MongoDB connection error:', err));
+mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.error('MongoDB connection error:', err));
+
+app.prepare().then(() => {
 
   const server = express();
   const httpServer = http.createServer(server);
