@@ -21,7 +21,7 @@ const History=({userhistory})=>{
         <span className="font-bold text-gray-700 rubik-b">Phone Number:</span> {a.Phoneno}
       </div>
       <div className="mb-2 text-green-700 rubik-b">
-        <span className="font-bold text-gray-700 rubik-b">Network:</span> {a.Amount}
+        <span className="font-bold text-gray-700 rubik-b">Amount:</span> {a.Amount}
       </div>
       <div className="mb-2 rubik-b">
         <span className="font-bold text-gray-700 rubik-b">Time:</span> {a.Time}

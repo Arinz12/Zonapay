@@ -15,7 +15,6 @@ console.log(ref);
     console.log(response)
         if (
             response.data.status === "successful"
-            && response.data.amount === response.data.charged_amount
             && response.data.currency === "NGN"
             &&response.data.tx_ref===ref) {
                 await User.findByIdAndUpdate(ID, { $inc: { Balance: response.data.amount } },  { new: true } ).catch(e=>console.log(e))
