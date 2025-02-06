@@ -6,15 +6,17 @@ import Carousel from 'react-material-ui-carousel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ConnectWithoutContactIcon, LogoutRounded} from '@mui/icons-material';
 import { LocalAirportRounded,LanguageRounded,CardGiftcard, TvRounded, Tungsten, School, History, Visibility, VisibilityOff, PhoneOutlined } from '@mui/icons-material';
-import { Paper } from '@mui/material';
+import { Paper,Button } from '@mui/material';
+import router from "next/router"
 
 const Dashboard = ({obj}) => {
     const [visible,setVisible]=useState(true);
     useEffect(()=>{
         document.getElementsByClassName("css-1abc02a")[0].style.display="none";
         document.getElementsByClassName("css-hn784z")[0].style.display="none";
+        if(!obj.isPinset){
+        setTimeout(()=>{document.getElementById("createpin").style.display="flex"},3000)}
     })
-    
      return (<>
     <Head>
         <title>Dashboard</title>
@@ -23,6 +25,11 @@ const Dashboard = ({obj}) => {
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div style={{backgroundColor:"whitesmoke",height:"100vh"}} >
+     <div
+         id="createpin" className='hidden  h-full justify-center z-10 items-center fixed top-0 w-full '><Paper elevated={12}   className="relative w-2/3  mx-auto p-7  flex flex-col justify-center items-center gap-2" ><div className="rubik-b">Pin is required </div>
+        <Button onClick={()=>{router.push("/dashboard/settings/pin")}} variant={"contained"}>Create pin</Button>
+        <span onClick={()=>{document.getElementById("createpin").style.display="none"}}className='absolute top-1 text-3xl right-1'>&times;</span>
+         </Paper></div>
         <div className='flex pb-5 pt-1 flex-row justify-between items-center ml-2 mr-2'>
         <div className='flex flex-row gap-2 items-center '>
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
@@ -116,7 +123,7 @@ if(!context.req.isAuthenticated()){
 else{
     
     const ob = context.req.user;
-    const obj = {Username:ob.Username,Balance:ob.Balance,Email:ob.Email}; // Shallow copy of the object
+    const obj = {Username:ob.Username,Balance:ob.Balance,Email:ob.Email,isPinset:ob.Pin}; // Shallow copy of the object
     
 return {
     props:{obj}

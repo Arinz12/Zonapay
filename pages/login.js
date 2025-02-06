@@ -33,6 +33,8 @@ const val= async (e)=>{
     <Head>
         <title>Login</title>
     </Head>
+    <div style={{fontSize:"25px"}} className=" absolute top-1 w-full rubik-h text-center text-black">WELCOME BACK</div>
+
     <form action="https://zonapay.onrender.com/login" method="post" autoComplete="off" onSubmit={val}>
     <div
   id="note"
@@ -83,7 +85,7 @@ const val= async (e)=>{
 </div>
 
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
-    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  border-4 border-blue-600 rounded-3xl  items-center">
+    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  md:border-4 border-0 border-blue-600 rounded-3xl  items-center">
 <div className=" rubik-h text-black">Login</div>
 
 <div className="form-control rubik-b">

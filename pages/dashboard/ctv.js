@@ -1,8 +1,9 @@
 import "@fontsource/roboto"
-import { ArrowForward } from "@mui/icons-material";
+import { ArrowBackIosRounded, ArrowForward } from "@mui/icons-material";
 import { Paper, Button } from "@mui/material"
 import Head from "next/head"
 import { useEffect, useState } from "react";
+import router from "next/router"
 
 const Cable=()=>{
 const [status,setStatus]=useState(null)
@@ -62,13 +63,19 @@ function change(){
 useEffect(()=>{
     document.getElementById("form").onsubmit= async (e)=>{
     e.preventDefault();
+    const valu=document.getElementById("iuc").value;
+    const cp=document.getElementById("cp").value;
+    const pho=document.getElementById("pn").value;
+    const ar=Object.values(document.getElementsByName("variation_id"))
+    const ele=ar.filter((a)=>a.checked==true)
+const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
     try{
         setStart(true)
-        const data= await fetch("https://zonapay.onrender.com/zonapay/cable",{method:"post"})
-    if(data.ok){
-    const data2= await data.json();
+        const resp= await fetch("https://zonapay.onrender.com/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),headers:{"Content-Type":"application/json"}})
+    if(resp.ok){
+    const data2= await resp.json();
     if(data2.code==="failure"){
-        throw new Error("something went wrong")
+        throw new Error("something went wrong1")
     }
     setStatus(data2)
     setPro(true)
@@ -106,7 +113,8 @@ useEffect(()=>{
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
           </div>
   </div>: <div className="" style={{backgroundColor:"whitesmoke"}}>
-            <div className="text-center rubik-h mb-20" style={{fontSize:"30px"}}>CABLE TV</div>
+  <div onClick={()=>{router.back()}} className="absolute left-1 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>
+            <div className="text-center rubik-h pt-4 mb-12" style={{fontSize:"30px"}}>CABLE TV</div>
             <form  method="post" className="w-full" id="form">
                 <div className="flex flex-col gap-8 mx-auto p-6 bg-white rounded-xl " style={{width:"100%"}}>
                 <select onChange={change} className="focus:outline-none rubik-h p-4 rounded-md " name="cableprovider" id="cp">
@@ -114,9 +122,9 @@ useEffect(()=>{
                     <option className="rubik-b" value="dstv">DSTV</option>
                     <option className="rubik-b" value="startimes">STARTIMES</option>
                 </select>
-               <div className="flex flex-col"><label htmlFor='iuc' className="rubik-b font-bold" style={{fontSize:"20px"}}>Iuc number</label>
+               <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
                <input onKeyUp={val}  id="iuc" className="border-0 border-b-4 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"  /> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
-               <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-b font-bold" style={{fontSize:"20px"}}> Phone number</label>
+               <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
                <input id="pn" className="border-0 border-b-4 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
                
  {(cpp=="gotv")? <div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
@@ -159,7 +167,7 @@ gotv supa <br/>15,700
 {(cpp=="dstv")?<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
 
-  <div>
+  <div tabIndex={0}>
     <input type="radio" id="dstv-padi" name="variation_id" value="dstv-padi" className="hidden" />
     <label htmlFor="dstv-padi" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
       DStv Padi

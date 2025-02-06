@@ -69,9 +69,9 @@ if(!already.ok){
         }
     
         // Password Validation
-        const password = document.getElementsByName("Password")[0].value;
+        const password = document.getElementsByName("Password")[0].value.trim();
         const passwordError = document.getElementById("passwordError");
-        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#]).{8,}$/;
     
         if (password.length < 8) {
           passwordError.textContent = "Password must be at least 8 characters long";
@@ -85,8 +85,8 @@ if(!already.ok){
         } else if (!password.match(/\d/)) {
           passwordError.textContent = "Password must contain at least one number";
           isValid = false;
-        } else if (!password.match(/[@$!%*?&]/)) {
-          passwordError.textContent = "Password must contain at least one special character (e.g., @$!%*?&)";
+        } else if (!password.match(/[@$!%*?&#]/)) {
+          passwordError.textContent = "Password must contain at least one special character (e.g., @$!%*?&#)";
           isValid = false;
         } else {
           passwordError.textContent = "";
@@ -177,7 +177,7 @@ if(!already.ok){
         <Card id="fai" className="z-10 hidden ml-1 mr-1 p-3 absolute top-1 left-1 font-bold" sx={{maxWidth:"400px"}}> <Button color="error">Email already exist !!!</Button> </Card>
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
 
-    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-2 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  border-4 border-blue-500 rounded-3xl  items-center">
+    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-2 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12 border-0  md:border-4 border-blue-500 rounded-3xl  items-center">
 <div className=" rubik-h text-black">Signup</div>
 <div className="form-control py-2 rubik-b">
     <input onKeyUp={valN} type="text" name="Username" required/>

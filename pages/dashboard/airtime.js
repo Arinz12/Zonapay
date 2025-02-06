@@ -2,10 +2,10 @@ import Link from "next/link"
 import Image from 'next/image';
 import Head from "next/head"
 import { Button } from "@mui/material";
-import { ArrowBack, ArrowForward ,Cancel,CheckCircle, HomeMiniRounded} from "@mui/icons-material";
+import { ArrowBack, ArrowBackIosRounded, ArrowForward ,Cancel,CheckCircle, HomeMiniRounded} from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import NumericPad from "../../components/Numpad";
-
+import router from "next/router"
 
 const AirtimeForm=()=>{
   const [enable,setEnable]= useState(true)
@@ -247,7 +247,9 @@ catch(e){
       <title>Airtime</title>
     </Head>
     <div className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
-        <div style={{fontSize:"30px"}} className="rubik-h mb-16">Airtime purchase</div>
+    <div onClick={()=>{router.back()}} className="absolute left-1  top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>
+
+        <div style={{fontSize:"30px"}} className="rubik-h mt-4 mb-16">Airtime purchase</div>
 <form id="form" style={{border:"6px solid #1E3A5F"}} className="w-11/12 p-4 rounded-2xl mb-8 flex flex-col" encType="multipart/form-data">
     <div>
     <p className="rubik-h pb-4">Choose your network</p>

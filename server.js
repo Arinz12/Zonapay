@@ -288,7 +288,7 @@ catch(e){
       return res.status(400).json({errors:errors.array()})
     }
 })
-
+//check if email is alreay existing
 server.post("/zonapay/ValEmail", async (req,res)=>{
 const {val}= req.body;
 console.log(val)
@@ -320,7 +320,7 @@ server.post("/zonapay/data",upload.none() ,async (req,res)=>{
   const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
-const isFundsSufficient= balance>500
+const isFundsSufficient= balance>50
   if(!isFundsSufficient){
   res.status(400).json({code:"insufficientFund"})
   return;
@@ -360,10 +360,11 @@ server.post("/zonapay/cable",async (req,res)=>{
 const url = new URL("https://vtu.ng/wp-json/api/v1/tv?username=ArinzechukwuGift&password=ari123Ari@vv")
 const {cableprovider,iuc,phone,variation_id}= req.body;
 console.log(iuc)
+console.log(cableprovider+phone+variation_id)
 const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
-const isFundsSufficient= balance>500
+const isFundsSufficient= balance>50
   if(!isFundsSufficient){
   res.status(400).json({code:"insufficientFund"})
   return;
@@ -372,22 +373,16 @@ const isFundsSufficient= balance>500
   url.searchParams.append("service_id",cableprovider)
   url.searchParams.append("smartcard_number",iuc)
   url.searchParams.append("variation_id",variation_id)
-
   try{
 const data=await fetch(url.toString(),{method:"GET"})
-if(data.ok){
-  
+
   const data2=await data.json()
   console.log(data2)
   if(data2.code==="failure"){
     throw new Error("request failure");
   }
   res.status(200).json(data2)
-}
-else{
-  throw new Error("response was not ok");
-}
-  }
+ }
   catch(e){
 console.log(e)
 res.status(400).json({message:"check your connection"});

@@ -3,6 +3,7 @@ import { Button } from "@mui/material"
 import Head from "next/head"
 import { useEffect, useState } from "react"
 import Link from "next/link";
+import router from "next/router";
 const Pin=()=>{
     const [set,setSet]=useState(false);
     useEffect(()=>{
@@ -11,8 +12,8 @@ form.onsubmit=async (e)=>{
 e.preventDefault();
 const pin1= document.getElementById('fp')
 const pin2= document.getElementById('sp')
-if(pin1.value!==pin2.value){
-    document.getElementById("message").innerHTML="pin doesn't match"
+if(pin1.value!==pin2.value||pin1.value==""||!/^\d+$/.test(pin1.value)||!/^\d+$/.test(pin2.value)){
+    document.getElementById("message").innerHTML="pin not accepted";
     pin1.value=""
     pin2.value=""
 setTimeout(()=>{document.getElementById("message").innerHTML=""},4000)
@@ -51,7 +52,7 @@ return(<>
 </Head>
 
 <div className="mx-auto flex flex-col gap-6 justify-center items-start h-full">
-   <Link href="/dashboard/settings">{<div className="absolute left-2 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>}</Link>
+   <div onClick={()=>{router.back()}} className="absolute left-1 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>
     <form className=" w-full mx-auto flex flex-col gap-3 justify-center items-start h-full" id="form" action="" method="post" autoComplete="off">
     <div className="text-5xl mt-8 mb-10 mx-auto text-center rubik-h">Create Pin</div>
    <div className="mx-auto rubik-b w-full text-center">

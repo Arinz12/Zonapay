@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import "@fontsource/roboto/500.css";
 import Link from "next/link";
+import Script from "next/script"
 
 // Material UI components
 import { Box,Container,Card, CardContent,CardMedia,Typography,Paper,Button,Stack} from '@mui/material';
@@ -29,13 +30,13 @@ import dynamic from "next/dynamic";
 
 // Carousel
 import Carousel from 'react-material-ui-carousel';
-
 // Animation
 import Slide from 'react-reveal/Slide';
 import FadeOutComponent from '../components/Fadeout';
 import SplitText from '../components/SplitText';
 
  const Dash=(props)=>{
+  const handleAnimationComplete=()=>{console.log("Animation is completed")}
 useEffect(()=>{
 const source= new EventSource("https://zonapay.onrender.com/stream");
 source.onmessage= function(e){console.log(e.data)}
@@ -48,12 +49,22 @@ source.onerror= ()=>{console.log("An error occured")}
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-
+{/* <script src="https://unpkg.com/@tailwindcss/browser@4"></script> */}
 
 </Head>
 <Stack className='focus:outline-none absolute bg-transparent top-2 z-10  w-full p-2 pt-1 pr-1 right-1 items-center' direction={"row"} justifyContent="space-between" sx={{bgcolor:"none"}} >
     <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-white '>Zona</Button>
+    {/* <div><SplitText
+  text="Zonapay"
+  className="text-2xl font-semibold text-center"
+  delay={100}
+  animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
+  animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
+  easing="easeOutCubic"
+  threshold={0.2}
+  rootMargin="-50px"
+  onLetterAnimationComplete={handleAnimationComplete}
+/></div> */}
     
 <Button href="https://zonapay.onrender.com/signup"  variant="contained" className="mr-2 sticky top-1">Get started</Button>
 </Stack>
