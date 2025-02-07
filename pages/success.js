@@ -13,4 +13,4 @@ const Success = ()=>{
     </>
     )
 }
-export default Sucess;
+export default Success;
