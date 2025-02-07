@@ -85,7 +85,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
     }}
     catch(e){
     console.log("GOTCHAAAAAAA"+e)
-    router.push("/error")
+    router.push("/dashboard/error")
     }
     finally{
     console.log("done.....")

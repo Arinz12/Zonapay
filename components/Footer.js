@@ -8,7 +8,7 @@ import { Paper } from "@mui/material";
 const Footer=()=>{
     const router=useRouter()
     return (<>
-    <div className="fixed w-full flex flex-row bg-white justify-between items-center rounded-t-2xl p-4  rounded-md bottom-0">
+    <div className="fixed z-10 w-full flex flex-row bg-white justify-between items-center rounded-t-2xl p-4  rounded-md bottom-0">
         {(router.pathname=="/dashboard")?   <div className="flex flex-col justify-center items-center" ><Home className="text-blue-600 bg-none"  sx={{fontSize:"30px"}}/><div className="rubik-h text-blue-600">Home</div> </div> : <Link href={"/dashboard"}>{<div className="flex flex-col justify-center items-center" > <Home  sx={{fontSize:"30px",color:"#36454F"}}/>
         <div className="rubik-b">Home</div></div>}</Link>}
     

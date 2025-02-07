@@ -102,7 +102,7 @@ const Dashboard = ({obj}) => {
         </div>
 
         <div>
-            <Carousel  animation="slide" className='mt-4 static z-0' autoplay={true} fullHeightHover={false} indicators={false} navButtonsAlwaysVisible={false} >
+            <Carousel  animation="slide" className='mt-4 ' autoplay={true} fullHeightHover={false} indicators={false} navButtonsAlwaysVisible={false} >
 <Paper className="rounded-2xl mx-auto rubik-b p-4 text-center " elevation={0} sx={{height:"100px",width:"90%"}}>Enjoy seamless transparent transactions where everything happening is clear</Paper>
 <Paper className="rounded-2xl mx-auto rubik-b p-4 text-center" elevation={0} sx={{height:"100px",width:"90%"}}>Schedule bill payments so you worry not about forgetting</Paper>
             </Carousel>

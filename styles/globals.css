@@ -3,7 +3,14 @@
 @tailwind utilities;
 
  
-
+html{
+  scroll-behavior: smooth;
+}
+body{
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
 .monomaniac-one-regular {
   font-family: "Monomaniac One", serif;
   font-weight: 400;
@@ -176,7 +183,7 @@ button:active {
   opacity: 1;
  }
 }
-.ac:-webkit-autofill{
+input:-webkit-autofill{
 background-color: white !important;
 color: black;
 }
