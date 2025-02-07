@@ -51,7 +51,7 @@ function showF(){
         }
         else if(email){
           try{
-const already= await fetch("http://localhost:3000/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:email}),headers:{"Content-Type":"application/json"}});
+const already= await fetch("https://zonapay.onrender.com/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:email}),headers:{"Content-Type":"application/json"}});
 if(!already.ok){
   isValid=false;
   document.getElementById("fai").style.display="block";
@@ -153,7 +153,7 @@ if(!already.ok){
     }
     
     useEffect(()=>{
-        // const socket = io('http://localhost:3000', {
+        // const socket = io('https://zonapay.onrender.com', {
         //     query: { userId: "123" } // Send user ID on connection
         // });
         //         socket.on("createdS",showS)
@@ -175,7 +175,7 @@ if(!already.ok){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
     </Head>
-    <form action="http://localhost:3000/signup" method="post" autoComplete="off" onSubmit={handle}>
+    <form action="https://zonapay.onrender.com/signup" method="post" autoComplete="off" onSubmit={handle}>
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
         <Card id="fai" className="z-10 hidden ml-1 mr-1 p-3 absolute top-1 left-1 font-bold" sx={{maxWidth:"400px"}}> <Button color="error">Email already exist !!!</Button> </Card>
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
@@ -245,7 +245,7 @@ if(!already.ok){
         </button>
 
         <div className="text-black rubik-h " style={{fontSize:"16px"}}>
-            Already have an account ? then <span className="text-blue-500 underline" > <Link href="http://localhost:3000/login">Login</Link></span>
+            Already have an account ? then <span className="text-blue-500 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
         </div>
 
     </div>

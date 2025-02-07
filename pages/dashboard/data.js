@@ -94,7 +94,7 @@ document.getElementById("form").onsubmit = async (e)=>{
   }
   setLoading(true)
   const formdata= new FormData(e.target)
- try{ const url="http://localhost:3000/zonapay/data"
+ try{ const url="https://zonapay.onrender.com/zonapay/data"
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
   const res1=await res.json();
@@ -134,7 +134,7 @@ if(pincon){
 const handlePinSubmit= async (pin)=>{
   const data={pinn:pin}
   try{
-const rep= await fetch("http://localhost:3000/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+const rep= await fetch("https://zonapay.onrender.com/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
 if(rep.ok){
   document.getElementById("keyPad").style.display="none"
   console.log(pincon);

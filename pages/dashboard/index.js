@@ -35,7 +35,7 @@ const Dashboard = ({obj}) => {
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>Hi, {obj.Username}</div>
             </div>
-           <Link href={"http://localhost:3000/zonapay/logout"} ><div className='flex flex-row items-center'>
+           <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div className='flex flex-row items-center'>
                 <LogoutRounded  sx={{backgroundColor:"",padding:"10px",height:"40px",width:"40px",color:"black"}}/>
             </div></Link> 
         </div>
@@ -54,8 +54,8 @@ const Dashboard = ({obj}) => {
                         {visible? obj.Balance.toLocaleString() :"****"}</div>
                     </div>
                     <div className='flex flex-col justify-center items-center '>
-                    <Link href={"http://localhost:3000/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
- <Link href={"http://localhost:3000/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
+                    <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
+ <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
                 </div>
                 <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div>
             </Carousel>

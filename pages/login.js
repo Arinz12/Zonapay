@@ -8,7 +8,7 @@ const val= async (e)=>{
     e.preventDefault();
     console.log("entered")
        try{
-        const exist= await fetch("http://localhost:3000/zonapay/valUser",
+        const exist= await fetch("https://zonapay.onrender.com/zonapay/valUser",
         {method:"post",body:JSON.stringify({email:document.getElementsByName("email")[0].value.trim(),password:document.getElementsByName("password")[0].value.trim()}),headers:{"Content-Type":"application/json"}});
       if(!exist.ok){
       document.getElementById("note").style.display="flex"
@@ -38,7 +38,7 @@ const val= async (e)=>{
     </Head>
     <div style={{fontSize:"30px"}} className=" absolute top-1 w-full monomaniac-one-regular text-center text-black">WELCOME BACK</div>
 
-    <form action="http://localhost:3000/login" method="post" autoComplete="off" onSubmit={val}>
+    <form action="https://zonapay.onrender.com/login" method="post" autoComplete="off" onSubmit={val}>
     <div
   id="note"
   className="fixed top-2 right-2 flex-col gap-4 w-60 sm:w-72 text-xs sm:text-sm z-50 hidden"
@@ -136,7 +136,7 @@ const val= async (e)=>{
         </button>
 
         <div className="text-black rubik-h " style={{fontSize:"16px"}}>
-            Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="http://localhost:3000/signup">Signup</Link></span>
+            Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://zonapay.onrender.com/signup">Signup</Link></span>
         </div>
 
     </div>

@@ -32,7 +32,7 @@ async function val(){
     user.innerHTML="checking..."
     const data={iuc:valu,cableprovider:cp}
     try{
-    const resp=await fetch("http://localhost:3000/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
+    const resp=await fetch("https://zonapay.onrender.com/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
         "Content-Type": "application/json",
         "Accept": "application/json"
       }})
@@ -71,7 +71,7 @@ useEffect(()=>{
 const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
     try{
         setStart(true)
-        const resp= await fetch("http://localhost:3000/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),headers:{"Content-Type":"application/json"}})
+        const resp= await fetch("https://zonapay.onrender.com/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),headers:{"Content-Type":"application/json"}})
     if(resp.ok){
     const data2= await resp.json();
     if(data2.code==="failure"){
