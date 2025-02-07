@@ -1,7 +1,7 @@
 import {Button} from "@mui/material"
 import {Cancel,ArrowBack} from "@mui/icons-material"
 
-export default function Error(){
+ const Error=()=>{
     return(<>
     <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
     <div className="flex flex-col gap-8 justify-center items-center">
@@ -12,3 +12,4 @@ export default function Error(){
 </div>
     </>)
 }
+export default Error;
