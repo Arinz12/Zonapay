@@ -31,7 +31,7 @@ const AirtimeForm=()=>{
     
       setLoading(true)
       const formdata= new FormData(e.target)
-     try{ const url="https://zonapay.onrender.com/zonapay/airtime"
+     try{ const url="http://localhost:3000/zonapay/airtime"
       const res= await fetch(url,{method:"POST",body:formdata})
       if(res.ok){
       const res1=await res.json();
@@ -145,7 +145,7 @@ document.getElementById("keyPad").style.display="none";
 
   setLoading(true)
   const formdata= new FormData(e.target)
- try{ const url="https://zonapay.onrender.com/zonapay/airtime"
+ try{ const url="http://localhost:3000/zonapay/airtime"
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
   const res1=await res.json();
@@ -226,7 +226,7 @@ if(processed){
 const handlePinSubmit= async (pin)=>{
   const data={pinn:pin}
   try{
-const rep= await fetch("https://zonapay.onrender.com/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+const rep= await fetch("http://localhost:3000/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
 if(rep.ok){
   setPincon(true);
   console.log(pincon);

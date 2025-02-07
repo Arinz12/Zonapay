@@ -51,7 +51,7 @@ function showF(){
         }
         else if(email){
           try{
-const already= await fetch("https://zonapay.onrender.com/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:email}),headers:{"Content-Type":"application/json"}});
+const already= await fetch("http://localhost:3000/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:email}),headers:{"Content-Type":"application/json"}});
 if(!already.ok){
   isValid=false;
   document.getElementById("fai").style.display="block";
@@ -153,7 +153,7 @@ if(!already.ok){
     }
     
     useEffect(()=>{
-        // const socket = io('https://zonapay.onrender.com', {
+        // const socket = io('http://localhost:3000', {
         //     query: { userId: "123" } // Send user ID on connection
         // });
         //         socket.on("createdS",showS)
@@ -171,51 +171,54 @@ if(!already.ok){
     return(<>
     <Head>
         <title>Signup</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
+<link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
     </Head>
-    <form action="https://zonapay.onrender.com/signup" method="post" autoComplete="off" onSubmit={handle}>
+    <form action="http://localhost:3000/signup" method="post" autoComplete="off" onSubmit={handle}>
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
         <Card id="fai" className="z-10 hidden ml-1 mr-1 p-3 absolute top-1 left-1 font-bold" sx={{maxWidth:"400px"}}> <Button color="error">Email already exist !!!</Button> </Card>
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
 
     <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-2 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12 border-0  md:border-4 border-blue-500 rounded-3xl  items-center">
-<div className=" rubik-h text-black">Signup</div>
+<div className=" monomaniac-one-regular text-black">Signup</div>
 <div className="form-control py-2 rubik-b">
-    <input onKeyUp={valN} type="text" name="Username" required/>
+    <input className="ac" onKeyUp={valN} type="text" name="Username" required/>
     <label>
-<span className="rubik-h" style={{transitionDelay:"0ms"}}>N</span>
-<span className="rubik-h" style={{transitionDelay:"50ms"}}>a</span>
-<span className="rubik-h" style={{transitionDelay:"100ms"}}>m</span>
-<span className="rubik-h" style={{transitionDelay:"150ms"}}>e</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>N</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"50ms"}}>a</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"100ms"}}>m</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"150ms"}}>e</span>
     </label>
         <span style={{fontSize:"12px"}} id="usernameError" className="text-yellow-700 absolute rubik-b" ></span>
 </div>
 
 
 <div className="form-control py-2 rubik-b">
-    <input onKeyUp={valE} type="text" name="Email" required/>
+    <input onKeyUp={valE} type="text" name="Email" required className="ac"/>
     <label>
-<span className="rubik-h" style={{transitionDelay:"0ms"}}>E</span>
-<span className="rubik-h" style={{transitionDelay:"50ms"}}>m</span>
-<span className="rubik-h" style={{transitionDelay:"100ms"}}>a</span>
-<span className="rubik-h" style={{transitionDelay:"150ms"}}>i</span>
-<span className="rubik-h" style={{transitionDelay:"200ms"}}>l</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>E</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"50ms"}}>m</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"100ms"}}>a</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"150ms"}}>i</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"200ms"}}>l</span>
 
     </label>
     <span id="emailError" className="text-yellow-700 absolute rubik-b" style={{fontSize:"12px"}}></span>
 
 </div>
 
-<div className="form-control py-2 rubik-b relative">
-    <input onKeyUp={valP} type="password" name="Password" required/>
+<div className="form-control py-2 monomaniac-one-regular relative">
+    <input onKeyUp={valP} type="password" name="Password" className="ac" required/>
     <label>
-<span className="rubik-h" style={{transitionDelay:"0ms"}}>P</span>
-<span className="rubik-h" style={{transitionDelay:"50ms"}}>a</span>
-<span className="rubik-h" style={{transitionDelay:"100ms"}}>s</span>
-<span className="rubik-h" style={{transitionDelay:"150ms"}}>s</span>
-<span className="rubik-h" style={{transitionDelay:"200ms"}}>w</span>
-<span className="rubik-h" style={{transitionDelay:"250ms"}}>o</span>
-<span className="rubik-h" style={{transitionDelay:"300ms"}}>r</span>
-<span className="rubik-h" style={{transitionDelay:"350ms"}}>d</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>P</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"50ms"}}>a</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"100ms"}}>s</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"150ms"}}>s</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"200ms"}}>w</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"250ms"}}>o</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"300ms"}}>r</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"350ms"}}>d</span>
     </label>
     <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>}</span>
 
@@ -242,7 +245,7 @@ if(!already.ok){
         </button>
 
         <div className="text-black rubik-h " style={{fontSize:"16px"}}>
-            Already have an account ? then <span className="text-blue-500 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
+            Already have an account ? then <span className="text-blue-500 underline" > <Link href="http://localhost:3000/login">Login</Link></span>
         </div>
 
     </div>

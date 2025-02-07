@@ -21,7 +21,7 @@ setTimeout(()=>{document.getElementById("message").innerHTML=""},4000)
 }
 const data={pin:pin1.value}
 try{
-const resdata= await fetch("https://zonapay.onrender.com/zonapay/setpin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+const resdata= await fetch("http://localhost:3000/zonapay/setpin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
 if(resdata.ok){
     console.log("done")
     setSet(true)

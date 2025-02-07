@@ -24,7 +24,7 @@ const Dashboard = ({obj}) => {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
-    <div style={{backgroundColor:"whitesmoke",height:"100vh"}} >
+    <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} >
      <div
          id="createpin" className='hidden  h-full justify-center z-10 items-center fixed top-0 w-full '><Paper elevated={12}   className="relative w-2/3  mx-auto p-7  flex flex-col justify-center items-center gap-2" ><div className="rubik-b">Pin is required </div>
         <Button onClick={()=>{router.push("/dashboard/settings/pin")}} variant={"contained"}>Create pin</Button>
@@ -35,7 +35,7 @@ const Dashboard = ({obj}) => {
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>Hi, {obj.Username}</div>
             </div>
-           <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div className='flex flex-row items-center'>
+           <Link href={"http://localhost:3000/zonapay/logout"} ><div className='flex flex-row items-center'>
                 <LogoutRounded  sx={{backgroundColor:"",padding:"10px",height:"40px",width:"40px",color:"black"}}/>
             </div></Link> 
         </div>
@@ -54,8 +54,8 @@ const Dashboard = ({obj}) => {
                         {visible? obj.Balance.toLocaleString() :"****"}</div>
                     </div>
                     <div className='flex flex-col justify-center items-center '>
-                    <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
- <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
+                    <Link href={"http://localhost:3000/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
+ <Link href={"http://localhost:3000/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
                 </div>
                 <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div>
             </Carousel>
@@ -102,9 +102,9 @@ const Dashboard = ({obj}) => {
         </div>
 
         <div>
-            <Carousel animation="slide" className='mt-4' autoplay={true} fullHeightHover={false} indicators={false} navButtonsAlwaysVisible={false} >
-<Paper className="rounded-2xl mx-auto rubik-b p-4 text-center " elevation={1} sx={{height:"100px",width:"90%"}}>Enjoy seamless transparent transactions where everything happening is clear</Paper>
-<Paper className="rounded-2xl mx-auto rubik-b p-4 text-center" elevation={1} sx={{height:"100px",width:"90%"}}>Schedule bill payments so you worry not about forgetting</Paper>
+            <Carousel  animation="slide" className='mt-4 static z-0' autoplay={true} fullHeightHover={false} indicators={false} navButtonsAlwaysVisible={false} >
+<Paper className="rounded-2xl mx-auto rubik-b p-4 text-center " elevation={0} sx={{height:"100px",width:"90%"}}>Enjoy seamless transparent transactions where everything happening is clear</Paper>
+<Paper className="rounded-2xl mx-auto rubik-b p-4 text-center" elevation={0} sx={{height:"100px",width:"90%"}}>Schedule bill payments so you worry not about forgetting</Paper>
             </Carousel>
         </div>
     </div>

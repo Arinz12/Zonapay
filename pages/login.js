@@ -8,7 +8,7 @@ const val= async (e)=>{
     e.preventDefault();
     console.log("entered")
        try{
-        const exist= await fetch("https://zonapay.onrender.com/zonapay/valUser",
+        const exist= await fetch("http://localhost:3000/zonapay/valUser",
         {method:"post",body:JSON.stringify({email:document.getElementsByName("email")[0].value.trim(),password:document.getElementsByName("password")[0].value.trim()}),headers:{"Content-Type":"application/json"}});
       if(!exist.ok){
       document.getElementById("note").style.display="flex"
@@ -32,10 +32,13 @@ const val= async (e)=>{
     return(<>
     <Head>
         <title>Login</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
+<link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
     </Head>
-    <div style={{fontSize:"25px"}} className=" absolute top-1 w-full rubik-h text-center text-black">WELCOME BACK</div>
+    <div style={{fontSize:"30px"}} className=" absolute top-1 w-full monomaniac-one-regular text-center text-black">WELCOME BACK</div>
 
-    <form action="https://zonapay.onrender.com/login" method="post" autoComplete="off" onSubmit={val}>
+    <form action="http://localhost:3000/login" method="post" autoComplete="off" onSubmit={val}>
     <div
   id="note"
   className="fixed top-2 right-2 flex-col gap-4 w-60 sm:w-72 text-xs sm:text-sm z-50 hidden"
@@ -85,31 +88,31 @@ const val= async (e)=>{
 </div>
 
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
-    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  md:border-4 border-0 border-blue-600 rounded-3xl  items-center">
-<div className=" rubik-h text-black">Login</div>
+    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-16 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  md:border-4 border-0 border-blue-600 rounded-3xl  items-center">
+<div className=" monomaniac-one-regular text-black">Login</div>
 
-<div className="form-control rubik-b">
-    <input type="text" name="email" required/>
+<div className="form-control  rubik-b">
+    <input type="text" name="email"  required/>
     <label>
-<span className="rubik-h" style={{transitionDelay:"0ms"}}>E</span>
-<span className="rubik-h" style={{transitionDelay:"50ms"}}>m</span>
-<span className="rubik-h" style={{transitionDelay:"100ms"}}>a</span>
-<span className="rubik-h" style={{transitionDelay:"150ms"}}>i</span>
-<span className="rubik-h" style={{transitionDelay:"200ms"}}>l</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>E</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"50ms"}}>m</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"100ms"}}>a</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"150ms"}}>i</span>
+<span className="monomaniac-one-regular" style={{transitionDelay:"200ms"}}>l</span>
 
     </label>
 </div>
 <div className="form-control rubik-b">
     <input type="password" name="password" required/>
     <label>
-<span  className="rubik-h" style={{transitionDelay:"0ms"}}>P</span>
-<span  className="rubik-h" style={{transitionDelay:"50ms"}}>a</span>
-<span  className="rubik-h" style={{transitionDelay:"100ms"}}>s</span>
-<span  className="rubik-h" style={{transitionDelay:"150ms"}}>s</span>
-<span  className="rubik-h" style={{transitionDelay:"200ms"}}>w</span>
-<span  className="rubik-h" style={{transitionDelay:"250ms"}}>o</span>
-<span  className="rubik-h" style={{transitionDelay:"300ms"}}>r</span>
-<span  className="rubik-h" style={{transitionDelay:"350ms"}}>d</span>
+<span  className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>P</span>
+<span  className="monomaniac-one-regular" style={{transitionDelay:"50ms"}}>a</span>
+<span  className="monomaniac-one-regular" style={{transitionDelay:"100ms"}}>s</span>
+<span  className="monomaniac-one-regular" style={{transitionDelay:"150ms"}}>s</span>
+<span  className="monomaniac-one-regular" style={{transitionDelay:"200ms"}}>w</span>
+<span  className="monomaniac-one-regular" style={{transitionDelay:"250ms"}}>o</span>
+<span  className="monomaniac-one-regular" style={{transitionDelay:"300ms"}}>r</span>
+<span  className="monomaniac-one-regular" style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
 </div>
@@ -133,7 +136,7 @@ const val= async (e)=>{
         </button>
 
         <div className="text-black rubik-h " style={{fontSize:"16px"}}>
-            Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://zonapay.onrender.com/signup">Signup</Link></span>
+            Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="http://localhost:3000/signup">Signup</Link></span>
         </div>
 
     </div>

@@ -4,6 +4,12 @@
 
  
 
+.monomaniac-one-regular {
+  font-family: "Monomaniac One", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .rubik-h {
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
@@ -23,7 +29,7 @@
   font-weight: 400;
   font-style: normal;
 }
-.sli{
+.sli{ 
   animation-name: slid;
   animation-duration: 0.9s;
   animation-iteration-count: 1;
@@ -169,4 +175,8 @@ button:active {
  to{
   opacity: 1;
  }
+}
+.ac:-webkit-autofill{
+background-color: white !important;
+color: black;
 }

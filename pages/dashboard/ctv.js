@@ -32,7 +32,7 @@ async function val(){
     user.innerHTML="checking..."
     const data={iuc:valu,cableprovider:cp}
     try{
-    const resp=await fetch("https://zonapay.onrender.com/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
+    const resp=await fetch("http://localhost:3000/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
         "Content-Type": "application/json",
         "Accept": "application/json"
       }})
@@ -71,7 +71,7 @@ useEffect(()=>{
 const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
     try{
         setStart(true)
-        const resp= await fetch("https://zonapay.onrender.com/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),headers:{"Content-Type":"application/json"}})
+        const resp= await fetch("http://localhost:3000/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),headers:{"Content-Type":"application/json"}})
     if(resp.ok){
     const data2= await resp.json();
     if(data2.code==="failure"){
@@ -85,6 +85,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
     }}
     catch(e){
     console.log("GOTCHAAAAAAA"+e)
+    router.push("/error")
     }
     finally{
     console.log("done.....")
@@ -125,7 +126,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
                <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
                <input onKeyUp={val}  id="iuc" className="border-0 border-b-4 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"  /> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
                <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
-               <input id="pn" className="border-0 border-b-4 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
+               <input id="pn" className=" ac border-0 border-b-4 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
                
  {(cpp=="gotv")? <div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
 <div> <label htmlFor="gotv-smallie">

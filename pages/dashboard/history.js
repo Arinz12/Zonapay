@@ -34,7 +34,7 @@ const History=({userhistory})=>{
 }
 export async function getServerSideProps(context){
     try{
-const data= await fetch("https://zonapay.onrender.com/api/history",{method:"post"})
+const data= await fetch("http://localhost:3000/api/history",{method:"post"})
    if(data.ok){
     const data1= await  data.json()
     const data2a=data1.data.sort((a, b) => new Date(b.Time) - new Date(a.Time));
