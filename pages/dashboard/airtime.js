@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from 'next/image';
 import Head from "next/head"
-import { Button } from "@mui/material";
+import { Button,Paper } from "@mui/material";
 import { ArrowBack, ArrowBackIosRounded, ArrowForward ,Cancel,CheckCircle, HomeMiniRounded} from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import NumericPad from "../../components/Numpad";
