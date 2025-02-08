@@ -51,6 +51,7 @@ Userss={}
   server.use(express.json()); // Parse JSON bodies
 server.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 server.use(cookieParser());
+
 // Session management
 server.use(session({
   store: MongoStore.create({
@@ -70,9 +71,12 @@ cookie:{
   path:"/"
 }
 }));
+
 // Passport session initialization
 server.use(passport.initialize());
 server.use(passport.session());
+
+//using passport localstrategy
 passport.use(new LocalStrategy({
   usernameField: 'email'},
   async (username, password, done) => {
@@ -381,6 +385,16 @@ const data=await fetch(url.toString(),{method:"GET"})
   if(data2.code==="failure"){
     throw new Error("request failure");
   }
+  const newamount= eval(data2.data.amount.replace(/\D/g,""))
+
+      await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
+  const now=DateTime.local()
+  const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+  //save history
+  saveHistory({tid:uuidv4(),time:timeinNigeria,amount:newamount,product:data2.data.subscription_plan,
+    phone:data2.data.smartcard_number,user:req.user});
+    //send email to admin
+    sendd("igwebuikea626@gmail.com",`${req.user} has purchased ${data2.data.subscription_plan} for ${newamount} for ${data2.data.smartcard_number} `);
   res.status(200).json(data2)
  }
   catch(e){
@@ -461,13 +475,16 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 
 //verifying flutterwave transactions
 server.get("/done",async (req,res)=>{
+  if(!req.isAuthenticated()){
+    res.redirect("/login")
+  }
   console.log("done path has been entered")
   const Id = mongoose.Types.ObjectId(req.user._id);
   const tx_ref=req.query.tx_ref;
   const transaction_id= req.query.transaction_id;
   console.log(tx_ref)
   console.log(transaction_id)
-    try{await vet(tx_ref,transaction_id,Id)
+    try{await vet(tx_ref,transaction_id,Id,req.user)
   res.redirect("/dashboard");
   }
   catch(e){

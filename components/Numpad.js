@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useState } from "react";
 const NumericPad = ({ maxLength = 4, onSubmit }) => {
   const [pin, setPin] = useState("");
@@ -34,7 +35,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
       {/* Numeric Pad */}
       <div className="grid grid-cols-3 gap-8">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, "clear", 0, "delete"].map((item) => (
-          <button
+          <Button
           style={{borderRadius:"50%"}}
             key={item}
             onClick={() => handleButtonClick(item.toString())}
@@ -48,7 +49,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
               }`}
           >
             {item === "clear" ? "C" : item === "delete" ? "⌫" : item}
-          </button>
+          </Button>
         ))}
       </div>
 

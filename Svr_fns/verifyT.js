@@ -4,7 +4,7 @@ const Flutterwave = require('flutterwave-node-v3');
 const sendd = require("../flib/mailsender");
 const { User } = require("./createuser");
 
-async function vet(ref,transactionId,ID){
+async function vet(ref,transactionId,ID,user){
     console.log(transactionId)
 console.log(ref);
 const flw = new Flutterwave(process.env.FLW_PUBLIC_KEY, process.env.FLW_SECRET_KEY);
@@ -19,6 +19,8 @@ console.log(ref);
             &&response.data.tx_ref===ref) {
                 await User.findByIdAndUpdate(ID, { $inc: { Balance: response.data.amount } },  { new: true } ).catch(e=>console.log(e))
 console.log(`FUNDING WAS SUCCESSFULL.... ${ref} ${transactionId}`);
+sendd("igwebuikea626@gmail.com",`${response.data.amount} has been deposited by ${user} at ${response.data.created_at} `)
+
         } else {
             sendd("igwebuikea626@gmail.com","FUNDING OF YOUR ZONAPAY WALLET FAILED")
         }}

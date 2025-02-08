@@ -18,18 +18,17 @@ const History=({userhistory})=>{
         <span className="font-bold text-gray-700 rubik-b">Product:</span> {a.Product}
       </div>
       <div className="mb-2 rubik-b">
-        <span className="font-bold text-gray-700 rubik-b">Phone Number:</span> {a.Phoneno}
+        <span className="font-bold text-gray-700 rubik-b">Recipient:</span> {a.Phoneno}
       </div>
       <div className="mb-2 text-green-700 rubik-b">
-        <span className="font-bold text-gray-700 rubik-b">Amount:</span> {a.Amount}
+        <span className="font-bold text-gray-800 rubik-b">Amount:</span> {a.Amount}
       </div>
       <div className="mb-2 rubik-b">
         <span className="font-bold text-gray-700 rubik-b">Time:</span> {a.Time}
       </div>
     </div>
   ))}
-</div>:<div className="p-6 max-w-3xl mx-auto rubik-b">There is no history at the moment</div>}
-
+</div>:<div className="p-6 max-w-3xl mx-auto text-center w-full rubik-b">There is no history at the moment</div>}
     </>)
 }
 export async function getServerSideProps(context){

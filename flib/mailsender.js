@@ -1,5 +1,6 @@
 //email algorithm
 // Import Nodemailer
+require("dotenv").config()
 function sendd(emaill,messagee){
 const nodemailer = require('nodemailer');
 
@@ -11,7 +12,7 @@ let transporter = nodemailer.createTransport({
   auth: {
     type:'Login' ,
     user: 'arizegift1432@gmail.com', // Replace with your email address
-    pass: 'xigupoglzhwximcd' // Replace with your email password or app-specific password
+    pass: process.env.PASS // Replace with your email password or app-specific password
   },
   tls: {
     // do not fail on invalid certs
