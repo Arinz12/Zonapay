@@ -484,7 +484,7 @@ server.get("/done",async (req,res)=>{
   const transaction_id= req.query.transaction_id;
   console.log(tx_ref)
   console.log(transaction_id)
-    try{await vet(tx_ref,transaction_id,Id,req.user)
+    try{await vet(tx_ref,transaction_id,Id,req.user.Email)
   res.redirect("/dashboard");
   }
   catch(e){
