@@ -262,7 +262,7 @@ body("Email")
     .matches(/[A-Z]/).withMessage('Password must contain at least one uppercase letter')
     .matches(/[a-z]/).withMessage('Password must contain at least one lowercase letter')
     .matches(/\d/).withMessage('Password must contain at least one number')
-    .matches(/[@$!%*?&]/).withMessage('Password must contain at least one special character (e.g., @$!%*?&)'),
+    .matches(/[@$!%*?&.,;+-:#=><~"'^_|{}`]/).withMessage('Password must contain at least one special character (e.g., @$!%*?&)'),
 ]
   server.post("/signup",validateInfo ,async (req,res)=>{
     const errors=validationResult(req);

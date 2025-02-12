@@ -110,7 +110,7 @@ const val= async (e)=>{
     <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-16 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  md:border-4 border-0 border-blue-600 rounded-3xl  items-center">
 <div className=" monomaniac-one-regular text-black">Login</div>
 
-<div className="form-control  rubik-b">
+<div className="form-control monomaniac-one-regular  rubik-b">
     <input type="text" name="email"  required/>
     <label>
 <span className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>E</span>
@@ -121,7 +121,7 @@ const val= async (e)=>{
 
     </label>
 </div>
-<div className="form-control rubik-b">
+<div className="form-control monomaniac-one-regular rubik-b">
     <input type="password" name="password" required/>
     <label>
 <span  className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>P</span>

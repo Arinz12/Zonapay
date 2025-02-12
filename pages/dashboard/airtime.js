@@ -202,12 +202,12 @@ if(processed){
       <CheckCircle sx={{color:"green",height:"130px",width:"130px"}}/>
       <div style={{fontSize:"20px"}} className="text-black rubik-b">{details.message}</div>
       </div>
-        <Paper elevated={4} className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Transaction id</span><span>{details.data.order_id}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>phone</span><span>{details.data.phone}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Code</span><span>{details.code}</span></div>
+        <Paper elevated={4} className=" flex flex-col  mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
+              <div className=" monomaniac-one-regular font-semibold flex flex-row justify-between"><span>Transaction id</span><span>{details.data.order_id}</span></div>
+              <div className=" font-semibold flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
+              <div className=" monomaniac-one-regular font-semibold flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
+              <div className="monomaniac-one-regular font-semibold flex flex-row justify-between"><span>phone</span><span>{details.data.phone}</span></div>
+              <div className=" monomaniac-one-regular font-semibold flex flex-row justify-between"><span>Code</span><span>{details.code}</span></div>
               
           </Paper>
           <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<HomeMiniRounded /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>GO to Home</Button>}</Link>
