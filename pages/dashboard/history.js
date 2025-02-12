@@ -6,7 +6,11 @@ const History=({userhistory})=>{
 
     return(<>
 <Head>
-   <title>History </title></Head>
+   <title>History </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
+<link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
+  </Head>
    <Paper sx={{fontSize:"30px"}} elevation={12} className="mt-4 w-11/12 mx-auto rounded-2xl text-center rubik-h p-4">History</Paper>
 {(userhistory.dataa.length!==0)? <div className="p-6 max-w-3xl mx-auto rubik-b">
   {userhistory.dataa.map((a, index) => (
