@@ -182,7 +182,7 @@ if(!already.ok){
 
     <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-7 gap-2 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12 border-0  md:border-4 border-blue-500 rounded-3xl  items-center">
 <div className=" monomaniac-one-regular text-black">Signup</div>
-<div className="form-control monomaniac-one-regular py-2 rubik-b">
+<div className="form-control monomaniac-one-regular py-2 ">
     <input className="ac" onKeyUp={valN} type="text" name="Username" required/>
     <label>
 <span className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>N</span>
@@ -194,7 +194,7 @@ if(!already.ok){
 </div>
 
 
-<div className="form-control py-2 monomaniac-one-regular rubik-b">
+<div className="form-control py-2 monomaniac-one-regular ">
     <input onKeyUp={valE} type="text" name="Email" required className="ac"/>
     <label>
 <span className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>E</span>
