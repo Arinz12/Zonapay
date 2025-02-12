@@ -25,7 +25,7 @@ console.log("Db connected")
     Username:username,
     Email:email,
     Password:bcrypt.hashSync(password,10),
-    Balance:500,
+    Balance:50,
     Pin:null,
 })
 console.log("user saved successfully...")

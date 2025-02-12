@@ -194,3 +194,16 @@ input{
   transition-property: background-color;
   transition-delay: 5000s;
 }
+.scale{
+  animation-name: expand;
+  animation-duration: 0.9s;
+  animation-delay: 0.2s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+}
+@keyframes expand {
+  from{transform: scale(-2,-2);}
+  to{
+    transform: scale(1,1);
+  }
+}

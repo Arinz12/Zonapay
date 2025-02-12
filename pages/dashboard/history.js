@@ -12,19 +12,19 @@ const History=({userhistory})=>{
   {userhistory.dataa.map((a, index) => (
     <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-md mb-6 sm:mb-4 lg:mb-8" key={index}>
       <div className="mb-2 monomaniac-one-regular">
-        <span className="font-bold text-gray-700 rubik-b">Transaction ID:</span> {a.TransactionId}
+        <span className="font-bold text-gray-700 ">Transaction ID:</span> {a.TransactionId}
       </div>
       <div className="mb-2 monomaniac-one-regular">
-        <span className="font-bold text-gray-700 rubik-b">Product:</span> {a.Product}
+        <span className="font-bold text-gray-700 ">Product:</span> {a.Product}
       </div>
       <div className="mb-2 monomaniac-one-regular">
-        <span className="font-bold text-gray-700 rubik-b">Recipient:</span> {a.Phoneno}
+        <span className="font-bold text-gray-700">Recipient:</span> {a.Phoneno}
       </div>
       <div className="mb-2 text-green-700 monomaniac-one-regular">
-        <span className="font-bold text-gray-800 rubik-b">Amount:</span> {a.Amount}
+        <span className="font-bold text-gray-800 ">Amount:</span> {a.Amount}
       </div>
       <div className="mb-2 monomaniac-one-regular">
-        <span className="font-bold text-gray-700 rubik-b">Time:</span> {a.Time}
+        <span className="font-bold text-gray-700">Time:</span> {a.Time}
       </div>
     </div>
   ))}

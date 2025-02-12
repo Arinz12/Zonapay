@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from 'next/image';
 import Head from "next/head"
 import { Button,Paper } from "@mui/material";
-import { ArrowBack, ArrowBackIosRounded, ArrowForward ,Cancel,CheckCircle, HomeMiniRounded} from "@mui/icons-material";
+import { ArrowBack, ArrowBackIosRounded, ArrowForward ,Cancel,CheckCircle, Home, HomeMiniRounded} from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import NumericPad from "../../components/Numpad";
 import router from "next/router"
@@ -199,18 +199,19 @@ if(processed){
   {sucessfull? <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
       <div className="flex flex-col gap-8 justify-center items-center w-full">
         <div className="flex flex-col gap-4 items-center justify-center">
-      <CheckCircle sx={{color:"green",height:"130px",width:"130px"}}/>
+      <CheckCircle className="scale" sx={{color:"green",height:"130px",width:"130px"}}/>
       <div style={{fontSize:"20px"}} className="text-black rubik-b">{details.message}</div>
       </div>
         <Paper elevated={4} className=" flex flex-col  mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-              <div className=" monomaniac-one-regular font-semibold flex flex-row justify-between"><span>Transaction id</span><span>{details.data.order_id}</span></div>
-              <div className=" font-semibold flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
-              <div className=" monomaniac-one-regular font-semibold flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
-              <div className="monomaniac-one-regular font-semibold flex flex-row justify-between"><span>phone</span><span>{details.data.phone}</span></div>
-              <div className=" monomaniac-one-regular font-semibold flex flex-row justify-between"><span>Code</span><span>{details.code}</span></div>
+              <div className="monomaniac-one-regular font-bold flex flex-row  justify-between"><span>Transaction id</span>
+              <span>-</span><span>{details.data.order_id}</span></div>
+              <div className="monomaniac-one-regular font-bold flex flex-row justify-between"><span>Network</span><span>-</span><span>{details.data.network}</span></div>
+              <div className="monomaniac-one-regular font-bold flex flex-row justify-between"><span>Amount</span><span>-</span><span>{details.data.amount}</span></div>
+              <div className="monomaniac-one-regular font-bold flex flex-row justify-between"><span>phone</span><span>-</span><span>{details.data.phone}</span></div>
+              <div className="monomaniac-one-regular font-bold flex flex-row justify-between"><span>Code</span><span>-</span><span>{details.code}</span></div>
               
           </Paper>
-          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<HomeMiniRounded /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>GO to Home</Button>}</Link>
+          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>GO to Home</Button>}</Link>
           </div>
   </div> : <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
     <div className="flex flex-col gap-8 justify-center items-center">
