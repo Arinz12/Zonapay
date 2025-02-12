@@ -196,13 +196,13 @@ input{
 }
 .scale{
   animation-name: expand;
-  animation-duration: 0.9s;
+  animation-duration: 1s;
   animation-delay: 0.2s;
   animation-iteration-count: 1;
   animation-timing-function: ease-out;
 }
 @keyframes expand {
-  from{transform: scale(-2,-2);}
+  from{transform: scale(0.5,0.5);}
   to{
     transform: scale(1,1);
   }
