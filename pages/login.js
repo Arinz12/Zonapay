@@ -1,15 +1,18 @@
+import { Visibility, VisibilityOff } from "@mui/icons-material"
 import  Box from "@mui/material/Box"
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {io} from "socket.io-client"
  const Signup=()=>{
+  const [visible, setVis]=useState(false)
+
 const val= async (e)=>{
     e.preventDefault();
     console.log("entered")
        try{
         const exist= await fetch("https://zonapay.onrender.com/zonapay/valUser",
-        {method:"post",body:JSON.stringify({email:document.getElementsByName("email")[0].value.trim(),password:document.getElementsByName("password")[0].value.trim()}),headers:{"Content-Type":"application/json"}});
+        {method:"post",body:JSON.stringify({email:document.getElementsByName("email")[0].value.trim().toLowerCase() ,password:document.getElementsByName("password")[0].value.trim()}),headers:{"Content-Type":"application/json"}});
       if(!exist.ok){
       document.getElementById("note").style.display="flex"
       setTimeout(()=>{document.getElementById("note").style.display="none"
@@ -29,6 +32,22 @@ const val= async (e)=>{
     useEffect(()=>{
         const socket=io()
     })
+    useEffect(()=>{
+      // const socket = io('https://zonapay.onrender.com', {
+      //     query: { userId: "123" } // Send user ID on connection
+      // });
+      //         socket.on("createdS",showS)
+      // socket.on("createdF",showF)
+      if(visible){
+          document.getElementsByName("password")[0].type="text"
+      }
+      else{
+          document.getElementsByName("password")[0].type="password"
+
+      }
+  
+
+  })
     return(<>
     <Head>
         <title>Login</title>
@@ -115,6 +134,7 @@ const val= async (e)=>{
 <span  className="monomaniac-one-regular" style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
+    <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>}</span>
 </div>
 
 

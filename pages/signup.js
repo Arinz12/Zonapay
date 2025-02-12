@@ -38,7 +38,7 @@ function showF(){
         }
     
         // Email Validation
-        const email = document.getElementsByName("Email")[0].value.trim();
+        const email = document.getElementsByName("Email")[0].value.trim().toLowerCase() ;
         const emailError = document.getElementById("emailError");
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
@@ -85,8 +85,8 @@ if(!already.ok){
         } else if (!password.match(/\d/)) {
           passwordError.textContent = "Password must contain at least one number";
           isValid = false;
-        } else if (!password.match(/[@$!%*?&#]/)) {
-          passwordError.textContent = "Password must contain at least one special character (e.g., @$!%*?&#)";
+        } else if (!password.match(/[@$!%*?&.,;+-:#=><~"'^_|]/)) {
+          passwordError.textContent = "Password must contain at least one special character ";
           isValid = false;
         } else {
           passwordError.textContent = "";
@@ -134,7 +134,7 @@ if(!already.ok){
     function valP(){
         const password = document.getElementsByName("Password")[0].value;
     const passwordError = document.getElementById("passwordError");
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&.]).{8,}$/;
 
     if (password.length < 8) {
       passwordError.textContent = "Password must be at least 8 characters long";
@@ -144,8 +144,8 @@ if(!already.ok){
       passwordError.textContent = "Password must contain at least one lowercase letter";
     } else if (!password.match(/\d/)) {
       passwordError.textContent = "Password must contain at least one number";
-    } else if (!password.match(/[@$!%*?&]/)) {
-      passwordError.textContent = "Password must contain at least one special character (e.g., @$!%*?&)";
+    } else if (!password.match(/[@$!%*?&.,;+-:#=><~"'^_|]/)) {
+      passwordError.textContent = "Password must contain at least one special character";
     } else {
       passwordError.textContent = "";
     }

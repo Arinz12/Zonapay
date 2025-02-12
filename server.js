@@ -82,7 +82,7 @@ passport.use(new LocalStrategy({
   async (username, password, done) => {
     try {
       // Step 1: Find the user by username
-      const user = await User.findOne({ Email:username });
+      const user = await User.findOne({ Email:username.trim().toLowerCase()});
 
       // Step 2: If user doesn't exist, return an error
       if (!user) {
@@ -243,7 +243,7 @@ res.redirect("/")
 
 //signup a user
 const validateInfo=[
-  body("Username")
+  body("Username").toLowerCase()
   .trim() // First trim whitespace
   .escape() // Escape any HTML characters
   .notEmpty().withMessage("Name field Cannot be empty") // Check that it's not empty
@@ -252,7 +252,7 @@ const validateInfo=[
 
 // Email Validation
 body("Email")
-  .trim()
+  .trim().toLowerCase()
   .escape()
   .notEmpty().withMessage("Email Cannot be empty")
   .isEmail().withMessage("Please enter a valid email"),
@@ -272,6 +272,7 @@ body("Email")
     const {Username,Email,Password}=req.body;
 try{
   await createUser(Username,Email,Password);
+  sendd("igwebuikea626@gmail.com",`An account has been created ${Email}`)
 console.log("Done")
 setTimeout(()=>{
   res.redirect("/login")
