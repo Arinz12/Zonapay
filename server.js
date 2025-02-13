@@ -354,13 +354,13 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
     }
     else{
       sendd("igwebuikea626@gmail.com",result2.message)
-      res.status(404).send("Payment failed")
+      res.status(404).json({message:"Payment failed",code:""})
     }
     
     }
     catch(e){
     console.log(e+"wronggg")
-    res.status(404).send("Check your connection")
+    res.status(404).json({message:"Check your connection",code:""})
     }
     
       }

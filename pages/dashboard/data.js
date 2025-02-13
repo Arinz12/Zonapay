@@ -103,6 +103,7 @@ document.getElementById("form").onsubmit = async (e)=>{
     setProcessed(true)
     return;
   }
+  setPincon(false)
 setDetails(res1)
 setProcessed(true);
 setSucess(true)
@@ -116,11 +117,10 @@ return
     setProcessed(true)
     return;
       }
-    }
-    const textres= await res.text()
-    setDetails({error:textres});
-    setProcessed(true)
-    return
+      setDetails({error:res2.message});
+      setProcessed(true)
+      return
+    } 
   }
 }
   catch(e){
