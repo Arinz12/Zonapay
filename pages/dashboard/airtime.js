@@ -186,6 +186,11 @@ console.error(e)
 if(processed){
   if(delay){
     return(<>
+    <Head>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
+<link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
+  </Head>
     <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
     <div className="flex flex-col gap-8 justify-center items-center">
     <Cancel sx={{color:"red",height:"130px",width:"130px"}}/>

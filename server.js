@@ -350,11 +350,17 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
      await  saveHistory(history)
       const msg=`${Phoneno} successfully purchased data of ${plan} at ${newamount} `
       sendd("igwebuikea626@gmail.com",msg);
+      return res.status(200).json(result2);
+    }
+    else{
+      sendd("igwebuikea626@gmail.com",`${result2.message}`)
+      res.status(404).statusMessage("Payment failed").send("not foundd")
     }
     
-    res.status(200).json(result2)}
+    }
     catch(e){
     console.log(e+"wronggg")
+    res.status(404).statusMessage("Check your connection").send("check connection");
     }
     
       }
