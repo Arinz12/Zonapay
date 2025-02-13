@@ -117,7 +117,8 @@ return
     return;
       }
     }
-    setDetails({error:res.statusText})
+    const textres= await res.text()
+    setDetails({error:textres});
     setProcessed(true)
     return
   }

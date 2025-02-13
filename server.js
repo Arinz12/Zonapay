@@ -353,14 +353,14 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
       return res.status(200).json(result2);
     }
     else{
-      sendd("igwebuikea626@gmail.com",`${result2.message}`)
-      res.status(404).statusMessage("Payment failed").send("not foundd")
+      sendd("igwebuikea626@gmail.com",result2.message)
+      res.status(404).send("Payment failed")
     }
     
     }
     catch(e){
     console.log(e+"wronggg")
-    res.status(404).statusMessage("Check your connection").send("check connection");
+    res.status(404).send("Check your connection")
     }
     
       }
