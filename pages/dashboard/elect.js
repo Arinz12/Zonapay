@@ -54,7 +54,7 @@ if(meter.toString().length==13){
 }
 
     useEffect( async ()=>{
-        document.getElementById("btn").addEventListener(click, async ()=>{
+        document.getElementById("btn").addEventListener("click", async ()=>{
             if(!pincon){
                 document.getElementById("keyPad").style.display="flex";
                 return;
