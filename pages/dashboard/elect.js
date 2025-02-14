@@ -1,9 +1,13 @@
-import { ArrowBackIosRounded,Forward } from "@mui/icons-material"
-import { Button, Typography } from "@mui/material"
+import { ArrowBackIosRounded,CheckCircle,Forward, ForwardRounded } from "@mui/icons-material"
+import { Button, Paper, Typography } from "@mui/material"
 import Head from "next/head"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import router from "next/router"
+import NumericPad from "../../components/Numpad"
 const Elect=()=>{
+    const [processed,setProcessed]=useState(false)
+    const [details,setDetails]=useState(null)
+    const [pincon, setPincon]= useState(false)
      async function veri(){
         document.getElementById("userinfo").style.color="blue"
         document.getElementById("userinfo").innerHTML="checking..."
@@ -50,17 +54,85 @@ if(meter.toString().length==13){
 }
 
     useEffect( async ()=>{
-       const epp= document.getElementById("ep").value
-      const meter= document.getElementById("acct").value
-        document.getElementById("amt")
-        document.getElementById("pre")
-        document.getElementById("post")
+        document.getElementById("btn").addEventListener(click, async ()=>{
+            if(!pincon){
+                document.getElementById("keyPad").style.display="flex";
+                return;
+              } 
+              document.getElementById("delay").style.display="flex"
+              document.getElementById("keyPad").style.display="none";
+            const epp= document.getElementById("ep").value
+       const meter= document.getElementById("acct").value
+       const amount=document.getElementById("amt");
+       const typ= document.getElementById("pre");
+       const typ2= document.getElementById("post");
+       const ty=(typ.checked)? typ.value : typ2.value
+            const data={iuc:meter,provider:epp,amount,vid:ty}
+            const res= await fetch("https://zonapay.onrender.com/zonapay/electricity",{method:"POST",body:JSON.stringify(data),headers:{
+                "Content-Type":"application/json"
+            }})
+            if(res.ok){
+const result= await res.json();
+if(result.custom_message){
+   return router.replace("/dashboard/processing");
+}
+document.getElementById("delay").style.display="none"
+setDetails(result);
+setProcessed(true);
+return
+}
+else{
+router.replace("/dashoard/error")
+}
+});
+if(pincon){
+    document.getElementById("btn").click();
+    setPincon(false);
+}
+    },[pincon])
+    const handlePinSubmit= async (pin)=>{
+        const data={pinn:pin}
+        try{
+      const rep= await fetch("https://zonapay.onrender.com/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+      if(rep.ok){
+        setPincon(true);
+        console.log("okayyy") 
+      }else{
+        document.getElementById("wrongpin").style.display="block"
+        console.log("wrong pin")
+        setTimeout(()=>{  document.getElementById("wrongpin").style.display="none"
+      },3000)
+      }
+      }
+      catch(e){
+        console.log("error wrong pin")
+      }
+      }  
 
+    if (processed){
+        return (<>
+        <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
+      <div className="flex flex-col gap-8 justify-center items-center w-full">
+        <div className="flex flex-col gap-4 items-center justify-center">
+      <CheckCircle className="scale" sx={{color:"green",height:"130px",width:"130px"}}/>
+      <div style={{fontSize:"20px"}} className="text-black rubik-b">{details.message}</div>
+      </div>
+        <Paper elevated={4} className=" flex flex-col  mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
+              <div className="monomaniac-one-regular  flex flex-row  justify-between"><span>Provider</span>
+              <span>-</span><span>{details.data.electricity}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>M-no</span><span>-</span><span>{details.data.meter_number}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span><span>-</span><span>{details.data.token}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>-</span><span>{details.data.units}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>-</span><span>{details.data.amount}</span></div>
+              
+          </Paper>
+          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>GO to Home</Button>}</Link>
+          </div>
+  </div> 
+        </>
 
-        // document.getElementById("btn").addEventListener(click, async ()=>{
-        //     const data={iuc:meter,cableprovider:epp}
-        //     })
-    })
+        )
+    }
     return(<>
     <Head>
         <title>Electricity</title>
@@ -74,7 +146,7 @@ if(meter.toString().length==13){
 <div style={{fontSize:"30px"}} className="rubik-h text-center w-full mb-3 mt-3"> ELECTRICITY</div>
 <div className="flex flex-col w-full justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>
-<select id="ep" name="provider" style={{fontSize:"17px"}} className=" focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
+<select onChange={ver1} id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
     <option style={{fontSize:"15px"}} className="rubik-b">Select provider</option>
     <option value="enugu-electric" style={{fontSize:"15px"}} className="rubik-b">EEDC</option>
     <option value="abuja-electric" style={{fontSize:"15px"}} className="rubik-b">AEBC</option>
@@ -84,8 +156,6 @@ if(meter.toString().length==13){
     <option value="kaduna-electric" style={{fontSize:"15px"}} className="rubik-b">KAEDCO</option>
     <option value="kano-electric" style={{fontSize:"15px"}} className="rubik-b">KEDCO</option>
     <option value="portharcourt-electric" style={{fontSize:"15px"}} className="rubik-b">PHED</option>
-
-
 </select>
 
 </div></div>
@@ -102,16 +172,27 @@ if(meter.toString().length==13){
 </div>
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="acct" className="ml-3 rubik-h">Meter/Acct No</label>
-<input onKeyUp={ver1} id="acct" type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl focus:outline-none ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 font-bold " style={{backgroundColor:"whitesmoke",fontSize:"18px"}}/>
+<input onKeyUp={ver1} id="acct" type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl focus:outline-none ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px"}}/>
 <span id='userinfo' className="rubik-b ml-4"></span>
         </div>
 
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
-<input id="amt" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 " style={{backgroundColor:"whitesmoke",fontSize:"18px"}} />
+<input id="amt" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px"}} />
         </div>
 <div className="mx-auto">
-    <Button variant={"contained"} endIcon={<Forward/>}>Proceed</Button>
+    <Button id="btn" variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>
+</div>
+<NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
+<div id="delay" style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className=" flex-col items-center justify-center  fixed  z-10 w-full bottom-0 h-full shp hidden">
+<section className="dots-container">
+  <div className="dot"></div>
+  <div className="dot"></div>
+  <div className="dot"></div>
+  <div className="dot"></div>
+  <div className="dot"></div>
+</section>
+
 </div>
     </div>
     </>)

@@ -411,6 +411,53 @@ return;
   }
 })
 
+//Electricity
+server.post("zonapay/electricity",async (req,res)=>{
+  const {iuc,provider,amount,vid}=req.body;
+  const url= new URL("https://vtu.ng/wp-json/api/v1/electricity?username=ArinzechukwuGift&password=ari123Ari@vv")
+  url.searchParams.append("meter_number", iuc)
+  url.searchParams.append("service_id", provider)
+  url.searchParams.append("variation_id", vid)
+  url.searchParams.append("amount", amount)
+  url.searchParams.append("phone", "07018237160")
+  const Id = mongoose.Types.ObjectId(req.user._id);
+const usernow=  await User.findById(Id)
+const balance=usernow.Balance
+const isFundsSufficient= balance>50
+  if(!isFundsSufficient){
+  res.status(400).json({code:"insufficientFund"})
+  return;
+  }
+  try{
+  const res=await fetch(url.toString(),{method:"GET"})
+  if(res.ok){
+const result=await res.json();
+if(result.code=="success"){
+  console.log(`token ${result.data.token} units ${result.data.units} amount ${result.data.amount}`);
+  const newamount= eval(result.data.amount.replace(/\D/g,""))
+      await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
+  const now=DateTime.local()
+  const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+  //save history
+  saveHistory({tid:uuidv4(),time:timeinNigeria,amount:newamount,product:result.data.electricity,
+    phone:result.data.meter_number,user:req.user});
+    //send email to admin
+    sendd("igwebuikea626@gmail.com",`${req.user} has purchased ${result.data.electricity} for ${newamount} for ${result.data.meter_number} and ${result.data.token} `);
+res.status(200).json(result);
+}
+else if(result.code=="processing"){
+res.status(200).json({custom_message:"Your request is processing"})
+}
+else{
+  throw new Error("Request failed")
+}
+  }}
+  catch(e){
+return res.status(400).send(e)
+  }
+
+})
+
 //Setting pin
 server.post("/zonapay/setpin", async (req,res)=>{
   if(!req.isAuthenticated()){
