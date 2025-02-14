@@ -187,11 +187,11 @@ if(processed){
     <Head>
       <title>Data</title>
     </Head>
-    <div className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
+    <div style={{backgroundColor:"whitesmoke"}} className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
         <div style={{fontSize:"30px"}} className="rubik-h mt-4 mb-16">Data purchase </div>
         <div onClick={()=>{router.back()}} className="absolute left-1 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>
 
-<form id="form" style={{border:"6px solid #1E3A5F"}} className="w-11/12 p-4 rounded-2xl mb-8 flex flex-col" encType="multipart/form-data">
+<form id="form" style={{backgroundColor:"white"}} className="w-11/12 p-4 rounded-2xl mb-8 flex flex-col" encType="multipart/form-data">
     <div>
     <p className="rubik-h pb-4">Choose your network</p>
     <div className="flex space-x-4">
@@ -279,14 +279,13 @@ if(processed){
 </div>: null}
 
 
-{ loading? <Button variant="contained" className="text-white mt-12 p-4"  sx={{backgroundColor:"#1E3A5F",textTransform:"none",borderRadius:"30px"}}>Processing...</Button> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{backgroundColor:"#1E3A5F",textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
+{ loading? <Button variant="contained" className="text-white mt-12 p-4"  sx={{textTransform:"none",borderRadius:"30px"}}>Processing...</Button> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
 <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Back</Button>}</Link>
 <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
     </div>
     </>)
 }
-
 export async function getServerSideProps(context){
   if(!context.req.isAuthenticated()){
       return {

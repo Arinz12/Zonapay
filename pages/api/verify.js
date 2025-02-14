@@ -10,6 +10,9 @@ const iuc= req.body.iuc
 const sid=req.body.cableprovider
 url.searchParams.append("customer_id", iuc)
 url.searchParams.append("service_id", sid)
+if(req.body.vid){
+    url.searchParams.append("variation_id", req.body.vid)
+}
 try{
 const resp= await fetch(url.toString(),{method:"GET"})
 const resp1= await resp.json()
