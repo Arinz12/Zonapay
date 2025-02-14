@@ -187,7 +187,7 @@ if(processed){
     <Head>
       <title>Data</title>
     </Head>
-    <div style={{backgroundColor:"whitesmoke"}} className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
+    <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
         <div style={{fontSize:"30px"}} className="rubik-h mt-4 mb-16">Data purchase </div>
         <div onClick={()=>{router.back()}} className="absolute left-1 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>
 
@@ -281,7 +281,7 @@ if(processed){
 
 { loading? <Button variant="contained" className="text-white mt-12 p-4"  sx={{textTransform:"none",borderRadius:"30px"}}>Processing...</Button> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
-<Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Back</Button>}</Link>
+<Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none"}}>Back</Button>}</Link>
 <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
     </div>
     </>)

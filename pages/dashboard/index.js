@@ -73,7 +73,7 @@ const Dashboard = ({obj}) => {
                 <div className="text-black text-center rubik-h">Buy <br/>Data</div></div>
                  </Paper>}</Link>
  
-            <Link href={"dashboard/ctv"}>{<Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+            <Link href={"/dashboard/ctv"}>{<Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
             <div className="flex flex-col justify-center items-center">
 <TvRounded className='text-blue-600' />
                 <div className="text-black text-center rubik-h">Cable Tv</div></div>
@@ -85,11 +85,11 @@ const Dashboard = ({obj}) => {
                 <div className="text-black text-center rubik-h">Gift Card</div></div>
                  </Paper>
 
-                 <Paper elevation={5} className='flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+            <Link href="/dashboard/elect">{  <Paper elevation={5} className='flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
 <Tungsten className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">Power</div></div>
-                 </Paper>
+                 </Paper>}</Link>
 
                  <Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">

@@ -257,7 +257,7 @@ catch(e){
     <Head>
       <title>Airtime</title>
     </Head>
-    <div style={{backgroundColor:"whitesmoke"}} className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
+    <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
     <div onClick={()=>{router.back()}} className="absolute left-1  top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>
 
         <div style={{fontSize:"30px"}} className="rubik-h mt-4 mb-16">Airtime purchase</div>
@@ -291,7 +291,7 @@ catch(e){
 
 { loading? <Button variant="contained" className="text-white mt-12 p-4"  sx={{backgroundColor:"#1E3A5F",textTransform:"none",borderRadius:"30px"}}>Processing...</Button> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{backgroundColor:"#1E3A5F",textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
-<Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Back</Button>}</Link>
+<Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none"}}>Back</Button>}</Link>
 
    <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
    <div id="wrongpin" className=" z-10 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
