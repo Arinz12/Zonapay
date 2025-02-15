@@ -82,7 +82,7 @@ setProcessed(true);
 return
 }
 else{
-router.push("/dashoard/error")
+router.push("/dashboard/error")
 
 }
 });

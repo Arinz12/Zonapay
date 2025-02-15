@@ -449,7 +449,8 @@ else if(result.code=="processing"){
 res.status(200).json({custom_message:"Your request is processing"})
 }
 else{
-  throw new Error("Request failed")
+  console.log(result.code);
+  res.status(502).send("purchse failed")
 }
   }}
   catch(e){
