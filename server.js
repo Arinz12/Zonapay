@@ -450,13 +450,12 @@ res.status(200).json({custom_message:"Your request is processing"})
 }
 else{
   console.log(result.code);
-  res.status(502).send("purchse failed")
+  res.status(502).send("purchase failed")
 }
   }}
   catch(e){
-return res.status(400).send(e)
+return res.status(400).send("conerror  : "+e)
   }
-
 })
 
 //Setting pin

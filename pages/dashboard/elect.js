@@ -82,6 +82,8 @@ setProcessed(true);
 return
 }
 else{
+  const result= await res.text();
+console.log(result)
   document.getElementById("delay").style.display="none"
 router.push("/dashboard/error")
 
