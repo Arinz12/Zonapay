@@ -74,7 +74,7 @@ if(meter.toString().length==13){
             if(res.ok){
 const result= await res.json();
 if(result.custom_message){
-   return router.push("/dashboard/processing");
+   return router.replace("/dashboard/processing");
 }
 document.getElementById("delay").style.display="none"
 setDetails(result);
@@ -82,6 +82,7 @@ setProcessed(true);
 return
 }
 else{
+  document.getElementById("delay").style.display="none"
 router.push("/dashboard/error")
 
 }

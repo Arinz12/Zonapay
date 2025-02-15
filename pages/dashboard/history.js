@@ -1,9 +1,12 @@
 import "@fontsource/roboto"
 import { Paper } from "@mui/material"
 import Head from "next/head"
+import { useEffect } from "react"
 const History=({userhistory})=>{
 
-
+useEffect(()=>{
+document.getElementById("hiscon").lastChild.style.marginBottom="100px";
+},[])
     return(<>
 <Head>
    <title>History </title>
@@ -12,7 +15,7 @@ const History=({userhistory})=>{
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
   </Head>
    <Paper sx={{fontSize:"30px"}} elevation={12} className="mt-4 w-11/12 mx-auto rounded-2xl text-center rubik-h p-4">History</Paper>
-{(userhistory.dataa.length!==0)? <div className="p-6 max-w-3xl mx-auto rubik-b">
+{(userhistory.dataa.length!==0)? <div id='hiscon' className="p-6 max-w-3xl mx-auto rubik-b">
   {userhistory.dataa.map((a, index) => (
     <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-md mb-6 sm:mb-4 lg:mb-8" key={index}>
       <div className="mb-2 monomaniac-one-regular">
