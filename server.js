@@ -309,9 +309,17 @@ catch(e){
   res.status(400).send("internet connection error "+e)
 }
   })
+  const logged=(req,res,next)=>{
+if(req.isAuthenticated()){
+  return res.redirect("/dashboard");
+}
+else{
+  next();
+}
+  }
 
 //login for a user
-server.post("/login",passport.authenticate("local",{
+server.post("/login",logged,passport.authenticate("local",{
   failureRedirect:"/signup",
   successRedirect:"/dashboard"
 }))
