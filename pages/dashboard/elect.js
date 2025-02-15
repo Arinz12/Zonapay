@@ -74,7 +74,7 @@ if(meter.toString().length==13){
             if(res.ok){
 const result= await res.json();
 if(result.custom_message){
-   return router.replace("/dashboard/processing");
+   return router.push("/dashboard/processing");
 }
 document.getElementById("delay").style.display="none"
 setDetails(result);
@@ -82,7 +82,8 @@ setProcessed(true);
 return
 }
 else{
-router.replace("/dashoard/error")
+router.push("/dashoard/error")
+
 }
 });
 if(pincon){

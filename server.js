@@ -412,7 +412,7 @@ return;
 })
 
 //Electricity
-server.post("zonapay/electricity",async (req,res)=>{
+server.post("/zonapay/electricity",async (req,res)=>{
   const {iuc,provider,amount,vid}=req.body;
   const url= new URL("https://vtu.ng/wp-json/api/v1/electricity?username=ArinzechukwuGift&password=ari123Ari@vv")
   url.searchParams.append("meter_number", iuc)
