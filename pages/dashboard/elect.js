@@ -63,7 +63,7 @@ if(meter.toString().length==13){
               document.getElementById("keyPad").style.display="none";
             const epp= document.getElementById("ep").value
        const meter= document.getElementById("acct").value
-       const amount=document.getElementById("amt");
+       const amount=document.getElementById("amt").value;
        const typ= document.getElementById("pre");
        const typ2= document.getElementById("post");
        const ty=(typ.checked)? typ.value : typ2.value
