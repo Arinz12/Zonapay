@@ -37,7 +37,7 @@ else{
     if(resp.ok){
 const result= await resp.json();
 return {
-    prop:{result}
+    props:{result}
 }
     }
     else{
