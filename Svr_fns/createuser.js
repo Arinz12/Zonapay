@@ -9,7 +9,8 @@ const Userschema= new mongoose.Schema(
         Email:{type:String,unique:true},
         Password:{type:String},
         Balance:{type:Number},
-        Pin:{type:String}
+        Pin:{type:String},
+        Admin:{type:Boolean}
     })
     const User = mongoose.models.User || mongoose.model("User", Userschema);
 
@@ -25,8 +26,9 @@ console.log("Db connected")
     Username:username,
     Email:email,
     Password:bcrypt.hashSync(password,10),
-    Balance:50,
+    Balance:60,
     Pin:null,
+    Admin:false,
 })
 console.log("user saved successfully...")
 }
