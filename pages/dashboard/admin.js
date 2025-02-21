@@ -1,8 +1,8 @@
 import {Button,Paper} from "@mui/material"
 const Admin =({result})=>{
 return(<>
-<div style={{backgroundColor:"whitesmoke"}} className="h-full flex flex-col justify-center">
-<div className="bg-white rounded-lg w-full h-4/6 flex flex-row justify-between gap-1">
+<div style={{backgroundColor:"whitesmoke",height:"100vh"}} className="h-full flex flex-col justify-center">
+<div className="bg-white p-5 rounded-lg w-4/5 mx-auto h-3/6 flex flex-row justify-between items-center gap-1">
 <div className="rubik-h ml-1">
     <span className="mb-3">ClientBalance</span> <br/>
     <span>{result.client_total}</span>
