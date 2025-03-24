@@ -1,5 +1,5 @@
 const cacheName="v2"
-const files=["/","/dashboard","/dashboard/login","/dashboard/signup","/js/pwa.js","/manifest.json"]
+const files=["/","/dashboard","/login","/signup","/js/pwa.js","/manifest.json"]
 self.addEventListener('install', (e) => {
     console.log('Service Worker installed');
     e.waitUntil(

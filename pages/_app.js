@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
   })
 const pages=["/dashboard","/dashboard/settings","/dashboard/history"]
   return(<>
-  <Script src="js/pwa.js" strategy="beforeInteractive" />
+  {/* <Script src="js/pwa.js" strategy="beforeInteractive" /> */}
    <Component {...pageProps} />
    {pages.includes(router.pathname) && <Footer/>}
   </>)
