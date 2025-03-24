@@ -227,7 +227,7 @@ if(!already.ok){
 </div>
 
 
-<button className="mt-4 click-effect bg-blue-600" type="submit">
+<button className="mt-4 bg-blue-600" type="submit">
             <span className="text-white">Sign up</span> 
             <svg
                 xmlns="http://www.w3.org/2000/svg"

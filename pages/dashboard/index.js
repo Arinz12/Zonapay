@@ -62,7 +62,7 @@ const Dashboard = ({obj}) => {
             </Carousel>
         </div>
         <div className='ml-1 mr-1 p-3 mt-4'>
-            <div className='grid grid-cols-3 mx-auto gap-5 justify-center items-center justify-items-center'>
+            <div className='grid grid-cols-3 mx-auto gap-3 justify-center items-center justify-items-center'>
                <Link href={"/dashboard/airtime"}>{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                 <div className="flex flex-col justify-center items-center">
                 <PhoneOutlined className='text-blue-600'/>
