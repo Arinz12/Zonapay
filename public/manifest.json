@@ -1,0 +1,16 @@
+{
+    "name": "Zona",
+    "short_name": "Zona",
+
+    "icons": [
+      {
+        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSplEbdA4_htDRT184ibPN7R6DzflZIuSrdBA&s",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "display":"standalone",
+    "purpose": "any maskable",
+    "start_url":"/"
+  }
+  
