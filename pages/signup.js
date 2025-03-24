@@ -227,7 +227,7 @@ if(!already.ok){
 </div>
 
 
-<button className="mt-4 bg-blue-600" type="submit">
+<button className="mt-4 click-effect bg-blue-600" type="submit">
             <span className="text-white">Sign up</span> 
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -244,7 +244,7 @@ if(!already.ok){
             </svg>
         </button>
 
-        <div className="text-black rubik-h " style={{fontSize:"16px"}}>
+        <div className="text-black rubik-h monomaniac-one-regular" style={{fontSize:"16px"}}>
             Already have an account ? then <span className="text-blue-500 underline" > <Link href="https://zonapay.onrender.com/login">Login</Link></span>
         </div>
 

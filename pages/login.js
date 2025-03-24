@@ -107,7 +107,7 @@ const val= async (e)=>{
 </div>
 
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
-    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-16 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  md:border-4 border-0 border-blue-600 rounded-3xl  items-center">
+    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-20 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  md:border-4 border-0 border-blue-600 rounded-3xl  items-center">
 <div className=" monomaniac-one-regular text-black">Login</div>
 
 <div className="form-control monomaniac-one-regular  ">
@@ -138,7 +138,7 @@ const val= async (e)=>{
 </div>
 
 
-<button className="mt-4 bg-blue-600" type="submit"> 
+<button className="mt-4 click-effect bg-blue-600" type="submit"> 
             <span className="text-white">Log in</span>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +155,7 @@ const val= async (e)=>{
             </svg>
         </button>
 
-        <div className="text-black rubik-h " style={{fontSize:"16px"}}>
+        <div className="text-black monomaniac-one-regular rubik-h " style={{fontSize:"16px"}}>
             Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://zonapay.onrender.com/signup">Signup</Link></span>
         </div>
 

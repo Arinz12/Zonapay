@@ -63,36 +63,36 @@ const Dashboard = ({obj}) => {
         </div>
         <div className='ml-1 mr-1 p-3 mt-4'>
             <div className='grid grid-cols-3 mx-auto gap-5 justify-center items-center justify-items-center'>
-               <Link href={"/dashboard/airtime"}>{<Paper elevation={5} className='flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+               <Link href={"/dashboard/airtime"}>{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                 <div className="flex flex-col justify-center items-center">
                 <PhoneOutlined className='text-blue-600'/>
                 <div className="text-black text-center rubik-h">Buy Airtime</div></div>
                  </Paper> }</Link>
-           <Link href={"/dashboard/data"}>{ <Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+           <Link href={"/dashboard/data"}>{ <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
            <div className="flex flex-col justify-center items-center">
 <LanguageRounded className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">Buy <br/>Data</div></div>
                  </Paper>}</Link>
  
-            <Link href={"/dashboard/ctv"}>{<Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+            <Link href={"/dashboard/ctv"}>{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
             <div className="flex flex-col justify-center items-center">
 <TvRounded className='text-blue-600' />
                 <div className="text-black text-center rubik-h">Cable Tv</div></div>
                  </Paper>}</Link>
 
-                 <Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+                 <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
 <CardGiftcard className='text-blue-600' />
                 <div className="text-black text-center rubik-h">Gift Card</div></div>
                  </Paper>
 
-            <Link href="/dashboard/elect">{  <Paper elevation={5} className='flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+            <Link href="/dashboard/elect">{  <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
 <Tungsten className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">Power</div></div>
                  </Paper>}</Link>
 
-                 <Paper elevation={5} className='flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+                 <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
 <School className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">School</div></div>
