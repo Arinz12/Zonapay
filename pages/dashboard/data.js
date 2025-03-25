@@ -195,7 +195,7 @@ const dataMappings = {
     "airt-330x": 329,
     "airt-550": 545,
     "airt-1650-2": 1629
-  }
+  
 };
 
 // Function to retrieve the number associated with the string
@@ -267,7 +267,10 @@ if(processed){
   </div>
 </div>
 
+
     </div>
+    
+
 <div className="pt-7">
     <label htmlFor="phone" className="rubik-h pb-3">Phone number</label>
 <input style={{fontSize:"25px"}} type="string"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
@@ -343,7 +346,7 @@ if(processed){
 <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
     </div>
     </>)
-
+}
 export async function getServerSideProps(context){
   if(!context.req.isAuthenticated()){
       return {
