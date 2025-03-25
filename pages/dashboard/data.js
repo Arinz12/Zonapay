@@ -15,6 +15,7 @@ const Data=()=>{
   const[loading,setLoading]=useState(false)
   const[net,setNet]=useState(null);
   const [pincon,setPincon]=useState(false);
+  const [price,setPrice]=useState(0);
 
   useEffect(()=>{
   const mtne=document.getElementById("mtn")
@@ -152,7 +153,72 @@ if(rep.ok){
 catch(e){
   console.log("error wrong pin")
 }
-}  
+} 
+// Create a mapping of the strings to their associated prices (numbers after ₦)
+const dataMappings = {
+  "MTN Data 500MB – 30 Days": 599,
+  "MTN Data 1GB – 30 Days": 719,
+  "MTN Data 2GB – 30 Days": 1439,
+  "MTN Data 3GB – 30 Days": 2159,
+  "MTN Data 5GB – 30 Days": 3499,
+  "MTN Data 6GB – 7 Days": 1599,
+  "MTN Data 10GB – 30 Days": 7499,
+  "MTN Data 20GB – 30 Days": 4979,
+  "MTN Data 30GB – 30 Days": 7959,
+  "MTN Data 40GB – 30 Days": 9899,
+  "MTN Data 75GB – 30 Days": 14979,
+  "Airtel Data 500MB (Gift) – 30 Days": 399,
+  "Airtel Data 1GB (Gift) – 30 Days": 699,
+  "Airtel Data 2GB (Gift) – 30 Days": 1399,
+  "Airtel Data 5GB (Gift) – 30 Days": 3499,
+  "Airtel Data 10GB (Gift) – 30 Days": 6999,
+  "Airtel Data 15GB (Gift) – 30 Days": 10939,
+  "Airtel Data 20GB (Gift) – 30 Days": 14580,
+  "Airtel Data 750MB – 14 Days": 545,
+  "Airtel Data 1GB – 1 Day": 329,
+  "Airtel Data 1.5GB – 30 Days": 1079,
+  "Airtel Data 2GB – 30 Days": 1289,
+  "Airtel Data 3GB – 30 Days": 1639,
+  "Airtel Data 4.5GB – 30 Days": 2189,
+  "Airtel Data 6GB – 7 Days": 1639,
+  "Airtel Data 10GB – 30 Days": 3289,
+  "Airtel Data 20GB – 30 Days": 5489,
+  "Airtel Data 40GB – 30 Days": 10799,
+  "Glo Data 500MB (Gift) – 30 Days": 299,
+  "Glo Data 1GB (Gift) – 30 Days": 469,
+  "Glo Data 2GB (Gift)– 30 Days": 939,
+  "Glo Data 3GB (Gift)– 30 Days": 1409,
+  "Glo Data 5GB (Gift)– 30 Days": 2349,
+  "Glo Data 10GB (Gift)– 30 Days": 4699,
+  "Glo Data 1GB – 5 Nights": 99,
+  "Glo Data 1.25GB – 1 Day (Sunday)": 199,
+  "Glo Data 1.35GB – 14 Days": 489,
+  "Glo Data 2.9GB – 30 Days": 979,
+  "Glo Data 5.8GB – 30 Days": 1949,
+  "Glo Data 7.7GB – 30 Days": 2449,
+  "Glo Data 10GB – 30 Days": 2949,
+  "Glo Data 13.25GB – 30 Days": 3889,
+  "Glo Data 18.25GB – 30 Days": 4849,
+  "Glo Data 29.5GB – 30 Days": 7799,
+  "Glo Data 50GB – 30 Days": 9899,
+  "9mobile Data 1GB – 30 Days": 989,
+  "9mobile Data 2.5GB – 30 Days": 1989,
+  "9mobile Data 11.5GB – 30 Days": 7969,
+  "9mobile Data 15GB – 30 Days": 9899
+};
+
+// Function to retrieve the number associated with the string
+function getDataPrice(dataString) {
+  return dataMappings[dataString] || null; // If not found, return null
+}
+
+
+
+useEffect(()=>{
+  document.getElementById("opts").addEventListener("change",(e)=>{
+    setPrice(getDataPrice(e.target.value));
+  })
+})
 
 if(processed){
   return(<>
@@ -218,25 +284,25 @@ if(processed){
 <input style={{fontSize:"25px"}} type="string"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
 
 { (net=="mtn")? <div className="pt-7 ">
-    <label htmlFor="amt" className="rubik-h pb-3">Plan  </label>
+    <label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
     <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts">
         <option value="" className="rubik-b">Choose plan</option>
-        <option className="rubik-b" value="500">MTN SME Data 500MB - 30 Days</option>
-        <option className="rubik-b" value="M1024">MTN SME Data 1GB - 30 Days</option>
-        <option className="rubik-b" value="M2024">MTN SME Data 2GB - 30 Days</option>
-        <option className="rubik-b" value="3000">MTN SME Data 3GB - 30 Days</option>
-        <option className="rubik-b" value="5000">MTN SME Data 5GB - 30 Days</option>
-        <option className="rubik-b" value="10000">MTN SME Data 10GB - 30 Days</option>
-        <option className="rubik-b" value="mtn-20hrs-1500">MTN Data 6GB - 7 Days</option>
-        <option className="rubik-b" value="mtn-30gb-8000">MTN Data 30GB - 30 Days</option>
-        <option className="rubik-b" value="mtn-40gb-10000">MTN Data 40GB - 30 Days</option>
+        <option className="rubik-b" value="500">MTN SME Data 500MB – 30 Days</option>
+        <option className="rubik-b" value="M1024">MTN SME Data 1GB – 30 Days</option>
+        <option className="rubik-b" value="M2024">MTN SME Data 2GB – 30 Days</option>
+        <option className="rubik-b" value="3000">MTN SME Data 3GB – 30 Days</option>
+        <option className="rubik-b" value="5000">MTN SME Data 5GB – 30 Days</option>
+        <option className="rubik-b" value="10000">MTN SME Data 10GB – 30 Days</option>
+        <option className="rubik-b" value="mtn-20hrs-1500">MTN Data 6GB – 7 Days</option>
+        <option className="rubik-b" value="mtn-30gb-8000">MTN Data 30GB – 30 Days</option>
+        <option className="rubik-b" value="mtn-40gb-10000">MTN Data 40GB – 30 Days</option>
         <option className="rubik-b" value="mtn-75gb-15000">mtn-75gb-15000</option>
     </select>
 </div>: null}
 
 
 {(net=="glo")?<div className="pt-7">
-<label htmlFor="amt" className="rubik-h pb-3">Plan  </label>
+<label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
     <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts ">
     <option value="" className="rubik-b">Choose plan</option>
   <option value="glo100x">Glo Data 1GB – 5 Nights</option>
@@ -255,7 +321,7 @@ if(processed){
 </div>: null}
 
 {(net=="airtel")? <div className="pt-7">
-<label htmlFor="amt" className="rubik-h pb-3">Plan  </label>
+<label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
     <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts ">
     <option value="" className="rubik-b">Choose plan</option>
   <option value="AIRTEL500MB">Airtel Data 500MB (Gift) – 30 Days</option>
@@ -277,6 +343,9 @@ if(processed){
   <option value="airt-1650-2">Airtel Data 6GB – 7 Days</option>
 </select>
 </div>: null}
+
+{(price>0)?
+<input readOnly value={price} style={{fontSize:"25px"}} type="string"  id="phone" name="amount" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
 
 
 { loading? <Button variant="contained" className="text-white mt-12 p-4"  sx={{textTransform:"none",borderRadius:"30px"}}>Processing...</Button> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
