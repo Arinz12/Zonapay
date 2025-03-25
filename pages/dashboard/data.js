@@ -337,7 +337,7 @@ if(processed){
 </div>: null}
 
 {(price>0)?
-<input readOnly value={price} style={{fontSize:"25px"}} type="string"  id="phone" name="amount" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
+<input readOnly value={price} style={{fontSize:"13px"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
 
 
 { loading? <Button variant="contained" className="text-white mt-12 p-4"  sx={{textTransform:"none",borderRadius:"30px"}}>Processing...</Button> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}

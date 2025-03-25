@@ -7,7 +7,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ConnectWithoutContactIcon, LogoutRounded} from '@mui/icons-material';
 import { LocalAirportRounded,LanguageRounded,CardGiftcard, TvRounded, Tungsten, School, History, Visibility, VisibilityOff, PhoneOutlined } from '@mui/icons-material';
 import { Paper,Button } from '@mui/material';
-import router from "next/router"
+import router from "next/router";
+import {DateTime} from "luxon";
 
 
 const Dashboard = ({obj}) => {
@@ -18,6 +19,18 @@ const Dashboard = ({obj}) => {
         if(!obj.isPinset){
         setTimeout(()=>{document.getElementById("createpin").style.display="flex"},3000)}
     })
+    const time=parseInt(DateTime.now().setZone("Africa/Lagos").toFormat("h"));
+    let greet;
+    if(time>=0&&time<12){
+        greet="Good morning, "
+    }
+    elseif(time>12&&time<16){
+        greet="Good afternoon, ";
+    }
+    else{
+        greet="Good evening, ";
+    }
+
      return (<>
     <Head>
         <title>Dashboard</title>
@@ -34,7 +47,7 @@ const Dashboard = ({obj}) => {
         <div className='flex pb-5 pt-1 flex-row justify-between items-center ml-2 mr-2'>
         <div className='flex flex-row gap-2 items-center '>
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
-            <div style={{}} className='rubik-h font-bold text-black'>Hi, {obj.Username}</div>
+            <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
             </div>
            <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div className='flex flex-row items-center'>
                 <LogoutRounded  sx={{backgroundColor:"",padding:"10px",height:"40px",width:"40px",color:"black"}}/>
