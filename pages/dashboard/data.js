@@ -155,56 +155,47 @@ catch(e){
 }
 } 
 // Create a mapping of the strings to their associated prices (numbers after ₦)
+// Combined plan price mapping for all networks
 const dataMappings = {
-  "MTN Data 500MB – 30 Days": 599,
-  "MTN Data 1GB – 30 Days": 719,
-  "MTN Data 2GB – 30 Days": 1439,
-  "MTN Data 3GB – 30 Days": 2159,
-  "MTN Data 5GB – 30 Days": 3499,
-  "MTN Data 6GB – 7 Days": 1599,
-  "MTN Data 10GB – 30 Days": 7499,
-  "MTN Data 20GB – 30 Days": 4979,
-  "MTN Data 30GB – 30 Days": 7959,
-  "MTN Data 40GB – 30 Days": 9899,
-  "MTN Data 75GB – 30 Days": 14979,
-  "Airtel Data 500MB (Gift) – 30 Days": 399,
-  "Airtel Data 1GB (Gift) – 30 Days": 699,
-  "Airtel Data 2GB (Gift) – 30 Days": 1399,
-  "Airtel Data 5GB (Gift) – 30 Days": 3499,
-  "Airtel Data 10GB (Gift) – 30 Days": 6999,
-  "Airtel Data 15GB (Gift) – 30 Days": 10939,
-  "Airtel Data 20GB (Gift) – 30 Days": 14580,
-  "Airtel Data 750MB – 14 Days": 545,
-  "Airtel Data 1GB – 1 Day": 329,
-  "Airtel Data 1.5GB – 30 Days": 1079,
-  "Airtel Data 2GB – 30 Days": 1289,
-  "Airtel Data 3GB – 30 Days": 1639,
-  "Airtel Data 4.5GB – 30 Days": 2189,
-  "Airtel Data 6GB – 7 Days": 1639,
-  "Airtel Data 10GB – 30 Days": 3289,
-  "Airtel Data 20GB – 30 Days": 5489,
-  "Airtel Data 40GB – 30 Days": 10799,
-  "Glo Data 500MB (Gift) – 30 Days": 299,
-  "Glo Data 1GB (Gift) – 30 Days": 469,
-  "Glo Data 2GB (Gift)– 30 Days": 939,
-  "Glo Data 3GB (Gift)– 30 Days": 1409,
-  "Glo Data 5GB (Gift)– 30 Days": 2349,
-  "Glo Data 10GB (Gift)– 30 Days": 4699,
-  "Glo Data 1GB – 5 Nights": 99,
-  "Glo Data 1.25GB – 1 Day (Sunday)": 199,
-  "Glo Data 1.35GB – 14 Days": 489,
-  "Glo Data 2.9GB – 30 Days": 979,
-  "Glo Data 5.8GB – 30 Days": 1949,
-  "Glo Data 7.7GB – 30 Days": 2449,
-  "Glo Data 10GB – 30 Days": 2949,
-  "Glo Data 13.25GB – 30 Days": 3889,
-  "Glo Data 18.25GB – 30 Days": 4849,
-  "Glo Data 29.5GB – 30 Days": 7799,
-  "Glo Data 50GB – 30 Days": 9899,
-  "9mobile Data 1GB – 30 Days": 989,
-  "9mobile Data 2.5GB – 30 Days": 1989,
-  "9mobile Data 11.5GB – 30 Days": 7969,
-  "9mobile Data 15GB – 30 Days": 9899
+    "500": 599,
+    "M1024": 719,
+    "M2024": 1439,
+    "3000": 2159,
+    "5000": 3499,
+    "10000": 7499,
+    "mtn-20hrs-1500": 1599,
+    "mtn-30gb-8000": 7959,
+    "mtn-40gb-10000": 9899,
+    "mtn-75gb-15000": 14979,
+    "glo100x": 299,
+    "glo200x": 399,
+    "G500": 489,
+    "G2000": 1949,
+    "G1000": 979,
+    "G2500": 2449,
+    "G3000": 2949,
+    "G4000": 3889,
+    "G5000": 4849,
+    "G8000": 7799,
+    "glo10000": 9899,
+    "AIRTEL500MB": 399,
+    "AIRTEL1GB": 699,
+    "AIRTEL2GB": 1399,
+    "AIRTEL5GB": 3499,
+    "AIRTEL10GB": 6999,
+    "AIRTEL15GB": 10939,
+    "AIRTEL20GB": 14580,
+    "airt-1100": 1079,
+    "airt-1300": 1289,
+    "airt-1650": 1639,
+    "airt-2200": 2189,
+    "airt-3300": 3289,
+    "airt-5500": 5479,
+    "airt-11000": 10799,
+    "airt-330x": 329,
+    "airt-550": 545,
+    "airt-1650-2": 1629
+  }
 };
 
 // Function to retrieve the number associated with the string
@@ -218,7 +209,7 @@ useEffect(()=>{
   if(document.getElementById("opts")){
   document.getElementById("opts").addEventListener("change",(e)=>{
     setPrice(getDataPrice(e.target.value));
-  })}
+  })}else{console.log("element not inited")}
 })
 
 if(processed){
@@ -276,10 +267,7 @@ if(processed){
   </div>
 </div>
 
-
     </div>
-    
-
 <div className="pt-7">
     <label htmlFor="phone" className="rubik-h pb-3">Phone number</label>
 <input style={{fontSize:"25px"}} type="string"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
@@ -297,14 +285,14 @@ if(processed){
         <option className="rubik-b" value="mtn-20hrs-1500">MTN Data 6GB – 7 Days</option>
         <option className="rubik-b" value="mtn-30gb-8000">MTN Data 30GB – 30 Days</option>
         <option className="rubik-b" value="mtn-40gb-10000">MTN Data 40GB – 30 Days</option>
-        <option className="rubik-b" value="mtn-75gb-15000">mtn-75gb-15000</option>
+        <option className="rubik-b" value="mtn-75gb-15000">MTN Data 75GB – 30 Days</option>
     </select>
 </div>: null}
 
 
 {(net=="glo")?<div className="pt-7">
 <label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
-    <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts ">
+    <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts">
     <option value="" className="rubik-b">Choose plan</option>
   <option value="glo100x">Glo Data 1GB – 5 Nights</option>
   <option value="glo200x">Glo Data 1.25GB – 1 Day (Sunday)</option>
@@ -323,7 +311,7 @@ if(processed){
 
 {(net=="airtel")? <div className="pt-7">
 <label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
-    <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts ">
+    <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts">
     <option value="" className="rubik-b">Choose plan</option>
   <option value="AIRTEL500MB">Airtel Data 500MB (Gift) – 30 Days</option>
   <option value="AIRTEL1GB">Airtel Data 1GB (Gift) – 30 Days</option>
@@ -355,7 +343,7 @@ if(processed){
 <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
     </div>
     </>)
-}
+
 export async function getServerSideProps(context){
   if(!context.req.isAuthenticated()){
       return {
