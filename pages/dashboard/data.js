@@ -215,9 +215,10 @@ function getDataPrice(dataString) {
 
 
 useEffect(()=>{
+  if(document.getElementById("opts")){
   document.getElementById("opts").addEventListener("change",(e)=>{
     setPrice(getDataPrice(e.target.value));
-  })
+  })}
 })
 
 if(processed){
