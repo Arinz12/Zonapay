@@ -19,12 +19,12 @@ const Dashboard = ({obj}) => {
         if(!obj.isPinset){
         setTimeout(()=>{document.getElementById("createpin").style.display="flex"},3000)}
     })
-    const time=parseInt(DateTime.now().setZone("Africa/Lagos").toFormat("h"));
+    const timer=parseInt(DateTime.now().setZone("Africa/Lagos").toFormat("h"));
     let greet;
-    if(time>=0&&time<12){
+    if(timer>=0&&timer<12){
         greet="Good morning, "
     }
-    elseif(time>12&&time<16){
+    else if(timer>12&&timer<16){
         greet="Good afternoon, ";
     }
     else{
