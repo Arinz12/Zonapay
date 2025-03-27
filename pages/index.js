@@ -188,7 +188,7 @@ source.onerror= ()=>{console.log("An error occured")}
      {<Button startIcon={<XIcon />} sx={{textTransform:"none"}} variant="text" className="text-center">Twitter</Button>}
      </a>
       </div>
-      <div className="mx-auto font-bold md:col-span-4">&copy;2024 Zona enterprise</div>
+      <div className="mx-auto font-bold md:col-span-4">&copy;2025 Zona enterprise</div>
 </div>
 
    </> )

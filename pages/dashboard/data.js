@@ -24,7 +24,7 @@ const Data=()=>{
   const plan= document.getElementById("opts")
   const pho=document.getElementById("phone")
   const nigeriaPhoneRegex = /^(?:\+234|0)(70|80|81|90|91)[0-9]{8}$/;
-  const mtnRegex = /^(?:\+234|0)(803|806|808|810|813|814|815|816|817|818|903|906|907|908|913|915|917|918|703|706|708|92)\d{7}$/;
+  const mtnRegex = /^(?:\+234|0)(803|806|808|810|813|814|815|816|817|818|903|906|907|908|913|915|917|918|703|704|706|708|92)\d{7}$/;
   const airtelRegex = /^(?:\+234|0)(701|708|802|808|812|813|814|815|816|902|907|908|912|913|916)\d{7}$/;
   const gloRegex = /^(?:\+234|0)(705|805|807|809|811|813|814|815|905|906|907|913|915)\d{7}$/;
 
@@ -337,7 +337,7 @@ if(processed){
 </div>: null}
 
 {(price>0)?
-<input readOnly value={price} style={{fontSize:"13px"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
+<input readOnly value={price} style={{fontSize:"15px"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
 
 
 { loading? <Button variant="contained" className="text-white mt-12 p-4"  sx={{textTransform:"none",borderRadius:"30px"}}>Processing...</Button> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
