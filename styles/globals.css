@@ -289,6 +289,8 @@ button, a, input {
 .click-effect:active::before {
   content: "";
   position: absolute;
+  
+  background: rgba(98, 0, 238, 0.2);
   border-radius: inherit; /* Matches parent radius */
   opacity: 0.8;
   animation: ripple-spread 0.6s ease-out;
