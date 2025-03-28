@@ -25,9 +25,10 @@ const Dashboard = ({obj}) => {
     if(timer=="am"){
         greet="Good morning, "
     }
-    else if(timer=="pm" && parseInt(timinit.toFormat("h"))<4){
+    else if(timer=="pm" && (parseInt(timinit.toFormat("h"))<4||parseInt(timinit.toFormat("h"))==12)){
         greet="Good afternoon, ";
     }
+   
     else{
         greet="Good evening, ";
     }

@@ -261,7 +261,7 @@ input{
   }
 }
 
-.click-effect {
+/* .click-effect {
   padding: 10px 20px;
   background: #4285f4;
   color: white;
@@ -275,7 +275,40 @@ input{
 .click-effect:active {
   transform: scale(0.95);
   background: #3367d6;
-}
+} */
 button, a, input {
   -webkit-tap-highlight-color: transparent; /* For iOS/Safari/Chrome */
+}
+
+/* Safe ripple effect (doesn't break layout flow) */
+.click-effect {
+  position: relative;
+  /* Your existing styles remain unchanged */
+}
+
+.click-effect:active::before {
+  content: "";
+  position: absolute;
+  border-radius: inherit; /* Matches parent radius */
+  opacity: 0.8;
+  animation: ripple-spread 0.6s ease-out;
+  z-index: 0; /* Places behind content */
+  pointer-events: none; /* Allows clicks through */
+}
+
+@keyframes ripple-spread {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* Protects your existing content */
+.click-effect > * {
+  position: relative; /* Brings content above the ripple */
+  z-index: 1;
 }
