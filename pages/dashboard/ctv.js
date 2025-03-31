@@ -1,9 +1,10 @@
 import "@fontsource/roboto"
-import { ArrowBackIosRounded, ArrowForward,CheckCircle } from "@mui/icons-material";
+import { ArrowBackIosRounded, ArrowForward, CheckCircle } from "@mui/icons-material";
 import { Paper, Button } from "@mui/material"
 import Head from "next/head"
 import { useEffect, useState } from "react";
 import router from "next/router"
+import Delay from "../../components/Delay";
 
 const Cable=()=>{
 const [status,setStatus]=useState(null)
@@ -448,7 +449,7 @@ gotv supa <br/>15,700
 </div>
  :null}
             <Button type="submit" endIcon={<ArrowForward/>} className="p-2 rounded-md bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
-                {start? "Processing...":"proceed"}
+                {start? <Delay/> :"proceed"}
                 </Button>
                 </div>
             </form>
