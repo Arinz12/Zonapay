@@ -1,4 +1,4 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material"
+import { FingerprintRounded, Visibility, VisibilityOff } from "@mui/icons-material"
 import  Box from "@mui/material/Box"
 import Head from "next/head"
 import Link from "next/link"
@@ -135,6 +135,9 @@ const val= async (e)=>{
 
     </label>
     <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>}</span>
+</div>
+<div className="mx-auto text-center w-full flex-row justify-center items-center">
+  <FingerprintRounded className="p-4 text-blue-600" />
 </div>
 
 
