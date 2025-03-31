@@ -1,6 +1,6 @@
 /* styles/transitions.css */
 .page-container {
-    position: relative;
+    position: static;
   }
   
   .fade-in {
