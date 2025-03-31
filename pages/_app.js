@@ -33,13 +33,12 @@ useEffect(() => {
   }
   })
 const pages=["/dashboard","/dashboard/settings","/dashboard/history"]
-  return(<>
+  return(  <div className={`page-container ${transitioning ? 'fade-out' : 'fade-in'}`}> <Component {...pageProps} />
   <Head>
   <link rel="manifest" href="/manifest.json"/> 
   </Head>
-  <div className={`page-container ${transitioning ? 'fade-out' : 'fade-in'}`}> <Component {...pageProps} />
    {pages.includes(router.pathname) && <Footer/>}
- </div> </>
+ </div> 
   )
 }
 export default MyApp
