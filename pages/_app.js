@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/globals.css'
 import { useRouter } from 'next/router';
 import Footer from '../components/Footer';
