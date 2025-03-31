@@ -40,7 +40,7 @@ const Dashboard = ({obj}) => {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
-    <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} >
+    <div style={{backgroundColor:"whitesmoke",height:"100vh"}} >
      <div
          id="createpin" className='hidden  h-full justify-center z-10 items-center fixed top-0 w-full '><Paper elevated={12}   className="relative w-2/3  mx-auto p-7  flex flex-col justify-center items-center gap-2" ><div className="rubik-b">Pin is required </div>
         <Button onClick={()=>{router.push("/dashboard/settings/pin")}} variant={"contained"}>Create pin</Button>
