@@ -52,7 +52,7 @@ const Dashboard = ({obj}) => {
             <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
             </div>
            <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div className='flex flex-row items-center'>
-                <LogoutRounded  sx={{backgroundColor:"",padding:"10px",height:"40px",width:"40px",color:"black"}}/>
+                <LogoutRounded  sx={{backgroundColor:"a",padding:"10px",height:"40px",width:"40px",color:"black"}}/>
             </div></Link> 
         </div>
         <div className=''>

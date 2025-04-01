@@ -32,9 +32,12 @@ useEffect(() => {
         .catch(error => console.log('Registration failed:', error));
   }
   })
-const pages=["/dashboard","/dashboard/settings","/dashboard/history"]
-  return(  <div className={`${pages.includes(router.pathname)? "":"page-container"}  ${transitioning ? 'fade-out' : 'fade-in'}`}>
-    <Head>
+const pages=["/dashboard","/dashboard/settings","/dashboard/history","/"]
+const shouldAnimate = !pages.includes(router.pathname);
+
+return (
+  <div className={`page-container ${shouldAnimate ? (transitioning ? 'fade-out' : 'fade-in') : ''}`}>
+  <Head>
   <link rel="manifest" href="/manifest.json"/> 
   </Head>
      <Component {...pageProps} />
