@@ -32,7 +32,7 @@ useEffect(() => {
         .catch(error => console.log('Registration failed:', error));
   }
   })
-const pages=["/dashboard","/dashboard/settings","/dashboard/history","/"]
+const pages=["/dashboard","/dashboard/settings","/dashboard/history"]
 const shouldAnimate = !pages.includes(router.pathname);
 
 return (
