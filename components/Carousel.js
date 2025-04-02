@@ -88,7 +88,7 @@ const Carousel2 = ({
   };
 
   return (
-    <div className="w-full overflow-hidden relative">
+    <div style={{ width: '90%', margin: '0 auto' }} className="w-full overflow-hidden relative">
       {/* Carousel Track */}
       <div
         ref={trackRef}
@@ -110,7 +110,7 @@ const Carousel2 = ({
             key={index}
             className="flex-shrink-0 flex justify-center items-center rounded-lg font-bold"
             style={{
-              width: '90%',
+              width: '80%',
               height: '100%',
               margin: '0 10%',
               color: '#333',
