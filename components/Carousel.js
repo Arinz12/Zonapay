@@ -88,7 +88,7 @@ const Carousel2 = ({
   };
 
   return (
-    <div style={{ width: '90%', margin: '0 auto' }} className="w-full overflow-hidden relative">
+    <div  className="w-full overflow-hidden relative">
       {/* Carousel Track */}
       <div
         ref={trackRef}
@@ -108,11 +108,11 @@ const Carousel2 = ({
         {slides.map((slide, index) => (
           <div 
             key={index}
-            className="flex-shrink-0 flex justify-center items-center rounded-lg font-bold"
+            className="flex-shrink-0 flex justify-center items-center rounded-xl font-bold"
             style={{
-              width: '80%',
+              width: '90%',
               height: '100%',
-              margin: '0 10%',
+              margin: '0 5%',
               color: '#333',
               backgroundColor: bgColor,
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
@@ -130,8 +130,8 @@ const Carousel2 = ({
             <button
               key={index}
               style={{
-                width: '12px',
-                height: '12px',
+                width: '9px',
+                height: '9px',
                 backgroundColor: index === currentIndex ? activeIndicatorColor : '#ccc'
               }}
               className="rounded-full mx-1 cursor-pointer"

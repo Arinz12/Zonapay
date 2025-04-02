@@ -77,20 +77,20 @@ const Dashboard = ({obj}) => {
                 <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div>
             </Carousel>
         </div>
-        <div className='ml-1 mr-1 p-3 mt-4'>
-            <div className='grid grid-cols-3 mx-auto gap-3 justify-center items-center justify-items-center'>
-               <Link href="/dashboard/airtime">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+        <div  className='ml-1 mr-1 p-4 bg-white rounded-lg mt-4'>
+            <div className='grid grid-cols-3   mx-auto gap-3 justify-center items-center justify-items-center'>
+               <Link href="/dashboard/airtime">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"whitesmoke",borderRadius:"12px"}}>
                 <div className="flex flex-col justify-center items-center">
                 <PhoneOutlined className='text-blue-600'/>
                 <div className="text-black text-center rubik-h">Buy Airtime</div></div>
                  </Paper> }</Link>
-           <Link href="/dashboard/data">{ <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+           <Link href="/dashboard/data">{ <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"whitesmoke",borderRadius:"12px"}}>
            <div className="flex flex-col justify-center items-center">
 <LanguageRounded className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">Buy <br/>Data</div></div>
                  </Paper>}</Link>
  
-            <Link href="/dashboard/ctv">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+            <Link href="/dashboard/ctv">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"whitesmoke",borderRadius:"12px"}}>
             <div className="flex flex-col justify-center items-center">
 <TvRounded className='text-blue-600' />
                 <div className="text-black text-center rubik-h">Cable Tv</div></div>
@@ -102,26 +102,26 @@ const Dashboard = ({obj}) => {
                 <div className="text-black text-center rubik-h">Gift Card</div></div>
                  </Paper>
 
-            <Link href="/dashboard/elect">{  <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+            <Link href="/dashboard/elect">{  <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"whitesmoke",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
 <Tungsten className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">Power</div></div>
                  </Paper>}</Link>
 
-                 <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
+                 <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"whitesmoke",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
 <School className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">School</div></div>
                  </Paper>
             </div>
         </div>
-        <div className='mt-9'>
+        <div className='mt-9 w-full'>
             <Carousel2 autoRotate={true} interval={4000} showIndicators={true} slideHeight={95}
         bgColor="white"
         activeIndicatorColor="#1976d2">
-        <div style={{textAlignLast:"center"}} className="p-4 text-center">Enjoy seamless transparent transactions where everything happening is clear</div>
-        <div style={{textAlignLast:"center"}} className="p-4 text-center">Schedule bill payments so you worry not about forgetting</div>
-        <div style={{textAlignLast:"center"}} className="p-4 text-center">Third Slide Content</div>
+        <div style={{textAlignLast:"center"}} className="p-2 text-center">Enjoy seamless transparent transactions where everything happening is clear</div>
+        <div style={{textAlignLast:"center"}} className="p-2 text-center">Schedule bill payments so you worry not about forgetting</div>
+        <div style={{textAlignLast:"center"}} className="p-2 text-center">Third Slide Content</div>
       </Carousel2>
         </div>
     </div>
