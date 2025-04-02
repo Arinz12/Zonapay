@@ -9,6 +9,7 @@ import { LocalAirportRounded,LanguageRounded,CardGiftcard, TvRounded, Tungsten, 
 import { Paper,Button } from '@mui/material';
 import router from "next/router";
 import {DateTime} from "luxon";
+import Carousel2 from '../../components/Carousel';
 
 
 const Dashboard = ({obj}) => {
@@ -115,10 +116,15 @@ const Dashboard = ({obj}) => {
             </div>
         </div>
         <div>
-            <Carousel  animation="slide" className='mt-4 ' autoplay={true} fullHeightHover={false} indicators={false} navButtonsAlwaysVisible={false}>
+            {/* <Carousel  animation="slide" className='mt-4 ' autoplay={true} fullHeightHover={false} indicators={false} navButtonsAlwaysVisible={false}>
 <Paper className="rounded-2xl mx-auto rubik-b p-4 text-center " elevation={0} sx={{height:"100px",width:"90%"}}>Enjoy seamless transparent transactions where everything happening is clear</Paper>
 <Paper className="rounded-2xl mx-auto rubik-b p-4 text-center" elevation={0} sx={{height:"100px",width:"90%"}}>Schedule bill payments so you worry not about forgetting</Paper>
-            </Carousel>
+            </Carousel> */}
+            <Carousel2 autoRotate={true} interval={3000}>
+        <div>First Slide Content</div>
+        <div>Second Slide Content</div>
+        <div>Third Slide Content</div>
+      </Carousel2>
         </div>
     </div>
     </>

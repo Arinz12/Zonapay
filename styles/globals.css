@@ -261,22 +261,19 @@ input{
   }
 }
 
-/* .click-effect {
-  padding: 10px 20px;
-  background: #4285f4;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: transform 0.1s;
-  margin: 10px;
+ .click-effect {
+  position: relative;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  
 }
 
 .click-effect:active {
-  transform: scale(0.95);
-  background: #3367d6;
-} */
-button, a, input {
+  transform: translateY(2px);
+  background: rgb(182, 168, 168);
+} 
+button, a, input ,div {
   -webkit-tap-highlight-color: transparent; /* For iOS/Safari/Chrome */
 }
 

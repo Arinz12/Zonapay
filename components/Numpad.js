@@ -21,7 +21,14 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
   };
   return (<div id="keyPad" style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className=" flex-col items-center mt-10 fixed  z-10 w-full bottom-0 h-full pt-36 shp hidden ">
 
-      <span onClick={()=>{document.getElementById("keyPad").style.display="none"}} className="absolute text-black text-4xl top-1 right-3">&times;</span>
+      <span onClick={
+        ()=>{
+          setPin("");
+          document.getElementById("keyPad").style.display="none";
+          
+      }
+      }
+         className="absolute text-black text-4xl top-1 right-3">&times;</span>
       {/* PIN Input */}
       <input
         type="password"
@@ -36,7 +43,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
       <div className="grid grid-cols-3 gap-8">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, "clear", 0, "delete"].map((item) => (
           <Button 
-          style={{borderRadius:"50%",width:"48px",height:"48px",backgroundColor:"white"}}
+          style={{borderRadius:"40%",width:"48px",height:"48px",backgroundColor:"white"}}
             key={item}
             onClick={() => handleButtonClick(item.toString())}
             className={`w-12 h-12 keypad text-xl  shadow-md

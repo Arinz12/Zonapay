@@ -274,7 +274,7 @@ if(processed){
 
 <div className="pt-7">
     <label htmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input style={{fontSize:"25px"}} type="string"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
+<input style={{fontSize:"25px"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
 
 { (net=="mtn")? <div className="pt-7 ">
     <label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
