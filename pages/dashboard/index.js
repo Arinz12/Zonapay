@@ -77,7 +77,7 @@ const Dashboard = ({obj}) => {
                 {/* <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div> */}
             </Carousel>
         </div>
-        <div  className='ml-1 mr-1 px-4 py-7 bg-white rounded-2xl mt-4'>
+        <div  className='ml-1 mr-1 px-4 py-7 mt-5 bg-white rounded-2xl '>
             <div className='grid grid-cols-3   mx-auto gap-3 justify-center items-center justify-items-center'>
                <Link href="/dashboard/airtime">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                 <div className="flex flex-col justify-center items-center">
