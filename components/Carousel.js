@@ -110,7 +110,7 @@ const Carousel2 = ({
             key={index}
             className="flex-shrink-0 flex justify-center items-center rounded-lg font-bold"
             style={{
-              width: '80%',
+              width: '90%',
               height: '100%',
               margin: '0 10%',
               color: '#333',

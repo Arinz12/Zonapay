@@ -4,8 +4,10 @@ import Head from "next/head"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import {io} from "socket.io-client"
+import Delay2 from "../components/Delay2"
  const Signup=()=>{
   const [visible, setVis]=useState(false)
+  const [progress,setPro]=useState(false)
 
 const val= async (e)=>{
     e.preventDefault();
@@ -20,6 +22,7 @@ const val= async (e)=>{
       console.log("You are not in")
       return
       }
+      setPro(true);
       e.target.submit();
       console.log("you are in...")
       return
@@ -165,6 +168,8 @@ const val= async (e)=>{
     </div>
     </Box>  
     </form>  
+
+    {progress? <Delay2/>:null}
     </>)
 }
 export default Signup

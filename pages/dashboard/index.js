@@ -116,12 +116,12 @@ const Dashboard = ({obj}) => {
             </div>
         </div>
         <div className='mt-9'>
-            <Carousel2 autoRotate={true} interval={3000} showIndicators={true} slideHeight={95}
+            <Carousel2 autoRotate={true} interval={4000} showIndicators={true} slideHeight={95}
         bgColor="white"
-        activeIndicatorColor="blue">
-        <div>Enjoy seamless transparent transactions where everything happening is clear</div>
-        <div>Schedule bill payments so you worry not about forgetting</div>
-        <div>Third Slide Content</div>
+        activeIndicatorColor="#1976d2">
+        <div style={{textAlignLast:"center"}} className="p-4">Enjoy seamless transparent transactions where everything happening is clear</div>
+        <div style={{textAlignLast:"center"}} className="p-4">Schedule bill payments so you worry not about forgetting</div>
+        <div style={{textAlignLast:"center"}} className="p-4">Third Slide Content</div>
       </Carousel2>
         </div>
     </div>
