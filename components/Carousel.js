@@ -130,8 +130,8 @@ const Carousel2 = ({
             <button
               key={index}
               style={{
-                width: '9px',
-                height: '9px',
+                width: '3px',
+                height: '3px',
                 backgroundColor: index === currentIndex ? activeIndicatorColor : '#ccc'
               }}
               className="rounded-full mx-1 cursor-pointer"
