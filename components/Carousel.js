@@ -1,49 +1,109 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Carousel2 = ({ children, autoRotate = true, interval = 3000 }) => {
+const Carousel2 = ({ 
+  children, 
+  autoRotate = true, 
+  interval = 3000,
+  showIndicators = true,
+  slideHeight = 95,
+  bgColor = 'white',
+  activeIndicatorColor = 'blue'
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const [prevTranslate, setPrevTranslate] = useState(0);
   const trackRef = useRef(null);
   const slides = React.Children.toArray(children);
   const intervalRef = useRef(null);
 
-  const updateCarousel = () => {
+  // Handle auto rotation
+  useEffect(() => {
+    if (autoRotate) {
+      intervalRef.current = setInterval(() => {
+        goToSlide((currentIndex + 1) % slides.length);
+      }, interval);
+    }
+    return () => clearInterval(intervalRef.current);
+  }, [autoRotate, interval, currentIndex, slides.length]);
+
+  // Update carousel position
+  useEffect(() => {
+    setTrackPosition();
+  }, [currentIndex]);
+
+  const setTrackPosition = () => {
     if (trackRef.current) {
       trackRef.current.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
   };
 
   const goToSlide = (index) => {
+    if (index < 0) index = slides.length - 1;
+    else if (index >= slides.length) index = 0;
     setCurrentIndex(index);
   };
 
-  useEffect(() => {
-    updateCarousel();
-  }, [currentIndex]);
+  // Touch/pointer event handlers
+  const handleTouchStart = (e) => {
+    if (autoRotate) clearInterval(intervalRef.current);
+    setIsDragging(true);
+    setStartX(getPositionX(e));
+    setPrevTranslate(currentIndex * -100);
+  };
 
-  useEffect(() => {
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const currentX = getPositionX(e);
+    const diffX = currentX - startX;
+    const newTranslate = prevTranslate + (diffX / window.innerWidth) * 100;
+    setCurrentTranslate(newTranslate);
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translateX(${newTranslate}%)`;
+      trackRef.current.style.transition = 'none';
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    const movedBy = currentTranslate - prevTranslate;
+
+    if (movedBy < -10) goToSlide(currentIndex + 1);
+    else if (movedBy > 10) goToSlide(currentIndex - 1);
+    else goToSlide(currentIndex);
+
+    if (trackRef.current) {
+      trackRef.current.style.transition = 'transform 0.5s ease-in-out';
+    }
     if (autoRotate) {
       intervalRef.current = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+        goToSlide((currentIndex + 1) % slides.length);
       }, interval);
     }
+  };
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [autoRotate, interval, slides.length]);
+  const getPositionX = (e) => {
+    return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+  };
 
   return (
     <div className="w-full overflow-hidden relative">
       {/* Carousel Track */}
-      <div 
+      <div
         ref={trackRef}
         className="flex"
         style={{
-          height: '70px',
-          transition: 'transform 0.5s ease-in-out'
+          height: `${slideHeight}px`,
+          transition: isDragging ? 'none' : 'transform 0.5s ease-in-out'
         }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleTouchStart}
+        onMouseMove={handleTouchMove}
+        onMouseUp={handleTouchEnd}
+        onMouseLeave={handleTouchEnd}
       >
         {slides.map((slide, index) => (
           <div 
@@ -51,10 +111,10 @@ const Carousel2 = ({ children, autoRotate = true, interval = 3000 }) => {
             className="flex-shrink-0 flex justify-center items-center rounded-lg font-bold"
             style={{
               width: '80%',
-              height: '70px',
+              height: '100%',
               margin: '0 10%',
-              color: 'white',
-              background: 'linear-gradient(135deg, #6e8efb, #a777e3)',
+              color: '#333',
+              backgroundColor: bgColor,
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
             }}
           >
@@ -63,22 +123,24 @@ const Carousel2 = ({ children, autoRotate = true, interval = 3000 }) => {
         ))}
       </div>
 
-      {/* Navigation Indicators */}
-      <div className="flex justify-center mt-5">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            style={{
-              width: '12px',
-              height: '12px',
-              backgroundColor: index === currentIndex ? '#6e8efb' : '#ccc'
-            }}
-            className="rounded-full mx-1 cursor-pointer"
-            onClick={() => goToSlide(index)}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      {/* Navigation Indicators - Conditionally rendered */}
+      {showIndicators && (
+        <div className="flex justify-center mt-5">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              style={{
+                width: '12px',
+                height: '12px',
+                backgroundColor: index === currentIndex ? activeIndicatorColor : '#ccc'
+              }}
+              className="rounded-full mx-1 cursor-pointer"
+              onClick={() => goToSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

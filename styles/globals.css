@@ -264,13 +264,13 @@ input{
  .click-effect {
   position: relative;
   transition-delay: 0s;
-  transition-duration: 0.2s;
+  transition-duration: 0.1s;
   transition-timing-function: ease;
   
 }
 
 .click-effect:active {
-  transform: translateY(2px);
+  transform: translateY(4px);
   background: rgb(182, 168, 168);
 } 
 button, a, input ,div {
