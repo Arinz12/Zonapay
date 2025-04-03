@@ -248,8 +248,8 @@ if(processed){
     </Head>
     <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-start w-full md:w-9/12">
 
-    <div style={{fontSize:"30px"}} className="rubik-h w-full text-white bg-blue-500 p-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-9">
-    <div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"black"}}/> </div>
+    <div style={{fontSize:"30px"}} className="rubik-h w-full text-white bg-blue-500 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-16">
+    <div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"white"}}/> </div>
         <div style={{fontSize:"26px"}} className="rubik-h ">Data purchase</div>
         
         </div>

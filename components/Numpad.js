@@ -63,7 +63,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
       {/* Submit Button */}
       <button
         onClick={handleSubmit}
-        className="mt-6 px-6 py-2 text-xl text-white bg-blue-500 rounded-full shadow-md hover:bg-blue-600"
+        className="mt-6 px-6 py-2 text-xl text-white bg-blue-500 rounded-full shadow-md hover:bg-blue-500"
       >
         Proceed
       </button>

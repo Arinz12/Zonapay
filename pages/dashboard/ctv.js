@@ -115,8 +115,14 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
           </div>
   </div>: <div className="" style={{backgroundColor:"whitesmoke"}}>
-  <div onClick={()=>{router.back()}} className="absolute left-1 p-3 top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>
-            <div className="text-center rubik-h pt-4 mb-12" style={{fontSize:"30px"}}>CABLE TV</div>
+  <div style={{fontSize:"26px"}} className="rubik-h w-full sticky top-0 text-white bg-blue-500 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
+
+<div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"white"}}/> </div>
+  <div>Cable tv</div>
+  
+  </div>
+
+            
             <form  method="post" className="w-full" id="form">
                 <div className="flex flex-col gap-8 mx-auto p-6 bg-white rounded-xl " style={{width:"100%"}}>
                 <select onChange={change} className="focus:outline-none rubik-h p-4 rounded-md " name="cableprovider" id="cp">
@@ -125,41 +131,41 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
                     <option className="rubik-b" value="startimes">STARTIMES</option>
                 </select>
                <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
-               <input onKeyUp={val}  id="iuc" className="border-0 border-b-4 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"  /> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
+               <input onKeyUp={val}  id="iuc" className="border-0 border-b-4 border-blue-500 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"  /> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
                <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
-               <input id="pn" className="  border-0 border-b-4 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
+               <input id="pn" className="  border-0 border-b-4 border-blue-500 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
                
  {(cpp=="gotv")? <div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
 <div> <label htmlFor="gotv-smallie">
-    <div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center  text-center  focus:ring-8 focus:ring-blue-600">
+    <div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center  text-center  focus:ring-8 focus:ring-blue-500">
 gotv smallie<br/>1,575
     </div>
 </label>
 <input className="hidden" name="variation_id" id="gotv-smallie" type="radio" value="gotv-smallie"/></div>
 
 <div><label htmlFor="gotv-jinja">
-<div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center  focus:ring-8 focus:ring-blue-600">
+<div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center  focus:ring-8 focus:ring-blue-500">
 gotv jinja<br/>3,300
     </div>
 </label>
 <input className="hidden" name="variation_id" id="gotv-jinja" type="radio" value="gotv-jinja"/></div>
 
 <div><label htmlFor="gotv-jolli">
-<div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center  focus:ring-8 focus:ring-blue-600">
+<div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center  focus:ring-8 focus:ring-blue-500">
 gotv jolli<br/>4,850
     </div>
 </label>
 <input className="hidden" name="variation_id" id="gotv-jolli" type="radio" value="gotv-jolli"/></div>
 
 <div><label htmlFor="gotv-max">
-<div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center  focus:ring-8 focus:ring-blue-600">
+<div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center  focus:ring-8 focus:ring-blue-500">
 gotv max <br/>7,200
     </div>
 </label>
 <input className="hidden" name="variation_id" id="gotv-max" type="radio" value="gotv-max"/></div>
 
 <div><label htmlFor="gotv-supa">
-<div tabIndex={0} className="w-36 rubik-h bg-gray-400 h-36 rounded-lg flex flex-col justify-center text-center  focus:ring-8 focus:ring-blue-600">
+<div tabIndex={0} className="w-36 rubik-h bg-gray-400 h-36 rounded-lg flex flex-col justify-center text-center  focus:ring-8 focus:ring-blue-500">
 gotv supa <br/>15,700
     </div>
 </label>
@@ -171,230 +177,230 @@ gotv supa <br/>15,700
 
   <div tabIndex={0}>
     <input type="radio" id="dstv-padi" name="variation_id" value="dstv-padi" className="hidden" />
-    <label htmlFor="dstv-padi" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="dstv-padi" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       DStv Padi
     </label>
   </div>
 
   <div>
     <input type="radio" id="dstv-yanga" name="variation_id" value="dstv-yanga" className="hidden" />
-    <label htmlFor="dstv-yanga" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="dstv-yanga" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       DStv Yanga
     </label>
   </div>
 
   <div>
     <input type="radio" id="dstv-confam" name="variation_id" value="dstv-confam" className="hidden" />
-    <label htmlFor="dstv-confam" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="dstv-confam" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       DStv Confam
     </label>
   </div>
 
   <div>
     <input type="radio" id="dstv6" name="variation_id" value="dstv6" className="hidden" />
-    <label htmlFor="dstv6" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="dstv6" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       DStv Asia
     </label>
   </div>
 
   <div>
     <input type="radio" id="dstv79" name="variation_id" value="dstv79" className="hidden" />
-    <label htmlFor="dstv79" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="dstv79" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       DStv Compact
     </label>
   </div>
   <div>
   <input type="radio" id="dstv7" name="variation_id" value="dstv7" className="hidden" />
-  <label htmlFor="dstv7" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv7" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact Plus
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv3" name="variation_id" value="dstv3" className="hidden" />
-  <label htmlFor="dstv3" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv3" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Premium
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv10" name="variation_id" value="dstv10" className="hidden" />
-  <label htmlFor="dstv10" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv10" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Premium Asia
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv9" name="variation_id" value="dstv9" className="hidden" />
-  <label htmlFor="dstv9" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv9" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Premium-French
   </label>
 </div>
 
 <div>
   <input type="radio" id="confam-extra" name="variation_id" value="confam-extra" className="hidden" />
-  <label htmlFor="confam-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="confam-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Confam + ExtraView
   </label>
 </div>
 
 <div>
   <input type="radio" id="yanga-extra" name="variation_id" value="yanga-extra" className="hidden" />
-  <label htmlFor="yanga-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="yanga-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Yanga + ExtraView
   </label>
 </div>
 
 <div>
   <input type="radio" id="padi-extra" name="variation_id" value="padi-extra" className="hidden" />
-  <label htmlFor="padi-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="padi-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Padi + ExtraView
   </label>
 </div>
 
 <div>
   <input type="radio" id="com-asia" name="variation_id" value="com-asia" className="hidden" />
-  <label htmlFor="com-asia" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="com-asia" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact + Asia
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv30" name="variation_id" value="dstv30" className="hidden" />
-  <label htmlFor="dstv30" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv30" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact + Extra View
   </label>
 </div>
 
 <div>
   <input type="radio" id="com-frenchtouch" name="variation_id" value="com-frenchtouch" className="hidden" />
-  <label htmlFor="com-frenchtouch" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="com-frenchtouch" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact + French Touch
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv33" name="variation_id" value="dstv33" className="hidden" />
-  <label htmlFor="dstv33" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv33" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Premium – Extra View
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv40" name="variation_id" value="dstv40" className="hidden" />
-  <label htmlFor="dstv40" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv40" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact Plus – Asia
   </label>
 </div>
 
 <div>
   <input type="radio" id="com-frenchtouch-extra" name="variation_id" value="com-frenchtouch-extra" className="hidden" />
-  <label htmlFor="com-frenchtouch-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="com-frenchtouch-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact + French Touch + ExtraView
   </label>
 </div>
 
 <div>
   <input type="radio" id="com-asia-extra" name="variation_id" value="com-asia-extra" className="hidden" />
-  <label htmlFor="com-asia-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="com-asia-extra" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact + Asia + ExtraView
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv43" name="variation_id" value="dstv43" className="hidden" />
-  <label htmlFor="dstv43" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv43" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact Plus + French Plus
   </label>
 </div>
 
 <div>
   <input type="radio" id="complus-frenchtouch" name="variation_id" value="complus-frenchtouch" className="hidden" />
-  <label htmlFor="complus-frenchtouch" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="complus-frenchtouch" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact Plus + French Touch
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv45" name="variation_id" value="dstv45" className="hidden" />
-  <label htmlFor="dstv45" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv45" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact Plus – Extra View
   </label>
 </div>
 
 <div>
   <input type="radio" id="complus-french-extraview" name="variation_id" value="complus-french-extraview" className="hidden" />
-  <label htmlFor="complus-french-extraview" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="complus-french-extraview" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact Plus + FrenchPlus + Extra View
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv47" name="variation_id" value="dstv47" className="hidden" />
-  <label htmlFor="dstv47" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv47" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact + French Plus
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv48" name="variation_id" value="dstv48" className="hidden" />
-  <label htmlFor="dstv48" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv48" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Compact Plus + Asia + ExtraView
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv61" name="variation_id" value="dstv61" className="hidden" />
-  <label htmlFor="dstv61" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv61" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Premium + Asia + Extra View
   </label>
 </div>
 
 <div>
   <input type="radio" id="dstv62" name="variation_id" value="dstv62" className="hidden" />
-  <label htmlFor="dstv62" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="dstv62" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Premium + French + Extra View
   </label>
 </div>
 
 <div>
   <input type="radio" id="hdpvr-access-service" name="variation_id" value="hdpvr-access-service" className="hidden" />
-  <label htmlFor="hdpvr-access-service" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="hdpvr-access-service" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv HDPVR Access Service
   </label>
 </div>
 
 <div>
   <input type="radio" id="frenchplus-addon" name="variation_id" value="frenchplus-addon" className="hidden" />
-  <label htmlFor="frenchplus-addon" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="frenchplus-addon" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv French Plus Add-on
   </label>
 </div>
 
 <div>
   <input type="radio" id="asia-addon" name="variation_id" value="asia-addon" className="hidden" />
-  <label htmlFor="asia-addon" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="asia-addon" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv Asian Add-on
   </label>
 </div>
 
 <div>
   <input type="radio" id="frenchtouch-addon" name="variation_id" value="frenchtouch-addon" className="hidden" />
-  <label htmlFor="frenchtouch-addon" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="frenchtouch-addon" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv French Touch Add-on
   </label>
 </div>
 
 <div>
   <input type="radio" id="extraview-access" name="variation_id" value="extraview-access" className="hidden" />
-  <label htmlFor="extraview-access" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="extraview-access" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     ExtraView Access
   </label>
 </div>
 
 <div>
   <input type="radio" id="french11" name="variation_id" value="french11" className="hidden" />
-  <label htmlFor="french11" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <label htmlFor="french11" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
     DStv French 11
   </label>
 </div>
@@ -405,7 +411,7 @@ gotv supa <br/>15,700
 {(cpp=="startimes")?<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   <div>
     <label htmlFor="nova">
-      <div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+      <div tabIndex={0} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
         Startimes Nova
       </div>
     </label>
@@ -414,41 +420,41 @@ gotv supa <br/>15,700
 
   <div>
     <input type="radio" id="nova" name="variation_id" value="nova" className="hidden" />
-    <label htmlFor="nova" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="nova" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       Startimes Nova
     </label>
   </div>
 
   <div>
     <input type="radio" id="basic" name="variation_id" value="basic" className="hidden" />
-    <label htmlFor="basic" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="basic" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       Startimes Basic
     </label>
   </div>
 
   <div>
     <input type="radio" id="smart" name="variation_id" value="smart" className="hidden" />
-    <label htmlFor="smart" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="smart" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       Startimes Smart
     </label>
   </div>
 
   <div>
     <input type="radio" id="classic" name="variation_id" value="classic" className="hidden" />
-    <label htmlFor="classic" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="classic" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       Startimes Classic
     </label>
   </div>
 
   <div>
     <input type="radio" id="super" name="variation_id" value="super" className="hidden" />
-    <label htmlFor="super" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <label htmlFor="super" className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-500">
       Startimes Super
     </label>
   </div>
 </div>
  :null}
-            <Button type="submit" endIcon={<ArrowForward/>} className="p-2 rounded-md bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+            <Button type="submit" endIcon={<ArrowForward/>} className="p-2 rounded-md bg-blue-500" variant="contained" sx={{textTransform:"none"}}>
                 {start? <Delay/> :"proceed"}
                 </Button>
                 </div>
