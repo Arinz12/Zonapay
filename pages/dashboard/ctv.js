@@ -62,6 +62,12 @@ function change(){
     setCp(document.getElementById("cp").value);
 }
 useEffect(()=>{
+  if(!status==null){
+  setPro(true)}
+})
+
+
+useEffect(()=>{
     document.getElementById("form").onsubmit= async (e)=>{
     e.preventDefault();
     const valu=document.getElementById("iuc").value;
@@ -75,11 +81,10 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
         const resp= await fetch("https://zonapay.onrender.com/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),headers:{"Content-Type":"application/json"}})
     if(resp.ok){
     const data2= await resp.json();
-    if(data2.code==="failure"){
+    if(data2.code=="failure"){
         throw new Error("something went wrong1")
     }
     setStatus(data2)
-    setPro(true)
     }
     else{
         throw new Error("something went wrong")
