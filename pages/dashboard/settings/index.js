@@ -13,7 +13,7 @@ return(<>
     <title>Settings</title>
 </Head>
 <div style={{fontSize:"",height:"100vh"}} className="mx-auto bg-white gap-8 text-white flex flex-col  items-start">
-   <div style={{fontSize:"30px"}} className="mt-0 mb-8 bg-blue-500 w-full rounded-b-2xl p-4 rubik-h pb-4">Settings</div>
+   <div style={{fontSize:"30px"}} className="mt-0 mb-8 bg-blue-600 w-full rounded-b-2xl px-4 py-8 rubik-h pb-4">Settings</div>
    
 <div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
    <div className="flex flex-row justify-start items-center">

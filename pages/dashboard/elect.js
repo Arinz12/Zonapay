@@ -145,7 +145,7 @@ if(pincon){
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div className=" w-full h-full flex flex-col gap-4 items-center" style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
-    <div style={{fontSize:"26px"}} className="rubik-h w-full bg-blue-500 text-white px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-9">
+    <div style={{fontSize:"26px"}} className="rubik-h w-full bg-blue-600 text-white px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-9">
     <div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"white"}}/> </div>
         <div style={{fontSize:"25px"}} className="rubik-h ">Electricity</div>
         
@@ -153,7 +153,7 @@ if(pincon){
     <div className="w-full bg-white rounded-2xl mb-5">
 <div className="flex flex-col w-full justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>
-<select onChange={ver1} id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-500">
+<select onChange={ver1} id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
     <option style={{fontSize:"15px"}} className="rubik-b">Select provider</option>
     <option value="enugu-electric" style={{fontSize:"15px"}} className="rubik-b">EEDC</option>
     <option value="abuja-electric" style={{fontSize:"15px"}} className="rubik-b">AEBC</option>
@@ -181,13 +181,13 @@ if(pincon){
 </div>
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="acct" className="ml-3 rubik-h">Meter/Acct No</label>
-<input onKeyUp={ver1} id="acct" type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl focus:outline-none ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-500 w-11/12 h-12 font-bold " style={{fontSize:"18px"}}/>
+<input onKeyUp={ver1} id="acct" type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl focus:outline-none ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px"}}/>
 <span id='userinfo' className="rubik-b ml-4"></span>
         </div>
 
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
-<input id="amt" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-500 w-11/12 h-12 " style={{fontSize:"18px"}} />
+<input id="amt" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px"}} />
         </div>
 <div className="mx-auto">
     <Button style={{textTransform:"none"}} id="btn" variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>

@@ -36,7 +36,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
         readOnly
         maxLength={maxLength}
         placeholder="Enter PIN"
-        className="w-48 text-center text-2xl  rounded-full py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-48 text-center text-2xl  rounded-full py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-600"
       />
 
       {/* Numeric Pad */}
@@ -63,7 +63,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
       {/* Submit Button */}
       <button
         onClick={handleSubmit}
-        className="mt-6 px-6 py-2 text-xl text-white bg-blue-500 rounded-full shadow-md hover:bg-blue-500"
+        className="mt-6 px-6 py-2 text-xl text-white bg-blue-600 rounded-full shadow-md hover:bg-blue-600"
       >
         Proceed
       </button>

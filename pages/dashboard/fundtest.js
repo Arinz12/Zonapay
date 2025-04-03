@@ -161,7 +161,7 @@ export default function Fund() {
                 disabled={loading}
                 aria-busy={loading}
                 className={`py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 ${
-                  loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 text-white hover:bg-blue-500"
+                  loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 text-white hover:bg-blue-600"
                 }`}
               >
                 {loading ? "Processing..." : "Pay Now"}

@@ -6,7 +6,7 @@ const Delay2=()=>{
   <div className="dot"></div>
   <div className="dot"></div>
 </section>
-<div className="text-blue-500 font-extrabold text-center rubik-h w-full mt-9">logging in</div>
+<div className="text-blue-600 font-extrabold text-center rubik-h w-full mt-9">logging in</div>
 
 </div>)}
 export default Delay2

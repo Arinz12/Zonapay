@@ -49,7 +49,7 @@ const Dashboard = ({obj}) => {
          </Paper></div>
         <div className='flex pb-5 pt-1 flex-row justify-between items-center ml-2 mr-2'>
         <div className='flex flex-row gap-2 items-center '>
-            <AccountCircleIcon className="text-blue-500" sx={{height:"36px",width:"36px",color:"white"}}/>
+            <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
             </div>
            <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div className='flex flex-row items-center'>
@@ -62,7 +62,7 @@ const Dashboard = ({obj}) => {
                     color:"blue"
                 }
             }}>
-                <div className='h-36 ml-2 mr-2 rounded-3xl p-4 bg-blue-500 flex flex-row items-center justify-between'>
+                <div className='h-36 ml-2 mr-2 rounded-3xl p-4 bg-blue-600 flex flex-row items-center justify-between'>
 
                     <div className='flex flex-col items-start '>
                     <div className='text-white rubik-h'>Account Balance <span>{visible? <VisibilityOff onClick={()=>{setVisible(false)}} sx={{}}/> :<Visibility onClick={()=>{setVisible(true)}} sx={{}}/> }</span> </div>
@@ -74,43 +74,43 @@ const Dashboard = ({obj}) => {
                     <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
  <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
                 </div>
-                {/* <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-500'></div> */}
+                {/* <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div> */}
             </Carousel>
         </div>
         <div  className='ml-1 mr-1 px-4 py-7 mt-5 bg-white rounded-2xl '>
             <div className='grid grid-cols-3   mx-auto gap-3 justify-center items-center justify-items-center'>
                <Link href="/dashboard/airtime">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                 <div className="flex flex-col justify-center items-center">
-                <PhoneOutlined className='text-blue-500'/>
+                <PhoneOutlined className='text-blue-600'/>
                 <div className="text-black text-center rubik-h">Buy Airtime</div></div>
                  </Paper> }</Link>
            <Link href="/dashboard/data">{ <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
            <div className="flex flex-col justify-center items-center">
-<LanguageRounded className='text-blue-500'  />
+<LanguageRounded className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">Buy <br/>Data</div></div>
                  </Paper>}</Link>
  
             <Link href="/dashboard/ctv">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
             <div className="flex flex-col justify-center items-center">
-<TvRounded className='text-blue-500' />
+<TvRounded className='text-blue-600' />
                 <div className="text-black text-center rubik-h">Cable Tv</div></div>
                  </Paper>}</Link>
 
                  <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
-<CardGiftcard className='text-blue-500' />
+<CardGiftcard className='text-blue-600' />
                 <div className="text-black text-center rubik-h">Gift Card</div></div>
                  </Paper>
 
             <Link href="/dashboard/elect">{  <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
-<Tungsten className='text-blue-500'  />
+<Tungsten className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">Power</div></div>
                  </Paper>}</Link>
 
                  <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
                  <div className="flex flex-col justify-center items-center">
-<School className='text-blue-500'  />
+<School className='text-blue-600'  />
                 <div className="text-black text-center rubik-h">School</div></div>
                  </Paper>
             </div>
