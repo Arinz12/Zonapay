@@ -270,10 +270,10 @@ catch(e){
     <Head>
       <title>Airtime</title>
     </Head>
-    <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
+    <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-start w-full md:w-9/12">
     
 
-        <div style={{fontSize:"30px"}} className="rubik-h bg-blue-600 p-4 flex flex-row justify-start gap-4 items-center rounded-b-2xl  mb-9">
+        <div style={{fontSize:"26px"}} className="rubik-h w-full text-white bg-blue-500 p-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-9">
 
         <div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"black"}}/> </div>
           <div>Airtime purchase</div>

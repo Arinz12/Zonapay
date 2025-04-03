@@ -121,7 +121,7 @@ const Dashboard = ({obj}) => {
         activeIndicatorColor="#1976d2">
         <div style={{textAlignLast:"center"}} className="p-2 text-center">Enjoy seamless transparent transactions where everything happening is clear</div>
         <div style={{textAlignLast:"center"}} className="p-2 text-center">Schedule bill payments so you worry not about forgetting</div>
-        <div style={{textAlignLast:"center"}} className="p-2 text-center">Third Slide Content</div>
+        <div style={{textAlignLast:"center"}} className="p-2 text-center">Map out funds specifically for bills</div>
       </Carousel2>
         </div>
     </div>

@@ -145,9 +145,9 @@ if(pincon){
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div className=" w-full h-full flex flex-col gap-4 items-center" style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
-    <div style={{fontSize:"30px"}} className="rubik-h bg-blue-600 p-4 flex flex-row justify-start gap-4 items-center rounded-b-2xl  mb-9">
+    <div style={{fontSize:"26px"}} className="rubik-h w-full bg-blue-500 text-white p-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-9">
     <div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"black"}}/> </div>
-        <div style={{fontSize:"30px"}} className="rubik-h ">Electricity</div>
+        <div style={{fontSize:"25px"}} className="rubik-h ">Electricity</div>
         
         </div>
     <div className="w-full bg-white rounded-2xl mb-5">
@@ -190,7 +190,7 @@ if(pincon){
 <input id="amt" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px"}} />
         </div>
 <div className="mx-auto">
-    <Button id="btn" variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>
+    <Button style={{textTransform:"none"}} id="btn" variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>
 </div>
 <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
 <div id="delay" style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className=" flex-col items-center justify-center  fixed  z-10 w-full bottom-0 h-full shp hidden">
