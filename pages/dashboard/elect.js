@@ -145,9 +145,12 @@ if(pincon){
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div className=" w-full h-full flex flex-col gap-4 items-center" style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
-        <span onClick={()=>{router.back()}} className="fixed top-1 left-1"><ArrowBackIosRounded sx={{color:"black"}} /> </span>
-    <div className="w-full bg-white rounded-b-2xl mb-5">
-<div style={{fontSize:"30px"}} className="rubik-h text-center w-full mb-3 mt-3"> ELECTRICITY</div>
+    <div style={{fontSize:"30px"}} className="rubik-h bg-blue-600 p-4 flex flex-row justify-start gap-4 items-center rounded-b-2xl  mb-9">
+    <div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"black"}}/> </div>
+        <div style={{fontSize:"30px"}} className="rubik-h ">Electricity</div>
+        
+        </div>
+    <div className="w-full bg-white rounded-2xl mb-5">
 <div className="flex flex-col w-full justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>
 <select onChange={ver1} id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
@@ -163,6 +166,8 @@ if(pincon){
 </select>
 
 </div></div>
+
+
 <div className="flex flex-row w-11/12 mx-auto justify-evenly gap-5 items-center p-4 bg-white rounded-xl">
 <div className="flex flex-row justify-center gap-3 rounded-2xl">
 <input type="radio" name="pay" value={"prepaid"} id="pre"/>

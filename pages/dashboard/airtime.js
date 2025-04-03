@@ -271,9 +271,22 @@ catch(e){
       <title>Airtime</title>
     </Head>
     <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-center w-full md:w-9/12">
-    <div onClick={()=>{router.back()}} className="absolute left-1  top-1 inline-block"><ArrowBackIosRounded sx={{color:"black"}}/> </div>
+    
 
-        <div style={{fontSize:"30px"}} className="rubik-h mt-3 mb-9">Airtime purchase</div>
+        <div style={{fontSize:"30px"}} className="rubik-h bg-blue-600 p-4 flex flex-row justify-start gap-4 items-center rounded-b-2xl  mb-9">
+
+        <div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"black"}}/> </div>
+          <div>Airtime purchase</div>
+          
+          </div>
+
+
+
+
+
+
+
+
 <form id="form" style={{backgroundColor:"white"}} className="w-11/12 p-4 rounded-2xl mb-8 flex flex-col" encType="multipart/form-data">
     <div>
     <p className="rubik-h pb-4">Choose your network</p>
