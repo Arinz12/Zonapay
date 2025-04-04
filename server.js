@@ -671,6 +671,7 @@ const msg=` <!DOCTYPE html>
 </html>`
 sendd(req.body.email,undefined,msg)
 setTimeout(()=>{otp_matcher=undefined},300000);
+res.end()
 
 })
 server.post("/change2",async (req,res)=>{
