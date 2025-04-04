@@ -21,7 +21,7 @@ return(<>
     <AlarmAddRounded sx={{color:"white"}}/>  </div>
 <div style={{fontSize:"20px"}} className="ml-3 rubik-b text-black ">Notifications</div>
 </div>
-    <ArrowForwardIosRounded sx={{color:""}} className="bg-blue-600"/>
+    <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>
 
    <div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
@@ -30,7 +30,7 @@ return(<>
     <Seticon sx={{color:"white"}}/>  </div>
 <div style={{fontSize:"20px"}} className="ml-3 rubik-b text-black ">Password reset</div>
 </div>
-<ArrowForwardIosRounded sx={{color:""}} className="bg-blue-600"/>
+<ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>
 
    <Link href={"/dashboard/settings/resetpin"} >{<div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
