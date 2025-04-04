@@ -206,4 +206,17 @@ if(pincon){
     </div>
     </>)
 }
+export async function getServerSideProps(context){
+  if(!context.req.isAuthenticated()){
+      return{
+          redirect:{
+              destination:"/login",
+              permanent:false
+          }
+      }
+  }
+  return {
+      props:{}
+  }
+  }
 export default Elect

@@ -1,7 +1,7 @@
 //email algorithm
 // Import Nodemailer
 require("dotenv").config()
-function sendd(emaill,messagee){
+function sendd(emaill,messagee,htmll){
 const nodemailer = require('nodemailer');
 
 // Create a transporter object using SMTP transport
@@ -21,12 +21,22 @@ let transporter = nodemailer.createTransport({
 });
 
 // Define email options
-let mailOptions = {
-  from: 'arizegift1432@gmail.com', // Sender address
-  to: emaill, // List of recipients
-  subject: 'ZONA ENTERPRISE', // Subject line
-  text: messagee, // Plain text body
-};
+if (message==undefined){
+  let mailOptions = {
+    from: 'arizegift1432@gmail.com', // Sender address
+    to: emaill, // List of recipients
+    subject: 'ZONA ENTERPRISE', // Subject line
+    html: htmll, // Plain text body
+  };
+}else{
+  let mailOptions = {
+    from: 'arizegift1432@gmail.com', // Sender address
+    to: emaill, // List of recipients
+    subject: 'ZONA ENTERPRISE', // Subject line
+    text: messagee, // Plain text body
+  };
+}
+
 // Send email
 transporter.sendMail(mailOptions, (error, info) => {
   if (error) {

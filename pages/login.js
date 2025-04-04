@@ -165,10 +165,12 @@ const val= async (e)=>{
             Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://zonapay.onrender.com/signup">Signup</Link></span>
         </div>
 
+        <div className="text-black monomaniac-one-regular rubik-h " style={{fontSize:"13px"}}>
+            <span className="text-blue-600 underline" > <Link href="/dashboard/forgotp">forgot password</Link></span>
+        </div>
     </div>
     </Box>  
     </form>  
-
     {progress? <Delay2/>:null}
     </>)
 }

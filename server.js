@@ -27,6 +27,7 @@ const {body,validationResult}= require("express-validator");
 const { error } = require('console');
 const bcrypt=require("bcrypt");
 const cors= require("cors");
+const { otp } = require('./flib/forgotPass');
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -559,6 +560,48 @@ server.get("/done",async (req,res)=>{
   }
   
 })
+
+//changing pin/password
+let otp_matcher;
+server.post("/change",async (req,res)=>{
+otp_matcher= otp();
+const msg=""
+sendd(req.body.email,undefined,msg)
+setTimeout(()=>{otp_matcher=undefined},300000);
+
+})
+server.post("/change2",async (req,res)=>{
+  const newpass=req.body.newpass;
+const otp=req.body.otp;
+const newpin=req.body.newpin
+if(newpin){
+  if(!req.isAuthenticated()){
+res.redirect("/login");
+  }
+}
+if(newpass){try{
+if(otp_matcher===otp){
+await User.updateOne({Email:req.user.Email},{$set:{Password:bcrypt.hashSync(newpass)}})
+res.status(200).end();
+}
+}
+catch(e){
+res.status(400).end();
+}
+}
+
+else{
+  try{
+  if(a===otp){
+  await User.updateOne({Email:req.user.Email},{$set:{Pin:bcrypt.hashSync(newpin)}})
+  res.status(200).end();
+  }
+  }
+  catch(e){
+  res.status(400).end();
+  }}
+}
+)
 
   // Next.js page handling
   server.all('*', (req, res) => {
