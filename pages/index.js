@@ -164,7 +164,7 @@ source.onerror= ()=>{console.log("An error occured")}
 </div>
 
 
-<div className='p-5 pt-8 ml-1 mr-1 md:grid md:grid-cols-4 flex justify-center justify-self-start items-center gap-12 flex-col text-white bg-black mt-9  rounded-t-lg'>
+<div  className='p-5 pt-8 ml-1 mr-1 md:grid md:grid-cols-4 flex justify-center justify-self-start items-center gap-12 flex-col text-white bg-black mt-9  rounded-t-lg'>
     <div className="rubik-b text-center" style={{textAlignLast:"center",maxWidth:"400px"}}>ZonaPay is a leading bill payment solution in nigeria for quick and clear bill  payments just try us and confirm the seamless nature of our solution</div>
     <div className='flex flex-col'>
       <h3 className='rubik-h text-center'style={{fontSize:"17px"}}>Company</h3>
@@ -173,7 +173,7 @@ source.onerror= ()=>{console.log("An error occured")}
       < Button className="text-center">Terms of use</ Button>
       < Button className="text-center">Contact us</ Button>
     </div>
-    <div className='flex flex-col'>
+    <div id="contact" className='flex flex-col'>
       <h3 className='rubik-h text-center 'style={{fontSize:"17px"}}>Get in touch</h3>
       < Button className="text-center" sx={{textTransform:"none"}}>+2348166041953</ Button>
       < Button href="mailto:arize1524@gmail.com" className="text-center" sx={{textTransform:"none"}}>Email us</ Button>

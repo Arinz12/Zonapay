@@ -565,7 +565,110 @@ server.get("/done",async (req,res)=>{
 let otp_matcher;
 server.post("/change",async (req,res)=>{
 otp_matcher= otp();
-const msg=""
+const msg=` <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your One-Time Password</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+        
+        /* OTP Box */
+        .otp-box {
+            background-color: #f5f9ff;
+            border: 1px dashed #4a90e2;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c7be5;
+            letter-spacing: 3px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999999;
+            padding-top: 20px;
+            border-top: 1px solid #eeeeee;
+            margin-top: 20px;
+        }
+        
+        /* Security Notice */
+        .security {
+            background-color: #fff8f8;
+            border-left: 4px solid #ff6b6b;
+            padding: 12px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Your One-Time Password</h2>
+        </div>
+        
+        <p>Hello,</p>
+        
+        <p>Your one-time password (OTP) for authentication is:</p>
+        
+        <div class="otp-box">
+            ${otp_matcher}
+        </div>
+        
+        <p>This code will expire in <strong>5 minutes</strong>. Please do not share it with anyone.</p>
+        
+        <div class="security">
+            <strong>Security notice:</strong> Our team will never ask for this code. Do not share it with anyone, as it could give them access to your account.
+        </div>
+        
+        <p>If you didn't request this code, please secure your account immediately by changing your password.</p>
+        
+        <p>Best regards,<br>
+        The Security Team</p>
+        
+        <div class="footer">
+            <p>© 2025 Your Company Name. All rights reserved.</p>
+            <p>N0 24 nwogbo nkwomma lane Awka</p>
+            <p>
+                <a href="https://zonapay.onrender.com/#privacy" style="color: #4a90e2;">Privacy Policy</a> | 
+                <a href="https://zonapay.onrender.com/#contact" style="color: #4a90e2;">Contact Us</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>`
 sendd(req.body.email,undefined,msg)
 setTimeout(()=>{otp_matcher=undefined},300000);
 
