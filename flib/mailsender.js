@@ -21,7 +21,7 @@ let transporter = nodemailer.createTransport({
 });
 
 // Define email options
-if (message==undefined){
+if (messagee==undefined){
   let mailOptions = {
     from: 'arizegift1432@gmail.com', // Sender address
     to: emaill, // List of recipients
