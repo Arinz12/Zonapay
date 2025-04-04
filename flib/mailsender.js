@@ -19,17 +19,17 @@ let transporter = nodemailer.createTransport({
     rejectUnauthorized: false,
   },
 });
-
+let mailOptions ;
 // Define email options
 if (messagee==undefined){
-  let mailOptions = {
+  mailOptions = {
     from: 'arizegift1432@gmail.com', // Sender address
     to: emaill, // List of recipients
     subject: 'ZONA ENTERPRISE', // Subject line
     html: htmll, // Plain text body
   };
 }else{
-  let mailOptions = {
+   mailOptions = {
     from: 'arizegift1432@gmail.com', // Sender address
     to: emaill, // List of recipients
     subject: 'ZONA ENTERPRISE', // Subject line
