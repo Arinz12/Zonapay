@@ -296,9 +296,10 @@ catch(e){
 })
 //check if email is alreay existing
 server.post("/zonapay/ValEmail", async (req,res)=>{
-const {val}= req.body;
+const val= req.body.val;
 console.log(val)
 try{
+
 const ans = await User.findOne({Email:val});
 if(!ans){
   res.status(200).send("Done..")
@@ -564,6 +565,7 @@ server.get("/done",async (req,res)=>{
 //changing pin/password
 let otp_matcher;
 server.post("/change",async (req,res)=>{
+  console.log(req.body)
 otp_matcher= otp();
 const msg=` <!DOCTYPE html>
 <html lang="en">
