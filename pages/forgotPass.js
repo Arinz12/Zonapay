@@ -25,7 +25,7 @@ setdone(true);
 router.push("/dashboard/error");
         }
     })
-})
+},[])
 
 if(done){
     return(<>
@@ -50,11 +50,11 @@ if(done){
 An otp has been sent to your email.Enter the otp and your new password
 </div>
 <form id="form" style={{backgroundColor:"whitesmoke"}} className="flex flex-col p-4 mt-6 rounded-2xl gap-6 w-full"  method="post">
-<div><input id="email" readOnly value={(router.query.auth)? router.query.data : null} style={{boxShadow:"2px 2px blue"}} inputMode="numeric" className="h-11 rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="email" /></div>
+<div><input id="email" readOnly value={(router.query.auth)? router.query.data : null} style={{boxShadow:"2px 2px blue",opacity:0.6}} inputMode="numeric" className="h-11 rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="email" /></div>
 
-<div><input style={{boxShadow:"2px 2px blue"}} id="otp" inputMode="numeric" className="h-11 rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="otp" /></div>
+<div><input placeholder="Enter otp" style={{boxShadow:"2px 2px blue"}} id="otp" inputMode="numeric" className="h-11 rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="otp" /></div>
 
-<div><input style={{boxShadow:"2px 2px blue"}} id="newpass" className="h-11 w-full  rounded-md border-0  border-b-2 border-black focus:outline-none text-center mb-3 bg-white" type="text" name="newpass" /></div>
+<div><input placeholder="Enter new password" style={{boxShadow:"2px 2px blue"}} id="newpass" className="h-11 w-full  rounded-md border-0  border-b-2 border-black focus:outline-none text-center mb-3 bg-white" type="text" name="newpass" /></div>
 
 <div className="w-full flex flex-row justify-center items-center"><button className="p-4 rounded-xl text-white bg-blue-600 rubik-b">Continue</button></div>
 </form>

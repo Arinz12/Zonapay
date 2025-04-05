@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 const Forgotp=()=>{
     const router=useRouter()
-useEffect(  ()=>{
+useEffect(()=>{
     document.getElementById("proceed").addEventListener("click", async (e)=>{
 const resp= await fetch("https://zonapay.onrender.com/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:document.getElementById("email").value.trim()}),headers:{"Content-Type":"application/json"}});
 if(resp.ok){
@@ -20,7 +20,7 @@ else{
     });
 }
     })
-})
+},[])
 
 return(<>
 <div style={{height:"100vh"}} className="w-full h-full flex flex-col items-center justify-center bg-white">

@@ -18,7 +18,7 @@ setdone(true);
 router.push("/dashboard/error");
         }
     })
-})
+},[])
 
 if(done){
     return(<>
@@ -37,7 +37,7 @@ if(done){
     return(<>
     <div className="h-full w-full flex flex-col justify-start items-center">
         <div style={{fontSize:"25px"}} className="bg-blue-600 rubik-h sticky top-0 w-full text-center mb-12 text-white px-4 py-7 rounded-b-3xl">
-            Password Reset
+            Pin Reset
         </div>
         <div style={{fontSize:"13px"}} className="text-center w-3/4 bg-yellow-200 rounded-xl p-5">
 An otp has been sent to your email.Enter the otp and your new pin
@@ -45,7 +45,7 @@ An otp has been sent to your email.Enter the otp and your new pin
         <form id="form" style={{backgroundColor:"whitesmoke"}} className="flex mt-6 flex-col p-4 rounded-2xl gap-6 w-full"  method="post">
 <div><input placeholder="Enter otp" style={{boxShadow:"2px 2px blue"}} id="otp" inputMode="numeric" className="h-11 rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="otp" /></div>
 
-<div><input placeholder="Enter new password" style={{boxShadow:"2px 2px blue"}} id="newpin" className="w-full h-11  rounded-md border-0  border-b-2 border-black focus:outline-none text-center mb-3 bg-white" type="text" name="newpin" /></div>
+<div><input placeholder="Enter new pin" style={{boxShadow:"2px 2px blue"}} id="newpin" className="w-full h-11  rounded-md border-0  border-b-2 border-black focus:outline-none text-center mb-3 bg-white" type="text" name="newpin" /></div>
 <div className="w-full flex flex-row justify-center items-center"><button className="p-4 rounded-xl text-white bg-blue-600 rubik-b">Continue</button></div>
 </form>
     </div>
