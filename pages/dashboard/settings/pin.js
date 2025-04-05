@@ -64,7 +64,7 @@ return(<>
 <input maxLength="4" inputMode="numeric" className="border-0 border-b-2 text-center focus:outline-none border-black w-9/12 "  type='password'  id="sp"/></div>
 
 <span className="text-red-600 rubik-l mx-auto" id="message"></span>
-<div className="absolute w-full flex bottom-1 mx-auto justify-center text-center"><Button endIcon={<ArrowForward/>} className="p-5 w-full rounded-full bg-blue-600 " variant="contained" type="submit">Continue</Button></div>
+<div className="absolute w-full flex bottom-0 mx-auto justify-center text-center"><Button endIcon={<ArrowForward/>} className="p-5 w-full rounded-full bg-blue-600 " variant="contained" type="submit">Continue</Button></div>
 </form>
 </div>
 </>)
