@@ -62,4 +62,15 @@ An otp has been sent to your email.Enter the otp and your new password
     </>
     )
 }
+export async function getServerSideProps(context){
+    if(context.req.isAuthenticated()){
+        await fetch("https://zonapay.onrender.com/change",{method:"post",
+        body:JSON.stringify({email:context.req.user.Email}),headers:{"Content-Type":"application/json"}})
+    }
+    else{
+    await fetch("https://zonapay.onrender.com/change",{method:"post",body:JSON.stringify({email:context.req.query.data}),headers:{"Content-Type":"application/json"}})}
+    return {
+        props:{}
+    }
+    }
 export default Forgot

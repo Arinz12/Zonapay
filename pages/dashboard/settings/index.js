@@ -24,14 +24,14 @@ return(<>
     <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>
 
-   <div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
+  <Link href={"/forgotPass"}>{<div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
    <div className="flex flex-row justify-start items-center">
     <div style={{height:"40px",width:"40px", borderRadius:"50%"}}className="flex flex-row bg-blue-600 items-center justify-center" >
     <Seticon sx={{color:"white"}}/>  </div>
 <div style={{fontSize:"20px"}} className="ml-3 rubik-b text-black ">Password reset</div>
 </div>
 <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
-   </div>
+   </div>}</Link>
 
    <Link href={"/dashboard/settings/resetpin"} >{<div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
    <div className="flex flex-row justify-start items-center">

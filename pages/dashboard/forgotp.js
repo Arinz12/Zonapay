@@ -12,8 +12,7 @@ if(resp.ok){
 },4000)
 }
 else{
-    await fetch("https://zonapay.onrender.com/change",{method:"post",body:JSON.stringify({email:document.getElementById("email").value
-    .trim()}),headers:{"Content-Type":"application/json"}})
+    
     router.push({
         pathname:"/forgotPass",
         query:{data:document.getElementById("email").value.trim(),auth:true}
