@@ -1,7 +1,8 @@
-import router from "next/router";
+import  { useRouter } from "next/router";
 import { useEffect } from "react";
 
 const Forgotp=()=>{
+    const router=useRouter()
 useEffect(  ()=>{
     document.getElementById("proceed").addEventListener("click", async (e)=>{
 const resp= await fetch("https://zonapay.onrender.com/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:document.getElementById("email").value.trim()}),headers:{"Content-Type":"application/json"}});

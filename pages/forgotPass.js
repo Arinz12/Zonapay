@@ -1,16 +1,21 @@
 import { ArrowBack, CheckCircle } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import Link from "next/link";
-import router from "next/router";
+import {useRouter} from "next/router";
 import { useEffect, useState } from "react"
 
 const Forgot=()=>{
 const [done,setdone]=useState(false)
+const router= useRouter()
 useEffect(()=>{
     document.getElementById("form").addEventListener("submit", async (e)=>{
         e.preventDefault();
         //payload
-        const data={otp:document.getElementById("otp").value.trim(),newpass:document.getElementById("newpass").value.trim(),email:document.getElementById("email").value.trim()}
+        const data={
+            otp:document.getElementById("otp").value.trim(),
+        newpass:document.getElementById("newpass").value.trim(),
+        email:document.getElementById("email").value.trim()
+    }
 
         const resp= await fetch("https://zonapay.onrender.com/change2",{method:"post",body:JSON.stringify(data), headers:{"Content-Type":"application/json"}});
         if(resp.ok){
