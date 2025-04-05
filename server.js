@@ -696,6 +696,7 @@ if(newpass){
   try{
 if(otps.includes(otp)){
 await User.updateOne({Email:req.user.Email},{$set:{Password:bcrypt.hashSync(newpass)}})
+console.log("password changed")
 res.status(200).end();
 }
 else{
@@ -705,6 +706,7 @@ else{
 }
 }
 catch(e){
+  console.log("e...."+e)
 res.status(400).end();
 }
 }
@@ -713,6 +715,7 @@ else{
   try{
   if(otps.includes(otp)){
   await User.updateOne({Email:req.user.Email},{$set:{Pin:bcrypt.hashSync(newpin)}})
+  console.log("pin changed")
   res.status(200).end();
   }else{
     console.log("failed to equate to otp pin")
@@ -720,6 +723,7 @@ else{
   }
   }
   catch(e){
+    console.log("e...."+e)
   res.status(400).end();
   }}
 }

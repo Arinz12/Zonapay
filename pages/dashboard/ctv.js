@@ -5,6 +5,7 @@ import Head from "next/head"
 import { useEffect, useState } from "react";
 import router from "next/router"
 import Delay from "../../components/Delay";
+import Link from "next/link";
 
 const Cable=()=>{
 const [status,setStatus]=useState(null)

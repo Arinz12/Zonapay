@@ -1,3 +1,6 @@
+import { ArrowBack, CheckCircle } from "@mui/icons-material";
+import { Button } from "@mui/material";
+import Link from "next/link";
 import router from "next/router";
 import { useEffect, useState } from "react"
 
@@ -39,9 +42,10 @@ if(done){
 <div style={{fontSize:"13px"}} className="text-center w-3/4 bg-yellow-200 rounded-xl p-5">
 An otp has been sent to your email.Enter the otp and your new password
 </div>
-<form id="form" style={{backgroundColor:"whitesmoke"}} className="flex flex-col p-4 rounded-2xl gap-6 w-full"  method="post">
-<div className="w-full mx-auto"><input inputMode="numeric" placeholder="OTP" id="otp" className=" h-10  w-4/5 border-0 border-b-2 border-black text-center mb-3 bg-white" type="text" name="otp" /></div>
-<div className="w-full mx-auto"><input placeholder="Email" id="newpass" className="h-10 w-4/5 border-0 border-b-2 border-black text-center mb-3 bg-white" type="text" name="newpass" /></div>
+<form id="form" style={{backgroundColor:"whitesmoke"}} className="flex flex-col p-4 mt-6 rounded-2xl gap-6 w-full"  method="post">
+<div><input style={{boxShadow:"2px 2px blue"}} id="otp" inputMode="numeric" className=" rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="otp" /></div>
+<div><input style={{boxShadow:"2px 2px blue"}} id="newpass" className="w-full  rounded-md border-0  border-b-2 border-black focus:outline-none text-center mb-3 bg-white" type="text" name="newpass" /></div>
+
 <div className="w-full flex flex-row justify-center items-center"><button className="p-4 rounded-xl text-white bg-blue-600 rubik-b">Continue</button></div>
 </form>
     </div>
