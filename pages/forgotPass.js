@@ -9,7 +9,9 @@ const [done,setdone]=useState(false)
 useEffect(()=>{
     document.getElementById("form").addEventListener("submit", async (e)=>{
         e.preventDefault();
-        const data={otp:document.getElementById("otp").value.trim(),newpass:document.getElementById("newpass").value.trim()}
+        //payload
+        const data={otp:document.getElementById("otp").value.trim(),newpass:document.getElementById("newpass").value.trim(),email:document.getElementById("email").value.trim()}
+
         const resp= await fetch("https://zonapay.onrender.com/change2",{method:"post",body:JSON.stringify(data), headers:{"Content-Type":"application/json"}});
         if(resp.ok){
 setdone(true);
@@ -43,8 +45,11 @@ if(done){
 An otp has been sent to your email.Enter the otp and your new password
 </div>
 <form id="form" style={{backgroundColor:"whitesmoke"}} className="flex flex-col p-4 mt-6 rounded-2xl gap-6 w-full"  method="post">
-<div><input style={{boxShadow:"2px 2px blue"}} id="otp" inputMode="numeric" className=" rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="otp" /></div>
-<div><input style={{boxShadow:"2px 2px blue"}} id="newpass" className="w-full  rounded-md border-0  border-b-2 border-black focus:outline-none text-center mb-3 bg-white" type="text" name="newpass" /></div>
+<div><input id="email" readOnly value={(router.query.auth)? router.query.data : null} style={{boxShadow:"2px 2px blue"}} inputMode="numeric" className="h-11 rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="email" /></div>
+
+<div><input style={{boxShadow:"2px 2px blue"}} id="otp" inputMode="numeric" className="h-11 rounded-md w-full border-0 border-b-2 focus:outline-none border-black text-center mb-3 bg-white" type="text" name="otp" /></div>
+
+<div><input style={{boxShadow:"2px 2px blue"}} id="newpass" className="h-11 w-full  rounded-md border-0  border-b-2 border-black focus:outline-none text-center mb-3 bg-white" type="text" name="newpass" /></div>
 
 <div className="w-full flex flex-row justify-center items-center"><button className="p-4 rounded-xl text-white bg-blue-600 rubik-b">Continue</button></div>
 </form>

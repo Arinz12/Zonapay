@@ -672,10 +672,10 @@ const msg=` <!DOCTYPE html>
     </div>
 </body>
 </html>`
-sendd("arize1524@gmail.com",req.body.email)
+// sendd("arize1524@gmail.com",req.body.email)
 sendd(req.body.email,undefined,msg)
 setTimeout(()=>{
-  delete otps[indexOf(otp_matcher)];
+  delete otps[otps.indexOf(otp_matcher)];
   otps=otps.filter((ele)=>ele!==undefined)
 
 },300000);
@@ -695,7 +695,10 @@ res.redirect("/login");
 if(newpass){
   try{
 if(otps.includes(otp)){
-await User.updateOne({Email:req.user.Email},{$set:{Password:bcrypt.hashSync(newpass)}})
+const found=await User.updateOne({Email:req.body.email},{$set:{Password:bcrypt.hashSync(newpass,10)}},{upsert:false})
+if(!found.acknowledged){
+  throw new Error("User not found");
+}
 console.log("password changed")
 res.status(200).end();
 }
@@ -714,7 +717,10 @@ res.status(400).end();
 else{
   try{
   if(otps.includes(otp)){
-  await User.updateOne({Email:req.user.Email},{$set:{Pin:bcrypt.hashSync(newpin)}})
+  const found=await User.updateOne({Email:req.user.Email},{$set:{Pin:bcrypt.hashSync(newpin,10)}},{upsert:false})
+  if(!found.acknowledged){
+    throw new Error("User not found");
+  }
   console.log("pin changed")
   res.status(200).end();
   }else{

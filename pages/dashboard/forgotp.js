@@ -13,7 +13,10 @@ if(resp.ok){
 else{
     await fetch("https://zonapay.onrender.com/change",{method:"post",body:JSON.stringify({email:document.getElementById("email").value
     .trim()}),headers:{"Content-Type":"application/json"}})
-    router.push("/forgotPass");
+    router.push({
+        pathname:"/forgotPass",
+        query:{data:document.getElementById("email").value.trim(),auth:true}
+    });
 }
     })
 })
