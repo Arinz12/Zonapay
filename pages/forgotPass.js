@@ -33,15 +33,15 @@ if(done){
 
     return(<>
     <div className="h-full w-full flex flex-col justify-start items-center">
-        <div className="bg-blue-600 rubik-h sticky top-0 text-center mb-10 text-white px-4 py-7 rounded-b-3xl">
+        <div style={{fontSize:"25px"}} className="bg-blue-600 rubik-h w-full sticky top-0 text-center mb-12 text-white px-4 py-7 rounded-b-3xl">
             Password Reset
         </div>
 <div style={{fontSize:"13px"}} className="text-center w-3/4 bg-yellow-200 rounded-xl p-5">
 An otp has been sent to your email.Enter the otp and your new password
 </div>
-<form id="form" style={{backgroundColor:"whitesmoke"}} className="flex flex-col p-6 rounded-2xl gap-4"  method="post">
-<div><input id="otp" className="w-4/5 border-t-0 border-l-0 border-r-0 border-b-2 text-center mb-3 bg-white" type="text" name="otp" /></div>
-<div><input id="newpass" className="w-4/5 border-t-0 border-l-0 border-r-0 border-b-2 text-center mb-3 bg-white" type="text" name="newpass" /></div>
+<form id="form" style={{backgroundColor:"whitesmoke"}} className="flex flex-col p-4 rounded-2xl gap-4 w-full"  method="post">
+<div><input id="otp" className=" h-10  w-4/5 border-t-0 border-l-0 border-r-0 border-b-2 text-center mb-3 bg-white" type="text" name="otp" /></div>
+<div><input id="newpass" className="h-10 w-4/5 border-t-0 border-l-0 border-r-0 border-b-2 text-center mb-3 bg-white" type="text" name="newpass" /></div>
 <div className="w-full flex flex-row justify-center items-center"><button className="p-4 rounded-xl bg-blue-600 rubik-b">Continue</button></div>
 </form>
     </div>

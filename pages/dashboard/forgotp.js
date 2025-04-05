@@ -12,7 +12,7 @@ if(resp.ok){
 }
 else{
     await fetch("https://zonapay.onrender.com/change",{method:"post",body:JSON.stringify({email:document.getElementById("email").value
-    .trim()})})
+    .trim(),headers:{"Content-Type":"application/json"}})})
     router.push("/forgotPass");
 }
     })
@@ -20,7 +20,7 @@ else{
 
 return(<>
 <div style={{height:"100vh"}} className="w-full h-full flex flex-col items-center justify-center bg-white">
-<div className="h-3/6 w-4/5 mx-auto flex flex-row justify-center items-center p-4 rounded-lg" style={{backgroundColor:"whitesmoke"}}>
+<div className="h-3/6 w-4/5 mx-auto flex flex-col gap-2 justify-center items-center p-4 rounded-lg" style={{backgroundColor:"whitesmoke"}}>
     <div id="msg" className="fixed top-1 left-1 rounded-md p-5 bg-yellow-200 hidden text-black">Email does not exist in our database</div>
     <label style={{fontSize:"25px"}} className="rubik-h">Enter your registered Email</label>
     <input id='email' placeholder="email" className="w-11/12 h-11 border-l-0 border-r-0 border-t-0 my-6 border-b-2 rounded-lg bg-white rubik-b"/>

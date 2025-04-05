@@ -297,7 +297,6 @@ catch(e){
 //check if email is alreay existing
 server.post("/zonapay/ValEmail", async (req,res)=>{
 const val= req.body.val;
-console.log(val)
 try{
 
 const ans = await User.findOne({Email:val});
