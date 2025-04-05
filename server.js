@@ -695,7 +695,7 @@ res.redirect("/login");
 if(newpass){
   try{
 if(otps.includes(otp)){
-const found=await User.updateOne({Email:req.body.email},{$set:{Password:bcrypt.hashSync(newpass,10)}},{upsert:false})
+const found=await User.updateOne({Email:(req.isAuthenticated())? req.user.Email:req.body.email},{$set:{Password:bcrypt.hashSync(newpass,10)}},{upsert:false})
 if(!found.acknowledged){
   throw new Error("User not found");
 }

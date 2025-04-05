@@ -240,7 +240,7 @@ if(processed){
     <div className="flex flex-col gap-8 justify-center items-center">
     <Cancel sx={{color:"red",height:"130px",width:"130px"}}/>
       <div className="">Something went wrong {" "+" "+details.error}</div>
-      <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
+      <Link href={"/dashboard"} className="rubik-b mt-8">{<Button className="bg-blue-600" startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none"}}>Home</Button>}</Link>
         </div>
 </div>}
   </>
@@ -279,13 +279,6 @@ catch(e){
           <div>Airtime purchase</div>
           
           </div>
-
-
-
-
-
-
-
 
 <form id="form" style={{backgroundColor:"white"}} className="w-11/12 p-4 rounded-2xl mb-8 flex flex-col" encType="multipart/form-data">
     <div>
