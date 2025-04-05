@@ -562,10 +562,12 @@ server.get("/done",async (req,res)=>{
 })
 
 //changing pin/password
-let otp_matcher;
+
+let otps=[]
 server.post("/change",async (req,res)=>{
-  console.log(req.body)
-otp_matcher= otp();
+  console.log(req.body);
+const otp_matcher= otp();
+otps.push(otp_matcher);
 const msg=` <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -672,11 +674,16 @@ const msg=` <!DOCTYPE html>
 </html>`
 sendd("arize1524@gmail.com",req.body.email)
 sendd(req.body.email,undefined,msg)
-setTimeout(()=>{otp_matcher=undefined},300000);
+setTimeout(()=>{
+  delete otps[indexOf(otp_matcher)];
+  otps=otps.filter((ele)=>ele!==undefined)
+
+},300000);
 res.end()
 
 })
 server.post("/change2",async (req,res)=>{
+  console.log(req.body);
   const newpass=req.body.newpass;
 const otp=req.body.otp;
 const newpin=req.body.newpin
@@ -685,10 +692,16 @@ if(newpin){
 res.redirect("/login");
   }
 }
-if(newpass){try{
-if(otp_matcher===otp){
+if(newpass){
+  try{
+if(otps.includes(otp)){
 await User.updateOne({Email:req.user.Email},{$set:{Password:bcrypt.hashSync(newpass)}})
 res.status(200).end();
+}
+else{
+  console.log("failed to equate to otp password");
+  res.status(400).end();
+
 }
 }
 catch(e){
@@ -698,9 +711,12 @@ res.status(400).end();
 
 else{
   try{
-  if(a===otp){
+  if(otps.includes(otp)){
   await User.updateOne({Email:req.user.Email},{$set:{Pin:bcrypt.hashSync(newpin)}})
   res.status(200).end();
+  }else{
+    console.log("failed to equate to otp pin")
+    res.status(400).end();
   }
   }
   catch(e){
