@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 const Forgot=()=>{
 const [done,setdone]=useState(false)
 useEffect(()=>{
-    document.getElementById("form").addEventListener(submit, async (e)=>{
+    document.getElementById("form").addEventListener("submit", async (e)=>{
         e.preventDefault();
         const data={otp:document.getElementById("otp").value.trim(),newpass:document.getElementById("newpass").value.trim()}
         const resp= await fetch("https://zonapay.onrender.com/change2",{method:"post",body:JSON.stringify(data), headers:{"Content-Type":"application/json"}});
