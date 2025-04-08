@@ -742,7 +742,7 @@ if(!sig||(sig!=="12345")){
 }
 console.log(req.isAuthenticated())
 console.log(req.body);
-
+res.status(200).end()
 })
 
 
