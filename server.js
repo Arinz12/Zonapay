@@ -735,6 +735,17 @@ else{
 }
 )
 
+server.post("/flutterwave/webhook", async (req,res)=>{
+const sig= req.headers["verif-hash"];
+if(!sig||(sig!=="12345")){
+  res.status(401).end()
+}
+console.log(req.isAuthenticated())
+console.log(req.body);
+
+})
+
+
   // Next.js page handling
   server.all('*', (req, res) => {
     return handle(req, res);
