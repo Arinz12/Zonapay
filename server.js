@@ -1,4 +1,5 @@
 // server.js
+require("dotenv").config()
 const express = require('express');
 const {createUser, User}= require("./Svr_fns/createuser")
 const multer= require("multer")
