@@ -174,7 +174,7 @@ res.status(200).json({guid:uuidv4()})
       res.redirect("/signup")
       return;
     }
-    const url=new URL("https://vtu.ng/wp-json/api/v1/airtime?username=ArinzechukwuGift&password=ari123Ari@vv")
+    const url=new URL("https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment")
 const {nid,amount,Phoneno} =req.body;
 //url.searchParams.append("username","ArinzechukwuGift")
 //url.searchParams.append("password","ari123Ari@vv")
@@ -187,28 +187,29 @@ res.status(400).json({code:"insufficientFund"})
 return;
 }
 
-url.searchParams.append("phone", Phoneno)
-url.searchParams.append("network_id", nid)
-url.searchParams.append("amount", amount)
-try{
-const result= await fetch(url.toString(),{method:"GET"})
-const result2= await result.json()
-console.log(result2);
-if(result2.code=="success"){
-  //update balance at Database
-  await User.findByIdAndUpdate(Id, { $inc: { Balance: -amount } },  { new: true } )
-const msg=`${Phoneno} successfully purchased an airtime of ${amount} `;
-//create an object to save as history
-const now=DateTime.local()
-const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-const history={user:req.user.Email,tid:uuidv4(),time:timeinNigeria,amount:amount,phone:Phoneno,network:nid,product:"Airtime"}
-await saveHistory(history);
-sendd("igwebuikea626@gmail.com",msg)}
-res.status(200).json(result2)}
-catch(e){
-console.log(e+"wronggg")
-}
+// url.searchParams.append("phone", Phoneno)
+// url.searchParams.append("network_id", nid)
+// url.searchParams.append("amount", amount)
+fetch('https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment', {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`,
+    'Content-Type': 'application/json',
+    'accept': 'application/json'
+  },
+  body: JSON.stringify({
+    country: 'NG',
+    customer_id: Phoneno,
+    amount: amount,
+    reference: uuidv4(),
+    callback_url: 'https://zonapay.onrender.com/webhook'
   })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+
+res.status(200).end()
 // validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
 const {email,password}=req.body;

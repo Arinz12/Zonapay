@@ -114,7 +114,7 @@ else{
 const nps=[mtne,airte,gloe]
 nps.forEach((a)=>{
   a.onclick=()=>{
-    if((amoun.value>=50)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
+    if((amoun.value>=0)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
       checknet(pho.value)
   setEnable(false)
     }
