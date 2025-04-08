@@ -682,7 +682,7 @@ setTimeout(()=>{
 res.end()
 
 })
-server.post("/change2",async (req,res)=>{
+server.post("/change2",cors(),async (req,res)=>{
   console.log(req.body);
   const newpass=req.body.newpass;
 const otp=req.body.otp;
@@ -735,7 +735,7 @@ else{
 }
 )
 
-server.post("/webhook", async (req,res)=>{
+server.post("/webhook",cors(), async (req,res)=>{
   console.log(req.headers)
 const sig= req.headers["verif-hash"];
 if(!sig||(sig!=="12345e")){
