@@ -209,7 +209,7 @@ fetch('https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment', {
 .then(data => console.log(data))
 .catch(error => console.error('Error:', error));
 
-res.status(200).end()
+res.status(200).end()})
 // validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
 const {email,password}=req.body;
