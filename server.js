@@ -735,9 +735,10 @@ else{
 }
 )
 
-server.post("/flutterwave/webhook", async (req,res)=>{
+server.post("/webhook", async (req,res)=>{
+  console.log(req.headers)
 const sig= req.headers["verif-hash"];
-if(!sig||(sig!=="12345")){
+if(!sig||(sig!=="12345e")){
   res.status(401).end()
 }
 console.log(req.isAuthenticated())
