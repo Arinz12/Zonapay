@@ -43,7 +43,7 @@ const AirtimeForm=()=>{
     }
       else{
         if(res){
-          const res2=await res.json();
+          var res2=await res.json();
           if(res2.code=="insufficientFund"){
             setDetails({error:"Insufficient funds"})
         setProcessed(true)

@@ -203,15 +203,19 @@ return;
 if(resp.ok){
   const resp2= resp.json();
   if(resp2.status==="success"){
-    await User.findByIdAndUpdate(Id, { $inc: { Balance: -(resp2.data.amount) } },  { new: true } )
-    res.status(200).json(resp2);
+    const amt=resp2.data.amount
+    await User.findByIdAndUpdate(Id, { $inc: { Balance: -amt } },  { new: true } )
+    console.log(resp2)
+   return  res.status(200).json(resp2);
   }
   if(resp.status==="error"){
-    res.status(400).json(resp)
+  return   res.status(400).json(resp)
+  }
+  else{
+    return   res.status(400).json(resp)
+
   }
 }
-
-
 res.status(200).end()})
 // validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
