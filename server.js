@@ -229,6 +229,7 @@ res.status(200).end()})
 //fetch data plans
 server.post("/zonapay/fdp", async (req,res)=>{
 if(!req.isAuthenticated()){
+  
   res.redirect("/login")
 }
 const biller=req.body.bille

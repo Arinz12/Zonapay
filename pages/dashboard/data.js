@@ -19,18 +19,21 @@ const Data=()=>{
   const [price,setPrice]=useState(0);
   const [mtnready,setmtnReady]=useState(false)
 let mtnplans=null;
-useEffect( async ()=>{
-  const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",{method:"post",
-  body:JSON.stringify({bille:108})
-})
-if(res.ok){
-  const resp=await res.json()
-mtnplans=resp.data;
-setmtnReady(true);
-}else{
-  console.log("failed to fetch data plans")
-}
-})
+useEffect( ()=>{
+ const fetchdata= async ()=>{
+    const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",{method:"post",
+    body:JSON.stringify({bille:108})
+  })
+  if(res.ok){
+    const resp=await res.json()
+  mtnplans=resp.data;
+  setmtnReady(true);
+  }else{
+    console.log("failed to fetch data plans")
+  }
+  }
+  fetchdata();
+  })
 
 
   useEffect(()=>{
@@ -303,7 +306,7 @@ if(processed){
        const amt= document.getElementById("opts").value.dataset.amount;
        setPrice(amt)
       }    } 
-      style={{ backgroundColor: "" }} 
+      style={{ backgroundColor: "" }}
       className="rubik-b p-4 border-b-2 border-black focus:outline-none" 
       name="plan" 
       id="opts"
