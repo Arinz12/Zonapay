@@ -35,7 +35,8 @@ const AirtimeForm=()=>{
      try{ const url="https://zonapay.onrender.com/zonapay/airtime"
       const res= await fetch(url,{method:"POST",body:formdata})
       if(res.ok){
-        const res1 =res.json();
+        const res1 = await res.json();
+        console.log(res1)
     setDetails(res1)
     setProcessed(true);
     setSucess(true)
@@ -207,7 +208,7 @@ if(processed){
       </div>
         <Paper elevated={4} className=" flex flex-col  mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
               <div className="monomaniac-one-regular  flex flex-row  justify-between"><span>Transaction id</span>
-              <span>-</span><span>{}</span></div>
+              <span>-</span><span>{details.data.reference}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Network</span><span>-</span><span>{details.data.network}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>-</span><span>{details.data.amount}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>phone</span><span>-</span><span>{details.data.phone_number}</span></div>
