@@ -298,7 +298,11 @@ if(processed){
 {net === "mtn" && (
   <div className="pt-7">
     <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
-    <select 
+    <select onChange={
+      ()=>{
+       const amt= document.getElementById("opts").value.dataset.amount;
+       setPrice(amt)
+      }    } 
       style={{ backgroundColor: "" }} 
       className="rubik-b p-4 border-b-2 border-black focus:outline-none" 
       name="plan" 
@@ -306,7 +310,7 @@ if(processed){
     >
       <option value="" className="rubik-b">Choose plan</option>
       {mtnready&&mtnplans.map((opt) => (
-        <option key={opt.id} className="rubik-b" value={opt.item_code}>
+        <option data-amount={opt.amount} key={opt.id} className="rubik-b" value={opt.item_code}>
           {opt.name}
         </option>
       ))}
