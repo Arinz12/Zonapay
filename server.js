@@ -176,7 +176,6 @@ res.status(200).json({guid:uuidv4()})
       res.redirect("/signup")
       return;
     }
-    const url=new URL("https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment")
 const {nid,amount,Phoneno} =req.body;
 const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
@@ -186,8 +185,7 @@ if(!isFundsSufficient){
 res.status(400).json({code:"insufficientFund"})
 return;
 }
-
-fetch('https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment', {
+  const resp= await fetch('https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`,
@@ -202,9 +200,17 @@ fetch('https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment', {
     callback_url: 'https://zonapay.onrender.com/webhook'
   })
 })
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));
+if(resp.ok){
+  const resp2= resp.json();
+  if(resp2.status==="success"){
+    await User.findByIdAndUpdate(Id, { $inc: { Balance: -(resp2.data.amount) } },  { new: true } )
+    res.status(200).json(resp2);
+  }
+  if(resp.status==="error"){
+    res.status(400).json(resp)
+  }
+}
+
 
 res.status(200).end()})
 // validate user for login
@@ -735,8 +741,7 @@ else{
 
 server.post("/webhook",cors(), async (req,res)=>{
 // await verif(req.body.data.tx_ref)
-// sendd("arize1524@gmail.com",` request from webhook${req.body.data}`)
-console.log(req.body.data)
+sendd("arize1524@gmail.com",` ${req.body.customer} has successfully purchased ${req.body.network} of ${req.body.amount}`);
 res.status(200).end()
 })
   // Next.js page handling

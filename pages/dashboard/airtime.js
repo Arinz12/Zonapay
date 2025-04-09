@@ -35,17 +35,7 @@ const AirtimeForm=()=>{
      try{ const url="https://zonapay.onrender.com/zonapay/airtime"
       const res= await fetch(url,{method:"POST",body:formdata})
       if(res.ok){
-      const res1=await res.json();
-      if(res1.code=="failure"){
-        setDetails({error:"An error occured"}) 
-        setProcessed(true)
-        return;
-      }
-      if(res1.code=="processing"){
-        setDelay(true)
-        setProcessed(true);
-        return
-      }
+        const res1 =res.json();
     setDetails(res1)
     setProcessed(true);
     setSucess(true)
@@ -60,7 +50,7 @@ const AirtimeForm=()=>{
         return;
           }
         }
-        setDetails({error:res.statusText})
+        setDetails({error:res2.message})
         setProcessed(true)
       }}
       catch(e){
@@ -114,7 +104,7 @@ else{
 const nps=[mtne,airte,gloe]
 nps.forEach((a)=>{
   a.onclick=()=>{
-    if((amoun.value>=0)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
+    if((amoun.value>0)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
       checknet(pho.value)
   setEnable(false)
     }
@@ -124,7 +114,7 @@ nps.forEach((a)=>{
   }
 })
 amoun.onkeyup= ()=>{
-  if((amoun.value>=50)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
+  if((amoun.value>=0)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
     checknet(pho.value)
 setEnable(false)
   }
@@ -133,7 +123,7 @@ setEnable(false)
   }
 }
 pho.onkeyup= ()=>{
-  if((amoun.value>=50)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
+  if((amoun.value>=0)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
     checknet(pho.value)
 setEnable(false)
   }
@@ -227,10 +217,10 @@ if(processed){
       </div>
         <Paper elevated={4} className=" flex flex-col  mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
               <div className="monomaniac-one-regular  flex flex-row  justify-between"><span>Transaction id</span>
-              <span>-</span><span>{details.data.order_id}</span></div>
+              <span>-</span><span>{details.data.reference}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Network</span><span>-</span><span>{details.data.network}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>-</span><span>{details.data.amount}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>phone</span><span>-</span><span>{details.data.phone}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>phone</span><span>-</span><span>{details.data.phone_number}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Code</span><span>-</span><span>{details.code}</span></div>
               
           </Paper>
