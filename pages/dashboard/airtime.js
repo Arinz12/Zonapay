@@ -152,17 +152,7 @@ document.getElementById("keyPad").style.display="none";
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
   const res1=await res.json();
-  if(res1.code=="failure"){
-    setDetails({error:"An error occured"})
-    setProcessed(true)
-    return;
-  }
-  if(res1.code=="processing"){
-    setDelay(true)
-    setProcessed(true);
-    return;
-  }
-  
+  console.log(res1)
 setDetails(res1)
 setProcessed(true);
 setSucess(true)
