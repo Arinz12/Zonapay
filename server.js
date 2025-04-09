@@ -202,19 +202,27 @@ return;
 })
 if(resp.ok){
   const resp2= resp.json();
-  if(resp2.status==="success"){
+  console.log(resp2)
+  if(resp2.status=="success"){
     const amt=resp2.data.amount
     await User.findByIdAndUpdate(Id, { $inc: { Balance: -amt } },  { new: true } )
     console.log(resp2)
-   return  res.status(200).json(resp2);
-  }
-  if(resp.status==="error"){
-  return   res.status(400).json(resp)
+  res.status(200).json(resp2);
   }
   else{
-    return   res.status(400).json(resp)
-
+    res.status(400).json(resp2)
   }
+}
+else{
+  const resp2= resp.json();
+
+  if(resp2.status==="error"){
+    res.status(400).json(resp2)
+    }
+    else{
+      res.status(400).json(resp2)
+  
+    }
 }
 res.status(200).end()})
 // validate user for login
