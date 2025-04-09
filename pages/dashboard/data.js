@@ -22,7 +22,7 @@ let mtnplans=null;
 useEffect( ()=>{
  const fetchdata= async ()=>{
     const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",{method:"post",
-    body:JSON.stringify({bille:108})
+    body:JSON.stringify({bille:"BIL108"})
   })
   if(res.ok){
     const resp=await res.json()
