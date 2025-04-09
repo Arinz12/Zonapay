@@ -29,6 +29,7 @@ const { error } = require('console');
 const bcrypt=require("bcrypt");
 const cors= require("cors");
 const { otp } = require('./flib/forgotPass');
+const { verif } = require("./Svr_fns/verifyBills");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -177,8 +178,6 @@ res.status(200).json({guid:uuidv4()})
     }
     const url=new URL("https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment")
 const {nid,amount,Phoneno} =req.body;
-//url.searchParams.append("username","ArinzechukwuGift")
-//url.searchParams.append("password","ari123Ari@vv")
 const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
@@ -188,9 +187,6 @@ res.status(400).json({code:"insufficientFund"})
 return;
 }
 
-// url.searchParams.append("phone", Phoneno)
-// url.searchParams.append("network_id", nid)
-// url.searchParams.append("amount", amount)
 fetch('https://api.flutterwave.com/v3/billers/BIL099/items/AT099/payment', {
   method: 'POST',
   headers: {
@@ -738,17 +734,9 @@ else{
 )
 
 server.post("/webhook",cors(), async (req,res)=>{
-  console.log(req.headers)
-const sig= req.headers["verif-hash"];
-if(!sig||(sig!=="12345e")){
-  res.status(401).end()
-}
-console.log(req.isAuthenticated())
-console.log(req.body);
+await verif(req.body.data.tx_ref)
 res.status(200).end()
 })
-
-
   // Next.js page handling
   server.all('*', (req, res) => {
     return handle(req, res);
