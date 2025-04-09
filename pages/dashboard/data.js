@@ -17,6 +17,21 @@ const Data=()=>{
   const[net,setNet]=useState(null);
   const [pincon,setPincon]=useState(false);
   const [price,setPrice]=useState(0);
+  const [mtnready,setmtnReady]=useState(false)
+let mtnplans=null;
+useEffect( async ()=>{
+  const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",{method:"post",
+  body:JSON.stringify({bille:108})
+})
+if(res.ok){
+  const resp=await res.json()
+mtnplans=resp.data;
+setmtnReady(true);
+}else{
+  console.log("failed to fetch data plans")
+}
+})
+
 
   useEffect(()=>{
   const mtne=document.getElementById("mtn")
@@ -280,22 +295,24 @@ if(processed){
     <label htmlFor="phone" className="rubik-h pb-3">Phone number</label>
 <input style={{fontSize:"25px"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
 
-{ (net=="mtn")? <div className="pt-7 ">
-    <label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
-    <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts">
-        <option value="" className="rubik-b">Choose plan</option>
-        <option className="rubik-b" value="500">MTN SME Data 500MB – 30 Days</option>
-        <option className="rubik-b" value="M1024">MTN SME Data 1GB – 30 Days</option>
-        <option className="rubik-b" value="M2024">MTN SME Data 2GB – 30 Days</option>
-        <option className="rubik-b" value="3000">MTN SME Data 3GB – 30 Days</option>
-        <option className="rubik-b" value="5000">MTN SME Data 5GB – 30 Days</option>
-        <option className="rubik-b" value="10000">MTN SME Data 10GB – 30 Days</option>
-        <option className="rubik-b" value="mtn-20hrs-1500">MTN Data 6GB – 7 Days</option>
-        <option className="rubik-b" value="mtn-30gb-8000">MTN Data 30GB – 30 Days</option>
-        <option className="rubik-b" value="mtn-40gb-10000">MTN Data 40GB – 30 Days</option>
-        <option className="rubik-b" value="mtn-75gb-15000">MTN Data 75GB – 30 Days</option>
+{net === "mtn" && (
+  <div className="pt-7">
+    <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
+    <select 
+      style={{ backgroundColor: "" }} 
+      className="rubik-b p-4 border-b-2 border-black focus:outline-none" 
+      name="plan" 
+      id="opts"
+    >
+      <option value="" className="rubik-b">Choose plan</option>
+      {mtnready&&mtnplans.map((opt) => (
+        <option key={opt.id} className="rubik-b" value={opt.item_code}>
+          {opt.name}
+        </option>
+      ))}
     </select>
-</div>: null}
+  </div>
+)}
 
 
 {(net=="glo")?<div className="pt-7">

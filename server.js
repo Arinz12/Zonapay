@@ -219,11 +219,34 @@ else{
     res.status(400).json(resp2)
     }
     else{
-      res.status(400).json(resp2)
-  
+      res.status(400).json(resp2) 
     }
 }
 res.status(200).end()})
+
+
+
+//fetch data plans
+server.post("/zonapay/fdp", async (req,res)=>{
+if(!req.isAuthenticated()){
+  res.redirect("/login")
+}
+const biller=req.body.bille
+const resp= await fetch(`https://api.flutterwave.com/v3/billers/${biller}/items`,{
+  method:"get",
+  headers:{"Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`,"Content-Type":"application/json","accept":"application/json"}
+});
+if(resp.ok){
+  const resp1=await resp.json();
+  res.status(200).json(resp1);
+}
+else{
+  res.status(400).send("failed to fetch plans")
+}
+})
+
+
+
 // validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
 const {email,password}=req.body;
@@ -342,10 +365,7 @@ server.post("/login",logged,passport.authenticate("local",{
 //Data purchase
 server.post("/zonapay/data",upload.none() ,async (req,res)=>{
 
-  const url=new URL("https://vtu.ng/wp-json/api/v1/data?username=ArinzechukwuGift&password=ari123Ari@vv")
   const {nid,plan,Phoneno} =req.body;
-  //url.searchParams.append("username","ArinzechukwuGift")
-  //url.searchParams.append("password","ari123Ari@vv")
   const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
@@ -355,9 +375,7 @@ const isFundsSufficient= balance>50
   return;
   }
   
-  url.searchParams.append("phone", Phoneno)
-  url.searchParams.append("network_id", nid)
-  url.searchParams.append("variation_id", plan)
+ 
   try{
     const result= await fetch(url.toString(),{method:"GET"})
     const result2= await result.json()
@@ -752,7 +770,7 @@ else{
 
 server.post("/webhook",cors(), async (req,res)=>{
 // await verif(req.body.data.tx_ref)
-// sendd("arize1524@gmail.com",` ${req.body.customer} has successfully purchased ${req.body.network} of ${req.body.amount}`);
+sendd("arize1524@gmail.com",` ${req.body.data.customer} has successfully purchased ${req.body.data.network} of ${req.body.data.amount}`);
 console.log(req.body)
 res.status(200).end()
 })

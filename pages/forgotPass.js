@@ -73,4 +73,4 @@ export async function getServerSideProps(context){
         props:{}
     }
     }
-export default Forgot
+export default Forgot 
