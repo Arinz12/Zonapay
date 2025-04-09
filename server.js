@@ -201,12 +201,11 @@ return;
   })
 })
 if(resp.ok){
-  const resp2= resp.json();
+  const resp2= await resp.json();
   console.log(resp2)
   if(resp2.status=="success"){
     const amt=resp2.data.amount
     await User.findByIdAndUpdate(Id, { $inc: { Balance: -amt } },  { new: true } )
-    console.log(resp2)
   res.status(200).json(resp2);
   }
   else{
@@ -214,7 +213,7 @@ if(resp.ok){
   }
 }
 else{
-  const resp2= resp.json();
+  const resp2= await resp.json();
 
   if(resp2.status==="error"){
     res.status(400).json(resp2)
