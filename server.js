@@ -752,7 +752,8 @@ else{
 
 server.post("/webhook",cors(), async (req,res)=>{
 // await verif(req.body.data.tx_ref)
-sendd("arize1524@gmail.com",` ${req.body.customer} has successfully purchased ${req.body.network} of ${req.body.amount}`);
+// sendd("arize1524@gmail.com",` ${req.body.customer} has successfully purchased ${req.body.network} of ${req.body.amount}`);
+console.log(req.body)
 res.status(200).end()
 })
   // Next.js page handling
