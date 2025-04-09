@@ -735,7 +735,8 @@ else{
 
 server.post("/webhook",cors(), async (req,res)=>{
 // await verif(req.body.data.tx_ref)
-sendd("arize1524@gmail.com",` request from webhook${req.body.data}`)
+// sendd("arize1524@gmail.com",` request from webhook${req.body.data}`)
+console.log(req.body.data)
 res.status(200).end()
 })
   // Next.js page handling
