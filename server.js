@@ -774,11 +774,12 @@ server.post("/webhook",cors(), async (req,res)=>{
 // await verif(req.body.data.tx_ref)
 const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-const obj=req.body.data
+const obj=req.body.data 
+try{
 sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);
 const init_user=obj.customer_reference.split("split")[0]+"@gmail.com"
 const history={user:init_user,
-  tid:obj.tx_ref,
+  tid:obj.flw_ref,
   time:timeinNigeria,
   amount:obj.amount,
   phone:obj.customer,
@@ -786,7 +787,10 @@ const history={user:init_user,
   product:obj.network,
 status:obj.status}
 saveHistory(history);
-console.log(req.body)
+console.log(req.body)}
+catch(e){
+  sendd("arize1524@gmail.com",e)
+}
 res.status(200).end()
 })
   // Next.js page handling
