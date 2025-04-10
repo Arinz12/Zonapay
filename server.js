@@ -229,16 +229,18 @@ res.status(200).end()})
 //fetch data plans
 server.post("/zonapay/fdp", async (req,res)=>{
 if(!req.isAuthenticated()){
-  
+
   res.redirect("/login")
 }
 const biller=req.body.bille
+console.log(biller);
 const resp= await fetch(`https://api.flutterwave.com/v3/billers/${biller}/items`,{
   method:"get",
   headers:{"Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`,"Content-Type":"application/json","accept":"application/json"}
 });
 if(resp.ok){
   const resp1=await resp.json();
+  console.log(resp1)
   res.status(200).json(resp1);
 }
 else{

@@ -21,11 +21,14 @@ const Data=()=>{
 let mtnplans=null;
 useEffect( ()=>{
  const fetchdata= async ()=>{
-    const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",{method:"post",
+    const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",
+    {
+      method:"post",
     body:JSON.stringify({bille:"BIL108"})
   })
   if(res.ok){
     const resp=await res.json()
+    console.log(resp)
   mtnplans=resp.data;
   setmtnReady(true);
   }else{
