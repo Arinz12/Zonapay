@@ -31,8 +31,8 @@ useEffect( ()=>{
   })
   if(res.ok){
     const resp=await res.json();
-    console.log(resp);
   mtnplans.current=resp.data
+console.log(mtnplans)
   setmtnReady(true);
   }else{
     console.log("failed to fetch data plans")
@@ -320,7 +320,7 @@ if(processed){
       id="opts"
     >
       <option value="" className="rubik-b">Choose plan</option>
-      {mtnready&&mtnplans&&mtnplans.map((opt) => (
+      {mtnready&&mtnplans.current.map((opt) => (
         <option data-amount={opt.amount} key={opt.id} className="rubik-b" value={opt.item_code}>
           {opt.name}
         </option>
