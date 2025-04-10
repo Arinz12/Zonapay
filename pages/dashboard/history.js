@@ -27,7 +27,7 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
    
    <div className="text-right">
      <div className="font-medium text-gray-900">{a.Amount}</div>
-     <div className={`text-xs px-2 py-0.5 rounded-full ${(a.Status!==success)? "bg-red-100" :"bg-green-100"}  
+     <div className={`text-xs px-2 py-0.5 rounded-full ${(a.Status!=="success")? "bg-red-100" :"bg-green-100"}  
      ${(a.Status=="success")? "text-green-800": "text-red-600"} inline-block mt-1`}>{a.Status}</div>
    </div>
  </div>
