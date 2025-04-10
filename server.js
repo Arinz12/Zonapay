@@ -33,7 +33,7 @@ const { verif } = require("./Svr_fns/verifyBills");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
-mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true,connectTimeoutMS: 30000 })
+mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true,connectTimeoutMS: 45000,serverSelectionTimeoutMS:10000 })
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 

@@ -18,7 +18,12 @@ const Data=()=>{
   const [pincon,setPincon]=useState(false);
   const [price,setPrice]=useState(0);
   const [mtnready,setmtnReady]=useState(false)
-const mtnplans= useRef([])
+  const [gloready,setgloReady]=useState(false)
+  const [airtelready,setairtelReady]=useState(false)
+const mtnplans= useRef([]);
+const airtelplans= useRef([]);
+const gloplans= useRef([]);
+
 useEffect( ()=>{
  const fetchdata= async ()=>{
     const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",
@@ -29,14 +34,45 @@ useEffect( ()=>{
       "Content-Type":"application/json"
     }
   })
+  const res2= await fetch("https://zonapay.onrender.com/zonapay/fdp",
+  {
+    method:"post",
+  body:JSON.stringify({bille:"BIL109"}),
+  headers:{
+    "Content-Type":"application/json"
+  }
+})
+const res3= await fetch("https://zonapay.onrender.com/zonapay/fdp",
+{
+  method:"post",
+body:JSON.stringify({bille:"BIL110"}),
+headers:{
+  "Content-Type":"application/json"
+}
+})
+
   if(res.ok){
     const resp=await res.json();
   mtnplans.current=resp.data
-console.log(mtnplans)
   setmtnReady(true);
   }else{
     console.log("failed to fetch data plans")
   }
+  if(res2.ok){
+    const resp=await res2.json();
+  gloplans.current=resp.data
+  setgloReady(true);
+  }else{
+    console.log("failed to fetch data plans")
+  }
+  if(res3.ok){
+    const resp=await res3.json();
+  airtelplans.current=resp.data
+  setairtelReady(true);
+  }else{
+    console.log("failed to fetch data plans")
+  }
+
   }
   fetchdata();
   })
@@ -179,63 +215,8 @@ catch(e){
   console.log("error wrong pin")
 }
 } 
-// Create a mapping of the strings to their associated prices (numbers after ₦)
-// Combined plan price mapping for all networks
-const dataMappings = {
-    "500": 599,
-    "M1024": 719,
-    "M2024": 1439,
-    "3000": 2159,
-    "5000": 3499,
-    "10000": 7499,
-    "mtn-20hrs-1500": 1599,
-    "mtn-30gb-8000": 7959,
-    "mtn-40gb-10000": 9899,
-    "mtn-75gb-15000": 14979,
-    "glo100x": 299,
-    "glo200x": 399,
-    "G500": 489,
-    "G2000": 1949,
-    "G1000": 979,
-    "G2500": 2449,
-    "G3000": 2949,
-    "G4000": 3889,
-    "G5000": 4849,
-    "G8000": 7799,
-    "glo10000": 9899,
-    "AIRTEL500MB": 399,
-    "AIRTEL1GB": 699,
-    "AIRTEL2GB": 1399,
-    "AIRTEL5GB": 3499,
-    "AIRTEL10GB": 6999,
-    "AIRTEL15GB": 10939,
-    "AIRTEL20GB": 14580,
-    "airt-1100": 1079,
-    "airt-1300": 1289,
-    "airt-1650": 1639,
-    "airt-2200": 2189,
-    "airt-3300": 3289,
-    "airt-5500": 5479,
-    "airt-11000": 10799,
-    "airt-330x": 329,
-    "airt-550": 545,
-    "airt-1650-2": 1629
-  
-};
-
-// Function to retrieve the number associated with the string
-function getDataPrice(dataString) {
-  return dataMappings[dataString] || null; // If not found, return null
-}
 
 
-
-useEffect(()=>{
-  if(document.getElementById("opts")){
-  document.getElementById("opts").addEventListener("change",(e)=>{
-    setPrice(getDataPrice(e.target.value));
-  })}else{console.log("element not inited")}
-})
 
 if(processed){
   return(<>
@@ -330,48 +311,55 @@ if(processed){
 )}
 
 
-{(net=="glo")?<div className="pt-7">
-<label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
-    <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts">
-    <option value="" className="rubik-b">Choose plan</option>
-  <option value="glo100x">Glo Data 1GB – 5 Nights</option>
-  <option value="glo200x">Glo Data 1.25GB – 1 Day (Sunday)</option>
-  <option value="G500">Glo Data 1.35GB – 14 Days</option>
-  <option value="G2000">Glo Data 5.8GB – 30 Days</option>
-  <option value="G1000">Glo Data 2.9GB – 30 Days</option>
-  <option value="G2500">Glo Data 7.7GB – 30 Days</option>
-  <option value="G3000">Glo Data 10GB – 30 Days</option>
-  <option value="G4000">Glo Data 13.25GB – 30 Days</option>
-  <option value="G5000">Glo Data 18.25GB – 30 Days</option>
-  <option value="G8000">Glo Data 29.5GB – 30 Days</option>
-  <option value="glo10000">Glo Data 50GB – 30 Days</option>
-</select>
+{net === "airtel" && (
+  <div className="pt-7">
+    <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
+    <select onChange={(e) => {
+    // Get the selected option element
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    // Access the data-amount attribute
+    const amount = selectedOption.dataset.amount;
+    setPrice(amount);
+  }}
+      style={{ backgroundColor: "" }}
+      className="rubik-b p-4 border-b-2 border-black focus:outline-none" 
+      name="plan" 
+      id="opts"
+    >
+      <option value="" className="rubik-b">Choose plan</option>
+      {airtelready&&airtelplans.current.map((opt) => (
+        <option data-amount={opt.amount} key={opt.id} className="rubik-b" value={opt.item_code}>
+          {opt.name}
+        </option>
+      ))}
+    </select>
+  </div>
+)}
 
-</div>: null}
-
-{(net=="airtel")? <div className="pt-7">
-<label htmlFor="opts" className="rubik-h pb-3">Plan  </label>
-    <select style={{backgroundColor:""}} className=" rubik-b p-4  border-b-2 border-black focus:outline-none" name="plan" id="opts">
-    <option value="" className="rubik-b">Choose plan</option>
-  <option value="AIRTEL500MB">Airtel Data 500MB (Gift) – 30 Days</option>
-  <option value="AIRTEL1GB">Airtel Data 1GB (Gift) – 30 Days</option>
-  <option value="AIRTEL2GB">Airtel Data 2GB (Gift)– 30 Days</option>
-  <option value="AIRTEL5GB">Airtel Data 5GB (Gift)– 30 Days</option>
-  <option value="AIRTEL10GB">Airtel Data 10GB (Gift)– 30 Days</option>
-  <option value="AIRTEL15GB">Airtel Data 15GB (Gift)– 30 Days</option>
-  <option value="AIRTEL20GB">Airtel Data 20GB (Gift)– 30 Days</option>
-  <option value="airt-1100">Airtel Data 1.5GB – 30 Days</option>
-  <option value="airt-1300">Airtel Data 2GB – 30 Days</option>
-  <option value="airt-1650">Airtel Data 3GB – 30 Days</option>
-  <option value="airt-2200">Airtel Data 4.5GB – 30 Days</option>
-  <option value="airt-3300">Airtel Data 10GB – 30 Days</option>
-  <option value="airt-5500">Airtel Data 20GB – 30 Days</option>
-  <option value="airt-11000">Airtel Data 40GB – 30 Days</option>
-  <option value="airt-330x">Airtel Data 1GB – 1 Day</option>
-  <option value="airt-550">Airtel Data 750MB – 14 Days</option>
-  <option value="airt-1650-2">Airtel Data 6GB – 7 Days</option>
-</select>
-</div>: null}
+{net === "glo" && (
+  <div className="pt-7">
+    <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
+    <select onChange={(e) => {
+    // Get the selected option element
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    // Access the data-amount attribute
+    const amount = selectedOption.dataset.amount;
+    setPrice(amount);
+  }}
+      style={{ backgroundColor: "" }}
+      className="rubik-b p-4 border-b-2 border-black focus:outline-none" 
+      name="plan" 
+      id="opts"
+    >
+      <option value="" className="rubik-b">Choose plan</option>
+      {gloready&&gloplans.current.map((opt) => (
+        <option data-amount={opt.amount} key={opt.id} className="rubik-b" value={opt.item_code}>
+          {opt.name}
+        </option>
+      ))}
+    </select>
+  </div>
+)}
 
 {(price>0)?
 <input readOnly value={price} style={{fontSize:"15px"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
