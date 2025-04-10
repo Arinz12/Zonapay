@@ -234,21 +234,23 @@ if(!req.isAuthenticated()){
 }
 const biller=req.body.bille
 console.log(biller);
+try{
 const resp= await fetch(`https://api.flutterwave.com/v3/billers/${biller}/items`,{
   method:"get",
   headers:{"Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`,"Content-Type":"application/json","accept":"application/json"}
 });
 if(resp.ok){
   const resp1=await resp.json();
-  console.log(resp1)
+  // console.log(resp1)
   res.status(200).json(resp1);
 }
 else{
   res.status(400).send("failed to fetch plans")
+}}
+catch(e){
+  console.log("data plans fetch failed because "+e)
 }
 })
-
-
 
 // validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
@@ -391,10 +393,8 @@ const isFundsSufficient= balance>50
       //history object
       const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-      const history={user:req.user.Email,tid:uuidv4(),time:timeinNigeria,amount:newamount,phone:Phoneno,network:nid,product:result2.data.data_plan}
-     await  saveHistory(history)
-      const msg=`${Phoneno} successfully purchased data of ${plan} at ${newamount} `
-      sendd("igwebuikea626@gmail.com",msg);
+      // const history={user:req.user.Email,tid:uuidv4(),time:timeinNigeria,amount:newamount,phone:Phoneno,network:nid,product:result2.data.data_plan}
+    
       return res.status(200).json(result2);
     }
     else{
@@ -440,13 +440,7 @@ const data=await fetch(url.toString(),{method:"GET"})
   const newamount= eval(data2.data.amount.replace(/\D/g,""))
 
       await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
-  const now=DateTime.local()
-  const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-  //save history
-  saveHistory({tid:uuidv4(),time:timeinNigeria,amount:newamount,product:data2.data.subscription_plan,
-    phone:data2.data.smartcard_number,user:req.user});
-    //send email to admin
-    sendd("igwebuikea626@gmail.com",`${req.user} has purchased ${data2.data.subscription_plan} for ${newamount} for ${data2.data.smartcard_number} `);
+
   res.status(200).json(data2)
  }
   catch(e){
@@ -484,11 +478,7 @@ if(result.code=="success"){
   const now=DateTime.local()
   const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
   //save history
-  saveHistory({tid:uuidv4(),time:timeinNigeria,amount:newamount,product:result.data.electricity,
-    phone:result.data.meter_number,user:req.user});
-    //send email to admin
-    sendd("igwebuikea626@gmail.com",`${req.user} has purchased ${result.data.electricity} for ${newamount} for ${result.data.meter_number} and ${result.data.token} `);
-    console.log(result)
+  
  res.status(200).json(result);
 }
 else if(result.code=="processing"){
@@ -773,9 +763,19 @@ else{
 
 server.post("/webhook",cors(), async (req,res)=>{
 // await verif(req.body.data.tx_ref)
-sendd("arize1524@gmail.com",` ${req.body.data.customer} has successfully purchased ${req.body.data.network} of ${req.body.data.amount}`);
-
-//saveHistory()
+const now=DateTime.local()
+const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+const obj=req.body.data
+sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);
+const init_user=obj.customer_reference.split(".com")[0]+".com"
+const history={user:init_user,
+  tid:obj.tx_ref,
+  time:timeinNigeria,
+  amount:obj.amount,
+  phone:obj.customer,
+  network:obj.network,
+  product:obj.network,
+status:obj.status}//saveHistory()
 console.log(req.body)
 res.status(200).end()
 })

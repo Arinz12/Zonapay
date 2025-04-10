@@ -26,6 +26,8 @@ const gloplans= useRef([]);
 
 useEffect( ()=>{
  const fetchdata= async ()=>{
+
+  try{
     const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",
     {
       method:"post",
@@ -56,24 +58,27 @@ headers:{
   mtnplans.current=resp.data
   setmtnReady(true);
   }else{
-    console.log("failed to fetch data plans")
+    console.log("failed to fetch data plans for mtn")
   }
   if(res2.ok){
     const resp=await res2.json();
   gloplans.current=resp.data
   setgloReady(true);
   }else{
-    console.log("failed to fetch data plans")
+    console.log("failed to fetch data plans for glo")
   }
   if(res3.ok){
     const resp=await res3.json();
   airtelplans.current=resp.data
   setairtelReady(true);
   }else{
-    console.log("failed to fetch data plans")
+    console.log("failed to fetch data plans for airtel")
   }
 
   }
+catch(e){
+  console.log("erroR  "+e)
+}}
   fetchdata();
   })
 
@@ -160,11 +165,6 @@ document.getElementById("form").onsubmit = async (e)=>{
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
   const res1=await res.json();
-  if(res1.code=="failure"){
-    setDetails({error:"An error occured"})
-    setProcessed(true)
-    return;
-  }
   setPincon(false)
 setDetails(res1)
 setProcessed(true);
@@ -227,11 +227,11 @@ if(processed){
       <div style={{fontSize:"25px"}} className="text-black rubik-b">{details.message}</div>
       </div>
         <div style={{border:"4px solid green"}} className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Transaction id</span><span>{details.data.order_id}</span></div>
+              <div className="text-lg font-semibold flex flex-row justify-between"><span>Code</span><span>{details.data.code}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>phone</span><span>{details.data.phone}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Code</span><span>{details.data.data_plan}</span></div>
+              <div className="text-lg font-semibold flex flex-row justify-between"><span>phone</span><span>{details.data.phone_number}</span></div>
+              {/* <div className="text-lg font-semibold flex flex-row justify-between"><span>Code</span><span>{details.data.data_plan}</span></div> */}
           </div>
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
           </div>

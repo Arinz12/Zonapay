@@ -27,7 +27,8 @@ const dbOptions={
             Amount:obj.amount,
             Phoneno:obj.phone,
             Network:obj.network,
-            Product:obj.product
+            Product:obj.product,
+            Status:obj.status
         })}
         catch(e){
 console.log("Something went wrong with saving the history")
