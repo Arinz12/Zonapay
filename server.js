@@ -369,8 +369,8 @@ server.post("/login",logged,passport.authenticate("local",{
 }))
 //Data purchase
 server.post("/zonapay/data",upload.none() ,async (req,res)=>{
-
-  const {nid,plan,Phoneno} =req.body;
+  const {nid,plan,Phoneno,amount,type,billcode,itemcode} =req.body;
+  console.log(req.body);
   const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
@@ -382,19 +382,28 @@ const isFundsSufficient= balance>50
   
  
   try{
-    const result= await fetch(url.toString(),{method:"GET"})
+    const result= await fetch(`https://api.flutterwave.com/v3/billers/${billcode}/items/${itemcode}/payment`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`,
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      },
+      body: JSON.stringify({
+        country: 'NG',
+        customer_id: Phoneno,
+        amount: amount,
+        type:type,
+        reference:req.user.Email+uuidv4(),
+        callback_url: 'https://zonapay.onrender.com/webhook'
+      })
+    })
     const result2= await result.json()
     console.log(result2);
     if(result2.code=="success"){
-      const newamount= eval(result2.data.amount.replace(/\D/g,""))
-
+      const newamount=result2.data.amount;
       await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
-
-      //history object
-      const now=DateTime.local()
-const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-      // const history={user:req.user.Email,tid:uuidv4(),time:timeinNigeria,amount:newamount,phone:Phoneno,network:nid,product:result2.data.data_plan}
-    
       return res.status(200).json(result2);
     }
     else{
@@ -776,7 +785,7 @@ const history={user:init_user,
   network:obj.network,
   product:obj.network,
 status:obj.status}
-saveHistory()
+saveHistory(history);
 console.log(req.body)
 res.status(200).end()
 })

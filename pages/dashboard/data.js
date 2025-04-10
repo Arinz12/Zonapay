@@ -20,6 +20,7 @@ const Data=()=>{
   const [mtnready,setmtnReady]=useState(false)
   const [gloready,setgloReady]=useState(false)
   const [airtelready,setairtelReady]=useState(false)
+  const [vid,setVid]=useState("")
 const mtnplans= useRef([]);
 const airtelplans= useRef([]);
 const gloplans= useRef([]);
@@ -161,6 +162,12 @@ document.getElementById("form").onsubmit = async (e)=>{
   }
   setLoading(true)
   const formdata= new FormData(e.target)
+  //nid,plan,phoneno,,,,amount,type
+  formdata.append("amount",price)//eg 1000
+  formdata.append("type",vid.type)//eg MTN 2GB 30DAYS
+  formdata.append("billcode",vid.biller_code)
+  formdata.append("itemcode", vid.item_code)
+
  try{ const url="https://zonapay.onrender.com/zonapay/data"
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
@@ -293,6 +300,8 @@ if(processed){
     const selectedOption = e.target.options[e.target.selectedIndex];
     // Access the data-amount attribute
     const amount = selectedOption.dataset.amount;
+    const vid={item_code:selectedOption.value,biller_code:selectedOption.dataset.billcode,type:selectedOption.innerHTML}
+    setVid(vid);
     setPrice(amount);
   }}
       style={{ backgroundColor: "" }}
@@ -302,7 +311,7 @@ if(processed){
     >
       <option value="" className="rubik-b">Choose plan</option>
       {mtnready&&mtnplans.current.map((opt) => (
-        <option data-amount={opt.amount} key={opt.id} className="rubik-b" value={opt.item_code}>
+        <option data-amount={opt.amount} data-billcode={opt.biller_code} key={opt.id} className="rubik-b" value={opt.item_code}>
           {opt.name}
         </option>
       ))}
@@ -319,6 +328,8 @@ if(processed){
     const selectedOption = e.target.options[e.target.selectedIndex];
     // Access the data-amount attribute
     const amount = selectedOption.dataset.amount;
+    const vid={item_code:selectedOption.value,biller_code:selectedOption.dataset.billcode,type:selectedOption.innerHTML}
+    setVid(vid);
     setPrice(amount);
   }}
       style={{ backgroundColor: "" }}
@@ -328,8 +339,8 @@ if(processed){
     >
       <option value="" className="rubik-b">Choose plan</option>
       {airtelready&&airtelplans.current.map((opt) => (
-        <option data-amount={opt.amount} key={opt.id} className="rubik-b" value={opt.item_code}>
-          {opt.name}
+        <option data-amount={opt.amount} data-billcode={opt.biller_code} key={opt.id} className="rubik-b" value={opt.item_code}>
+        {opt.name}
         </option>
       ))}
     </select>
@@ -344,6 +355,8 @@ if(processed){
     const selectedOption = e.target.options[e.target.selectedIndex];
     // Access the data-amount attribute
     const amount = selectedOption.dataset.amount;
+    const vid={item_code:selectedOption.value,biller_code:selectedOption.dataset.billcode,type:selectedOption.innerHTML}
+    setVid(vid);
     setPrice(amount);
   }}
       style={{ backgroundColor: "" }}
@@ -353,7 +366,7 @@ if(processed){
     >
       <option value="" className="rubik-b">Choose plan</option>
       {gloready&&gloplans.current.map((opt) => (
-        <option data-amount={opt.amount} key={opt.id} className="rubik-b" value={opt.item_code}>
+        <option data-amount={opt.amount} data-billcode={opt.biller_code} key={opt.id} className="rubik-b" value={opt.item_code}>
           {opt.name}
         </option>
       ))}
