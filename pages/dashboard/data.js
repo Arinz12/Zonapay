@@ -18,7 +18,7 @@ const Data=()=>{
   const [pincon,setPincon]=useState(false);
   const [price,setPrice]=useState(0);
   const [mtnready,setmtnReady]=useState(false)
-const mtnplans= useRef("")
+const mtnplans= useRef([])
 useEffect( ()=>{
  const fetchdata= async ()=>{
     const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",
