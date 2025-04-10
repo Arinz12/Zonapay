@@ -14,26 +14,23 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
   </Head>
-   <Paper sx={{fontSize:"30px"}} elevation={12} className="mt-4 w-11/12 mx-auto rounded-2xl text-center rubik-h p-4">History</Paper>
-{(userhistory.dataa.length!==0)? <div id='hiscon' className="p-6 max-w-3xl mx-auto rubik-b">
+   <Paper sx={{fontSize:"30px"}} elevation={12} className="mt-0 pt-7 w-full mx-auto rounded-2xl text-center bg-blue-600 text-white rounded-b-2xl rubik-h px-4">History</Paper>
+{(userhistory.dataa.length!==0)? <div id='hiscon' className="p-6 bg-white max-w-3xl mx-auto rubik-b">
   {userhistory.dataa.map((a, index) => (
-    <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-md mb-6 sm:mb-4 lg:mb-8" key={index}>
-      <div className="mb-2 monomaniac-one-regular">
-        <span className=" text-gray-700 ">Transaction ID:</span> {a.TransactionId}
-      </div>
-      <div className="mb-2 monomaniac-one-regular">
-        <span className=" text-gray-700 ">Product:</span> {a.Product}
-      </div>
-      <div className="mb-2 monomaniac-one-regular">
-        <span className=" text-gray-700">Recipient:</span> {a.Phoneno}
-      </div>
-      <div className="mb-2 text-green-700 monomaniac-one-regular">
-        <span className=" text-gray-800 ">Amount:</span> {a.Amount}
-      </div>
-      <div className="mb-2 monomaniac-one-regular">
-        <span className=" text-gray-700">Time:</span> {a.Time}
-      </div>
-    </div>
+   <div className="flex justify-between items-start p-3 border-b border-gray-200 max-w-xs font-sans">
+   
+   <div className="text-left">
+     <div className="font-medium text-gray-900">{a.Product.slice(0,10)}</div>
+     <div className="text-xs text-gray-500 mt-1">{a.Time}</div>
+   </div>
+   
+   
+   <div className="text-right">
+     <div className="font-medium text-gray-900">{a.Amount}</div>
+     <div className={`text-xs px-2 py-0.5 rounded-full ${(a.status!==success)? "bg-red-100" :"bg-green-100"}  
+     ${(a.Status=="success")? "text-green-800": "text-red-600"} inline-block mt-1`}>{a.Status}</div>
+   </div>
+ </div>
   ))}
 </div>:<div className="p-6 max-w-3xl mx-auto text-center w-full monomaniac-one-regular">There is no history at the moment</div>}
     </>)

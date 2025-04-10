@@ -213,8 +213,18 @@ if(resp.ok){
   }
 }
 else{
+  const now=DateTime.local()
+const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+  const history={user:req.user.Email,
+    tid:undefined,
+    time:timeinNigeria,
+    amount:obj.amount,
+    phone:Phoneno,
+    network:obj.network,
+    product:obj.network,
+  status:"failed"}
+  saveHistory(history);
   const resp2= await resp.json();
-
   if(resp2.status==="error"){
     res.status(400).json(resp2)
     }
@@ -222,7 +232,7 @@ else{
       res.status(400).json(resp2) 
     }
 }
-res.status(200).end()})
+res.status(400).end()})
 
 
 
@@ -374,7 +384,7 @@ server.post("/zonapay/data",upload.none() ,async (req,res)=>{
   const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
-const isFundsSufficient= balance>50
+const isFundsSufficient= balance>eval(amount)
   if(!isFundsSufficient){
   res.status(400).json({code:"insufficientFund"})
   return;
@@ -407,6 +417,17 @@ const isFundsSufficient= balance>50
       return res.status(200).json(result2);
     }
     else{
+      const now=DateTime.local()
+const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+      const history={user:req.user.Email,
+        tid:undefined,
+        time:timeinNigeria,
+        amount:obj.amount,
+        phone:Phoneno,
+        network:obj.network,
+        product:obj.network,
+      status:"failed"}
+      saveHistory(history);
       sendd("igwebuikea626@gmail.com",result2.message)
       res.status(400).json({message:"Payment failed",code:""})
     }
