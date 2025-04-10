@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Head from "next/head"
 import { Button,Paper} from "@mui/material";
 import { ArrowBack, ArrowBackIosRounded, ArrowForward,Cancel,CheckCircle} from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import router from "next/router";
 import NumericPad from "../../components/Numpad";
 import Delay from "../../components/Delay";
@@ -18,7 +18,7 @@ const Data=()=>{
   const [pincon,setPincon]=useState(false);
   const [price,setPrice]=useState(0);
   const [mtnready,setmtnReady]=useState(false)
-let mtnplans=null;
+const mtnplans= useRef("")
 useEffect( ()=>{
  const fetchdata= async ()=>{
     const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",
@@ -30,9 +30,9 @@ useEffect( ()=>{
     }
   })
   if(res.ok){
-    const resp=await res.json()
-    console.log(resp)
-  mtnplans=resp.data;
+    const resp=await res.json();
+    console.log(resp);
+  mtnplans.current=resp.data
   setmtnReady(true);
   }else{
     console.log("failed to fetch data plans")
@@ -307,18 +307,20 @@ if(processed){
 {net === "mtn" && (
   <div className="pt-7">
     <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
-    <select onChange={
-      ()=>{
-       const amt= document.getElementById("opts").value.dataset.amount;
-       setPrice(amt)
-      }    } 
+    <select onChange={(e) => {
+    // Get the selected option element
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    // Access the data-amount attribute
+    const amount = selectedOption.dataset.amount;
+    setPrice(amount);
+  }}
       style={{ backgroundColor: "" }}
       className="rubik-b p-4 border-b-2 border-black focus:outline-none" 
       name="plan" 
       id="opts"
     >
       <option value="" className="rubik-b">Choose plan</option>
-      {mtnready&&mtnplans.map((opt) => (
+      {mtnready&&mtnplans&&mtnplans.map((opt) => (
         <option data-amount={opt.amount} key={opt.id} className="rubik-b" value={opt.item_code}>
           {opt.name}
         </option>
