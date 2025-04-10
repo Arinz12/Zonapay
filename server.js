@@ -393,7 +393,7 @@ const isFundsSufficient= balance>50
       body: JSON.stringify({
         country: 'NG',
         customer_id: Phoneno,
-        amount: amount,
+        amount: parseInt(amount),
         type:type,
         reference:req.user.Email+uuidv4(),
         callback_url: 'https://zonapay.onrender.com/webhook'
