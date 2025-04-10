@@ -196,7 +196,7 @@ return;
     country: 'NG',
     customer_id: Phoneno,
     amount: amount,
-    reference:req.user.Email+uuidv4(),
+    reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
     callback_url: 'https://zonapay.onrender.com/webhook'
   })
 })
@@ -393,7 +393,7 @@ const isFundsSufficient= balance>50
       body: JSON.stringify({
         country: 'NG',
         customer_id: Phoneno,
-        amount: eval(amount),
+        amount: parseInt(amount),
         type:type,
         reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
         callback_url: 'https://zonapay.onrender.com/webhook'
