@@ -17,7 +17,7 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
    <Paper sx={{fontSize:"30px"}} elevation={12} className="mt-0 pt-7 w-full mx-auto rounded-2xl text-center bg-blue-600 text-white rounded-b-2xl rubik-h px-4">History</Paper>
 {(userhistory.dataa.length!==0)? <div id='hiscon' className="p-6 bg-white max-w-3xl mx-auto rubik-b">
   {userhistory.dataa.map((a, index) => (
-   <div className="flex justify-between items-start p-3 border-b border-gray-200 max-w-xs font-sans">
+   <div className="flex justify-between items-start p-3 border-b border-gray-200 mx-auto w-11/12 font-sans">
    
    <div className="text-left">
      <div className="font-medium text-gray-900">{a.Product.slice(0,10)}</div>
@@ -27,7 +27,7 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
    
    <div className="text-right">
      <div className="font-medium text-gray-900">{a.Amount}</div>
-     <div className={`text-xs px-2 py-0.5 rounded-full ${(a.status!==success)? "bg-red-100" :"bg-green-100"}  
+     <div className={`text-xs px-2 py-0.5 rounded-full ${(a.Status!==success)? "bg-red-100" :"bg-green-100"}  
      ${(a.Status=="success")? "text-green-800": "text-red-600"} inline-block mt-1`}>{a.Status}</div>
    </div>
  </div>
