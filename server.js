@@ -196,7 +196,7 @@ return;
     country: 'NG',
     customer_id: Phoneno,
     amount: amount,
-    reference: uuidv4(),
+    reference:req.user.Email+uuidv4(),
     callback_url: 'https://zonapay.onrender.com/webhook'
   })
 })
@@ -775,7 +775,8 @@ const history={user:init_user,
   phone:obj.customer,
   network:obj.network,
   product:obj.network,
-status:obj.status}//saveHistory()
+status:obj.status}
+saveHistory()
 console.log(req.body)
 res.status(200).end()
 })
