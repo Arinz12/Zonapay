@@ -24,7 +24,10 @@ useEffect( ()=>{
     const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",
     {
       method:"post",
-    body:JSON.stringify({bille:"BIL108"})
+    body:JSON.stringify({bille:"BIL108"}),
+    headers:{
+      "Content-Type":"application/json"
+    }
   })
   if(res.ok){
     const resp=await res.json()

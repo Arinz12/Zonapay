@@ -33,7 +33,7 @@ const { verif } = require("./Svr_fns/verifyBills");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
-mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true,connectTimeoutMS: 30000 })
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 
@@ -774,6 +774,8 @@ else{
 server.post("/webhook",cors(), async (req,res)=>{
 // await verif(req.body.data.tx_ref)
 sendd("arize1524@gmail.com",` ${req.body.data.customer} has successfully purchased ${req.body.data.network} of ${req.body.data.amount}`);
+
+//saveHistory()
 console.log(req.body)
 res.status(200).end()
 })
