@@ -401,7 +401,7 @@ const isFundsSufficient= balance>50
     })
     const result2= await result.json()
     console.log(result2);
-    if(result2.code=="success"){
+    if(result2.status=="success"){
       const newamount=result2.data.amount;
       await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
       return res.status(200).json(result2);
