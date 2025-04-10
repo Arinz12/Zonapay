@@ -395,7 +395,7 @@ const isFundsSufficient= balance>50
         customer_id: Phoneno,
         amount: eval(amount),
         type:type,
-        reference:req.user.Email+1246,
+        reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
         callback_url: 'https://zonapay.onrender.com/webhook'
       })
     })
@@ -776,7 +776,7 @@ const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
 const obj=req.body.data
 sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);
-const init_user=obj.customer_reference.split(".com")[0]+".com"
+const init_user=obj.customer_reference.split("split")[0]+"@gmail.com"
 const history={user:init_user,
   tid:obj.tx_ref,
   time:timeinNigeria,
