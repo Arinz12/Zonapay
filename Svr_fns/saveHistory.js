@@ -9,7 +9,8 @@ const historySch= new mongoose.Schema(
         Amount:{type:Number},
         Phoneno:{type:String},
         Network:{type:String},
-        Product:{type:String}
+        Product:{type:String},
+        Status:{type:String},
     }
 )
 const History=mongoose.models.History || mongoose.model("History",historySch)
