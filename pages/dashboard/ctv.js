@@ -113,7 +113,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
       </div>
         <div style={{border:"4px solid green"}} className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Transaction id</span><span>{status.data.order_id}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Cable</span><span>{status.data.cable_tv}</span></div>
+             <div className="text-lg font-semibold flex flex-row justify-between"><span>Cable</span><span>{status.data.cable_tv}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{status.data.amount}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>plan</span><span>{status.data.subscription_plan}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>iuc</span><span>{status.data.smartcard_number}</span></div>
@@ -123,7 +123,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
   </div>: <div className="" style={{backgroundColor:"whitesmoke"}}>
   <div style={{fontSize:"26px"}} className="rubik-h w-full sticky top-0 text-white bg-blue-600 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
 
-<div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%"}} className="p-6"><ArrowBackIosRounded sx={{color:"white"}}/> </div>
+  <div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%",height:"30px",width:"30px"}}className="p-6 flex flex-row items-center justify-center"><ArrowBackIosRounded sx={{color:"white"}} className="bg-blue-600" /> </div>
   <div>Cable Tv</div>
   
   </div>
