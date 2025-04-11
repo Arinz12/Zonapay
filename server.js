@@ -379,13 +379,25 @@ server.post("/login",logged,passport.authenticate("local",{
 }))
 //Data purchase
 server.post("/zonapay/data",upload.none() ,async (req,res)=>{
-  const {nid,plan,Phoneno,amount,type,billcode,itemcode} =req.body;
-  console.log(req.body);
+  const {nid,plan,Phoneno,amount,type,billcode,itemcode} =req.body
+    console.log(amount)
+  console.log(parseInt(amount))
   const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
-const isFundsSufficient= balance>eval(amount)
+const isFundsSufficient= balance>parseInt(amount)
   if(!isFundsSufficient){
+    const now=DateTime.local()
+const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+      const history={user:req.user.Email,
+        tid:undefined,
+        time:timeinNigeria,
+        amount:parseInt(amount),
+        phone:Phoneno,
+        network:nid,
+        product:type,
+      status:"failed"}
+      saveHistory(history);
   res.status(400).json({code:"insufficientFund"})
   return;
   }
@@ -422,10 +434,10 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
       const history={user:req.user.Email,
         tid:undefined,
         time:timeinNigeria,
-        amount:obj.amount,
+        amount:parseInt(amount),
         phone:Phoneno,
-        network:obj.network,
-        product:obj.network,
+        network:nid,
+        product:type,
       status:"failed"}
       saveHistory(history);
       sendd("igwebuikea626@gmail.com",result2.message)
