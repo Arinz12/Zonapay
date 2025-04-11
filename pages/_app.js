@@ -33,7 +33,7 @@ useEffect(() => {
   }
   })
 const pages=["/dashboard","/dashboard/settings","/dashboard/history"]
-const pages2=["/dashboard","/dashboard/settings","/dashboard/history"]
+const pages2=["/dashboard/settings","/dashboard/history"]
 
 const shouldAnimate = !pages2.includes(router.pathname);
 
