@@ -218,10 +218,10 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
   const history={user:req.user.Email,
     tid:undefined,
     time:timeinNigeria,
-    amount:obj.amount,
+    amount:amount,
     phone:Phoneno,
-    network:obj.network,
-    product:obj.network,
+    network:nid,
+    product:Airtime,
   status:"failed"}
   saveHistory(history);
   const resp2= await resp.json();
@@ -808,7 +808,8 @@ server.post("/webhook",cors(), async (req,res)=>{
 const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
 const obj=req.body.data 
-try{
+if(obj.status=="success"){
+try{ 
 sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);
 const init_user=obj.customer_reference.split("split")[0]+"@gmail.com"
 const history={user:init_user,
@@ -823,7 +824,7 @@ saveHistory(history);
 console.log(req.body)}
 catch(e){
   sendd("arize1524@gmail.com",e)
-}
+}}
 res.status(200).end()
 })
   // Next.js page handling

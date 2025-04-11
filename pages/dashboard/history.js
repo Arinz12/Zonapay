@@ -17,14 +17,14 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
    <Paper sx={{fontSize:"30px"}} elevation={0} className="mt-0 pt-7 w-full mx-auto  text-center bg-blue-600 text-white rounded-b-2xl rubik-h px-4">History</Paper>
 {(userhistory.dataa.length!==0)? <div   id='hiscon' className="p-6 bg-white max-w-3xl mx-auto rubik-b">
   {userhistory.dataa.map((a, index) => (
-   <div style={{backgroundColor:"whitesmoke"}} className="rubik-b flex justify-between rounded items-start p-3 border-b-2 mx-auto w-11/12 font-sans">
+   <div style={{backgroundColor:"whitesmoke"}} className="rubik-b flex justify-between rounded items-start p-3 border-b-2 mx-auto w-full font-sans">
    
    <div className="text-left">
      <div className="font-medium text-gray-900">{a.Product.slice(0,30)}</div>
      <div className="text-xs text-gray-500 mt-1">{a.Time}</div>
+     <div className="text-xs text-gray-500 mt-1">{a.Phoneno}</div>
+
    </div>
-   
-   
    <div className="text-right">
      <div className="font-medium text-gray-900">{a.Amount}</div>
      <div className={`text-xs px-2 py-0.5 rounded-full ${(a.Status=="failed")? "bg-red-100" :"bg-green-100"}  
