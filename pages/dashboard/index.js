@@ -4,7 +4,7 @@ import Link from "next/link";
 //import styles from 'Home.module.css'
 import Carousel from 'react-material-ui-carousel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { ConnectWithoutContactIcon, LogoutRounded} from '@mui/icons-material';
+import { ConnectWithoutContactIcon, Diversity1Rounded, LogoutRounded} from '@mui/icons-material';
 import { LocalAirportRounded,LanguageRounded,CardGiftcard, TvRounded, Tungsten, School, History, Visibility, VisibilityOff, PhoneOutlined } from '@mui/icons-material';
 import { Paper,Button } from '@mui/material';
 import router from "next/router";
@@ -79,40 +79,35 @@ const Dashboard = ({obj}) => {
         </div>
         <div  className='ml-1 mr-1 px-4 py-7 mt-5 bg-white rounded-2xl '>
             <div className='grid grid-cols-3   mx-auto gap-3 justify-center items-center justify-items-center'>
-               <Link href="/dashboard/airtime">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
-                <div className="flex flex-col justify-center items-center">
-                <PhoneOutlined className='text-blue-600'/>
+               <Link href="/dashboard/airtime">{<div className="flex flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+                <PhoneOutlined className='text-blue-600'/> </div>
                 <div className="text-black text-center rubik-h">Buy Airtime</div></div>
-                 </Paper> }</Link>
-           <Link href="/dashboard/data">{ <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
-           <div className="flex flex-col justify-center items-center">
-<LanguageRounded className='text-blue-600'  />
-                <div className="text-black text-center rubik-h">Buy <br/>Data</div></div>
-                 </Paper>}</Link>
+                  }</Link>
+           <Link href="/dashboard/data">{<div className="flex flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+                <LanguageRounded className='text-blue-600'/> </div>
+                <div className="text-black text-center rubik-h">Buy Data</div></div>}</Link>
  
-            <Link href="/dashboard/ctv">{<Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
-            <div className="flex flex-col justify-center items-center">
-<TvRounded className='text-blue-600' />
-                <div className="text-black text-center rubik-h">Cable Tv</div></div>
-                 </Paper>}</Link>
+            <Link href="/dashboard/ctv">{<div className="flex flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+                <TvRounded className='text-blue-600'/> </div>
+                <div className="text-black text-center rubik-h">Cable tv</div></div>}</Link>
 
-                 <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
-                 <div className="flex flex-col justify-center items-center">
-<CardGiftcard className='text-blue-600' />
-                <div className="text-black text-center rubik-h">Gift Card</div></div>
-                 </Paper>
+                <div className="flex flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+                <CardGiftcard className='text-blue-600'/> </div>
+                <div className="text-black text-center rubik-h">Giftcard</div></div>
 
-            <Link href="/dashboard/elect">{  <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3 ' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
-                 <div className="flex flex-col justify-center items-center">
-<Tungsten className='text-blue-600'  />
-                <div className="text-black text-center rubik-h">Power</div></div>
-                 </Paper>}</Link>
+            <Link href="/dashboard/elect">{  <div className="flex flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+                <Tungsten className='text-blue-600'/> </div>
+                <div className="text-black text-center rubik-h">Electricity</div></div>}</Link>
 
-                 <Paper elevation={5} className='click-effect flex flex-col justify-center items-center p-3' style={{width:"80px",height:"80px",backgroundColor:"white",borderRadius:"12px"}}>
-                 <div className="flex flex-col justify-center items-center">
-<School className='text-blue-600'  />
+                <div className="flex flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+                <School className='text-blue-600'/> </div>
                 <div className="text-black text-center rubik-h">School</div></div>
-                 </Paper>
             </div>
         </div>
         <div className='mt-9 w-full'>

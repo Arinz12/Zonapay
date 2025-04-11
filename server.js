@@ -441,7 +441,7 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
       status:"failed"}
       saveHistory(history);
       sendd("igwebuikea626@gmail.com",result2.message)
-      res.status(400).json({message:"Payment failed",code:""})
+      res.status(400).json({message:"Purchase failed",code:""})
     }
     
     }
