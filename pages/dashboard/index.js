@@ -63,7 +63,6 @@ const Dashboard = ({obj}) => {
                 }
             }}>
                 <div className='h-36 ml-2 mr-2 rounded-3xl p-4 bg-blue-600 flex flex-row items-center justify-between'>
-
                     <div className='flex flex-col items-start '>
                     <div className='text-white rubik-h'>Account Balance <span>{visible? <VisibilityOff onClick={()=>{setVisible(false)}} sx={{}}/> :<Visibility onClick={()=>{setVisible(true)}} sx={{}}/> }</span> </div>
                     <div className=' flex items-center text-white rubik-b' style={{fontSize:"25px"}} >
@@ -77,37 +76,37 @@ const Dashboard = ({obj}) => {
                 {/* <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div> */}
             </Carousel>
         </div>
-        <div  className='ml-1 mr-1 px-4 py-7 mt-5 bg-white rounded-2xl '>
-            <div className='grid grid-cols-3   mx-auto gap-3 justify-center items-center justify-items-center'>
-               <Link href="/dashboard/airtime">{<div className="flex flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+        <div  className='ml-2 mr-2 px-4 py-7 mt-5 bg-white rounded-2xl '>
+            <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
+               <Link href="/dashboard/airtime">{<div className="flex items-center flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
                 <PhoneOutlined className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-h">Buy Airtime</div></div>
+                <div className="text-black text-center rubik-b"> Airtime</div></div>
                   }</Link>
-           <Link href="/dashboard/data">{<div className="flex flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+           <Link href="/dashboard/data">{<div className="flex items-center flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
                 <LanguageRounded className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-h">Buy Data</div></div>}</Link>
+                <div className="text-black text-center rubik-b"> Data</div></div>}</Link>
  
-            <Link href="/dashboard/ctv">{<div className="flex flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+            <Link href="/dashboard/ctv">{<div className="flex items-center flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
                 <TvRounded className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-h">Cable tv</div></div>}</Link>
+                <div className="text-black text-center rubik-b">Cable tv</div></div>}</Link>
 
-                <div className="flex flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+                <div className="flex items-center flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
                 <CardGiftcard className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-h">Giftcard</div></div>
+                <div className="text-black text-center rubik-b">Giftcard</div></div>
 
-            <Link href="/dashboard/elect">{  <div className="flex flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+            <Link href="/dashboard/elect">{  <div className="flex items-center flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
                 <Tungsten className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-h">Electricity</div></div>}</Link>
+                <div className="text-black text-center rubik-b">Electricity</div></div>}</Link>
 
-                <div className="flex flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-1 bg-blue-200  flex-col justify-center items-center">
+                <div className="flex items-center flex-col gap-1">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
                 <School className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-h">School</div></div>
+                <div className="text-black text-center rubik-b">School</div></div>
             </div>
         </div>
         <div className='mt-9 w-full'>
