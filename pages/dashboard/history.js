@@ -14,10 +14,10 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
   </Head>
-   <Paper sx={{fontSize:"30px"}} elevation={0} className="mt-0 pt-7 w-full mx-auto  text-center bg-blue-600 text-white rounded-b-2xl rubik-h px-4">History</Paper>
-{(userhistory.dataa.length!==0)? <div   id='hiscon' className="p-6 bg-white max-w-3xl mx-auto rubik-b">
+   <div style={{fontSize:"30px"}}  className="mt-0 py-7 w-full mx-auto  text-center bg-blue-600 text-white rounded-b-2xl rubik-h px-4">History</div>
+{(userhistory.dataa.length!==0)? <div   id='hiscon' className="p-6 bg-white w-full gap-1 mx-auto rubik-b">
   {userhistory.dataa.map((a, index) => (
-   <div style={{backgroundColor:"whitesmoke"}} className="rubik-b flex justify-between rounded items-start p-3 border-b-2 mx-auto w-full font-sans">
+   <div style={{backgroundColor:"whitesmoke"}} className="rubik-b ml-1 mr-1 flex  justify-between rounded items-start p-3 border-b mx-auto w-full font-sans">
    
    <div className="text-left">
      <div className="font-medium text-gray-900">{a.Product.slice(0,30)}</div>
@@ -25,7 +25,7 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
      <div className="text-xs text-gray-500 mt-1">{a.Phoneno}</div>
 
    </div>
-   <div className="text-right">
+   <div className="text-center">
      <div className="font-medium text-gray-900">{a.Amount}</div>
      <div className={`text-xs px-2 py-0.5 rounded-full ${(a.Status=="failed")? "bg-red-100" :"bg-green-100"}  
      ${(a.Status=="failed")?  "text-red-600":"text-green-800" } inline-block mt-1`}>{a.Status||"success"}</div>

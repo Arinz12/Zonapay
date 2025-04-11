@@ -4,11 +4,14 @@
   }
    
   .fade-in {
-    animation: fadeIn 1.4s ease-in ;
+    animation: fadeIn 1s ease-in ;
   }
   
   .fade-out {
-    animation: fadeOut 1.4s ease-out forwards ;
+    animation: fadeOut 1s ease-out forwards ;
+  }
+  .fade-out2 {
+    animation: fadeOut2 1s ease-out forwards ;
   }
   
   @keyframes fadeIn {
@@ -18,5 +21,9 @@
   
   @keyframes fadeOut {
     from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(-40px); }
+    to { opacity: 0; transform: translateY(-10px); }
+  }
+  @keyframes fadeOut2 {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(-20px); }
   }
