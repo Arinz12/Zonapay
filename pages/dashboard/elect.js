@@ -146,7 +146,7 @@ if(pincon){
     </Head>
     <div className=" w-full h-full flex flex-col gap-4 items-center" style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
     <div style={{fontSize:"26px"}} className="rubik-h w-full bg-blue-600 text-white px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-9">
-    <div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"white"}}/> </div>
+    <div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%"}} className="p-6"><ArrowBackIosRounded sx={{color:"white"}}/> </div>
         <div style={{fontSize:"25px"}} className="rubik-h ">Electricity</div>
         
         </div>

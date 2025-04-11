@@ -123,7 +123,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
   </div>: <div className="" style={{backgroundColor:"whitesmoke"}}>
   <div style={{fontSize:"26px"}} className="rubik-h w-full sticky top-0 text-white bg-blue-600 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
 
-<div onClick={()=>{router.back()}} className=""><ArrowBackIosRounded sx={{color:"white"}}/> </div>
+<div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%"}} className="p-6"><ArrowBackIosRounded sx={{color:"white"}}/> </div>
   <div>Cable Tv</div>
   
   </div>

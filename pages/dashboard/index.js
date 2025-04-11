@@ -52,7 +52,7 @@ const Dashboard = ({obj}) => {
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
             </div>
-           <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div className='flex flex-row items-center'>
+           <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div style={{borderRadius:"50%"}} className='bg-blue-100 p-6 flex flex-row items-center'>
                 <LogoutRounded  sx={{backgroundColor:"a",padding:"10px",height:"40px",width:"40px",color:"black"}}/>
             </div></Link> 
         </div>
@@ -79,32 +79,32 @@ const Dashboard = ({obj}) => {
         <div  className='ml-2 mr-2 px-4 py-7 mt-5 bg-white rounded-2xl '>
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
                <Link href="/dashboard/airtime">{<div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <PhoneOutlined className='text-blue-600'/> </div>
                 <div className="text-black text-center rubik-b"> Airtime</div></div>
                   }</Link>
            <Link href="/dashboard/data">{<div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <LanguageRounded className='text-blue-600'/> </div>
                 <div className="text-black text-center rubik-b"> Data</div></div>}</Link>
  
             <Link href="/dashboard/ctv">{<div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <TvRounded className='text-blue-600'/> </div>
                 <div className="text-black text-center rubik-b">Cable tv</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <CardGiftcard className='text-blue-600'/> </div>
                 <div className="text-black text-center rubik-b">Giftcard</div></div>
 
             <Link href="/dashboard/elect">{  <div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <Tungsten className='text-blue-600'/> </div>
                 <div className="text-black text-center rubik-b">Electricity</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-2 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <School className='text-blue-600'/> </div>
                 <div className="text-black text-center rubik-b">School</div></div>
             </div>
@@ -113,9 +113,9 @@ const Dashboard = ({obj}) => {
             <Carousel2 autoRotate={true} interval={4000} showIndicators={true} slideHeight={95}
         bgColor="white"
         activeIndicatorColor="#1976d2">
-        <div style={{textAlignLast:"center"}} className="p-2 text-center">Enjoy seamless transparent transactions where everything happening is clear</div>
-        <div style={{textAlignLast:"center"}} className="p-2 text-center">Schedule bill payments so you worry not about forgetting</div>
-        <div style={{textAlignLast:"center"}} className="p-2 text-center">Map out funds specifically for bills</div>
+        <div style={{textAlignLast:"center"}} className="p-2 rubik-b text-center">Enjoy seamless transparent transactions where everything happening is clear</div>
+        <div style={{textAlignLast:"center"}} className="p-2 rubik-b text-center">Schedule bill payments so you worry not about forgetting</div>
+        <div style={{textAlignLast:"center"}} className="p-2 rubik-b text-center">Map out funds specifically for bills</div>
       </Carousel2>
         </div>
     </div>
