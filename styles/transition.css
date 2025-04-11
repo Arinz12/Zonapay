@@ -2,13 +2,13 @@
 .page-container {
     position: static;
   }
-  
+   
   .fade-in {
     animation: fadeIn 1.4s ease-in ;
   }
   
   .fade-out {
-    animation: fadeOut 1.4s ease-out ;
+    animation: fadeOut 1.4s ease-out forwards ;
   }
   
   @keyframes fadeIn {

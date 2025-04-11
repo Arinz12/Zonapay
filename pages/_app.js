@@ -33,7 +33,9 @@ useEffect(() => {
   }
   })
 const pages=["/dashboard","/dashboard/settings","/dashboard/history"]
-const shouldAnimate = !pages.includes(router.pathname);
+const pages2=["/dashboard","/dashboard/settings","/dashboard/history"]
+
+const shouldAnimate = !pages2.includes(router.pathname);
 
 return (
   <div className={`page-container ${shouldAnimate ? (transitioning ? 'fade-out' : 'fade-in') : ''}`}>

@@ -52,7 +52,7 @@ const Dashboard = ({obj}) => {
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
             </div>
-           <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div style={{borderRadius:"50%"}} className='bg-blue-100 p-2 flex flex-row items-center'>
+           <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div style={{borderRadius:"50%"}} className='bg-blue-100 p-1 flex flex-row items-center'>
                 <LogoutRounded  sx={{backgroundColor:"a",padding:"10px",height:"40px",width:"40px",color:"black"}}/>
             </div></Link> 
         </div>
@@ -81,32 +81,32 @@ const Dashboard = ({obj}) => {
                <Link href="/dashboard/airtime">{<div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <PhoneOutlined className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-b"> Airtime</div></div>
+                <div className="text-black text-center font-bold rubik-b"> Airtime</div></div>
                   }</Link>
            <Link href="/dashboard/data">{<div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <LanguageRounded className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-b"> Data</div></div>}</Link>
+                <div className="text-black text-center font-bold rubik-b"> Data</div></div>}</Link>
  
             <Link href="/dashboard/ctv">{<div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <TvRounded className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-b">Cable tv</div></div>}</Link>
+                <div className="text-black text-center font-bold rubik-b">Cable tv</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <CardGiftcard className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-b">Giftcard</div></div>
+                <div className="text-black text-center font-bold rubik-b">Giftcard</div></div>
 
             <Link href="/dashboard/elect">{  <div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <Tungsten className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-b">Electricity</div></div>}</Link>
+                <div className="text-black text-center font-bold rubik-b">Electricity</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
                 <School className='text-blue-600'/> </div>
-                <div className="text-black text-center rubik-b">School</div></div>
+                <div className="text-black text-center font-bold rubik-b">School</div></div>
             </div>
         </div>
         <div className='mt-9 w-full'>
