@@ -221,7 +221,7 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
     amount:amount,
     phone:Phoneno,
     network:nid,
-    product:Airtime,
+    product:"Airtime",
   status:"failed"}
   saveHistory(history);
   const resp2= await resp.json();
