@@ -493,7 +493,7 @@ return;
 })
 //fetch tv plans
 
-server.post("zonapay/ftp", async (req,res)=>{
+server.post("/zonapay/ftp", async (req,res)=>{
 const {bille}=req.body;
 const result= await fetch(`https://api.flutterwave.com/v3/billers/${bille}/items`,{
   method:"get",
