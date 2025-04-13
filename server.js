@@ -494,12 +494,12 @@ return;
 //fetch tv plans
 
 server.post("zonapay/ftp", async (req,res)=>{
-const {bill_code}=req.body;
-const result= await fetch(`https://api.flutterwave.com/v3/billers/${bill_code}/items`,{
+const {bille}=req.body;
+const result= await fetch(`https://api.flutterwave.com/v3/billers/${bille}/items`,{
   method:"get",
   headers:{
     "Content-Type":"application/json",
-    "Authorization":process.env.FLW_SECRET_KEY,
+    "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`,
   }
 })
 
