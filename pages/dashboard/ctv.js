@@ -2,7 +2,7 @@ import "@fontsource/roboto"
 import { ArrowBackIosRounded, ArrowForward, CheckCircle } from "@mui/icons-material";
 import { Paper, Button } from "@mui/material"
 import Head from "next/head"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import router from "next/router"
 import Delay from "../../components/Delay";
 import Link from "next/link";
@@ -119,7 +119,7 @@ useEffect( ()=>{
    console.log("erroR  "+e)
  }}
    fetchtv();
-   })
+   },[]);
 
 useEffect(()=>{
   if(!status==null){
@@ -157,7 +157,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
     console.log("done.....")
     setStart(false)
     }
-    }},[])
+    }})
 
     return(<>
     <Head>
