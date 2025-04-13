@@ -38,7 +38,7 @@ const pages2=["/dashboard/settings","/dashboard/history"]
 const shouldAnimate = !pages2.includes(router.pathname);
 
 return (
-  <div className={`page-container ${shouldAnimate ? (transitioning&&(router.pathname=="/dashboard") ? "fade-out2": transitioning? 'fade-out' : 'fade-in') : ''}`}>
+  <div className={`page-container ${shouldAnimate ? (transitioning&&(router.pathname=="/dashboard") ? "fade-out2": transitioning? 'fade-out1' : 'fade-in') : ''}`}>
   <Head>
   <link rel="manifest" href="/manifest.json"/> 
   </Head>

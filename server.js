@@ -491,6 +491,26 @@ res.status(400).json({message:"check your connection"});
 return;
   }
 })
+//fetch tv plans
+
+server.post("zonapay/ftp", async (req,res)=>{
+const {bill_code}=req.body;
+const result= await fetch(`https://api.flutterwave.com/v3/billers/${bill_code}/items`,{
+  method:"get",
+  headers:{
+    "Content-Type":"application/json",
+    "Authorization":process.env.FLW_SECRET_KEY,
+  }
+})
+
+if(result.ok){
+const result2= await result.json();
+res.status(200).json(result2);
+}
+else{
+  res.status(400).end()
+}
+})
 
 //Electricity
 server.post("/zonapay/electricity",async (req,res)=>{
