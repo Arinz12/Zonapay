@@ -17,7 +17,7 @@ const[cpp,setCp]=useState("")
 const gotvplans= useRef([]);
 const starplans= useRef([]);
 const dstvplans= useRef([]);
-const [tvdata,setTv]=useState(null)
+const [tvdata,setTv]=useState({})
 const btnref=useRef(null)
 const [showkeypad,setShowKeyPad]= useState(false);
 
@@ -264,8 +264,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '40px',
-    height: '40px',
+    width: '20px',
+    height: '20px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -273,7 +273,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     alignItems: 'center',
     justifyContent: 'center'
   }}>
-    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
+    <FaCheck style={{ color: 'green', fontSize: '17px' }} />
   </div>
 )}
   </div>
@@ -299,8 +299,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '40px',
-    height: '40px',
+    width: '20px',
+    height: '2px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -308,7 +308,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     alignItems: 'center',
     justifyContent: 'center'
   }}>
-    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
+    <FaCheck style={{ color: 'green', fontSize: '17px' }} />
   </div>
 )}
   </div>
@@ -334,8 +334,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '40px',
-    height: '40px',
+    width: '20px',
+    height: '20px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -343,7 +343,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     alignItems: 'center',
     justifyContent: 'center'
   }}>
-    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
+    <FaCheck style={{ color: 'green', fontSize: '17px' }} />
   </div>
 )}
   </div>

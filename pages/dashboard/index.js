@@ -41,7 +41,7 @@ const Dashboard = ({obj}) => {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
-    <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} >
+    <div style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
      <div
          id="createpin" className='hidden  h-full justify-center z-10 items-center fixed top-0 w-full '><Paper elevated={12}   className="relative w-2/3  mx-auto p-7  flex flex-col justify-center items-center gap-2" ><div className="rubik-b">Pin is required </div>
         <Button onClick={()=>{router.push("/dashboard/settings/pin")}} variant={"contained"}>Create pin</Button>
@@ -57,11 +57,7 @@ const Dashboard = ({obj}) => {
             </div></Link> 
         </div>
         <div className=''>
-            <Carousel animation='slide' autoPlay={false} indicators={false} navButtonsAlwaysVisible={false} activeIndicatorIconButtonProps={{
-                style:{
-                    color:"blue"
-                }
-            }}>
+            
                 <div className='h-36 ml-2 mr-2 rounded-3xl p-4 bg-blue-600 flex flex-row items-center justify-between'>
                     <div className='flex flex-col items-start '>
                     <div className='text-white rubik-h'>Account Balance <span>{visible? <VisibilityOff onClick={()=>{setVisible(false)}} sx={{}}/> :<Visibility onClick={()=>{setVisible(true)}} sx={{}}/> }</span> </div>
@@ -73,8 +69,7 @@ const Dashboard = ({obj}) => {
                     <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
  <Link href={"https://zonapay.onrender.com/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
                 </div>
-                {/* <div className='h-36 ml-2 mr-2 rounded-3xl bg-blue-600'></div> */}
-            </Carousel>
+             
         </div>
         <div  className='ml-2 mr-2 px-4 py-7 mt-5 bg-white rounded-2xl '>
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
