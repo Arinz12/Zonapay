@@ -19,7 +19,7 @@ const starplans= useRef([]);
 const dstvplans= useRef([]);
 const [tvdata,setTv]=useState({})
 const btnref=useRef(null)
-const [showkeypad,setShowKeyPad]=(false);
+const [showkeypad,setShowKeyPad]= useState(false);
 
 async function val(){
     const valu=document.getElementById("iuc").value;
