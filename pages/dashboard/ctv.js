@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import router from "next/router"
 import Delay from "../../components/Delay";
 import Link from "next/link";
+import NumericPad from "../../components/Numpad";
 
 const Cable=()=>{
 const [status,setStatus]=useState(null)
