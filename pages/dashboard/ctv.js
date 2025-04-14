@@ -264,8 +264,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '20px',
-    height: '20px',
+    width: '40px',
+    height: '40px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -273,7 +273,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     alignItems: 'center',
     justifyContent: 'center'
   }}>
-    <FaCheck style={{ color: 'green', fontSize: '17px' }} />
+    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
   </div>
 )}
   </div>
@@ -299,8 +299,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '20px',
-    height: '2px',
+    width: '40px',
+    height: '40px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -308,7 +308,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     alignItems: 'center',
     justifyContent: 'center'
   }}>
-    <FaCheck style={{ color: 'green', fontSize: '17px' }} />
+    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
   </div>
 )}
   </div>
@@ -334,8 +334,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '20px',
-    height: '20px',
+    width: '40px',
+    height: '40px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -343,7 +343,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     alignItems: 'center',
     justifyContent: 'center'
   }}>
-    <FaCheck style={{ color: 'green', fontSize: '17px' }} />
+    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
   </div>
 )}
   </div>
@@ -354,7 +354,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 {start&&<Delay/>}
 
     
-           {tvdata&&<Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 fixed left-1 right-1 w-3/5 bottom-1 mx-auto rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+           {tvdata.item!=undefined &&<Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 fixed left-1 right-1 w-3/5 bottom-1 mx-auto rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 proceed
                 </Button>}
                 </div>

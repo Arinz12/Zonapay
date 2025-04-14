@@ -15,8 +15,6 @@ import Carousel2 from '../../components/Carousel';
 const Dashboard = ({obj}) => {
     const [visible,setVisible]=useState(true);
     useEffect(()=>{
-        document.getElementsByClassName("css-1abc02a")[0].style.display="none";
-        document.getElementsByClassName("css-hn784z")[0].style.display="none";
         if(!obj.isPinset){
         setTimeout(()=>{document.getElementById("createpin").style.display="flex"},3000)}
     })
