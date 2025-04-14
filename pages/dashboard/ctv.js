@@ -66,9 +66,7 @@ async function val(){
         console.log("Gotchaa  "+e)
     }
 }
-function change(){
-    setCp(document.getElementById("cp").value);
-}
+
 useEffect( ()=>{
   const fetchtv= async ()=>{
  
@@ -186,17 +184,12 @@ useEffect(()=>{
     console.log("GOTCHAAAAAAA"+e)
     router.push("/dashboard/error")
     }
-    finally{
-    console.log("done.....")
-    setStart(false)
-    }
-    
     }
     if(pincon){
       if(btnref.current){
         btnref.current.click();
       }}
-  },[]);
+  });
     return(<>
     <Head>
         <title>Cable</title>
