@@ -189,9 +189,9 @@ useEffect(()=>{
     console.log("done.....")
     setStart(false)
     }
-    }
     if(btnref.current){
       btnref.current.click();
+    }
     }
   },[tvdata,pincon]);
 
@@ -238,8 +238,8 @@ setCp(selected.value);
                <input onKeyUp={val}  id="iuc" className="border-0 border-b-4 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"  /> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
                <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
                <input id="pn" className="  border-0 border-b-4 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
-               
- {(cpp=="gotv")? (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
+   {/* //gotv options             */}
+ {(cpp=="gotv")&& (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
 {gotvplans.current.map((opts)=>(
   <div
    onClick={
@@ -248,7 +248,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 }
   }   key={opts.item_code} tabIndex={0} className="inline">
   <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
-  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
+  className="gradient-box w-36 relative h-36 rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
     <span> {opts.biller_name}</span>
    <span> {opts.amount}</span>
    {(tvdata.item==opts.item_code)&& (
@@ -271,9 +271,10 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
   </div>
 </div>
 ))}
-</div>):null}
+</div>)}
 
-{(cpp=="dstv")? (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
+{/* dstv options */}
+{(cpp=="dstv")&&(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
 {dstvplans.current.map((opts)=>(
   <div onClick={
@@ -282,7 +283,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 }
   }  key={opts.item_code} tabIndex={0} className="inline">
  <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
-  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
+  className="gradient-box w-36 h-36 relative rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
     <span> {opts.biller_name}</span>
    <span> {opts.amount}</span>
    {(tvdata.item==opts.item_code)&& (
@@ -305,10 +306,10 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
   </div>
 </div>
 ))}
-</div>)
-:null}
+</div>)}
 
-{(cpp=="startimes")?(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
+{/* startimes option */}
+{(cpp=="startimes")&&(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
 {starplans.current.map((opts)=>(
   <div onClick={
@@ -317,7 +318,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 }
   } key={opts.item_code} tabIndex={0} className="inline">
   <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
-  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
+  className="gradient-box w-36 relative h-36 rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
    <span> {opts.biller_name}</span>
    <span> {opts.amount}</span>
    {(tvdata.item==opts.item_code)&& (
@@ -340,10 +341,9 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
   </div>
 </div>
 ))}
-</div>)
- :null}
+</div>)}
     
-            <Button ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 rounded-2xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+            <Button ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 {start? <Delay/> :"proceed"}
                 </Button>
                 </div>
