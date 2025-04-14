@@ -7,7 +7,7 @@ import router from "next/router"
 import Delay from "../../components/Delay";
 import Link from "next/link";
 import NumericPad from "../../components/Numpad";
-
+import { FaCheck } from 'react-icons/fa'; 
 const Cable=()=>{
 const [status,setStatus]=useState(null)
 const [processed,setPro]=useState(false)
@@ -18,6 +18,7 @@ const gotvplans= useRef([]);
 const starplans= useRef([]);
 const dstvplans= useRef([]);
 const [tvdata,setTv]=useState({})
+const btnref=useRef(null)
 
 async function val(){
     const valu=document.getElementById("iuc").value;
@@ -173,7 +174,6 @@ useEffect(()=>{
           "Content-Type":"application/json"
       }
     })
-
     if(resp.ok){
     const data2= await resp.json();
     setStatus(data2);
@@ -189,7 +189,11 @@ useEffect(()=>{
     console.log("done.....")
     setStart(false)
     }
-    }},[tvdata,pincon]);
+    }
+    if(btnref.current){
+      btnref.current.click();
+    }
+  },[tvdata,pincon]);
 
     return(<>
     <Head>
@@ -221,8 +225,11 @@ useEffect(()=>{
 
             <form  method="post" className="w-full" id="form">
                 <div className="flex flex-col gap-8 mx-auto p-6 bg-white rounded-xl " style={{width:"100%"}}>
-                <select onChange={change} className="focus:outline-none rubik-h p-4 rounded-md " name="cableprovider" id="cp">
-                <option className="rubik-b" value="">Choose a cable provider</option>
+                <select onChange={(e)=>{
+const selected= e.target.options[e.target.selectedIndex];
+setCp(selected.value);
+                }} className="focus:outline-none rubik-h p-4 rounded-md " name="cableprovider" id="cp">
+                <option className="rubik-b" value="random">Choose a cable provider</option>
                     <option className="rubik-b" value="gotv">GOTV</option>
                     <option className="rubik-b" value="dstv">DSTV</option>
                     <option className="rubik-b" value="startimes">STARTIMES</option>
@@ -234,14 +241,33 @@ useEffect(()=>{
                
  {(cpp=="gotv")? (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
 {gotvplans.current.map((opts)=>(
-  <div onClick={
+  <div
+   onClick={
     ()=>{
 setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 }
-  }   key={opts.item_code} tabIndex={0}>
+  }   key={opts.item_code} tabIndex={0} className="inline">
   <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
-  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
-    {opts.biller_name}
+  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <span> {opts.biller_name}</span>
+   <span> {opts.amount}</span>
+   {(tvdata.item==opts.item_code)&& (
+  <div style={{
+    position: 'absolute',
+    bottom: '5px',
+    right: '5px',
+    width: '20px',
+    height: '20px',
+    backgroundColor: 'white',
+    borderRadius: '50%',
+    border: '2px solid green',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}>
+    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
+  </div>
+)}
   </div>
 </div>
 ))}
@@ -254,14 +280,31 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     ()=>{
 setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 }
-  }  key={opts.item_code} tabIndex={0}>
+  }  key={opts.item_code} tabIndex={0} className="inline">
  <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
-  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
-    {opts.biller_name}
+  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
+    <span> {opts.biller_name}</span>
+   <span> {opts.amount}</span>
+   {(tvdata.item==opts.item_code)&& (
+  <div style={{
+    position: 'absolute',
+    bottom: '5px',
+    right: '5px',
+    width: '20px',
+    height: '20px',
+    backgroundColor: 'white',
+    borderRadius: '50%',
+    border: '2px solid green',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}>
+    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
+  </div>
+)}
   </div>
 </div>
 ))}
-
 </div>)
 :null}
 
@@ -272,22 +315,41 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     ()=>{
 setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 }
-  } key={opts.item_code} tabIndex={0}>
+  } key={opts.item_code} tabIndex={0} className="inline">
   <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
-  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
-    {opts.biller_name}
+  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col gap-2 justify-center text-center focus:ring-8 focus:ring-blue-600">
+   <span> {opts.biller_name}</span>
+   <span> {opts.amount}</span>
+   {(tvdata.item==opts.item_code)&& (
+  <div style={{
+    position: 'absolute',
+    bottom: '5px',
+    right: '5px',
+    width: '20px',
+    height: '20px',
+    backgroundColor: 'white',
+    borderRadius: '50%',
+    border: '2px solid green',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}>
+    <FaCheck style={{ color: 'green', fontSize: '12px' }} />
+  </div>
+)}
   </div>
 </div>
 ))}
 </div>)
  :null}
-    <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
-    <div id="wrongpin" className=" z-10 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
-            <Button type="submit" endIcon={<ArrowForward/>} className="p-3 rounded-2xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+    
+            <Button ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 rounded-2xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 {start? <Delay/> :"proceed"}
                 </Button>
                 </div>
             </form>
+            <NumericPad className="w-full" maxLength={4} onSubmit={handlePinSubmit}/>
+    <div id="wrongpin" className=" z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
         </div>}
     </>)
 }

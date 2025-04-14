@@ -501,7 +501,6 @@ headers:{
         product:"Cable tv",
       status:"failed"}
       saveHistory(history);
-    savehistory()
 res.status(400).end();
   }
  }

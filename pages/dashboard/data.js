@@ -376,12 +376,11 @@ if(processed){
 
 {(price>0)?
 <input readOnly value={price} style={{fontSize:"15px"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
-
-
 { loading? <Delay/> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
 <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none"}}>Back</Button>}</Link>
 <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
+<div id="wrongpin" className=" z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
     </div>
     </>)
 }
