@@ -10,7 +10,8 @@ import Link from "next/link";
 const Cable=()=>{
 const [status,setStatus]=useState(null)
 const [processed,setPro]=useState(false)
-const [start,setStart]=useState(false)
+const [start,setStart]=useState(false);
+const[pincon,setPin]=useState(false);
 const[cpp,setCp]=useState("gotv")
 const gotvplans= useRef([]);
 const starplans= useRef([]);
@@ -128,10 +129,33 @@ useEffect(()=>{
   setPro(true)}
 })
 
-
+const handlePinSubmit= async (pin)=>{
+  const data={pinn:pin}
+  try{
+const rep= await fetch("https://zonapay.onrender.com/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+if(rep.ok){
+  setPin(true);
+  console.log(pincon);
+  console.log("okayyy") 
+}else{
+  document.getElementById("wrongpin").style.display="block"
+  console.log("wrong pin")
+  setTimeout(()=>{  document.getElementById("wrongpin").style.display="none"
+},3000)
+}
+}
+catch(e){
+  console.log("error wrong pin")
+}
+}
 useEffect(()=>{
     document.getElementById("form").onsubmit= async (e)=>{
     e.preventDefault();
+    if(!pincon){
+      document.getElementById("keypad").style.display="flex";
+      return;
+    }
+    document.getElementById("keypad").style.display="none";
     const valu=document.getElementById("iuc").value;
     const cp=document.getElementById("cp").value;
     const pho=document.getElementById("pn").value;
@@ -164,7 +188,7 @@ useEffect(()=>{
     console.log("done.....")
     setStart(false)
     }
-    }},[tvdata]);
+    }},[tvdata,pincon]);
 
     return(<>
     <Head>
@@ -256,6 +280,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 ))}
 </div>)
  :null}
+    <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
+    <div id="wrongpin" className=" z-10 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
             <Button type="submit" endIcon={<ArrowForward/>} className="p-3 rounded-2xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 {start? <Delay/> :"proceed"}
                 </Button>

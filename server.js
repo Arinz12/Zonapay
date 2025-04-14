@@ -496,8 +496,8 @@ headers:{
         tid:undefined,
         time:timeinNigeria,
         amount:amount,
-        phone:Phoneno,
-        network:nid,
+        phone:iuc,
+        network:"cable",
         product:"Cable tv",
       status:"failed"}
       saveHistory(history);
