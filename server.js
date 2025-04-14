@@ -482,6 +482,7 @@ headers:{
 
   if(data.ok){
     const data2= await data.json();
+    console.log(data2)
    if(data2.status=="success"){
     await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
     res.status(200).json(data2)}
@@ -847,6 +848,7 @@ server.post("/webhook",cors(), async (req,res)=>{
 const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
 const obj=req.body.data 
+console.log(obj)
 if(obj.status=="success"){
 try{ 
 sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);

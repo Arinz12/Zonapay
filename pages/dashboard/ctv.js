@@ -127,6 +127,13 @@ useEffect( ()=>{
    },[]);
 
 useEffect(()=>{
+  if(pincon){
+  if(btnref.current){
+    btnref.current.click();
+  }}
+});
+
+useEffect(()=>{
   if(!status==null){
   setPro(true)}
 })
@@ -189,9 +196,7 @@ useEffect(()=>{
     console.log("done.....")
     setStart(false)
     }
-    if(btnref.current){
-      btnref.current.click();
-    }
+    
     }
   },[tvdata,pincon]);
 
@@ -216,7 +221,7 @@ useEffect(()=>{
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
           </div>
   </div>: <div className="" style={{backgroundColor:"whitesmoke"}}>
-  <div style={{fontSize:"26px"}} className="rubik-h w-full sticky top-0 text-white bg-blue-600 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
+  <div style={{fontSize:"26px"}} className="rubik-h z-10 w-full sticky top-0 text-white bg-blue-600 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
 
   <div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%",height:"30px",width:"30px"}}className="p-6 flex flex-row items-center justify-center"><ArrowBackIosRounded sx={{color:"white"}} className="text-blue-600" /> </div>
   <div>Cable Tv</div>
@@ -238,7 +243,7 @@ setCp(selected.value);
                <input onKeyUp={val}  id="iuc" className="border-0 border-b-4 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"  /> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
                <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
                <input id="pn" className="  border-0 border-b-4 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
-   {/* //gotv options             */}
+   {/* //gotv options */}
  {(cpp=="gotv")&& (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
 {gotvplans.current.map((opts)=>(
   <div
@@ -343,7 +348,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 ))}
 </div>)}
     
-            <Button ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+            <Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 fixed bottom-0 mx-auto rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 {start? <Delay/> :"proceed"}
                 </Button>
                 </div>
