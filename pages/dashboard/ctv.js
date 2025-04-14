@@ -202,37 +202,37 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
                <input id="pn" className="  border-0 border-b-4 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
                
  {(cpp=="gotv")? (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
-{gotvplans.current.map((opts)=>{(
-  <div tabIndex={0}>
-  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+{gotvplans.current.map((opts)=>(
+  <div  key={opts.item_code} tabIndex={0}>
+  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-black rounded-lg text-white flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
     {opts.biller_name}
   </div>
 </div>
-)})}
+))}
 </div>):null}
 
 {(cpp=="dstv")? (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
-{dstvplans.current.map((opts)=>{(
-  <div tabIndex={0}>
-  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+{dstvplans.current.map((opts)=>(
+  <div key={opts.item_code} tabIndex={0}>
+  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-black text-white rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
     {opts.biller_name}
   </div>
 </div>
-)})}
+))}
 
 </div>)
 :null}
 
 {(cpp=="startimes")?(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
-{starplans.current.map((opts)=>{(
-  <div tabIndex={0}>
-  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+{starplans.current.map((opts)=>(
+  <div key={opts.item_code} tabIndex={0}>
+  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-black text-white rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
     {opts.biller_name}
   </div>
 </div>
-)})}
+))}
 </div>)
  :null}
             <Button type="submit" endIcon={<ArrowForward/>} className="p-2 rounded-md bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
