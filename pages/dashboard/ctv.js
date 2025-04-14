@@ -19,6 +19,7 @@ const starplans= useRef([]);
 const dstvplans= useRef([]);
 const [tvdata,setTv]=useState({})
 const btnref=useRef(null)
+const [showkeypad,setShowKeyPad]=(false);
 
 async function val(){
     const valu=document.getElementById("iuc").value;
@@ -149,47 +150,56 @@ catch(e){
   console.log("error wrong pin")
 }
 }
-useEffect(()=>{
-    document.getElementById("form").onsubmit= async (e)=>{
+useEffect(() => {
+  const form = document.getElementById("form");
+  if (!form) return;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!pincon){
-      document.getElementById("keyPad").style.display="flex";
+    
+    if (!pincon) {
+      setShowKeyPad(true); 
       return;
     }
-    document.getElementById("keyPad").style.display="none";
-    const valu=document.getElementById("iuc").value;
-    const cp=document.getElementById("cp").value;
-    const pho=document.getElementById("pn").value;
-    const dataa={
-      iuc:valu,
-      amount:tvdata.amount,
-      biller:tvdata.biller,
-      item:tvdata.item
+
+    setShowKeyPad(false);
+    
+    try {
+      setStart(true);
+      const response = await fetch("https://zonapay.onrender.com/zonapay/cable", {
+        method: "POST",
+        body: JSON.stringify({
+          iuc: document.getElementById("iuc").value,
+          amount: tvdata.amount,
+          biller: tvdata.biller,
+          item: tvdata.item
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+
+      if (!response.ok) throw new Error("Request failed");
+      
+      setStatus(await response.json());
+    } catch (error) {
+      console.error("Error:", error);
+      router.push("/dashboard/error");
     }
-    try{
-        setStart(true)
-        const resp= await fetch("https://zonapay.onrender.com/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),
-        headers:{
-          "Content-Type":"application/json"
-      }
-    })
-    if(resp.ok){
-    const data2= await resp.json();
-    setStatus(data2);
-    }
-    else{
-        throw new Error("something went wrong")
-    }}
-    catch(e){
-    console.log("GOTCHAAAAAAA"+e)
-    router.push("/dashboard/error")
-    }
-    }
-    if(pincon){
-      if(btnref.current){
-        btnref.current.click();
-      }}
-  });
+  };
+
+  form.addEventListener("submit", handleSubmit);
+
+  // Auto-submit if pincon is true
+  if (pincon && btnref.current) {
+    btnref.current.click();
+  }
+
+  // Cleanup function
+  return () => {
+    form.removeEventListener("submit", handleSubmit);
+  };
+}, [pincon, tvdata, router]); // Proper dependencies
     return(<>
     <Head>
         <title>Cable</title>
@@ -343,7 +353,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
                 </Button>
                 </div>
             </form>
-            <NumericPad className="w-full" maxLength={4} onSubmit={handlePinSubmit}/>
+            {showkeypad&& (<NumericPad className="w-full flex" maxLength={4} onSubmit={handlePinSubmit}/>)}
     <div id="wrongpin" className=" z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
         </div>}
     </>)
