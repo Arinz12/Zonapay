@@ -1,9 +1,9 @@
 import Link from "next/link"
 import Image from 'next/image';
 import Head from "next/head"
-import { Button,Paper } from "@mui/material";
+import { Button,fabClasses,Paper } from "@mui/material";
 import { ArrowBack, ArrowBackIosRounded, ArrowForward ,Cancel,CheckCircle, Home, HomeMiniRounded} from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NumericPad from "../../components/Numpad";
 import router from "next/router"
 import Delay from "../../components/Delay";
@@ -16,28 +16,34 @@ const AirtimeForm=()=>{
   const[loading,setLoading]=useState(false)
   const[pincon,setPincon]=useState(false);
   const [delay,setDelay]=useState(false);
-  useEffect(()=>{
-    console.log("pin is now"+ " "+pincon)
-    document.getElementById("form").onsubmit = async (e)=>{
+  const [showkeypad,setShowKeyPad]=useState(false);
+  const ready=useRef(null)
 
+  useEffect(()=>{
+    const form=  document.getElementById("form");
+if(!form){
+  return
+}
+    console.log("pin is now"+ " "+pincon)
+    const handleSubmit = async (e)=>{
       e.preventDefault();
      console.log("entered")
       //pincon is short for pinconfirmed?
       console.log(pincon)
     if(!pincon){
-      document.getElementById("keyPad").style.display="flex";
-      return;
+setShowKeyPad(true) 
+     return;
     }  
-    document.getElementById("keyPad").style.display="none";
-    
+setShowKeyPad(false)    
       setLoading(true)
       const formdata= new FormData(e.target)
      try{ const url="https://zonapay.onrender.com/zonapay/airtime"
       const res= await fetch(url,{method:"POST",body:formdata})
       if(res.ok){
         const res1 = await res.json();
-        console.log(res1)
-    setDetails(res1)
+        console.log(res1);
+        setLoading(false)
+    setDetails(res1);
     setProcessed(true);
     setSucess(true)
     return
@@ -56,11 +62,18 @@ const AirtimeForm=()=>{
       }}
       catch(e){
         setLoading(false);
+        setPincon(fabClasses)
     console.error(e)
       }
     }
-    document.getElementById("ready").click();
-},[pincon])
+  form.addEventListener("submit", handleSubmit)
+if(pincon&&ready.current){
+  ready.current.click();
+}
+return ()=>{
+  form.removeEventListener("submit",handleSubmit)
+}
+  },[pincon])
 
   useEffect(()=>{
   const mtne=document.getElementById("mtn")
@@ -69,16 +82,6 @@ const AirtimeForm=()=>{
   const amoun= document.getElementById("amt")
   const pho=document.getElementById("phone")
   const nigeriaPhoneRegex = /^(?:\+234|0)(70|80|81|90|91)[0-9]{8}$/;
-  // const mtnRegex = /^(?:\+234|0)(803|806|808|810|813|814|815|816|817|818|903|906|907|908|913|916|915|917|918|703|704|706|708|92)\d{7}$/;
-  // const airtelRegex = /^(?:\+234|0)(701|708|802|808|812|813|814|815|816|902|907|908|912|913)\d{7}$/;
-  // const gloRegex = /^(?:\+234|0)(705|805|807|809|811|813|814|815|905|906|913|915)\d{7}$/;
-
-
-
-// Overlapping prefixes only (MTN + Airtel + Glo conflicts)
-// const overRegex = /^(?:\+234|0)(?:704|705|708|808|815|912|915)\d{7}$/;
-
-// Network-specific regex (no overlaps)
 const mtnRegex = /^(?:\+234|0)(?:703|704|706|803|806|810|813|814|816|903|906|913|916|818|909|917|918|919)\d{7}$/;
 const airtelRegex = /^(?:\+234|0)(?:701|702|708|802|808|812|902|904|907|912)\d{7}$/;
 const gloRegex = /^(?:\+234|0)(?:705|805|807|811|815|905|915)\d{7}$/;
@@ -133,48 +136,8 @@ setEnable(false)
     setEnable(true)
   }
 }
-document.getElementById("form").onsubmit = async (e)=>{
-
-  e.preventDefault();
- console.log("entered")
-  //pincon is short for pinconfirmed?
-  console.log(pincon)
-if(!pincon){
-  document.getElementById("keyPad").style.display="flex";
-  return;
-}  
-document.getElementById("keyPad").style.display="none";
-
-  setLoading(true)
-  const formdata= new FormData(e.target)
- try{ const url="https://zonapay.onrender.com/zonapay/airtime"
-  const res= await fetch(url,{method:"POST",body:formdata})
-  if(res.ok){
-  const res1=await res.json();
-  console.log(res1)
-setDetails(res1)
-setProcessed(true);
-setSucess(true)
-return
-}
-  else{
-    if(res){
-      const res2=await res.json();
-      if(res2.code=="insufficientFund"){
-        setDetails({error:"Insufficient funds"})
-    setProcessed(true)
-    return;
-      }
-    }
-    setDetails({error:res.statusText})
-    setProcessed(true)
-  }}
-  catch(e){
-    setLoading(false);
-console.error(e)
-  }
-}
 },[])
+
 if(processed){
   if(delay){
     return(<>
@@ -287,11 +250,11 @@ catch(e){
     <label HtmlFor="phone" className="rubik-h pb-3">Phone number</label>
 <input inputMode="numeric" autoComplete={"off"} style={{fontSize:"25px"}} type="string"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
 
-{ loading?  <Delay/> : <Button  id="ready" className=" bg-blue-600 text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
+{ loading?  <Delay/> : <Button  ref={ready} className=" bg-blue-600 text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
 <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none"}}>Back</Button>}</Link>
 
-   <NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
+   {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit}/>}
    <div id="wrongpin" className=" z-10 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
     </div>
     </>)

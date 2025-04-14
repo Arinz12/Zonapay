@@ -19,7 +19,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
     if (onSubmit) onSubmit(pin);
     // console.log("PIN Submitted:", pin);
   };
-  return (<div id="keyPad" style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className=" flex-col items-center mt-10 fixed  z-10 w-full bottom-0 h-full pt-36 shp hidden ">
+  return (<div id="keyPad" style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className=" flex-col items-center mt-10 fixed  z-10 w-full bottom-0 h-full pt-36 shp ">
 
       <span onClick={
         ()=>{

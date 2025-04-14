@@ -353,7 +353,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
                 </Button>
                 </div>
             </form>
-            {showkeypad&& (<NumericPad className="w-full flex" maxLength={4} onSubmit={handlePinSubmit}/>)}
+            {showkeypad&& (<NumericPad className="" maxLength={4} onSubmit={handlePinSubmit}/>)}
     <div id="wrongpin" className=" z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
         </div>}
     </>)
