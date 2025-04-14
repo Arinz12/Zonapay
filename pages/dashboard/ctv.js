@@ -153,10 +153,10 @@ useEffect(()=>{
     document.getElementById("form").onsubmit= async (e)=>{
     e.preventDefault();
     if(!pincon){
-      document.getElementById("keypad").style.display="flex";
+      document.getElementById("keyPad").style.display="flex";
       return;
     }
-    document.getElementById("keypad").style.display="none";
+    document.getElementById("keyPad").style.display="none";
     const valu=document.getElementById("iuc").value;
     const cp=document.getElementById("cp").value;
     const pho=document.getElementById("pn").value;
