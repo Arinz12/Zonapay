@@ -311,3 +311,15 @@ button, a, input ,div {
   position: relative; /* Brings content above the ripple */
   z-index: 1;
 }
+.gradient-box {
+  width: 300px;
+  height: 150px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}

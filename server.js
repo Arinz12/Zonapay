@@ -454,35 +454,56 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
 
 //Cable tv
 server.post("/zonapay/cable",async (req,res)=>{
-const url = new URL("https://vtu.ng/wp-json/api/v1/tv?username=ArinzechukwuGift&password=ari123Ari@vv")
-const {cableprovider,iuc,phone,variation_id}= req.body;
-console.log(iuc)
-console.log(cableprovider+phone+variation_id)
+const {iuc,amount,biller,item}= req.body;
+console.log("payload",req.body)
 const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
-const isFundsSufficient= balance>50
+const isFundsSufficient= balance>100
   if(!isFundsSufficient){
   res.status(400).json({code:"insufficientFund"})
   return;
   }
-  url.searchParams.append("phone",phone)
-  url.searchParams.append("service_id",cableprovider)
-  url.searchParams.append("smartcard_number",iuc)
-  url.searchParams.append("variation_id",variation_id)
   try{
-const data=await fetch(url.toString(),{method:"GET"})
+const data=await fetch(`https://api.flutterwave.com/v3/billers/${biller}/items/${item}/payment`,{method:"Post",
+body:JSON.stringify({
+  country:"NG",
+  customer_id:iuc,
+  amount:amount,
+  reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
+  callback_url:"https://zonapay.onrender.com/webhook"
+}),
+headers:{
+  "Content-Type":"application/json",
+  "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`,
+  "accept":"application/json"
+}
+})
 
-  const data2=await data.json()
-  console.log(data2)
-  if(data2.code==="failure"){
-    throw new Error("request failure");
+  if(data.ok){
+    const data2= await data.json();
+   if(data2.status=="success"){
+    await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
+    res.status(200).json(data2)}
+    else{
+      console.log("returned  200 ok response but failed");
+    }
   }
-  const newamount= eval(data2.data.amount.replace(/\D/g,""))
-
-      await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
-
-  res.status(200).json(data2)
+  else{
+    const now=DateTime.local()
+    const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+      const history={user:req.user.Email,
+        tid:undefined,
+        time:timeinNigeria,
+        amount:amount,
+        phone:Phoneno,
+        network:nid,
+        product:"Cable tv",
+      status:"failed"}
+      saveHistory(history);
+    savehistory()
+res.status(400).end();
+  }
  }
   catch(e){
 console.log(e)

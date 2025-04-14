@@ -15,6 +15,7 @@ const[cpp,setCp]=useState("gotv")
 const gotvplans= useRef([]);
 const starplans= useRef([]);
 const dstvplans= useRef([]);
+const [tvdata,setTv]=useState({})
 
 async function val(){
     const valu=document.getElementById("iuc").value;
@@ -134,18 +135,23 @@ useEffect(()=>{
     const valu=document.getElementById("iuc").value;
     const cp=document.getElementById("cp").value;
     const pho=document.getElementById("pn").value;
-    const ar=Object.values(document.getElementsByName("variation_id"))
-    const ele=ar.filter((a)=>a.checked==true)
-const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
+    const dataa={
+      iuc:valu,
+      amount:tvdata.amount,
+      biller:tvdata.biller,
+      item:tvdata.item
+    }
     try{
         setStart(true)
-        const resp= await fetch("https://zonapay.onrender.com/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),headers:{"Content-Type":"application/json"}})
+        const resp= await fetch("https://zonapay.onrender.com/zonapay/cable",{method:"POST",body:JSON.stringify(dataa),
+        headers:{
+          "Content-Type":"application/json"
+      }
+    })
+
     if(resp.ok){
     const data2= await resp.json();
-    if(data2.code=="failure"){
-        throw new Error("something went wrong1")
-    }
-    setStatus(data2)
+    setStatus(data2);
     }
     else{
         throw new Error("something went wrong")
@@ -158,7 +164,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
     console.log("done.....")
     setStart(false)
     }
-    }})
+    }},[tvdata]);
 
     return(<>
     <Head>
@@ -172,11 +178,11 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
       <div style={{fontSize:"25px"}} className="text-black rubik-b">{status.message}</div>
       </div>
         <div style={{border:"4px solid green"}} className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Transaction id</span><span>{status.data.order_id}</span></div>
-             <div className="text-lg font-semibold flex flex-row justify-between"><span>Cable</span><span>{status.data.cable_tv}</span></div>
+              <div className="text-lg font-semibold flex flex-row justify-between"><span>Transaction id</span><span>{status.data.code}</span></div>
+             <div className="text-lg font-semibold flex flex-row justify-between"><span>Cable</span><span>{status.data.network}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{status.data.amount}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>plan</span><span>{status.data.subscription_plan}</span></div>
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>iuc</span><span>{status.data.smartcard_number}</span></div>
+              <div className="text-lg font-semibold flex flex-row justify-between"><span>plan</span><span>{status.data.network}</span></div>
+              <div className="text-lg font-semibold flex flex-row justify-between"><span>iuc</span><span>{status.data.phone_number}</span></div>
           </div>
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
           </div>
@@ -188,10 +194,10 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
   
   </div>
 
-            
             <form  method="post" className="w-full" id="form">
                 <div className="flex flex-col gap-8 mx-auto p-6 bg-white rounded-xl " style={{width:"100%"}}>
                 <select onChange={change} className="focus:outline-none rubik-h p-4 rounded-md " name="cableprovider" id="cp">
+                <option className="rubik-b" value="">Choose a cable provider</option>
                     <option className="rubik-b" value="gotv">GOTV</option>
                     <option className="rubik-b" value="dstv">DSTV</option>
                     <option className="rubik-b" value="startimes">STARTIMES</option>
@@ -203,8 +209,13 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
                
  {(cpp=="gotv")? (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
 {gotvplans.current.map((opts)=>(
-  <div  key={opts.item_code} tabIndex={0}>
-  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-black rounded-lg text-white flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <div onClick={
+    ()=>{
+setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
+}
+  }   key={opts.item_code} tabIndex={0}>
+  <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
+  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
     {opts.biller_name}
   </div>
 </div>
@@ -214,8 +225,13 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
 {(cpp=="dstv")? (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
 {dstvplans.current.map((opts)=>(
-  <div key={opts.item_code} tabIndex={0}>
-  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-black text-white rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <div onClick={
+    ()=>{
+setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
+}
+  }  key={opts.item_code} tabIndex={0}>
+ <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
+  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
     {opts.biller_name}
   </div>
 </div>
@@ -227,15 +243,20 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
 {(cpp=="startimes")?(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
 {starplans.current.map((opts)=>(
-  <div key={opts.item_code} tabIndex={0}>
-  <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-black text-white rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
+  <div onClick={
+    ()=>{
+setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
+}
+  } key={opts.item_code} tabIndex={0}>
+  <div style={{background: "linear-gradient(to bottom, #2563eb, #000000)"}} data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} 
+  className="gradient-box w-36 h-36 rubik-h rounded-lg text-white flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
     {opts.biller_name}
   </div>
 </div>
 ))}
 </div>)
  :null}
-            <Button type="submit" endIcon={<ArrowForward/>} className="p-2 rounded-md bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+            <Button type="submit" endIcon={<ArrowForward/>} className="p-3 rounded-2xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 {start? <Delay/> :"proceed"}
                 </Button>
                 </div>
