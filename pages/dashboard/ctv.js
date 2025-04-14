@@ -13,11 +13,11 @@ const [status,setStatus]=useState(null)
 const [processed,setPro]=useState(false)
 const [start,setStart]=useState(false);
 const[pincon,setPin]=useState(false);
-const[cpp,setCp]=useState("gotv")
+const[cpp,setCp]=useState("")
 const gotvplans= useRef([]);
 const starplans= useRef([]);
 const dstvplans= useRef([]);
-const [tvdata,setTv]=useState({})
+const [tvdata,setTv]=useState(null)
 const btnref=useRef(null)
 const [showkeypad,setShowKeyPad]= useState(false);
 
@@ -150,6 +150,9 @@ catch(e){
   console.log("error wrong pin")
 }
 }
+
+//contains actual request to the server 
+//it first checks if user pin is confirmed before proceeding.
 useEffect(() => {
   const form = document.getElementById("form");
   if (!form) return;
@@ -183,7 +186,7 @@ useEffect(() => {
       
       setStatus(await response.json());
     } catch (error) {
-      console.error("Error:", error);
+      console.log("Error:", error);
       router.push("/dashboard/error");
     }
   };
@@ -261,8 +264,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '20px',
-    height: '20px',
+    width: '40px',
+    height: '40px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -296,8 +299,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '20px',
-    height: '20px',
+    width: '40px',
+    height: '40px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -331,8 +334,8 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
     position: 'absolute',
     bottom: '5px',
     right: '5px',
-    width: '20px',
-    height: '20px',
+    width: '40px',
+    height: '40px',
     backgroundColor: 'white',
     borderRadius: '50%',
     border: '2px solid green',
@@ -347,14 +350,17 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 </div>
 ))}
 </div>)}
+
+{start&&<Delay/>}
+
     
-            <Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 fixed left-1 right-1 w-2/5 bottom-0 mx-auto rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
-                {start? <Delay/> :"proceed"}
-                </Button>
+           {tvdata&&<Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 fixed left-1 right-1 w-3/5 bottom-1 mx-auto rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+                proceed
+                </Button>}
                 </div>
             </form>
             {showkeypad&& (<NumericPad className="" maxLength={4} onSubmit={handlePinSubmit}/>)}
-    <div id="wrongpin" className=" z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
+    <div id="wrongpin" className="z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
         </div>}
     </>)
 }

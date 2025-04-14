@@ -24,6 +24,8 @@ const Data=()=>{
 const mtnplans= useRef([]);
 const airtelplans= useRef([]);
 const gloplans= useRef([]);
+const [showkeypad,setShowKeyPad]=useState(false)
+const ready=useRef(null)
 
 useEffect( ()=>{
  const fetchdata= async ()=>{
@@ -151,16 +153,13 @@ setEnable(false)
   }
 }
 
-document.getElementById("form").onsubmit = async (e)=>{
+const form=document.getElementById("form");
+const handleSubmit = async (e)=>{
   e.preventDefault();
-  if(pincon){
-    console.log(pincon +"now")
+  if(!pincon){
+   setShowKeyPad(true)
   }
-  else{
-    document.getElementById("keyPad").style.display="flex";
-    return
-  }
-  setLoading(true)
+  setShowKeyPad(false);
   const formdata= new FormData(e.target)
   //nid,plan,phoneno,,,,amount,type
   formdata.append("amount",price)//eg 1000
@@ -168,11 +167,13 @@ document.getElementById("form").onsubmit = async (e)=>{
   formdata.append("billcode",vid.biller_code)
   formdata.append("itemcode", vid.item_code)
 
- try{ const url="https://zonapay.onrender.com/zonapay/data"
+ try{ 
+  setLoading(true)
+  const url="https://zonapay.onrender.com/zonapay/data"
+
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
   const res1=await res.json();
-  setPincon(false)
 setDetails(res1)
 setProcessed(true);
 setSucess(true)
@@ -182,7 +183,7 @@ return
     if(res){
       const res2=await res.json();
       if(res2.code=="insufficientFund"){
-        setDetails({error:"Insufficient funds"})
+    setDetails({error:"Insufficient funds"})
     setProcessed(true)
     return;
       }
@@ -193,14 +194,22 @@ return
   }
 }
   catch(e){
+    setPincon(false)
     setLoading(false);
 console.error(e)
   }
 }
-if(pincon){
-  document.getElementById("ready").click();
+form.addEventListener("submit", handleSubmit);
+if(pincon&&ready.current){
+ready.current.click()
+}
+
+return ()=>{
+  form.removeEventListener("submit", handleSubmit);
 }
 },[pincon])
+
+
 const handlePinSubmit= async (pin)=>{
   const data={pinn:pin}
   try{
@@ -376,10 +385,10 @@ if(processed){
 
 {(price>0)?
 <input readOnly value={price} style={{fontSize:"15px"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
-{ loading? <Delay/> : <Button id="ready" className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
+{ loading? <Delay/> : <Button ref={ready} className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
 <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none"}}>Back</Button>}</Link>
-<NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
+{showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit}/>}
 <div id="wrongpin" className=" z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
     </div>
     </>)
