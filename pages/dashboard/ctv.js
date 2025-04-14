@@ -205,7 +205,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
 {gotvplans.current.map((opts)=>{(
   <div tabIndex={0}>
   <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
-    {opts.name}
+    {opts.biller_name}
   </div>
 </div>
 )})}
@@ -216,7 +216,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
 {dstvplans.current.map((opts)=>{(
   <div tabIndex={0}>
   <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
-    {opts.name}
+    {opts.biller_name}
   </div>
 </div>
 )})}
@@ -229,7 +229,7 @@ const dataa={cableprovider:cp,iuc:valu,phone:pho,variation_id:ele[0].value}
 {starplans.current.map((opts)=>{(
   <div tabIndex={0}>
   <div data-amount={opts.amount} data-billcode={opts.biller_code} data-itemcode={opts.item_code} className="w-36 h-36 rubik-h bg-gray-400 rounded-lg flex flex-col justify-center text-center focus:ring-8 focus:ring-blue-600">
-    {opts.name}
+    {opts.biller_name}
   </div>
 </div>
 )})}
