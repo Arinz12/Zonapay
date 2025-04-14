@@ -96,6 +96,7 @@ useEffect( ()=>{
  
    if(res.ok){
      const resp=await res.json();
+     console.log(resp.data)
    gotvplans.current=resp.data
    
    }else{
