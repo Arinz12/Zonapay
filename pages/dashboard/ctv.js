@@ -126,12 +126,6 @@ useEffect( ()=>{
    fetchtv();
    },[]);
 
-useEffect(()=>{
-  if(pincon){
-  if(btnref.current){
-    btnref.current.click();
-  }}
-});
 
 useEffect(()=>{
   if(!status==null){
@@ -198,8 +192,11 @@ useEffect(()=>{
     }
     
     }
-  },[tvdata,pincon]);
-
+    if(pincon){
+      if(btnref.current){
+        btnref.current.click();
+      }}
+  },[]);
     return(<>
     <Head>
         <title>Cable</title>
@@ -348,7 +345,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 ))}
 </div>)}
     
-            <Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 fixed bottom-0 mx-auto rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+            <Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 fixed left-1 right-1 w-2/5 bottom-0 mx-auto rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 {start? <Delay/> :"proceed"}
                 </Button>
                 </div>
