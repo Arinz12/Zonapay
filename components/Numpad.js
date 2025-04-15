@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-const NumericPad = ({ maxLength = 4, onSubmit }) => {
+const NumericPad = ({ maxLength = 4, onSubmit,hideComp }) => {
   const [pin, setPin] = useState("");
 
   // Handle button clicks
@@ -24,8 +24,7 @@ const NumericPad = ({ maxLength = 4, onSubmit }) => {
       <span onClick={
         ()=>{
           setPin("");
-          document.getElementById("keyPad").style.display="none";
-          
+          hideComp()
       }
       }
          className="absolute text-black text-4xl top-1 right-3">&times;</span>

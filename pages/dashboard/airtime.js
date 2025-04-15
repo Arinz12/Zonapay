@@ -254,7 +254,7 @@ catch(e){
 </form>
 <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none"}}>Back</Button>}</Link>
 
-   {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit}/>}
+   {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
    <div id="wrongpin" className=" z-10 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
     </div>
     </>)
