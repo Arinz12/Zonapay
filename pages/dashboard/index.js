@@ -72,32 +72,32 @@ const Dashboard = ({obj}) => {
         <div  className='ml-2 mr-2 px-4 py-7 mt-5 bg-white rounded-2xl '>
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
                <Link href="/dashboard/airtime">{<div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColo:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <PhoneOutlined className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b"> Airtime</div></div>
                   }</Link>
            <Link href="/dashboard/data">{<div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColo:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <LanguageRounded className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b"> Data</div></div>}</Link>
  
             <Link href="/dashboard/ctv">{<div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColo:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <TvRounded className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b">Cable tv</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColo:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <CardGiftcard className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b">Giftcard</div></div>
 
             <Link href="/dashboard/elect">{  <div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColo:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <Tungsten className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b">Electricity</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px"}} className="flex p-6 bg-blue-200  flex-col justify-center items-center">
+                <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColo:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <School className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b">School</div></div>
             </div>

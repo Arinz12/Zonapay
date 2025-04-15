@@ -130,7 +130,7 @@ const Carousel2 = ({
             <button
               key={index}
               style={{
-                padding:"3px 20px",
+                padding:"1px 8px",
                 width: '3px',
                 height: '3px',
                 backgroundColor: index === currentIndex ? activeIndicatorColor : '#ccc'
