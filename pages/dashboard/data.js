@@ -158,6 +158,7 @@ const handleSubmit = async (e)=>{
   e.preventDefault();
   if(!pincon){
    setShowKeyPad(true)
+   return;
   }
   setShowKeyPad(false);
   const formdata= new FormData(e.target)
