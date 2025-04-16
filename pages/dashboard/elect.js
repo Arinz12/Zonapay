@@ -168,7 +168,6 @@ if(pincon){
 
 </div></div>
 
-
 <div className="flex flex-row w-11/12 mx-auto justify-evenly gap-5 items-center p-4 bg-white rounded-xl">
 <div className="flex flex-row justify-center gap-3 rounded-2xl">
 <input type="radio" name="pay" value={"prepaid"} id="pre"/>
@@ -185,7 +184,6 @@ if(pincon){
 <input onKeyUp={ver1} id="acct" type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl focus:outline-none ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px"}}/>
 <span id='userinfo' className="rubik-b ml-4"></span>
         </div>
-
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
 <input id="amt" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px"}} />

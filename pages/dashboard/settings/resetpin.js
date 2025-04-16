@@ -64,6 +64,7 @@ const ForgotPin = () => {
     <div className="min-h-screen w-full bg-gradient-to-b from-blue-50 to-white">
       <div className="max-w-md w-full mx-auto p-6">
         {/* Header */}
+        
         <div className="bg-blue-600 text-white text-xl font-bold text-center px-6 py-5 rounded-b-2xl shadow-md mb-8">
           PIN Reset
         </div>
@@ -110,12 +111,12 @@ const ForgotPin = () => {
             />
           </div>
 
-          <Button
+          <Button className="bg-blue-600"
             type="submit"
             fullWidth
             variant="contained"
             sx={{
-              backgroundColor: "#1E3A5F",
+              
               py: 1.5,
               borderRadius: "12px",
               textTransform: "none",

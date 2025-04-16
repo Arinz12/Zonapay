@@ -86,8 +86,11 @@ const Dashboard = ({obj}) => {
                 <TvRounded className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b">Cable tv</div></div>}</Link>
 
-                <div className="flex items-center flex-col gap-1">
-                <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
+                <div className="flex items-center flex-col gap-1 relative">
+                <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+               Coming Soon
+              </span>
+                  <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <CardGiftcard className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b">Giftcard</div></div>
 
@@ -96,7 +99,10 @@ const Dashboard = ({obj}) => {
                 <Tungsten className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b">Electricity</div></div>}</Link>
 
-                <div className="flex items-center flex-col gap-1">
+                <div className="flex items-center flex-col gap-1 relative">
+                <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                    Coming Soon
+                 </span>
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <School className='text-blue-600'/> </div>
                 <div className="text-black text-center font-bold rubik-b">School</div></div>

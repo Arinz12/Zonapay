@@ -127,13 +127,11 @@ const Forgot = () => {
           />
         </div>
 
-        <Button
+        <Button className="bg-blue-600" 
           type="submit"
           fullWidth
           variant="contained"
-          sx={{
-            backgroundColor: "#1E3A5F",
-            py: 1.5,
+          sx={{py: 1.5,
             borderRadius: "12px",
             textTransform: "none",
             fontSize: "1rem",
