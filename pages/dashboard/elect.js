@@ -8,6 +8,7 @@ const Elect=()=>{
     const [processed,setProcessed]=useState(false)
     const [details,setDetails]=useState(null)
     const [pincon, setPincon]= useState(false)
+    const [showkeypad,setShowKeyPad]=useState(false);
      async function veri(){
         document.getElementById("userinfo").style.color="blue"
         document.getElementById("userinfo").innerHTML="checking..."
@@ -192,7 +193,7 @@ if(pincon){
 <div className="mx-auto">
     <Button style={{textTransform:"none"}} id="btn" variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>
 </div>
-<NumericPad maxLength={4} onSubmit={handlePinSubmit}/>
+{showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
 <div id="delay" style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className=" flex-col items-center justify-center  fixed  z-10 w-full bottom-0 h-full shp hidden">
 <section className="dots-container">
   <div className="dot"></div>
