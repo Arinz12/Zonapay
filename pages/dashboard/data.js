@@ -243,8 +243,8 @@ if(processed){
       <CheckCircle sx={{color:"green",height:"130px",width:"130px"}}/>
       <div style={{fontSize:"25px"}} className="text-black rubik-b">{details.message}</div>
       </div>
-        <div style={{border:"4px solid green"}} className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>Code</span><span>{details.data.code}</span></div>
+        <div className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
+              <div className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{`TXN ${details.data.reference}`}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>phone</span><span>{details.data.phone_number}</span></div>

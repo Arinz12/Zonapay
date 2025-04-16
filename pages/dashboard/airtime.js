@@ -160,7 +160,7 @@ if(processed){
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
-  </Head>
+  </Head> 
   {sucessfull? <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
       <div className="flex flex-col gap-8 justify-center items-center w-full">
         <div className="flex flex-col gap-4 items-center justify-center">
@@ -168,12 +168,11 @@ if(processed){
       <div style={{fontSize:"20px"}} className="text-black rubik-b">{details.message}</div>
       </div>
         <Paper elevated={4} className=" flex flex-col  mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-              <div className="monomaniac-one-regular  flex flex-row  justify-between"><span>code</span>
-              <span>-</span><span>{details.data.code}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Network</span><span>-</span><span>{details.data.network}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>-</span><span>{details.data.amount}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>phone</span><span>-</span><span>{details.data.phone_number}</span></div>
-              {/* <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Code</span><span>-</span><span>{details.data.code}</span></div> */}
+        <div className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{`TXN ${details.data.reference}`}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>phone</span><span>{details.data.phone_number}</span></div>
+              {/* <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Code</span><span>{details.data.code}</span></div> */}
               
           </Paper>
           <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>GO to Home</Button>}</Link>
