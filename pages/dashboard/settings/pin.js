@@ -25,6 +25,12 @@ const Pin = () => {
     if (value && index < 3) refs[index + 1].current.focus();
   };
 
+  const handleKeyDown = (index, e, setFunc, refs, values) => {
+    if (e.key === 'Backspace' && !values[index] && index > 0) {
+      refs[index - 1].current.focus();
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const p1 = pin.join("");
@@ -97,7 +103,8 @@ const Pin = () => {
                   value={digit}
                   ref={pinRefs[idx]}
                   onChange={(e) => handlePinChange(idx, e.target.value, setPin, pinRefs)}
-                  className="w-12 text-center border-b-2 border-black focus:outline-none text-2xl"
+                  onKeyDown={(e) => handleKeyDown(idx, e, setPin, pinRefs, pin)}
+                  className="w-12 h-12 text-center border-2 rounded-md border-black focus:outline-none text-2xl"
                 />
               ))}
             </div>
@@ -115,7 +122,8 @@ const Pin = () => {
                   value={digit}
                   ref={confirmRefs[idx]}
                   onChange={(e) => handlePinChange(idx, e.target.value, setConfirmPin, confirmRefs)}
-                  className={`w-12 text-center border-b-2 ${error ? 'border-red-500 text-red-600' : 'border-black'} focus:outline-none text-2xl`}
+                  onKeyDown={(e) => handleKeyDown(idx, e, setConfirmPin, confirmRefs, confirmPin)}
+                  className={`w-12 h-12 text-center border-2 rounded-md ${error ? 'border-red-500 text-red-600' : 'border-black'} focus:outline-none text-2xl`}
                 />
               ))}
             </div>
@@ -161,4 +169,4 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default Pin;
+export default Pin
