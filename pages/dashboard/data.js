@@ -243,11 +243,12 @@ if(processed){
       <CheckCircle sx={{color:"green",height:"130px",width:"130px"}}/>
       <div style={{fontSize:"25px"}} className="text-black rubik-b">{details.message}</div>
       </div>
-        <div className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-              <div className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{`TXN ${details.data.reference}`}</span></div>
+      <div style={{backgroundColor:"snow"}} className=" flex flex-col  mt-4 space-y-2 text-center w-11/12 p-6 rounded-xl ">
+              <div className="text-lg font-semibold flex flex-row justify-between"><span>status</span><span>{details.data.status}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>phone</span><span>{details.data.phone_number}</span></div>
+              <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.reference}</span></div>
               {/* <div className="text-lg font-semibold flex flex-row justify-between"><span>Code</span><span>{details.data.data_plan}</span></div> */}
           </div>
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
@@ -388,7 +389,7 @@ if(processed){
 <input readOnly value={price} style={{fontSize:"15px"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
 { loading? <Delay/> : <Button ref={ready} className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
-<Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none"}}>Back</Button>}</Link>
+
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
 <div id="wrongpin" className=" z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
     </div>

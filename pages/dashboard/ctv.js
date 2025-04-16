@@ -214,11 +214,12 @@ useEffect(() => {
       <CheckCircle sx={{color:"green",height:"130px",width:"130px"}}/>
       <div style={{fontSize:"25px"}} className="text-black rubik-b">{status.message}</div>
       </div>
-        <div style={{border:"4px solid green"}} className="flex flex-col mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-        <div className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{`TXN ${details.data.reference}`}</span></div>             <div className="text-lg font-semibold flex flex-row justify-between"><span>Cable</span><span>{status.data.network}</span></div>
+      <div style={{backgroundColor:"snow"}} className=" flex flex-col  mt-4 space-y-2 text-center w-11/12 p-6 rounded-xl ">
+        <div className="text-lg font-semibold flex flex-row justify-between"><span>status</span><span>{details.data.status}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{status.data.amount}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>plan</span><span>{status.data.network}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>iuc</span><span>{status.data.phone_number}</span></div>
+              <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.reference}</span></div>
           </div>
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
           </div>
