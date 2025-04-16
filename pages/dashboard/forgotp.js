@@ -1,35 +1,64 @@
-import  { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
-const Forgotp=()=>{
-    const router=useRouter()
-useEffect(()=>{
-    document.getElementById("proceed").addEventListener("click", async (e)=>{
-const resp= await fetch("https://zonapay.onrender.com/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:document.getElementById("email").value.trim()}),headers:{"Content-Type":"application/json"}});
-if(resp.ok){
-    document.getElementById("msg").style.display="block"
-    setTimeout(()=>{document.getElementById("msg").style.display="none"
-},4000)
-}
-else{
-    
-    router.push({
-        pathname:"/forgotPass",
-        query:{data:document.getElementById("email").value.trim(),auth:true}
-    });
-}
-    })
-},[])
+const Forgotp = () => {
+    const router = useRouter();
 
-return(<>
-<div style={{height:"100vh"}} className="w-full h-full flex flex-col items-center justify-center bg-white">
-<div className="h-3/6 w-4/5 mx-auto flex flex-col gap-2 justify-center items-center p-4 rounded-lg" style={{backgroundColor:"whitesmoke"}}>
-    <div id="msg" className="fixed top-1 left-1 rounded-md p-5 bg-yellow-200 hidden text-black">Email does not exist in our database</div>
-    <label style={{fontSize:"25px"}} className="rubik-h">Enter your registered Email</label>
-    <input id='email' placeholder="email" className="p-4 w-11/12 h-11 border-l-0 border-r-0 border-t-0 my-6 border-b-2 rounded-lg bg-white rubik-b"/>
-    <div   className="w-full flex flex-row justify-center items-center"><button id="proceed" className="p-4 rounded-2xl bg-blue-600 rubik-b click-effect">Continue</button></div></div>
-</div>
-</>
-)
+    useEffect(() => {
+        document.getElementById("proceed").addEventListener("click", async (e) => {
+            const resp = await fetch("https://zonapay.onrender.com/zonapay/ValEmail", {
+                method: "post",
+                body: JSON.stringify({ val: document.getElementById("email").value.trim() }),
+                headers: { "Content-Type": "application/json" }
+            });
+            if (resp.ok) {
+                document.getElementById("msg").style.display = "block"
+                setTimeout(() => { document.getElementById("msg").style.display = "none" }, 4000)
+            }
+            else {
+                router.push({
+                    pathname: "/forgotPass",
+                    query: { data: document.getElementById("email").value.trim(), auth: true }
+                });
+            }
+        })
+    }, [])
+
+    return (
+        <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-b from-blue-50 to-white p-4">
+            {/* Error Message */}
+            <div 
+                id="msg" 
+                className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded shadow-lg hidden max-w-md w-full"
+            >
+                <p>Email does not exist in our database</p>
+            </div>
+
+            {/* Main Card */}
+            <div className="w-full max-w-md bg-white rounded-xl shadow-md overflow-hidden p-8">
+                <div className="text-center space-y-6">
+                    <h1 className="text-2xl font-bold text-gray-800">Password Recovery</h1>
+                    <p className="text-gray-600">Enter your registered email address</p>
+
+                    <div className="space-y-4">
+                        <input 
+                            id="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                        />
+
+                        <button
+                            id="proceed"
+                            className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        >
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
+
 export default Forgotp;

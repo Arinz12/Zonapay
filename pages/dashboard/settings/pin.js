@@ -1,246 +1,189 @@
-import { ArrowBackIosRounded, ArrowBack, ArrowForward, CheckCircle } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import { ArrowBack, ArrowBackIosRounded, ArrowForward, CheckCircle } from "@mui/icons-material";
+import { Button, IconButton } from "@mui/material";
 import Head from "next/head";
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import router from "next/router";
 
 const Pin = () => {
-  const [set, setSet] = useState(false);
-  const [pin, setPin] = useState(["", "", "", ""]);
-  const [confirmPin, setConfirmPin] = useState(["", "", "", ""]);
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState("");
-  const [activeStep, setActiveStep] = useState(1); // 1: Create PIN, 2: Confirm PIN
+    const [pinCreated, setPinCreated] = useState(false);
+    const [firstPin, setFirstPin] = useState(["", "", "", ""]);
+    const [secondPin, setSecondPin] = useState(["", "", "", ""]);
+    const [error, setError] = useState(false);
+    const [currentStep, setCurrentStep] = useState(1); // 1 = Create PIN, 2 = Confirm PIN
 
-  const pinRefs = [useRef(), useRef(), useRef(), useRef()];
-  const confirmRefs = [useRef(), useRef(), useRef(), useRef()];
+    const firstPinRefs = [useRef(), useRef(), useRef(), useRef()];
+    const secondPinRefs = [useRef(), useRef(), useRef(), useRef()];
 
-  const handlePinChange = (index, value, setFunc, refs) => {
-    if (!/^\d?$/.test(value)) return;
-    setFunc(prev => {
-      const updated = [...prev];
-      updated[index] = value;
-      return updated;
-    });
-    if (value && index < 3) refs[index + 1].current.focus();
-  };
-
-  const handleKeyDown = (index, e, setFunc, refs, values) => {
-    if (e.key === 'Backspace' && !values[index] && index > 0) {
-      refs[index - 1].current.focus();
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const p1 = pin.join("");
-    const p2 = confirmPin.join("");
-    const valid = /^\d{4}$/;
-
-    if (p1 !== p2 || !valid.test(p1) || !valid.test(p2)) {
-      setError(true);
-      setMessage("PINs don't match. Please try again.");
-      setConfirmPin(["", "", "", ""]);
-      confirmRefs[0].current.focus();
-      setTimeout(() => {
-        setError(false);
-        setMessage("");
-      }, 4000);
-      return;
-    }
-
-    const data = { pin: p1 };
-    try {
-      const resdata = await fetch("https://zonapay.onrender.com/zonapay/setpin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (resdata.ok) {
-        setSet(true);
-      }
-    } catch (e) {
-      console.log("An error occurred. Check connectivity.");
-    }
-  };
-
-  if (set) {
-    return (
-      <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 to-white p-4">
-        <div className="flex flex-col items-center gap-6 max-w-md w-full">
-          <div className="flex flex-col items-center gap-4 text-center">
-            <CheckCircle sx={{ color: "#10B981", height: 100, width: 100 }} />
-            <h1 className="text-3xl font-bold text-gray-800">PIN Successfully Set</h1>
-            <p className="text-gray-600">Your security PIN is now active</p>
-          </div>
-          <Link href="/dashboard" className="w-full max-w-xs">
-            <Button
-              fullWidth
-              variant="contained"
-              startIcon={<ArrowBack />}
-              sx={{
-                textTransform: "none",
-                backgroundColor: "#1E3A5F",
-                py: 1.5,
-                borderRadius: "12px",
-                fontSize: "1rem",
-                "&:hover": {
-                  backgroundColor: "#152A4A"
-                }
-              }}
-            >
-              Return to Dashboard
-            </Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <Head>
-        <title>Create Security PIN</title>
-      </Head>
-      <div className="min-h-screen w-full bg-gradient-to-b from-blue-50 to-white p-6 flex flex-col">
-        <button 
-          onClick={() => router.back()}
-          className="self-start p-2 rounded-full hover:bg-blue-100 transition-colors"
-        >
-          <ArrowBackIosRounded sx={{ color: "#1E3A5F" }} />
-        </button>
-
-        <form onSubmit={handleSubmit} className="flex-1 flex flex-col justify-center items-center">
-          <div className="w-full max-w-xs">
-            <h1 className="text-3xl font-bold text-center text-gray-800 mb-2">
-              {activeStep === 1 ? "Create Security PIN" : "Confirm Your PIN"}
-            </h1>
-            <p className="text-gray-600 text-center mb-8">
-              {activeStep === 1 
-                ? "Enter a 4-digit PIN for secure transactions"
-                : "Re-enter your PIN to confirm"}
-            </p>
-
-            {/* Step Indicator */}
-            <div className="flex justify-center gap-2 mb-8">
-              {[1, 2].map((step) => (
-                <div 
-                  key={step}
-                  className={`h-2 rounded-full ${activeStep === step ? "bg-blue-600 w-6" : "bg-gray-300 w-2"} transition-all duration-300`}
-                />
-              ))}
-            </div>
-
-            {/* PIN Inputs */}
-            <div className="mb-8">
-              <div className={`flex justify-center gap-4 ${error ? 'animate-shake' : ''}`}>
-                {(activeStep === 1 ? pin : confirmPin).map((digit, idx) => (
-                  <input
-                    key={idx}
-                    type="password"
-                    maxLength="1"
-                    inputMode="numeric"
-                    value={digit}
-                    ref={activeStep === 1 ? pinRefs[idx] : confirmRefs[idx]}
-                    onChange={(e) => handlePinChange(
-                      idx, 
-                      e.target.value, 
-                      activeStep === 1 ? setPin : setConfirmPin,
-                      activeStep === 1 ? pinRefs : confirmRefs
-                    )}
-                    onKeyDown={(e) => handleKeyDown(
-                      idx, 
-                      e, 
-                      activeStep === 1 ? setPin : setConfirmPin,
-                      activeStep === 1 ? pinRefs : confirmRefs,
-                      activeStep === 1 ? pin : confirmPin
-                    )}
-                    className={`w-14 h-14 text-center border-2 rounded-lg focus:outline-none text-3xl font-medium ${
-                      error 
-                        ? 'border-red-400 bg-red-50 text-red-600' 
-                        : 'border-blue-200 focus:border-blue-500 text-gray-800'
-                    } transition-colors`}
-                  />
-                ))}
-              </div>
-              {message && (
-                <p className="text-red-500 text-center mt-3 text-sm">{message}</p>
-              )}
-            </div>
-
-            {/* Continue Button */}
-            <Button
-              type={activeStep === 2 ? "submit" : "button"}
-              fullWidth
-              variant="contained"
-              endIcon={<ArrowForward />}
-              disabled={
-                activeStep === 1 
-                  ? pin.join("").length !== 4 
-                  : confirmPin.join("").length !== 4
-              }
-              onClick={() => {
-                if (activeStep === 1 && pin.join("").length === 4) {
-                  setActiveStep(2);
-                  setTimeout(() => confirmRefs[0].current.focus(), 100);
-                }
-              }}
-              sx={{
-                textTransform: "none",
-                backgroundColor: "#1E3A5F",
-                py: 1.5,
-                borderRadius: "12px",
-                fontSize: "1rem",
-                "&:hover": {
-                  backgroundColor: "#152A4A"
-                },
-                "&:disabled": {
-                  backgroundColor: "#E5E7EB",
-                  color: "#9CA3AF"
-                }
-              }}
-            >
-              {activeStep === 1 ? "Continue" : "Set PIN"}
-            </Button>
-          </div>
-        </form>
-      </div>
-
-      <style jsx global>{`
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          20%, 60% { transform: translateX(-5px); }
-          40%, 80% { transform: translateX(5px); }
+    const handlePinChange = (index, value, pinType) => {
+        if (!/^\d?$/.test(value)) return;
+        
+        if (pinType === 'first') {
+            setFirstPin(prev => {
+                const updated = [...prev];
+                updated[index] = value;
+                return updated;
+            });
+            if (value && index < 3) firstPinRefs[index + 1].current.focus();
+        } else {
+            setSecondPin(prev => {
+                const updated = [...prev];
+                updated[index] = value;
+                return updated;
+            });
+            if (value && index < 3) secondPinRefs[index + 1].current.focus();
         }
-        .animate-shake {
-          animation: shake 0.4s ease-in-out;
-        }
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-        input[type="number"] {
-          -moz-appearance: textfield;
-        }
-      `}</style>
-    </>
-  );
-};
-
-export async function getServerSideProps(context) {
-  if (!context.req.isAuthenticated()) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
     };
-  }
-  return {
-    props: {},
-  };
-}
+
+    const handleBackToEdit = () => {
+        setCurrentStep(1);
+        setTimeout(() => firstPinRefs[0].current.focus(), 100);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const pin1 = firstPin.join("");
+        const pin2 = secondPin.join("");
+
+        if (pin1 !== pin2 || !/^\d{4}$/.test(pin1)) {
+            setError(true);
+            setTimeout(() => setError(false), 1000);
+            return;
+        }
+
+        try {
+            const response = await fetch("https://zonapay.onrender.com/zonapay/setpin", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ pin: pin1 })
+            });
+            if (response.ok) setPinCreated(true);
+        } catch (e) {
+            console.error("Error setting PIN:", e);
+        }
+    };
+
+    if (pinCreated) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center p-4">
+                <div className="flex flex-col items-center gap-6 max-w-md w-full">
+                    <CheckCircle sx={{ color: "#4CAF50", fontSize: 100 }} />
+                    <h1 className="text-3xl font-bold text-center">PIN Successfully Set</h1>
+                    <Link href="/dashboard" className="w-full">
+                        <Button 
+                            fullWidth 
+                            variant="contained" 
+                            startIcon={<ArrowBack />}
+                            sx={{ py: 2, borderRadius: 2 }}
+                        >
+                            Return to Dashboard
+                        </Button>
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen flex flex-col p-4 bg-gray-50">
+            <Head>
+                <title>{currentStep === 1 ? "Create PIN" : "Confirm PIN"}</title>
+            </Head>
+
+            <IconButton 
+                onClick={currentStep === 1 ? () => router.back() : handleBackToEdit}
+                sx={{ alignSelf: 'flex-start', mb: 2 }}
+            >
+                <ArrowBackIosRounded />
+            </IconButton>
+
+            <form onSubmit={handleSubmit} className="flex flex-col items-center flex-1">
+                <h1 className="text-3xl font-bold mb-2 text-center">
+                    {currentStep === 1 ? "Create Security PIN" : "Confirm Your PIN"}
+                </h1>
+                <p className="text-gray-600 mb-8 text-center">
+                    {currentStep === 1 
+                        ? "Enter a 4-digit PIN for secure transactions"
+                        : "Re-enter your PIN to confirm"}
+                </p>
+
+                {/* Step Indicator */}
+                <div className="flex gap-2 mb-8">
+                    {[1, 2].map(step => (
+                        <div 
+                            key={step}
+                            className={`h-1 w-6 rounded-full ${currentStep === step ? 'bg-blue-500' : 'bg-gray-300'}`}
+                        />
+                    ))}
+                </div>
+
+                {/* PIN Inputs */}
+                <div className={`flex gap-4 mb-8 ${error ? 'animate-shake' : ''}`}>
+                    {(currentStep === 1 ? firstPin : secondPin).map((digit, index) => (
+                        <input
+                            key={index}
+                            ref={currentStep === 1 ? firstPinRefs[index] : secondPinRefs[index]}
+                            type="password"
+                            maxLength="1"
+                            inputMode="numeric"
+                            value={digit}
+                            onChange={(e) => handlePinChange(index, e.target.value, currentStep === 1 ? 'first' : 'second')}
+                            className={`w-14 h-14 text-2xl text-center border-2 rounded-lg focus:outline-none ${
+                                error ? 'border-red-500 bg-red-50' : 'border-gray-300 focus:border-blue-500'
+                            }`}
+                        />
+                    ))}
+                </div>
+
+                {error && (
+                    <p className="text-red-500 mb-4">PINs do not match. Please try again.</p>
+                )}
+
+                <Button
+                    fullWidth
+                    variant="contained"
+                    size="large"
+                    endIcon={<ArrowForward />}
+                    disabled={(currentStep === 1 ? firstPin : secondPin).some(d => d === "")}
+                    onClick={() => {
+                        if (currentStep === 1 && firstPin.every(d => d !== "")) {
+                            setCurrentStep(2);
+                            setTimeout(() => secondPinRefs[0].current.focus(), 100);
+                        }
+                    }}
+                    type={currentStep === 2 ? "submit" : "button"}
+                    sx={{
+                        maxWidth: 400,
+                        py: 1.5,
+                        borderRadius: 2,
+                        fontSize: '1rem',
+                        textTransform: 'none'
+                    }}
+                >
+                    {currentStep === 1 ? "Continue" : "Confirm PIN"}
+                </Button>
+            </form>
+
+            <style jsx global>{`
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    20%, 60% { transform: translateX(-5px); }
+                    40%, 80% { transform: translateX(5px); }
+                }
+                .animate-shake {
+                    animation: shake 0.4s ease-in-out;
+                }
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+                input[type="number"] {
+                    -moz-appearance: textfield;
+                }
+            `}</style>
+        </div>
+    );
+};
 
 export default Pin;
