@@ -87,7 +87,7 @@ const Dashboard = ({obj}) => {
                 <div className="text-black text-center font-bold rubik-b">Cable tv</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1 relative">
-                <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                <span style={{fontSize:"8px"}} className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
                Coming Soon
               </span>
                   <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
@@ -100,7 +100,7 @@ const Dashboard = ({obj}) => {
                 <div className="text-black text-center font-bold rubik-b">Electricity</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1 relative">
-                <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                <span style={{fontSize:"8px"}} className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
                     Coming Soon
                  </span>
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">

@@ -18,7 +18,7 @@ const Elect=()=>{
     const acct=useRef([])
     const btn=useRef([])
     const amt=useRef([])
-    const [btnready,setBtnready]=useState(false);
+    const [btnready,setBtnready]=useState(true);
      async function veri(){
       const matcher=/^\d{13}$/
       if(!matcher.test(acct.current.value)){
