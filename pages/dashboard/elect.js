@@ -83,6 +83,7 @@ useEffect(()=>{
       setElectReady(true);
       console.log(billers1.data)
 electplan.current=billers1.data
+setElectReady(true);
     }
     else{
       throw new Error("failed to fetch items")
@@ -92,7 +93,7 @@ electplan.current=billers1.data
 console.log(e)
   }}
   fetchElect()
-})
+},[])
     useEffect(
        ()=>{
         const handleSubmit= async ()=>{
@@ -189,13 +190,11 @@ return ()=>{
 <select ref={provider} onChange={ver1} 
 id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
     <option style={{fontSize:"15px"}} className="rubik-b">Select provider</option>
-    {electready && electplan.current.map((opts)=>
-<option  value={opts.data.biller_code}>{opts.description}</option>
+    {electready && electplan.current.map((opts)=>(
+<option  value={opts.data.biller_code}>{opts.description}</option>)
     )}
 </select>
-
 </div></div>
-
 <div className="flex flex-row w-11/12 mx-auto justify-evenly gap-5 items-center p-4 bg-white rounded-xl">
 <div className="flex flex-row justify-center gap-3 rounded-2xl">
 <input type="radio" name="pay"  ref={pre}/>
