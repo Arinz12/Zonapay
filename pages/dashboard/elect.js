@@ -44,28 +44,28 @@ else{
         document.getElementById("userinfo").innerHTML="failed to verify user";
        }
      }
-async function ver1(){
-  try{
-const billcode=provider.current.value;
-    const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
-      method:"GET",
-      body:JSON.stringify({data:billcode}), headers:{
-      "Content-Type":"application/json"}
-    })
-if(res.ok){
-const res1= await res.json();
-const fo=res1.data[0];
-const fo2=res1.data[1];
-pre.current.value =(fo.name.toLowerCase.includes("prepaid"))? fo.item_code:fo2.item_code;
-post.current.value =(fo.name.toLowerCase.includes("postpaid"))? fo.item_code:fo2.item_code;
-}
-else{
-throw new Error("failed to get item codes")
-}}
-catch(e){
-  console.log(e)
-}
-}
+// async function ver1(){
+//   try{
+// const billcode=provider.current.value;
+//     const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
+//       method:"GET",
+//       body:JSON.stringify({data:billcode}), headers:{
+//       "Content-Type":"application/json"}
+//     })
+// if(res.ok){
+// const res1= await res.json();
+// const fo=res1.data[0];
+// const fo2=res1.data[1];
+// pre.current.value =(fo.name.toLowerCase.includes("prepaid"))? fo.item_code:fo2.item_code;
+// post.current.value =(fo.name.toLowerCase.includes("postpaid"))? fo.item_code:fo2.item_code;
+// }
+// else{
+// throw new Error("failed to get item codes")
+// }}
+// catch(e){
+//   console.log(e)
+// }
+// }
 useEffect(()=>{
   //fetch electricity discos
   const fetchElect= async ()=>{
@@ -77,6 +77,7 @@ useEffect(()=>{
     })
     if(billers.ok){
       const billers1=await billers.json();
+      console.log(billers1.data)
 electplan.current=billers1.data
     }
     else{
@@ -131,9 +132,8 @@ return ()=>{
         setPincon(true);
         console.log("okayyy") 
       }else{
-        document.getElementById("wrongpin").style.display="block"
         console.log("wrong pin")
-        setTimeout(()=>{  document.getElementById("wrongpin").style.display="none"
+        setTimeout(()=>{  
       },3000)
       }
       }
@@ -182,10 +182,36 @@ return ()=>{
     <div className="w-full bg-white rounded-2xl mb-5">
 <div className="flex flex-col w-full justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>
-<select onChange={ver1} id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
+<select ref={provider} onChange={
+async (e)=>{
+  try{
+    const selected=e.target.options[e.target.selectedIndex]
+const billcode=selected.value;
+    const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
+      method:"GET",
+      body:JSON.stringify({data:billcode}), headers:{
+      "Content-Type":"application/json"}
+    })
+if(res.ok){
+const res1= await res.json();
+const fo=res1.data[0];
+const fo2=res1.data[1];
+pre.current.value =(fo.name.toLowerCase.includes("prepaid"))? fo.item_code:fo2.item_code;
+post.current.value =(fo.name.toLowerCase.includes("postpaid"))? fo.item_code:fo2.item_code;
+}
+else{
+throw new Error("failed to get item codes")
+}}
+catch(e){
+  console.log(e)
+}
+}
+
+} 
+id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
     <option style={{fontSize:"15px"}} className="rubik-b">Select provider</option>
     {electplan.current.map((opts)=>(
-<option ref={provider} value={opts.data.biller_code}>{opts.description}</option>
+<option  value={opts.data.biller_code}>{opts.description}</option>
     ))}
 </select>
 
