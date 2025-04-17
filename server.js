@@ -535,49 +535,98 @@ else{
 //Electricity
 server.post("/zonapay/electricity",async (req,res)=>{
   const {iuc,provider,amount,vid}=req.body;
-  const url= new URL("https://vtu.ng/wp-json/api/v1/electricity?username=ArinzechukwuGift&password=ari123Ari@vv")
-  url.searchParams.append("meter_number", iuc)
-  url.searchParams.append("service_id", provider)
-  url.searchParams.append("variation_id", vid)
-  url.searchParams.append("amount", amount)
-  url.searchParams.append("phone", "07018237160")
+ 
   const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
-const isFundsSufficient= balance>50
+const isFundsSufficient= balance>amount
   if(!isFundsSufficient){
   res.status(400).json({code:"insufficientFund"})
   return;
   }
   try{
-  const resp=await fetch(url.toString(),{method:"GET"})
-  if(resp.ok){
+    const data=await fetch(`https://api.flutterwave.com/v3/billers/${biller}/items/${item}/payment`,{method:"Post",
+    body:JSON.stringify({
+      country:"NG",
+      customer_id:iuc,
+      amount:amount,
+      reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
+      callback_url:"https://zonapay.onrender.com/webhook"
+    }),
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`,
+      "accept":"application/json"
+    }
+    }) 
+     if(resp.ok){
 const result=await resp.json();
-if(result.code=="success"){
-  console.log(`token ${result.data.token} units ${result.data.units} amount ${result.data.amount}`);
-  const newamount= eval(result.data.amount.replace(/\D/g,""))
+if(result.status=="success"){
+  // console.log(
+  //   `token ${result.data.token} units ${result.data.units} amount ${result.data.amount}`);
+  console.log(result);
+  const newamount= result.data.amount;
       await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
   const now=DateTime.local()
   const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-  //save history
-  
  res.status(200).json(result);
 }
-else if(result.code=="processing"){
-res.status(200).json({custom_message:"Your request is processing"})
-}
+
 else{
   console.log(result.code);
   res.status(400).send("purchase failed")
 }
   }
   else{
-    res.status(400).send("Request not successfull")
-  }
+    const now=DateTime.local()
+    const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+      const history={user:req.user.Email,
+        tid:undefined,
+        time:timeinNigeria,
+        amount:amount,
+        phone:iuc,
+        network:"",
+        product:"Electricity",
+      status:"failed"}
+      saveHistory(history);
+res.status(400).end();  }
 }
   catch(e){
 return res.status(400).send("conerror  : "+e)
   }
+})
+//fetching electricity billers
+server.post("/zonapay/elects",async (req,res)=>{
+const resp= await fetch("https://api.flutterwave.com/v3/bills/UTILITYBILLS/billers?country=NG",{
+  method:"GET",
+  "Content-Type":"application/json",
+  "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`
+})
+if(resp.ok){
+  res.status(200).json(await resp.json())
+}
+else{
+  res.status(400).send("failed")
+}
+})
+//fetch electricity biller item code
+server.post("/zonapay/eitemcode",async (req,res)=>{
+  try{
+const {data}= req.body
+const resp= await fetch(`https://api.flutterwave.com/v3/billers/${data}/items`,{
+  method:"GET",
+  "Content-Type":"application/json",
+  "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`
+})
+if(resp.ok){
+  res.status(200).json(await resp.json);
+}
+else{
+  res.status(400).send("failed");
+}}
+catch(e){
+  res.status(400).send(e)
+}
 })
 
 //Setting pin

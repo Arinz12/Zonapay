@@ -1,7 +1,7 @@
 import { ArrowBackIosRounded,CheckCircle,Forward, ForwardRounded } from "@mui/icons-material"
 import { Button, Paper, Typography } from "@mui/material"
 import Head from "next/head"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import router from "next/router"
 import NumericPad from "../../components/Numpad"
 const Elect=()=>{
@@ -9,15 +9,23 @@ const Elect=()=>{
     const [details,setDetails]=useState(null)
     const [pincon, setPincon]= useState(false)
     const [showkeypad,setShowKeyPad]=useState(false);
+    const [loading,setLoading]=useState(false)
+    const electplan=useRef([])
+    const pre=useRef([])
+    const post=useRef([])
+    const provider=useRef([])
+    const acct=useRef([])
+    const btn=useRef([])
+    const amt=useRef([])
      async function veri(){
         document.getElementById("userinfo").style.color="blue"
         document.getElementById("userinfo").innerHTML="checking..."
+        const type=(pre.current.checked)? "prepaid":"postpaid"
+
         const epp= document.getElementById("ep").value
-      const meter= document.getElementById("acct").value
-       const typ= document.getElementById("pre")
-       const typ2= document.getElementById("post")
-       const ty=(typ.checked)? typ.value :typ2.value;
-       const data={iuc:meter,cableprovider:epp,vid:ty}
+      const meter= acct.current.value
+      
+       const data={iuc:meter,cableprovider:epp,vid:type}
        const res= await fetch("https://zonapay.onrender.com/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
         "Content-Type":"application/json"
        }})
@@ -37,64 +45,84 @@ else{
        }
      }
 async function ver1(){
-    const epp= document.getElementById("ep").value
-    const meter= document.getElementById("acct").value
-     const typ= document.getElementById("pre")
-     const typ2= document.getElementById("post")
-     if(epp && meter && (typ.checked||typ2.checked)){
-if(meter.toString().length==13){
-    veri()
-}else{
-    console.log("Not complete yet " + meter+"  " +epp)
-    return;
+  try{
+const billcode=provider.current.value;
+    const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
+      method:"GET",
+      body:JSON.stringify({data:billcode}),
+      "Content-Type":"application/json",
+    })
+if(res.ok){
+const res1= await res.json();
+const fo=res1.data[0];
+const fo2=res1.data[1];
+pre.current.value =(fo.name.toLowerCase.includes("prepaid"))? fo.item_code:fo2.item_code;
+post.current.value =(fo.name.toLowerCase.includes("postpaid"))? fo.item_code:fo2.item_code;
 }
-     }else{
-        console.log("CREDENTIALS problem")
-        return
-     }
+else{
+throw new Error("failed to get item codes")
+}}
+catch(e){
+  console.log(e)
 }
-
-    useEffect( async ()=>{
-        document.getElementById("btn").addEventListener("click", async ()=>{
+}
+useEffect(()=>{
+  //fetch electricity discos
+  const fetchElect= async ()=>{
+    try{
+    const billers= await fetch("https://zonapay.onrender.com/zonapay/elects",{
+      method:"POST",
+      "Content-Type":"application/json",
+    })
+    if(billers.ok){
+      const billers1=await billers.json();
+electplan.current=billers1.data
+    }
+    else{
+      throw new Error("failed to fetch items")
+    }
+  }
+  catch(e){
+console.log(e)
+  }}
+  fetchElect()
+})
+    useEffect(
+       ()=>{
+        const handleSubmit= async ()=>{
             if(!pincon){
                 document.getElementById("keyPad").style.display="flex";
-                return;
+                setShowKeyPad(true)
+                return
               } 
-              document.getElementById("delay").style.display="flex"
-              document.getElementById("keyPad").style.display="none";
-            const epp= document.getElementById("ep").value
-       const meter= document.getElementById("acct").value
-       const amount=document.getElementById("amt").value;
-       const typ= document.getElementById("pre");
-       const typ2= document.getElementById("post");
-       const ty=(typ.checked)? typ.value : typ2.value
-            const data={iuc:meter,provider:epp,amount,vid:ty}
+              setShowKeyPad(false)
+              const type=(pre.current.checked)? pre.current.value:post.current.value
+            const data={iuc:acct.current.value,provider:provider.current.value,amount:amt.current.value,kind:type}
+            setLoading(true)
             const res= await fetch("https://zonapay.onrender.com/zonapay/electricity",{method:"POST",body:JSON.stringify(data),headers:{
                 "Content-Type":"application/json"
             }})
             if(res.ok){
 const result= await res.json();
-if(result.custom_message){
-   return router.replace("/dashboard/processing");
-}
-document.getElementById("delay").style.display="none"
-setDetails(result);
+
+  setDetails(result)
 setProcessed(true);
 return
 }
 else{
-  const result= await res.text();
-console.log(result)
-  document.getElementById("delay").style.display="none"
+  setLoading(false)
 router.push("/dashboard/error")
+}
+};
+btn.current.addEventListener("click",handleSubmit)
+if(pincon&&btn.current){
+btn.current.click()
+}
+return ()=>{
+  btn.current.removeEventListener("click",handleSubmit)
+}
+},[pincon])
 
-}
-});
-if(pincon){
-    document.getElementById("btn").click();
-    setPincon(false);
-}
-    },[pincon])
     const handlePinSubmit= async (pin)=>{
         const data={pinn:pin}
         try{
@@ -124,11 +152,11 @@ if(pincon){
       </div>
         <Paper elevated={4} className=" flex flex-col  mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
               <div className="monomaniac-one-regular  flex flex-row  justify-between"><span>Provider</span>
-              <span>-</span><span>{details.data.electricity}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>M-no</span><span>-</span><span>{details.data.meter_number}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span><span>-</span><span>{details.data.token}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>-</span><span>{details.data.units}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>-</span><span>{details.data.amount}</span></div>
+              <span>{details.data.network}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>M-no</span><span>{details.data.phone_number}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span><span>{details.data.token}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>{details.data.units}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
               
           </Paper>
           <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>GO to Home</Button>}</Link>
@@ -156,41 +184,37 @@ if(pincon){
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>
 <select onChange={ver1} id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
     <option style={{fontSize:"15px"}} className="rubik-b">Select provider</option>
-    <option value="enugu-electric" style={{fontSize:"15px"}} className="rubik-b">EEDC</option>
-    <option value="abuja-electric" style={{fontSize:"15px"}} className="rubik-b">AEBC</option>
-    <option value="ibadan-electric" style={{fontSize:"15px"}} className="rubik-b">IBEDC</option>
-    <option value="ikeja-electric" style={{fontSize:"15px"}} className="rubik-b">IKEDC</option>
-    <option value="jos-electric" style={{fontSize:"15px"}} className="rubik-b">JEDplc</option>
-    <option value="kaduna-electric" style={{fontSize:"15px"}} className="rubik-b">KAEDCO</option>
-    <option value="kano-electric" style={{fontSize:"15px"}} className="rubik-b">KEDCO</option>
-    <option value="portharcourt-electric" style={{fontSize:"15px"}} className="rubik-b">PHED</option>
+    {electplan.current.map((opts)=>(
+<option ref={provider} value={opts.data.biller_code}>{opts.description}</option>
+    ))}
 </select>
 
 </div></div>
 
 <div className="flex flex-row w-11/12 mx-auto justify-evenly gap-5 items-center p-4 bg-white rounded-xl">
 <div className="flex flex-row justify-center gap-3 rounded-2xl">
-<input type="radio" name="pay" value={"prepaid"} id="pre"/>
+<input type="radio" name="pay"  ref={pre}/>
     <label className="rubik-b" htmlFor="pre">Prepaid</label>
 </div>
 <div className="flex flex-row justify-center gap-3 rounded-2xl">
-<input type="radio" name="pay" value="postpaid" id="post"/>
+<input type="radio" name="pay" ref={post}/>
 
     <label className="rubik-b" htmlFor="post">Postpaid</label>
 </div>
 </div>
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="acct" className="ml-3 rubik-h">Meter/Acct No</label>
-<input onKeyUp={ver1} id="acct" type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl focus:outline-none ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px"}}/>
+<input  ref={acct} type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl focus:outline-none ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px"}}/>
 <span id='userinfo' className="rubik-b ml-4"></span>
         </div>
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
-<input id="amt" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px"}} />
+<input ref={amt} type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px"}} />
         </div>
 <div className="mx-auto">
-    <Button style={{textTransform:"none"}} id="btn" variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>
+    <Button style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>
 </div>
+{loading&&<Delay/>}
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
 <div id="delay" style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className=" flex-col items-center justify-center  fixed  z-10 w-full bottom-0 h-full shp hidden">
 <section className="dots-container">
