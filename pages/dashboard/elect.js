@@ -38,6 +38,7 @@ const Elect=()=>{
        if(res.ok){
 const result= await res.json();
 document.getElementById("userinfo").style.color="green"
+console.log("user",result)
 document.getElementById("userinfo").innerHTML=result.data.customer_name;}
 else{
     document.getElementById("userinfo").style.color="red"
