@@ -191,7 +191,7 @@ return ()=>{
 id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
     <option style={{fontSize:"15px"}} className="rubik-b">Select provider</option>
     {electready && electplan.current.map((opts)=>(
-<option  value={opts.data.biller_code}>{opts.description}</option>)
+<option  value={opts.biller_code}>{opts.description}</option>)
     )}
 </select>
 </div></div>
