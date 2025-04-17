@@ -49,8 +49,8 @@ async function ver1(){
 const billcode=provider.current.value;
     const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
       method:"GET",
-      body:JSON.stringify({data:billcode}),
-      "Content-Type":"application/json",
+      body:JSON.stringify({data:billcode}), headers:{
+      "Content-Type":"application/json"}
     })
 if(res.ok){
 const res1= await res.json();
@@ -71,8 +71,9 @@ useEffect(()=>{
   const fetchElect= async ()=>{
     try{
     const billers= await fetch("https://zonapay.onrender.com/zonapay/elects",{
-      method:"POST",
-      "Content-Type":"application/json",
+      method:"POST", 
+      headers:{
+      "Content-Type":"application/json"}
     })
     if(billers.ok){
       const billers1=await billers.json();
@@ -91,7 +92,6 @@ console.log(e)
        ()=>{
         const handleSubmit= async ()=>{
             if(!pincon){
-                document.getElementById("keyPad").style.display="flex";
                 setShowKeyPad(true)
                 return
               } 

@@ -598,9 +598,9 @@ return res.status(400).send("conerror  : "+e)
 //fetching electricity billers
 server.post("/zonapay/elects",async (req,res)=>{
 const resp= await fetch("https://api.flutterwave.com/v3/bills/UTILITYBILLS/billers?country=NG",{
-  method:"GET",
+  method:"GET",headers:{
   "Content-Type":"application/json",
-  "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`
+  "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`}
 })
 if(resp.ok){
   res.status(200).json(await resp.json())
@@ -614,9 +614,9 @@ server.post("/zonapay/eitemcode",async (req,res)=>{
   try{
 const {data}= req.body
 const resp= await fetch(`https://api.flutterwave.com/v3/billers/${data}/items`,{
-  method:"GET",
+  method:"GET",headers:{
   "Content-Type":"application/json",
-  "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`
+  "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`}
 })
 if(resp.ok){
   res.status(200).json(await resp.json);
