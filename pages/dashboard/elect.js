@@ -44,11 +44,11 @@ else{
     document.getElementById("userinfo").style.color="red"
     document.getElementById("userinfo").innerHTML="failed to verify user";
    }
-       }
-       
+       }   
 async function ver1(){
   try{
 const billcode=provider.current.value;
+console.log("value",billcode)
     const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
       method:"POST",
       body:JSON.stringify({data:billcode}), headers:{

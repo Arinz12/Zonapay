@@ -619,7 +619,8 @@ const resp= await fetch(`https://api.flutterwave.com/v3/billers/${data}/items`,{
   "Authorization":`Bearer ${process.env.FLW_SECRET_KEY}`}
 })
 if(resp.ok){
-  res.status(200).json(await resp.json);
+  const final=await resp.json();
+  res.status(200).json(final);
 }
 else{
   res.status(400).send("failed");
