@@ -50,7 +50,7 @@ async function ver1(){
   try{
 const billcode=provider.current.value;
     const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
-      method:"GET",
+      method:"POST",
       body:JSON.stringify({data:billcode}), headers:{
       "Content-Type":"application/json"}
     })
