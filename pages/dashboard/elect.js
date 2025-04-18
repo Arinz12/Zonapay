@@ -21,12 +21,12 @@ const Elect=()=>{
     const [btnready,setBtnready]=useState(true);
      async function veri(){
       const matcher=/^\d{13}$/
-      if(!matcher.test(acct.current.value)){
+      if(!matcher.test(acct.current.value)||(pre.current.checked!==true&&post.current.checked!==true)||!provider.current.value){
         return
       }
         document.getElementById("userinfo").style.color="blue"
         document.getElementById("userinfo").innerHTML="checking..."
-        const type=(pre.current.checked)? "prepaid":"postpaid"
+        const type=(pre.current.checked)? pre.current.value:post.current.value
 
         const epp= document.getElementById("ep").value
       const meter= acct.current.value
@@ -190,7 +190,7 @@ return ()=>{
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>
 <select ref={provider} onChange={ver1}
 id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
-    <option style={{fontSize:"15px"}} className="rubik-b">Select provider</option>
+    <option style={{fontSize:"15px"}} value={null} className="rubik-b">Select provider</option>
     {electready && electplan.current.map((opts)=>(
 <option  key={opts.id}  value={opts.biller_code}>{opts.description}</option>)
     )}
