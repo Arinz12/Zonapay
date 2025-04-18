@@ -81,7 +81,6 @@ useEffect(()=>{
     })
     if(billers.ok){
       const billers1=await billers.json();
-      setElectReady(true);
       console.log(billers1.data)
 electplan.current=billers1.data
 setElectReady(true);
