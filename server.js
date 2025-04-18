@@ -561,6 +561,7 @@ const isFundsSufficient= balance>amount
     }) 
      if(resp.ok){
 const result=await resp.json();
+console.log(result)
 if(result.status=="success"){
   // console.log(
   //   `token ${result.data.token} units ${result.data.units} amount ${result.data.amount}`);
