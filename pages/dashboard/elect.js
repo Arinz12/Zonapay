@@ -46,7 +46,6 @@ else{
    }
        }
        
-     
 async function ver1(){
   try{
 const billcode=provider.current.value;
@@ -69,8 +68,10 @@ catch(e){
   console.log(e)
 }
 }
+
+//fetch electricity discos
 useEffect(()=>{
-  //fetch electricity discos
+  
   const fetchElect= async ()=>{
     try{
     const billers= await fetch("https://zonapay.onrender.com/zonapay/elects",{
@@ -184,17 +185,19 @@ return ()=>{
         <div style={{fontSize:"25px"}} className="rubik-h ">Electricity</div>
         
         </div>
+
     <div className="w-full bg-white rounded-2xl mb-5">
 <div className="flex flex-col w-full justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>
-<select ref={provider} onChange={ver1} 
+<select ref={provider} onChange={ver1}
 id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
     <option style={{fontSize:"15px"}} className="rubik-b">Select provider</option>
     {electready && electplan.current.map((opts)=>(
-<option  value={opts.biller_code}>{opts.description}</option>)
+<option  key={opts.id}  value={opts.biller_code}>{opts.description}</option>)
     )}
 </select>
 </div></div>
+{/* radio btns for itemcode */}
 <div className="flex flex-row w-11/12 mx-auto justify-evenly gap-5 items-center p-4 bg-white rounded-xl">
 <div className="flex flex-row justify-center gap-3 rounded-2xl">
 <input type="radio" name="pay"  ref={pre}/>
@@ -206,15 +209,19 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent focu
     <label className="rubik-b" htmlFor="post">Postpaid</label>
 </div>
 </div>
+{/* Meter acct no field*/}
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="acct" className="ml-3 rubik-h">Meter/Acct No</label>
 <input onKeyUp={veri}  ref={acct} type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl focus:outline-none ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px"}}/>
 <span id='userinfo' className="rubik-b ml-4"></span>
         </div>
+
+        {/* Amount field */}
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
 <input ref={amt} type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px"}} />
         </div>
+        {/* Button for submission */}
 <div className="mx-auto">
     {btnready && <Button style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>}
 </div>

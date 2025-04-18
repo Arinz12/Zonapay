@@ -215,7 +215,7 @@ useEffect(() => {
       <div style={{fontSize:"25px"}} className="text-black rubik-b">{status.message}</div>
       </div>
       <div style={{backgroundColor:"snow"}} className=" flex flex-col  mt-4 space-y-2 text-center w-11/12 p-6 rounded-xl ">
-        <div className="text-lg font-semibold flex flex-row justify-between"><span>status</span><span>{details.data.status}</span></div>
+        <div className="text-lg font-semibold flex flex-row justify-between"><span>status</span><span>{details.status}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{status.data.amount}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>plan</span><span>{status.data.network}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>iuc</span><span>{status.data.phone_number}</span></div>
