@@ -541,6 +541,7 @@ const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>amount
   if(!isFundsSufficient){
+    console.log("balance issue")
   res.status(400).json({code:"insufficientFund"})
   return;
   }
@@ -549,7 +550,7 @@ const isFundsSufficient= balance>amount
     body:JSON.stringify({
       country:"NG",
       customer_id:iuc,
-      amount:amount,
+      amount:parseInt(amount),
       reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
       callback_url:"https://zonapay.onrender.com/webhook"
     }),
@@ -584,12 +585,13 @@ else{
       const history={user:req.user.Email,
         tid:undefined,
         time:timeinNigeria,
-        amount:amount,
+        amount:parseInt(amount),
         phone:iuc,
         network:"",
         product:"Electricity",
       status:"failed"}
       saveHistory(history);
+      console.log("else",resp)
 res.status(400).end();  }
 }
   catch(e){
@@ -899,7 +901,7 @@ server.post("/webhook",cors(), async (req,res)=>{
 const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
 const obj=req.body.data 
-console.log(obj)
+console.log("webhook",obj)
 if(obj.status=="success"){
 try{ 
 sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);
