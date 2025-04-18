@@ -545,7 +545,7 @@ const isFundsSufficient= balance>amount
   return;
   }
   try{
-    const data=await fetch(`https://api.flutterwave.com/v3/billers/${provider}/items/${vid}/payment`,{method:"Post",
+    const resp=await fetch(`https://api.flutterwave.com/v3/billers/${provider}/items/${vid}/payment`,{method:"Post",
     body:JSON.stringify({
       country:"NG",
       customer_id:iuc,
