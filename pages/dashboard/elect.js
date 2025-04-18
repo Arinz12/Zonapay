@@ -48,7 +48,6 @@ else{
 async function ver1(){
   try{
 const billcode=provider.current.value;
-console.log("value",billcode)
     const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
       method:"POST",
       body:JSON.stringify({data:billcode}), headers:{
@@ -58,8 +57,9 @@ if(res.ok){
 const res1= await res.json();
 const fo=res1.data[0];
 const fo2=res1.data[1];
-pre.current.value =(fo.name.toLowerCase.includes("prepaid"))? fo.item_code:fo2.item_code;
-post.current.value =(fo.name.toLowerCase.includes("postpaid"))? fo.item_code:fo2.item_code;
+pre.current.value =(fo.name.toLowerCase().includes("prepaid"))? fo.item_code:fo2.item_code;
+post.current.value =(fo.name.toLowerCase().includes("postpaid"))? fo.item_code:fo2.item_code;
+console.log(pre.current.value,post.current.value)
 }
 else{
 throw new Error("failed to get item codes")
