@@ -534,7 +534,7 @@ else{
 
 //Electricity
 server.post("/zonapay/electricity",async (req,res)=>{
-  conssole.log(req.body)
+  console.log(req.body)
   const {iuc,provider,amount,vid}=req.body;
   const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)

@@ -4,6 +4,7 @@ import Head from "next/head"
 import { useEffect, useRef, useState } from "react"
 import router from "next/router"
 import NumericPad from "../../components/Numpad"
+import Delay from "../../components/Delay"
 const Elect=()=>{
     const [processed,setProcessed]=useState(false)
     const [details,setDetails]=useState(null)
@@ -39,7 +40,7 @@ const Elect=()=>{
 const result= await res.json();
 document.getElementById("userinfo").style.color="green"
 console.log("user",result)
-document.getElementById("userinfo").innerHTML=result.data.customer_name;}
+document.getElementById("userinfo").innerHTML=result.data.name;}
 else{
     document.getElementById("userinfo").style.color="red"
     document.getElementById("userinfo").innerHTML="failed to verify user";
