@@ -535,7 +535,7 @@ else{
 //Electricity
 server.post("/zonapay/electricity",async (req,res)=>{
   console.log(req.body)
-  const {iuc,provider,amount,vid}=req.body;
+  const {iuc,provider,amount,kind}=req.body;
   const Id = mongoose.Types.ObjectId(req.user._id);
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
@@ -546,7 +546,7 @@ const isFundsSufficient= balance>amount
   return;
   }
   try{
-    const resp=await fetch(`https://api.flutterwave.com/v3/billers/${provider}/items/${vid}/payment`,{method:"Post",
+    const resp=await fetch(`https://api.flutterwave.com/v3/billers/${provider}/items/${kind}/payment`,{method:"Post",
     body:JSON.stringify({
       country:"NG",
       customer_id:iuc,

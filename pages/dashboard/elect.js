@@ -103,6 +103,7 @@ console.log(e)
                 return
               } 
               setShowKeyPad(false)
+              //preparing values for submission
               const type=(pre.current.checked)? pre.current.value:post.current.value
             const data={iuc:acct.current.value,provider:provider.current.value,amount:amt.current.value,kind:type}
             setLoading(true)
