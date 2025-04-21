@@ -168,11 +168,11 @@ if(processed){
       <div style={{fontSize:"20px"}} className="text-black rubik-b">{details.message}</div>
       </div>
         <div style={{backgroundColor:"snow"}} className=" flex flex-col  mt-4 space-y-2 text-center w-11/12 p-6 rounded-xl ">
-        <div className="text-lg font-semibold flex flex-row justify-between"><span>status</span><span>{details.status}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>phone</span><span>{details.data.phone_number}</span></div>
-              <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.reference}</span></div>
+        <div className=" monomaniac-one-regular flex flex-row justify-between"><span>status</span><span>{details.status}</span></div>
+        <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
+        <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
+        <div className="monomaniac-one-regular  flex flex-row justify-between"><span>phone</span><span>{details.data.phone_number}</span></div>
+        <div style={{fontSize:"14px"}} className="monomaniac-one-regular flex flex-row justify-between"><span>reference</span><span>{details.data.reference}</span></div>
 
               {/* <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Code</span><span>{details.data.code}</span></div> */}
               

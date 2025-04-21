@@ -58,17 +58,15 @@ async function val(){
       }})
       if(resp.ok){
         const resp1= await resp.json();
-    if(resp1.code=="success"){
         user.innerHTML=resp1.data.name;
         user.style.color="green"
         user.style.display="block";
-    }
-    else{
+      }
+      else{
         user.innerHTML="failed to verify user"
         user.style.color="red";
         user.style.display="block";
     }
-      }
 }
     catch(e){
         user.innerHTML="failed to verify user"
@@ -254,9 +252,9 @@ setCp(selected.value);
                     <option className="rubik-b" value="startimes">STARTIMES</option>
                 </select>
                <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
-               <input onKeyUp={val}  id="iuc" className="border-0 border-b border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
+               <input onKeyUp={val}  id="iuc" className="border-0 border-b-2 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
                <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
-               <input id="pn" className="border-0 border-b border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
+               <input id="pn" className="border-0 border-b-2 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
    {/* //gotv options */}
  {(cpp=="gotv")&&
  (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
@@ -366,9 +364,10 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 {start&&<Delay/>}
 
     
-           {tvdata.item!=undefined &&<Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3 fixed left-1 right-1 w-3/5 bottom-1 mx-auto rounded-3xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
+ {tvdata.item!=undefined &&<div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className="shp fixed left-0 right-0 bottom-0 w-full  rounded-t-2xl z-10 text-center flex flex-row justify-center items-center">
+            <Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3   w-3/5  mx-auto rounded-2xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 proceed
-                </Button>}
+                </Button></div>}
                 </div>
             </form>
             {showkeypad&& (<NumericPad className="" maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>)}

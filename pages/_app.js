@@ -41,7 +41,7 @@ return (
   <div className={`page-container ${shouldAnimate ? (transitioning&&(router.pathname=="/dashboard") ? "fade-out2": transitioning? 'fade-out1' : 'fade-in') : ''}`}>
   <Head>
   <link rel="manifest" href="/manifest.json"/> 
-  <link rel='favicon' href='/favicon.svg'/>
+  <link rel='icon' href='/favicon.svg' type="image/svg+xml"/>
   </Head>
      <Component {...pageProps} />
    {pages.includes(router.pathname) && <Footer/>}

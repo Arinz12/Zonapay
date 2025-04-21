@@ -1,13 +1,13 @@
 {
-    "name": "Zona",
-    "short_name": "Zona",
-    "description":"A bill payment solution",
+    "name": "Billsly",
+    "short_name": "Billsly",
+    "description":"A bill payment solution by zona web services",
 
     "icons": [
       {
         "src": "/favicon.svg",
         "type": "image/svg+xml",
-        "sizes": "169x169"
+        "sizes": "376x228"
       }
     ],
     "display":"standalone",

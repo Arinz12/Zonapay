@@ -3,175 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fund</title>
+    <title>Fund Payment</title>
     <style>
-      #note{
+      #note {
         animation-name: slide;
         animation-duration: 0.6s;
         animation-iteration-count: 1;
         animation-timing-function: ease-in;
       }
       @keyframes slide {
-        from {
-transform: translateX(200px);}
-to{
-  transform: translateX(0px);
-}
+        from { transform: translateX(200px); }
+        to { transform: translateX(0px); }
       }
     </style>
     <!-- Include Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.flutterwave.com/v3.js"></script></head>
-<body class="bg-gray-100">
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                600: '#2563eb',
+                700: '#1d4ed8',
+              },
+              dark: {
+                800: '#1e293b',
+                900: '#0f172a',
+              }
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-gray-100">
 
-    <div class="flex justify-center items-center min-h-screen">
-        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
-            <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Fund details</h2>
-            <form id="contact-form">
+    <div class="flex justify-center items-center min-h-screen p-4">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-100">
+            <div class="text-center mb-8">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h2 class="text-3xl font-bold mt-4 text-gray-800">Payment Details</h2>
+                <p class="text-gray-500 mt-2">Complete your secure transaction</p>
+            </div>
+            
+            <form id="contact-form" class="space-y-5">
                 <!-- Name Field -->
-                <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="name" name="name" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <div class="relative">
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all" placeholder="John Doe" required>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
+                
                 <!-- Email Field -->
-                <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" id="email" name="email" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <div class="relative">
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all" placeholder="john@example.com" required>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
+                
                 <!-- Phone Field -->
-                <div class="mb-4">
-                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                    <input type="text" id="phone" name="phone" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <div class="relative">
+                        <input type="text" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all" placeholder="+234 800 000 0000" required>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
+                
                 <!-- Amount Field -->
-                <div class="mb-6">
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
-                    <input type="number" id="amount" name="amount" step="0.01" class="w-full p-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                <div>
+                    <label for="amount" class="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="text-gray-500">₦</span>
+                        </div>
+                        <input type="number" id="amount" name="amount" step="0.01" class="w-full pl-8 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all" placeholder="0.00" required>
+                    </div>
                 </div>
+                
                 <!-- Submit Button -->
-                <div class="flex justify-center">
-                  <button class="py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-600 text-white hover:bg-blue-600" type="button" onclick="makePayment()">Pay Now</button>
+                <div class="pt-2">
+                    <button type="button" onclick="makePayment()" class="w-full py-3 px-6 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg shadow-md transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-opacity-50 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                        </svg>
+                        Pay Now
+                    </button>
                 </div>
             </form>
-
-<div id="note" class="fixed top-2 right-1  flex-col gap-2 w-60 sm:w-72 text-[10px] sm:text-5xl z-50 hidden ">
-  <div
-    class="error-alert cursor-default flex items-center justify-between w-full h-20 sm:h-20 rounded-lg bg-[#232531] px-[10px]"
-  >
-    <div class="flex gap-2">
-      <div class="text-[#d65563] bg-white/5 backdrop-blur-xl p-1 rounded-lg">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"
-          ></path>
-        </svg>
-      </div>
-      <div>
-        <p class="text-white" style="font-size: 13px;">Error</p>
-        <p class="text-gray-500" style="font-size: 13px;" id="mnote"></p>
-      </div>
-    </div>
-    <button
-      class="text-gray-600 hover:bg-white/10 p-1 rounded-md transition-colors ease-linear"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M6 18 18 6M6 6l12 12"
-        ></path>
-      </svg>
-    </button>
-  </div>
-</div>
-
         </div>
     </div>
 
-    <!-- Script to handle form submission and store values -->
-    <script>
-async function val(data){
-  try{
-  const res=await fetch("https://zonapay.onrender.com/validatefundform",{method:"post",headers: {
-    'Content-Type': 'application/json',  // Specify content type as JSON
-  },body:JSON.stringify(data)});
-  if(res.ok){
-const res2=await res.json();
-return res2.guid;
-  }
-  else{
-    if(res){
-const res3=await res.json();
+    <!-- Notification Toast -->
+    <div id="note" class="fixed top-4 right-4 flex-col gap-2 w-72 sm:w-80 z-50 hidden">
+        <div class="cursor-default flex items-center justify-between w-full h-20 rounded-xl bg-dark-800 px-4 shadow-lg">
+            <div class="flex gap-3 items-center">
+                <div class="text-red-400 bg-white/5 backdrop-blur-xl p-2 rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0Zm-9 3.75h.008v.008H12v-.008z" />
+                    </svg>
+                </div>
+                <div>
+                    <p class="text-white font-medium text-sm">Error</p>
+                    <p class="text-gray-400 text-xs" id="mnote"></p>
+                </div>
+            </div>
+            <button class="text-gray-400 hover:text-white p-1 rounded-md transition-colors" onclick="document.getElementById('note').style.display='none'">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </div>
 
-document.getElementById("mnote").innerHTML=res3.errors[0].msg
-document.getElementById("note").style.display="flex"
-setTimeout(()=>{document.getElementById("note").style.display="none"
-},3000)
-console.log(res3.errors);
-return
-    }
-    console.log("bad response")
-    return
-  }
-    }
-      catch(e){
-console.log(e)
-document.getElementById("mnote").innerHTML="check your connection"
-document.getElementById("note").style.display="flex"
-setTimeout(()=>{document.getElementById("note").style.display="none"
-},3000)
-      }
-}
-           async function makePayment() {
-              const name = document.getElementById('name').value;
+    <!-- Script (unchanged from original) -->
+    <script>
+        async function val(data){
+            try {
+                const res = await fetch("https://zonapay.onrender.com/validatefundform", {
+                    method: "post",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                if(res.ok) {
+                    const res2 = await res.json();
+                    return res2.guid;
+                } else {
+                    if(res) {
+                        const res3 = await res.json();
+                        document.getElementById("mnote").innerHTML = res3.errors[0].msg;
+                        document.getElementById("note").style.display = "flex";
+                        setTimeout(() => {
+                            document.getElementById("note").style.display = "none";
+                        }, 3000);
+                        return;
+                    }
+                    return;
+                }
+            } catch(e) {
+                console.log(e);
+                document.getElementById("mnote").innerHTML = "Check your connection";
+                document.getElementById("note").style.display = "flex";
+                setTimeout(() => {
+                    document.getElementById("note").style.display = "none";
+                }, 3000);
+            }
+        }
+
+        async function makePayment() {
+            const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const amount = document.getElementById('amount').value;
-            const uid=  await val({name:name,email:email,phone:phone,amount:amount});
-            if(!uid){
-              return
-            }
-  FlutterwaveCheckout({
-    public_key: "FLWPUBK-254af65d33d3f2e4cbfa5e025673d67f-X",
-    tx_ref: uid,
-    amount: amount ,
-    currency: "NGN",
-    payment_options: "card, mobilemoneyghana, ussd",
-    redirect_url: "https://zonapay.onrender.com/done",
-    meta: {
-      consumer_id: 23,
-      consumer_mac: "92a3-912ba-1192a",
-    },
-    customer: {
-      email: email,
-      phone_number: phone,
-      name: name,
-    },
-    customizations: {
-      title: "The Titanic Store",
-      description: "Payment for an awesome cruise",
-      logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
-    }
-  });
-
-};
+            
+            const uid = await val({name:name, email:email, phone:phone, amount:amount});
+            if(!uid) return;
+            
+            FlutterwaveCheckout({
+                public_key: "FLWPUBK-254af65d33d3f2e4cbfa5e025673d67f-X",
+                tx_ref: uid,
+                amount: amount,
+                currency: "NGN",
+                payment_options: "card, mobilemoneyghana, ussd",
+                redirect_url: "https://zonapay.onrender.com/done",
+                meta: {
+                    consumer_id: 23,
+                    consumer_mac: "92a3-912ba-1192a",
+                },
+                customer: {
+                    email: email,
+                    phone_number: phone,
+                    name: name,
+                },
+                customizations: {
+                    title: "The Titanic Store",
+                    description: "Payment for an awesome cruise",
+                    logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+                }
+            });
+        };
     </script>
-
 </body>
 </html>
