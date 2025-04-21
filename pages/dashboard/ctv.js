@@ -364,7 +364,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 {start&&<Delay/>}
 
     
- {tvdata.item!=undefined &&<div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className="shp fixed left-0 right-0 bottom-0 w-full  rounded-t-2xl z-10 text-center flex flex-row justify-center items-center">
+ {tvdata.item!=undefined &&<div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(9px)"}} className="shp fixed left-0 right-0 bottom-0 w-full p-8  rounded-t-2xl z-10 text-center flex flex-row justify-center items-center">
             <Button  ref={btnref} type="submit" endIcon={<ArrowForward/>} className="p-3   w-3/5  mx-auto rounded-2xl  bg-blue-600" variant="contained" sx={{textTransform:"none"}}>
                 proceed
                 </Button></div>}
