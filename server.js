@@ -718,7 +718,7 @@ server.get("/done",async (req,res)=>{
   }
   catch(e){
     res.send("VERIFICATION FAILED");
-  }
+  } 
   
 })
 
