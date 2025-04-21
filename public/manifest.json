@@ -5,9 +5,9 @@
 
     "icons": [
       {
-        "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3P1gMGpYjtZqcmrzIiRkxddSL4oGzV3ihrQ&s",
-        "type": "image/png",
-        "sizes": "225x225"
+        "src": "/favicon.svg",
+        "type": "image/svg+xml",
+        "sizes": "169x169"
       }
     ],
     "display":"standalone",

@@ -20,8 +20,10 @@ const dstvplans= useRef([]);
 const [tvdata,setTv]=useState({})
 const btnref=useRef(null)
 const [showkeypad,setShowKeyPad]= useState(false);
+const [tvready,setTvready]=useState(false)
 
 async function val(){
+  let data
     const valu=document.getElementById("iuc").value;
     const cp=document.getElementById("cp").value;
     const user=document.getElementById("user")
@@ -34,14 +36,22 @@ async function val(){
     }
     else{
         if(valu.toString().length<10||!opts.includes(cp)){
-        console.log("invalid iuc")
+        console.log("invalid iuc");
         return
     }}
     user.style.display="block";
     user.style.color="green"
     user.innerHTML="checking..."
-    const data={iuc:valu,cableprovider:cp}
-    try{
+    if(cp=="gotv"){
+     data ={iuc:valu,provider:"BIL122",vid:"CB188"}
+    }
+    else if(cp=="dstv"){
+      data ={iuc:valu,provider:"BIL121",vid:"CB177"}
+    }
+    else{
+      data ={iuc:valu,provider:"BIL123",vid:"CB189"}
+    }
+        try{
     const resp=await fetch("https://zonapay.onrender.com/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
         "Content-Type": "application/json",
         "Accept": "application/json"
@@ -49,7 +59,7 @@ async function val(){
       if(resp.ok){
         const resp1= await resp.json();
     if(resp1.code=="success"){
-        user.innerHTML=resp1.data.customer_name;
+        user.innerHTML=resp1.data.name;
         user.style.color="green"
         user.style.display="block";
     }
@@ -100,7 +110,8 @@ useEffect( ()=>{
    if(res.ok){
      const resp=await res.json();
      console.log(resp.data)
-   gotvplans.current=resp.data
+   gotvplans.current=resp.data;
+   setTvready(true)
    
    }else{
      console.log("failed to fetch data plans for gotv")
@@ -108,12 +119,14 @@ useEffect( ()=>{
    if(res2.ok){
      const resp=await res2.json();
    dstvplans.current=resp.data
+   setTvready(true)
    }else{
      console.log("failed to fetch data plans for dstv")
    }
    if(res3.ok){
      const resp=await res3.json();
    starplans.current=resp.data
+   setTvready(true)
    }else{
      console.log("failed to fetch data plans for startimes")
    }
@@ -124,8 +137,6 @@ useEffect( ()=>{
  }}
    fetchtv();
    },[]);
-
-
 useEffect(()=>{
   if(!status==null){
   setPro(true)}
@@ -243,12 +254,13 @@ setCp(selected.value);
                     <option className="rubik-b" value="startimes">STARTIMES</option>
                 </select>
                <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
-               <input onKeyUp={val}  id="iuc" className="border-0 border-b-4 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"  /> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
+               <input onKeyUp={val}  id="iuc" className="border-0 border-b border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
                <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
-               <input id="pn" className="  border-0 border-b-4 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
+               <input id="pn" className="border-0 border-b border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
    {/* //gotv options */}
- {(cpp=="gotv")&& (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
-{gotvplans.current.map((opts)=>(
+ {(cpp=="gotv")&&
+ (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
+{tvready&& gotvplans.current.map((opts)=>(
   <div
    onClick={
     ()=>{
@@ -284,7 +296,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 {/* dstv options */}
 {(cpp=="dstv")&&(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
-{dstvplans.current.map((opts)=>(
+{tvready&& dstvplans.current.map((opts)=>(
   <div onClick={
     ()=>{
 setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
@@ -319,7 +331,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 {/* startimes option */}
 {(cpp=="startimes")&&(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
-{starplans.current.map((opts)=>(
+{ tvdata && starplans.current.map((opts)=>(
   <div onClick={
     ()=>{
 setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
