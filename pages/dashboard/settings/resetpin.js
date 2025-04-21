@@ -128,6 +128,24 @@ const ForgotPin = () => {
           >
             Continue
           </Button>
+          <Button
+        onClick={()=>{router.reload()}
+      }
+        className="bg-blue-400 mt-4" 
+          type="submit"
+          fullWidth
+          variant="text"
+          sx={{py: 1.5,
+            borderRadius: "12px",
+            textTransform: "none",
+            fontSize: "1rem",
+            "&:hover": {
+              backgroundColor: "#152A4A"
+            }
+          }}
+        >
+          Resend code
+        </Button>
         </form>
       </div>
     </div>
