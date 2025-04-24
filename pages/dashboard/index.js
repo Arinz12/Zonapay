@@ -70,6 +70,7 @@ const Dashboard = ({obj}) => {
              
         </div>
         <div  className='ml-2 mr-2 px-4 py-7 mt-5 bg-white rounded-2xl '>
+            <div className='text-center w-full mb-3 rubik-b'>Quick actions</div>
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
                <Link href="/dashboard/airtime">{<div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">

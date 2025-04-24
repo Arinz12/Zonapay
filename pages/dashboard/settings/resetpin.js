@@ -42,7 +42,7 @@ const ForgotPin = () => {
               variant="contained"
               startIcon={<ArrowBack />}
               sx={{
-                backgroundColor: "#1E3A5F",
+                backgroundColor: "#2563EB",
                 py: 1.5,
                 borderRadius: "12px",
                 textTransform: "none",

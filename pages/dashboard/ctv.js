@@ -235,7 +235,7 @@ useEffect(() => {
   </div>: <div className="" style={{backgroundColor:"whitesmoke"}}>
   <div style={{fontSize:"26px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
 
-        <div onClick={()=>{router.back()}} style={{}}className="p-6 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
+        <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className=""/> </div>
           <div>Cable Tv</div>
           </div>
 
@@ -251,9 +251,9 @@ setCp(selected.value);
                     <option className="rubik-b" value="startimes">STARTIMES</option>
                 </select>
                <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
-               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} onKeyUp={val}  id="iuc" className="border-0 rounded-2xl border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
+               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} onKeyUp={val}  id="iuc" className="border-0 rounded-2xl p-4 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
                <div className= "flex flex-col  mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
-               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} id="pn" className="border-0 rounded-2xl border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
+               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} id="pn" className="border-0 rounded-2xl border-blue- p-4 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
    {/* //gotv options */}
  {(cpp=="gotv")&&
  (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
