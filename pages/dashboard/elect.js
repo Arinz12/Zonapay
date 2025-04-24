@@ -181,7 +181,7 @@ return ()=>{
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div className=" w-full h-full flex flex-col gap-4 items-center" style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
-    <div style={{fontSize:"26px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
+    <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-7">
 
 <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
   <div>Electricity</div>
@@ -213,14 +213,14 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
 {/* Meter acct no field*/}
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="acct" className="ml-3 rubik-h">Meter/Acct No</label>
-<input onKeyUp={veri} placeholder="XXXXXXXXXXX" ref={acct} type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl my-4 focus:outline-none ml-3 rounded-2xl border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
+<input onKeyUp={veri} placeholder="XXXXXXXXXXX" ref={acct} type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl my-4 focus:outline-none ml-3 rounded-2xl p-3 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
 <span id='userinfo' className="rubik-b ml-4"></span>
         </div>
 
         {/* Amount field */}
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
-<input ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}} />
+<input ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
         </div>
         {/* Button for submission */}
 <div className="mx-auto">

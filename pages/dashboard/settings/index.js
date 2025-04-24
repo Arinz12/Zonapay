@@ -1,13 +1,16 @@
 import { Button } from "@mui/material"
-import { AlarmAddRounded, SettingsAccessibilityRounded } from "@mui/icons-material"
+import { AlarmAddRounded, LogoutRounded, SettingsAccessibilityRounded } from "@mui/icons-material"
 import { ArrowForwardIosRounded } from "@mui/icons-material"
 import { Settings as Seticon } from "@mui/icons-material";
 import Head from "next/head"
 import Num from "../../../components/Number";
 import Link from "next/link"
 import router from "next/router";
+import Delay from "../../../components/Delay";
+import { useState } from "react";
 
 const Settings=()=>{
+    const [logout,setLogout]=useState(false)
 return(<>
 <Head>
     <title>Settings</title>
@@ -41,6 +44,23 @@ return(<>
 </div>
 <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>}</Link>
+
+
+
+   <Link href={"https://zonapay.onrender.com/zonapay/logout"}>
+    {<div onClick={()=>{
+        setLogout(true)
+    }} style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
+   <div className="flex flex-row justify-start items-center">
+    <div style={{height:"40px",width:"40px", borderRadius:"50%"}}className="flex flex-row bg-blue-600 items-center justify-center" >
+    <LogoutRounded sx={{color:"white"}}/></div>
+<div style={{fontSize:"20px"}} className="ml-3 rubik-b text-black">Log out</div>
+</div>
+<ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
+   </div>}</Link>
+
+   {logout&&<Delay/>}
+
 
    
 

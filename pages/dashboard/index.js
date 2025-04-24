@@ -50,9 +50,7 @@ const Dashboard = ({obj}) => {
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
             </div>
-           <Link href={"https://zonapay.onrender.com/zonapay/logout"} ><div style={{borderRadius:"50%"}} className='bg-blue-100 p-1 flex flex-row items-center'>
-                <LogoutRounded  sx={{backgroundColor:"a",padding:"10px",height:"40px",width:"40px",color:"black"}}/>
-            </div></Link> 
+          
         </div>
         <div className=''>
             
