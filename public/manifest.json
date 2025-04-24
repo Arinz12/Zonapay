@@ -5,9 +5,9 @@
 
     "icons": [
       {
-        "src": "/favicon.svg",
-        "type": "image/svg+xml",
-        "sizes": "192x192"
+        "src": "/favicon.png",
+        "type": "image/png",
+        "sizes": "482x285"
       }
     ],
     "display":"standalone",
