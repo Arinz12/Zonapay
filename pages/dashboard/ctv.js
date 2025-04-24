@@ -1,5 +1,5 @@
 import "@fontsource/roboto"
-import { ArrowBackIosRounded, ArrowForward, CheckCircle } from "@mui/icons-material";
+import { ArrowBack, ArrowBackIosRounded, ArrowForward, CheckCircle } from "@mui/icons-material";
 import { Paper, Button } from "@mui/material"
 import Head from "next/head"
 import { useEffect, useRef, useState } from "react";
@@ -233,12 +233,11 @@ useEffect(() => {
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
           </div>
   </div>: <div className="" style={{backgroundColor:"whitesmoke"}}>
-  <div style={{fontSize:"26px"}} className="rubik-h z-10 w-full sticky top-0 text-white bg-blue-600 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
+  <div style={{fontSize:"26px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
 
-  <div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%",height:"30px",width:"30px"}}className="p-6 flex flex-row items-center justify-center"><ArrowBackIosRounded sx={{color:"white"}} className="text-blue-600" /> </div>
-  <div>Cable Tv</div>
-  
-  </div>
+        <div onClick={()=>{router.back()}} style={{}}className="p-6 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
+          <div>Cable Tv</div>
+          </div>
 
             <form  method="post" className="w-full" id="form">
                 <div className="flex flex-col gap-8 mx-auto p-6 bg-white rounded-xl " style={{width:"100%"}}>
@@ -252,9 +251,9 @@ setCp(selected.value);
                     <option className="rubik-b" value="startimes">STARTIMES</option>
                 </select>
                <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
-               <input onKeyUp={val}  id="iuc" className="border-0 border-b-2 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
-               <div className= "flex flex-col mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
-               <input id="pn" className="border-0 border-b-2 border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
+               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} onKeyUp={val}  id="iuc" className="border-0 rounded-2xl border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="Decoder number"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
+               <div className= "flex flex-col  mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}> Phone number</label>
+               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} id="pn" className="border-0 rounded-2xl border-blue-600 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
    {/* //gotv options */}
  {(cpp=="gotv")&&
  (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">

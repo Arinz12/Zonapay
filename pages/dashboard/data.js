@@ -271,11 +271,12 @@ if(processed){
     </Head>
     <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-start w-full md:w-9/12">
 
-    <div style={{fontSize:"30px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-16">
-    <div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%",height:"30px",width:"30px"}}className="p-6 flex flex-row items-center justify-center"><ArrowBackIosRounded sx={{color:"white"}} className="text-blue-600" /> </div>
-        <div style={{fontSize:"26px"}} className="rubik-h ">Data purchase</div>
-        
-        </div>
+    <div style={{fontSize:"26px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
+
+        <div onClick={()=>{router.back()}} style={{}}className="p-6 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
+          <div>Data</div>
+          
+          </div>
 
 <form id="form" style={{backgroundColor:"white"}} className="w-11/12 p-4 rounded-2xl mb-8 flex flex-col" encType="multipart/form-data">
     <div>
@@ -301,7 +302,7 @@ if(processed){
 
 <div className="pt-7">
     <label htmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input style={{fontSize:"25px"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
+<input style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
 
 {net === "mtn" && (
   <div className="pt-7">
@@ -386,7 +387,7 @@ if(processed){
 )}
 
 {(price>0)?
-<input readOnly value={price} style={{fontSize:"15px"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" />:null}
+<input readOnly value={price} style={{fontSize:"15px",backgroundColor:"whitesmoke"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" />:null}
 { loading? <Delay/> : <Button ref={ready} className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
 

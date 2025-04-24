@@ -1,4 +1,4 @@
-import { ArrowBackIosRounded,CheckCircle,Forward, ForwardRounded } from "@mui/icons-material"
+import { ArrowBack, ArrowBackIosRounded,CheckCircle,Forward, ForwardRounded } from "@mui/icons-material"
 import { Button, Paper, Typography } from "@mui/material"
 import Head from "next/head"
 import { useEffect, useRef, useState } from "react"
@@ -181,12 +181,12 @@ return ()=>{
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div className=" w-full h-full flex flex-col gap-4 items-center" style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
-    <div style={{fontSize:"26px"}} className="rubik-h w-full bg-blue-600 text-white px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-9">
-    <div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%",height:"30px",width:"30px"}}className="p-6 flex flex-row items-center justify-center"><ArrowBackIosRounded sx={{color:"white"}} className="text-blue-600" /> </div>
-        <div style={{fontSize:"25px"}} className="rubik-h ">Electricity</div>
-        
-        </div>
+    <div style={{fontSize:"26px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
 
+<div onClick={()=>{router.back()}} style={{}}className="p-6 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
+  <div>Electricity</div>
+  
+  </div>
     <div className="w-full bg-white rounded-2xl mb-5">
 <div className="flex flex-col w-full justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>

@@ -132,7 +132,7 @@ const ForgotPin = () => {
         onClick={()=>{router.reload()}
       }
         className="bg-blue-400 mt-4" 
-          type="submit"
+          type="button"
           fullWidth
           variant="text"
           sx={{py: 1.5,

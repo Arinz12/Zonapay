@@ -216,10 +216,10 @@ catch(e){
     <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-start w-full md:w-9/12">
     
 
-        <div style={{fontSize:"26px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-7 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
+        <div style={{fontSize:"26px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
 
-        <div onClick={()=>{router.back()}} style={{backgroundColor:"white",borderRadius:"50%",height:"30px",width:"30px"}}className="p-6 flex flex-row items-center justify-center"><ArrowBackIosRounded sx={{color:"white"}} className="text-blue-600" /> </div>
-          <div>Airtime purchase</div>
+        <div onClick={()=>{router.back()}} style={{}}className="p-6 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
+          <div>Airtime</div>
           
           </div>
 
@@ -245,11 +245,11 @@ catch(e){
     </div>
     <div className="pt-7">
     <label htmlFor="amt" className="rubik-h pb-3">Amount</label>
-<input autoComplete={"off"} style={{fontSize:"30px"}} type="number" id="amt"  name="amount" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
+<input autoComplete={"off"} style={{fontSize:"30px",backgroundColor:"whitesmoke"}} type="number" id="amt"  name="amount" placeholder="0.00" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl " /></div>
 
 <div className="pt-7">
     <label HtmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input inputMode="numeric" autoComplete={"off"} style={{fontSize:"25px"}} type="string"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 border-b-2 border-black" /></div>
+<input inputMode="numeric" autoComplete={"off"} style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
 
 { loading?  <Delay/> : <Button  ref={ready} className=" bg-blue-600 text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
