@@ -67,9 +67,12 @@ const Forgot = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-blue-50 to-white">
       {/* Header */}
-      <div className="bg-blue-600 text-white text-xl font-bold text-center px-6 py-5 rounded-b-2xl shadow-md sticky top-0 z-10">
-        Password Reset
-      </div>
+      <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
+
+        <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
+          <div>Password Reset</div>
+          
+          </div>
 
       {/* Notification */}
       <div className="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 p-4 rounded-lg mx-auto mt-6 max-w-md">
@@ -85,7 +88,7 @@ const Forgot = () => {
         method="post"
       >
         <div className="space-y-1">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="email" className="block text-sm font-medium text-black">
             Email
           </label>
           <input
@@ -145,8 +148,8 @@ const Forgot = () => {
         <Button
         onClick={()=>{router.reload()}
       }
-        className="bg-blue-400 mt-4" 
-          type="submit"
+        className=" mt-4" 
+          type="button"
           fullWidth
           variant="text"
           sx={{py: 1.5,

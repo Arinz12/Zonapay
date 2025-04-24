@@ -62,12 +62,14 @@ const ForgotPin = () => {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-blue-50 to-white">
-      <div className="max-w-md w-full mx-auto p-6">
-        {/* Header */}
         
-        <div className="bg-blue-600 text-white text-xl font-bold text-center px-6 py-5 rounded-b-2xl shadow-md mb-8">
-          PIN Reset
-        </div>
+        
+        <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
+
+        <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
+          <div>Pin Reset</div>
+          
+          </div>
 
         {/* Notification */}
         <div className="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 p-4 rounded-lg mb-8 shadow-sm">
@@ -131,7 +133,7 @@ const ForgotPin = () => {
           <Button
         onClick={()=>{router.reload()}
       }
-        className="bg-blue-400 mt-4" 
+        className="mt-4" 
           type="button"
           fullWidth
           variant="text"
@@ -148,7 +150,7 @@ const ForgotPin = () => {
         </Button>
         </form>
       </div>
-    </div>
+    
   );
 };
 

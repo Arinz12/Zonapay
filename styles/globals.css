@@ -323,3 +323,17 @@ button, a, input ,div {
    .animate-scale-up {
      animation: scale-up 0.5s ease-out;
    }
+   .fdn{
+    animation-name: fdn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+   }
+   @keyframes fdn {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 1;
+    }
+   }
