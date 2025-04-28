@@ -245,11 +245,11 @@ catch(e){
     </div>
     <div className="pt-7">
     <label htmlFor="amt" className="rubik-h pb-3">Amount</label>
-<input autoComplete={"off"} style={{fontSize:"30px",backgroundColor:"whitesmoke"}} type="number" id="amt"  name="amount" placeholder="0.00" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl " /></div>
+<input autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="number" id="amt"  name="amount" placeholder="0.00" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl " /></div>
 
 <div className="pt-7">
     <label HtmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input inputMode="numeric" autoComplete={"off"} style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
+<input inputMode="numeric" autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
 
 { loading?  <Delay/> : <Button  ref={ready} className=" bg-blue-600 text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
