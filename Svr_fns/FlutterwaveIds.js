@@ -30,4 +30,4 @@ async function addFlid(name){
  Ids:[]
 })
 }
-module.exports={updateFlid}
+module.exports={updateFlid,Flid}

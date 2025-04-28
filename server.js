@@ -30,6 +30,7 @@ const bcrypt=require("bcrypt");
 const cors= require("cors");
 const { otp } = require('./flib/forgotPass');
 const { verif } = require("./Svr_fns/verifyBills");
+const { updateFlid, Flid, Flid } = require("./Svr_fns/FlutterwaveIds");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -712,7 +713,12 @@ server.get("/done",async (req,res)=>{
   const tx_ref=req.query.tx_ref;
   const transaction_id= req.query.transaction_id;
   console.log(tx_ref)
-  //check if id has been verified before it yes redirect
+  //check if id has been verified before. If yes redirect
+  const flidObj=await Flid.findOne({Customer:req.user.Email})
+  if(flidObj.Ids.includes(transaction_id)){
+    console.log("This transaction has already been settled")
+    res.redirect("/dashboard");
+  }
   console.log(transaction_id)
     try{await vet(tx_ref,transaction_id,Id,req.user.Email)
   res.redirect("/dashboard");
