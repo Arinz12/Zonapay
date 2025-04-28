@@ -10,7 +10,7 @@ Ids:{type:[Number],default:[]}
 const Flid=mongoose.models.Flid||mongoose.model("Flid",IdSchema);
 
 async function updateFlid(name,id){
-   const exist= await Flid.find({Customer:name})
+   const exist= await Flid.findOne({Customer:name})
    if(exist){
 await Flid.updateOne({Customer:name},{$push:{Ids:id}})
 console.log("txnid has been saved")

@@ -78,5 +78,4 @@ async function vet(ref, transactionId, ID, user) {
         throw new Error(`Transaction verification failed: ${error.message}`);
     }
 }
-
 module.exports = vet;
