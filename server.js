@@ -30,7 +30,7 @@ const bcrypt=require("bcrypt");
 const cors= require("cors");
 const { otp } = require('./flib/forgotPass');
 const { verif } = require("./Svr_fns/verifyBills");
-const { updateFlid, Flid, Flid } = require("./Svr_fns/FlutterwaveIds");
+const { updateFlid,Flid } = require("./Svr_fns/FlutterwaveIds");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
