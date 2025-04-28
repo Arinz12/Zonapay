@@ -3,6 +3,7 @@ require("dotenv").config();
 const Flutterwave = require('flutterwave-node-v3');
 const sendd = require("../flib/mailsender");
 const { User } = require("./createuser");
+const { updateFlid } = require("./FlutterwaveIds");
 
 async function vet(ref, transactionId, ID, user) {
     // Validate input parameters
@@ -38,37 +39,29 @@ async function vet(ref, transactionId, ID, user) {
             if (!updatedUser) {
                 throw new Error('User not found');
             }
+          await  updateFlid(updatedUser.Email,transactionId);
 
             console.log(`Funding successful - Ref: ${ref}, Transaction ID: ${transactionId}, Amount: ${response.data.amount}`);
             
             // Send success notification
             await sendd(
                 "igwebuikea626@gmail.com",
-                `${response.data.amount} NGN has been deposited by ${user} at ${response.data.created_at}`,
-                `Transaction ID: ${transactionId}`
+                `${response.data.amount} NGN has been deposited by ${user} at ${response.data.created_at}`
             );
 
-            return {
-                success: true,
-                amount: response.data.amount,
-                transactionId,
-                user: updatedUser
-            };
-        } else {
+            return 
+        } 
+        else {
             console.warn('Transaction verification failed:', response.data);
             await sendd(
                 "igwebuikea626@gmail.com",
                 `FUNDING FAILED for user ${user}`,
-                `Transaction ID: ${transactionId}, Status: ${response.data?.status}`
             );
             
-            return {
-                success: false,
-                reason: 'Transaction validation failed',
-                data: response.data
-            };
+            return
         }
-    } catch (error) {
+    }
+     catch (error) {
         console.error('Verification error:', {
             error: error.message,
             stack: error.stack,
@@ -80,7 +73,6 @@ async function vet(ref, transactionId, ID, user) {
         await sendd(
             "igwebuikea626@gmail.com",
             `FUNDING ERROR for user ${user}`,
-            `Error: ${error.message}\nTransaction ID: ${transactionId}`
         );
 
         throw new Error(`Transaction verification failed: ${error.message}`);

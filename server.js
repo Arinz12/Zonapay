@@ -712,12 +712,14 @@ server.get("/done",async (req,res)=>{
   const tx_ref=req.query.tx_ref;
   const transaction_id= req.query.transaction_id;
   console.log(tx_ref)
+  //check if id has been verified before it yes redirect
   console.log(transaction_id)
     try{await vet(tx_ref,transaction_id,Id,req.user.Email)
   res.redirect("/dashboard");
   }
   catch(e){
-    res.send("VERIFICATION FAILED");
+console.log("Error caught...")
+    res.redirect("/dashboard")
   } 
   
 })
