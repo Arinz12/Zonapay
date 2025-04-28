@@ -717,7 +717,7 @@ server.get("/done",async (req,res)=>{
   const flidObj=await Flid.findOne({Customer:req.user.Email})
   if(flidObj.Ids.includes(transaction_id)){
     console.log("This transaction has already been settled")
-    res.redirect("/dashboard");
+   return  res.redirect("/dashboard");
   }
   console.log(transaction_id)
     try{await vet(tx_ref,transaction_id,Id,req.user.Email)

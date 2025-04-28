@@ -44,7 +44,7 @@ async function vet(ref, transactionId, ID, user) {
             console.log(`Funding successful - Ref: ${ref}, Transaction ID: ${transactionId}, Amount: ${response.data.amount}`);
             
             // Send success notification
-            await sendd(
+         sendd(
                 "igwebuikea626@gmail.com",
                 `${response.data.amount} NGN has been deposited by ${user} at ${response.data.created_at}`
             );
@@ -62,20 +62,14 @@ async function vet(ref, transactionId, ID, user) {
         }
     }
      catch (error) {
-        console.error('Verification error:', {
-            error: error.message,
-            stack: error.stack,
-            transactionId,
-            ref,
-            user
-        });
+        console.log("Error was caught in the verifyT module")
 
         await sendd(
             "igwebuikea626@gmail.com",
             `FUNDING ERROR for user ${user}`,
         );
 
-        throw new Error(`Transaction verification failed: ${error.message}`);
+        return
     }
 }
 module.exports = vet;
