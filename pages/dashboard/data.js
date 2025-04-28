@@ -302,7 +302,7 @@ if(processed){
 
 <div className="pt-7">
     <label htmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
+<input style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none mb-12 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
 
 {net === "mtn" && (
   <div className="pt-7">
@@ -330,7 +330,6 @@ if(processed){
     </select>
   </div>
 )}
-
 
 {net === "airtel" && (
   <div className="pt-7">
@@ -387,8 +386,8 @@ if(processed){
 )}
 
 {(price>0)?
-<input readOnly value={price} style={{fontSize:"15px",backgroundColor:"whitesmoke"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" />:null}
-{ loading? <Delay/> : <Button ref={ready} className="text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
+<input readOnly value={price} style={{fontSize:"15px",backgroundColor:"whitesmoke"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 mb-12 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" />:null}
+{ loading? <Delay/> : <Button ref={ready} className="text-white w-3/5 mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
 
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}

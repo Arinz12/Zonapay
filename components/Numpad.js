@@ -57,7 +57,7 @@ const NumericPad = ({ maxLength = 4, onSubmit, hideComp }) => {
             value={pin[index] || ""}
             readOnly
             maxLength={1}
-            className="w-12 h-12 text-center text-2xl rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-7 h-7 text-center text-2xl rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
             style={{
               border: "1px solid #ddd",
               backgroundColor: "white"
