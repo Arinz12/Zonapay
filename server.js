@@ -209,6 +209,7 @@ if(resp.ok){
     await User.findByIdAndUpdate(Id, { $inc: { Balance: -amt } },  { new: true } )
   res.status(200).json(resp2);
   }
+
   else{
     res.status(400).json(resp2)
   }
