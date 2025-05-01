@@ -7,7 +7,7 @@ import {Cancel,ArrowBack,Error} from "@mui/icons-material"
     <div className="flex flex-col gap-8 justify-center items-center">
     <Error sx={{color:"yellow",height:"130px",width:"130px"}}/>
       <div className="rubik-b">Your request is processing</div>
-      <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
+      <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>Home</Button>}</Link>
         </div>
 </div>
     </>)

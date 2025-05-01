@@ -177,7 +177,7 @@ if(processed){
               {/* <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Code</span><span>{details.data.code}</span></div> */}
               
           </div>
-          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>GO to Home</Button>}</Link>
+          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>GO to Home</Button>}</Link>
           </div>
   </div> : <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
     <div className="flex flex-col gap-8 justify-center items-center">
@@ -252,7 +252,6 @@ catch(e){
 <input inputMode="numeric" autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2  w-full h-12 rubik-h border-0 rounded-2xl" /></div>
 { loading?  <Delay/> : <Button  ref={ready} className=" mx-auto bg-blue-600 w-3/6 text-white mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
 </form>
-
 
    {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
    <div id="wrongpin" className=" z-10 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-blue-600 p-2 rounded-xl text-center hidden shp">Incorrect pin</div>

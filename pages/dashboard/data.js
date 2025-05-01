@@ -251,13 +251,13 @@ if(processed){
               <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.reference}</span></div>
               {/* <div className="text-lg font-semibold flex flex-row justify-between"><span>Code</span><span>{details.data.data_plan}</span></div> */}
           </div>
-          <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
+          <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>Home</Button>}</Link>
           </div>
   </div> : <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
     <div className="flex flex-col gap-8 justify-center items-center">
     <Cancel sx={{color:"red",height:"130px",width:"130px"}}/>
       <div className="rubik-h">Something went wrong {" "+" "+details.error}</div>
-      <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#1E3A5F"}}>Home</Button>}</Link>
+      <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>Home</Button>}</Link>
         </div>
 </div>}
   </>
