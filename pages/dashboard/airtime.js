@@ -177,7 +177,7 @@ if(processed){
               {/* <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Code</span><span>{details.data.code}</span></div> */}
               
           </div>
-          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>GO to Home</Button>}</Link>
+          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>Home</Button>}</Link>
           </div>
   </div> : <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
     <div className="flex flex-col gap-8 justify-center items-center">
@@ -216,7 +216,7 @@ catch(e){
     <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-start w-full md:w-9/12">
     
 
-        <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
+        <div style={{fontSize:"23px"}} className="rubik-h sticky top-0 w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
 
         <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
           <div>Airtime</div>

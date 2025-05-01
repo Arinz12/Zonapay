@@ -131,7 +131,7 @@ const Forgot = () => {
         </div>
 
         <Button className="bg-blue-600" 
-          type="button"
+          type="submit"
           fullWidth
           variant="contained"
           sx={{py: 1.5,

@@ -271,7 +271,7 @@ if(processed){
     </Head>
     <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-start w-full md:w-9/12">
 
-    <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
+    <div style={{fontSize:"23px"}} className="rubik-h sticky top-0 w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
 
         <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
           <div>Data</div>
@@ -302,10 +302,10 @@ if(processed){
 
 <div className="pt-7">
     <label htmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none mb-12 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
+<input style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none mb-5 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
 
 {net === "mtn" && (
-  <div className="pt-7">
+  <div className="pt-4 pb-7">
     <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
     <select onChange={(e) => {
     // Get the selected option element
@@ -332,7 +332,7 @@ if(processed){
 )}
 
 {net === "airtel" && (
-  <div className="pt-7">
+  <div className="pt-4 pb-7">
     <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
     <select onChange={(e) => {
     // Get the selected option element
@@ -359,7 +359,7 @@ if(processed){
 )}
 
 {net === "glo" && (
-  <div className="pt-7">
+  <div className="pt-4 pb-7">
     <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
     <select onChange={(e) => {
     // Get the selected option element

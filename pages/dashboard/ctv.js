@@ -233,7 +233,7 @@ useEffect(() => {
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>Home</Button>}</Link>
           </div>
   </div>: <div className="" style={{backgroundColor:"whitesmoke"}}>
-  <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
+  <div style={{fontSize:"23px"}} className="rubik-h sticky top-0 w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
 
         <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className=""/> </div>
           <div>Cable Tv</div>
@@ -252,11 +252,11 @@ setCp(selected.value);
                 </select>
                <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
                <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} onKeyUp={val}  id="iuc" className="border-0 rounded-2xl p-3 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="XXXXXXXXXX"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
-               <div className= "flex flex-col  mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}>000000000000</label>
-               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} id="pn" className="border-0 rounded-2xl border-blue- p-3 focus:outline-none" type="text" placeholder="Enter number" name="phone" /></div>
+               <div className= "flex-col hidden  mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}>Phone</label>
+               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} id="pn" className="border-0 rounded-2xl border-blue- p-3 focus:outline-none" type="text" placeholder="000000000000" name="phone" /></div>
    {/* //gotv options */}
  {(cpp=="gotv")&&
- (<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
+ (<div className="grid grid-cols-2 justify-center mb-14 items-center mt-4 w-full gap-5">
 {tvready&& gotvplans.current.map((opts)=>(
   <div
    onClick={
@@ -291,7 +291,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 </div>)}
 
 {/* dstv options */}
-{(cpp=="dstv")&&(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
+{(cpp=="dstv")&&(<div className="grid grid-cols-2 mb-14 justify-center items-center mt-4 w-full gap-5">
   
 {tvready&& dstvplans.current.map((opts)=>(
   <div onClick={
@@ -326,7 +326,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
 </div>)}
 
 {/* startimes option */}
-{(cpp=="startimes")&&(<div className="grid grid-cols-2 justify-center items-center mt-4 w-full gap-5">
+{(cpp=="startimes")&&(<div className="grid mb-14 grid-cols-2 justify-center items-center mt-4 w-full gap-5">
   
 { tvdata && starplans.current.map((opts)=>(
   <div onClick={
