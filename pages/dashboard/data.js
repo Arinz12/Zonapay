@@ -271,7 +271,7 @@ if(processed){
     </Head>
     <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="flex flex-col items-center mx-auto justify-start w-full md:w-9/12">
 
-    <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-14">
+    <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
 
         <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
           <div>Data</div>
@@ -387,7 +387,7 @@ if(processed){
 
 {(price>0)?
 <input readOnly value={price} style={{fontSize:"15px",backgroundColor:"whitesmoke"}} type="string"  id="phone" name="amount" className="focus:outline-none mt-10 mb-12 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" />:null}
-{ loading? <Delay/> : <Button ref={ready} className="mx-auto text-white w-3/5 mt-12 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button>}
+{ loading? <Delay/> :<div className="w-full flex flex-col justify-center items-center mt-4"><Button ref={ready} className="mx-auto text-white w-3/5 p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button></div>}
 </form>
 
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
