@@ -18,7 +18,7 @@ const Elect=()=>{
     const post=useRef([])
     const provider=useRef([])
     const acct=useRef([])
-    const btn=useRef([])
+    const btn=useRef(null)
     const amt=useRef([])
     const [btnready,setBtnready]=useState(false);
      async function veri(){
@@ -132,7 +132,8 @@ else{
 router.push("/dashboard/error")
 }
 };
-btn.current.addEventListener("click",handleSubmit)
+if(btn.current){
+btn.current.addEventListener("click",handleSubmit)}
 if(pincon&&btn.current){
 btn.current.click()
 }
