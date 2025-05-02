@@ -25,7 +25,7 @@ if (messagee==undefined){
   mailOptions = {
     from: 'arizegift1432@gmail.com', // Sender address
     to: emaill, // List of recipients
-    subject: 'ZONA ENTERPRISE', // Subject line
+    subject: 'Verify OTP', // Subject line
     html: htmll, // Plain text body
   };
 }else{
