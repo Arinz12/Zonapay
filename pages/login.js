@@ -137,7 +137,7 @@ const val= async (e)=>{
 <span  className="monomaniac-one-regular" style={{transitionDelay:"350ms"}}>d</span>
 
     </label>
-    <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>}</span>
+    <span className="absolute right-0 top-1/4" >{visible? (<Visibility className="text-black" onClick={()=>{setVis(false)}}/>):(<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>)}</span>
 </div>
 <div className="mx-auto text-center w-full flex-row justify-center items-center">
   {/* <FingerprintRounded className="text-black" sx={{height:"40px",width:"40px"}} /> */}

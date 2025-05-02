@@ -13,16 +13,17 @@ const Elect=()=>{
     const [loading,setLoading]=useState(false)
     const electplan=useRef([])
     const [electready,setElectReady]=useState(false)
+    const [valid,setValid]=useState(false)
     const pre=useRef([])
     const post=useRef([])
     const provider=useRef([])
     const acct=useRef([])
     const btn=useRef([])
     const amt=useRef([])
-    const [btnready,setBtnready]=useState(true);
+    const [btnready,setBtnready]=useState(false);
      async function veri(){
-      const matcher=/^\d{13}$/
-      if(!matcher.test(acct.current.value)||(pre.current.checked!==true&&post.current.checked!==true)||!provider.current.value){
+      // const matcher=/^\d{13}$/
+      if(acct.current.value.length<10||(pre.current.checked!==true&&post.current.checked!==true)||!provider.current.value){
         return
       }
         document.getElementById("userinfo").style.color="blue"
@@ -40,12 +41,13 @@ const Elect=()=>{
 const result= await res.json();
 document.getElementById("userinfo").style.color="green"
 console.log("user",result)
-document.getElementById("userinfo").innerHTML=result.data.name;}
+document.getElementById("userinfo").innerHTML=result.data.name;
+setValid(true) }
 else{
     document.getElementById("userinfo").style.color="red"
     document.getElementById("userinfo").innerHTML="failed to verify user";
    }
-       }   
+       } 
 async function ver1(){
   try{
 const billcode=provider.current.value;
@@ -70,6 +72,14 @@ catch(e){
 }
 }
 
+const confirm=()=>{
+  if((pre||post)&&provider.current.value&&acct.current.value&&amt.current.value>=200&&valid){
+    setBtnready(true)
+  }
+  else{
+    setBtnready(false)
+  }
+}
 //fetch electricity discos
 useEffect(()=>{
   
@@ -181,7 +191,7 @@ return ()=>{
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div className=" w-full h-full flex flex-col gap-4 items-center" style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
-    <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-7">
+    <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-3">
 
 <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
   <div>Electricity</div>
@@ -190,7 +200,7 @@ return ()=>{
     <div className="w-full bg-white rounded-2xl mb-5">
 <div className="flex flex-col w-full justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="ep" className="ml-3 rubik-h">Provider</label>
-<select ref={provider} onChange={ver1}
+<select ref={provider} onInput={confirm} onChange={ver1}
 id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3 focus:outline-none ml-3 rubik-b border-t-0 border-l-0 border-r-0 border-b-2 border-blue-600">
     <option style={{fontSize:"15px"}} value={null} className="rubik-b">Select provider</option>
     {electready && electplan.current.map((opts)=>(
@@ -201,11 +211,11 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
 {/* radio btns for itemcode */}
 <div className="flex flex-row w-11/12 mx-auto justify-evenly gap-5 items-center p-4 bg-white rounded-xl">
 <div className="flex flex-row justify-center gap-3 rounded-2xl">
-<input type="radio" name="pay"  ref={pre}/>
+<input type="radio" checked={true} onInput={confirm} name="pay"  ref={pre}/>
     <label className="rubik-b" htmlFor="pre">Prepaid</label>
 </div>
 <div className="flex flex-row justify-center gap-3 rounded-2xl">
-<input type="radio" name="pay" ref={post}/>
+<input type="radio" onInput={confirm} name="pay" ref={post}/>
 
     <label className="rubik-b" htmlFor="post">Postpaid</label>
 </div>
@@ -213,18 +223,18 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
 {/* Meter acct no field*/}
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="acct" className="ml-3 rubik-h">Meter/Acct No</label>
-<input onKeyUp={veri} placeholder="XXXXXXXXXXX" ref={acct} type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl my-4 focus:outline-none ml-3 rounded-2xl p-3 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
+<input onInput={confirm} onBlur={veri} placeholder="XXXXXXXXXXX" ref={acct} type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl my-4 focus:outline-none ml-3 rounded-2xl p-3 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
 <span id='userinfo' className="rubik-b ml-4"></span>
         </div>
 
         {/* Amount field */}
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
-<input ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
+<input onInput={confirm} ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
         </div>
         {/* Button for submission */}
 <div className="mx-auto">
-    {btnready && <Button style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>}
+    {btnready ? <Button style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>:<Button style={{textTransform:"none",backgroundColor:"grey",color:"black"}} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>}
 </div>
 {loading&&<Delay/>}
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}

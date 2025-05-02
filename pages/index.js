@@ -53,7 +53,7 @@ source.onerror= ()=>{console.log("An error occured")}
 
 </Head>
 <Stack className='focus:outline-none absolute bg-transparent top-2 z-10  w-full p-2 pt-1 pr-1 right-1 items-center' direction={"row"} justifyContent="space-between" sx={{bgcolor:"none"}} >
-    <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-white '>Zonapay</Button>
+    <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-white '>Billsly</Button>
     {/* <div><SplitText
   text="Zonapay"
   className="text-2xl font-semibold text-center"
@@ -97,12 +97,10 @@ source.onerror= ()=>{console.log("An error occured")}
         </div>
         <div className='flex flex-col'>
 
-        <h1 className='mx-auto rubik-h mb-6' style={{fontSize:"30px"}}>OUR SERVICES</h1>
+        <h1 className='mx-auto rubik-h mb-2' style={{fontSize:"30px"}}>OUR SERVICES</h1>
 
         {/* list of  our services */}
  <Stack direction={"column"}  justifyContent={"center"} alignItems={"center"} className='md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-x-8 gap-y-9' >
-
-
  <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-3 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     <SpeakerPhoneTwoToneIcon sx={{height:"40px",width:"40px"}} />
     <div><h2 className='rubik-h text-center' style={{fontSize:"25px"}}>Buy Airtime</h2>
@@ -165,7 +163,7 @@ source.onerror= ()=>{console.log("An error occured")}
 
 
 <div  className='p-5 pt-8 ml-1 mr-1 md:grid md:grid-cols-4 flex justify-center justify-self-start items-center gap-12 flex-col text-white bg-black mt-9  rounded-t-lg'>
-    <div className="rubik-b text-center" style={{textAlignLast:"center",maxWidth:"400px"}}>ZonaPay is a leading bill payment solution in nigeria for quick and clear bill  payments just try us and confirm the seamless nature of our solution</div>
+    <div className="rubik-b text-center" style={{textAlignLast:"center",maxWidth:"400px"}}>Billsly is a leading bill payment solution in nigeria for quick and clear bill  payments just try us and confirm the seamless nature of our solution</div>
     <div className='flex flex-col'>
       <h3 className='rubik-h text-center'style={{fontSize:"17px"}}>Company</h3>
       <Button className="text-center">About us</Button>

@@ -916,7 +916,7 @@ try{
 sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);
 const init_user=obj.customer_reference.split("split")[0]+"@gmail.com"
 const history={user:init_user,
-  tid:obj.tx_ref.split("-")[2],
+  tid:obj.flw_ref,
   time:timeinNigeria,
   amount:obj.amount,
   phone:obj.customer,
