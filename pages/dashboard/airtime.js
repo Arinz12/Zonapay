@@ -172,7 +172,7 @@ if(processed){
         <div className="rubik-b  flex flex-row justify-between"><span>Network</span><span>{details.data.network}</span></div>
         <div className="rubik-b  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
         <div className="rubik-b flex flex-row justify-between"><span>phone</span><span>{details.data.phone_number}</span></div>
-        <div style={{fontSize:"14px"}} className="monomaniac-one-regular flex flex-row justify-between"><span>reference</span><span>{details.data.reference}</span></div>
+        <div style={{fontSize:"14px"}} className="monomaniac-one-regular flex flex-row justify-between"><span>reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
 
               {/* <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Code</span><span>{details.data.code}</span></div> */}
               

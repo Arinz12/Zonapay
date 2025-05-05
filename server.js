@@ -197,7 +197,7 @@ return;
     country: 'NG',
     customer_id: Phoneno,
     amount: amount,
-    reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
+    reference:uuidv4(),
     callback_url: 'https://zonapay.onrender.com/webhook'
   })
 })
@@ -418,7 +418,7 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
         customer_id: Phoneno,
         amount: parseInt(amount),
         type:type,
-        reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
+        reference:uuidv4(),
         callback_url: 'https://zonapay.onrender.com/webhook'
       })
     })
@@ -472,7 +472,7 @@ body:JSON.stringify({
   country:"NG",
   customer_id:iuc,
   amount:amount,
-  reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
+  reference:uuidv4(),
   callback_url:"https://zonapay.onrender.com/webhook"
 }),
 headers:{
@@ -553,7 +553,7 @@ const isFundsSufficient= balance>amount
       country:"NG",
       customer_id:iuc,
       amount:parseInt(amount),
-      reference:req.user.Email.split("@gmail.com")[0]+"split"+uuidv4(),
+      reference:uuidv4(),
       callback_url:"https://zonapay.onrender.com/webhook"
     }),
     headers:{
@@ -907,6 +907,7 @@ else{
 
 server.post("/webhook",cors(), async (req,res)=>{
 // await verif(req.body.data.tx_ref)
+console.log("THIS IS THE USER",req.user)
 const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
 const obj=req.body.data 
@@ -914,8 +915,8 @@ console.log("webhook",obj)
 if(obj.status=="success"){
 try{ 
 sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);
-const init_user=obj.customer_reference.split("split")[0]+"@gmail.com"
-const history={user:init_user,
+// const init_user=obj.customer_reference.split("split")[0]+"@gmail.com"
+const history={user:req.user.Email,
   tid:obj.flw_ref,
   time:timeinNigeria,
   amount:obj.amount,

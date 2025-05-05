@@ -228,7 +228,7 @@ useEffect(() => {
               <div className="text-lg font-semibold flex flex-row justify-between"><span>Amount</span><span>{status.data.amount}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>plan</span><span>{status.data.network}</span></div>
               <div className="text-lg font-semibold flex flex-row justify-between"><span>iuc</span><span>{status.data.phone_number}</span></div>
-              <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.reference}</span></div>
+              <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
           </div>
           <Link href={"/dashboard"} className="rubik-b mt-8">{<Button startIcon={<ArrowBack/> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>Home</Button>}</Link>
           </div>

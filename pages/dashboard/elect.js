@@ -175,7 +175,7 @@ return ()=>{
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span><span>{details.data.token}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>{details.data.units}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
-              
+              <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
           </Paper>
           <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>GO to Home</Button>}</Link>
           </div>
@@ -235,7 +235,7 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
         </div>
         {/* Button for submission */}
 <div className="mx-auto">
-    {btnready ? <Button style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>:<Button style={{textTransform:"none",backgroundColor:"grey",color:"black"}} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>}
+    <Button disabled={!btnready} style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>
 </div>
 {loading&&<Delay/>}
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
