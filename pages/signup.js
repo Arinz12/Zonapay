@@ -220,7 +220,7 @@ if(!already.ok){
 <span className="monomaniac-one-regular" style={{transitionDelay:"300ms"}}>r</span>
 <span className="monomaniac-one-regular" style={{transitionDelay:"350ms"}}>d</span>
     </label>
-    <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}}/>}</span>
+    <span className="absolute right-0 top-1/4" >{visible? <Visibility className="text-black" onClick={()=>{setVis(false)}} sx={{}}/>:<VisibilityOff className="text-black" onClick={()=>{setVis(true)}} sx={{}} />}</span>
 
     <span id="passwordError" className="text-yellow-700 absolute rubik-b " style={{fontSize:"12px"}}></span>
 

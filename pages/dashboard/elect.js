@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import router from "next/router"
 import NumericPad from "../../components/Numpad"
 import Delay from "../../components/Delay"
+import Link from "next/link"
 const Elect=()=>{
     const [processed,setProcessed]=useState(false)
     const [details,setDetails]=useState(null)
@@ -42,7 +43,8 @@ const result= await res.json();
 document.getElementById("userinfo").style.color="green"
 console.log("user",result)
 document.getElementById("userinfo").innerHTML=result.data.name;
-setValid(true) }
+setValid(true)
+confirm() }
 else{
     document.getElementById("userinfo").style.color="red"
     document.getElementById("userinfo").innerHTML="failed to verify user";
@@ -172,7 +174,7 @@ return ()=>{
               <div className="monomaniac-one-regular  flex flex-row  justify-between"><span>Provider</span>
               <span>{details.data.network}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>M-no</span><span>{details.data.phone_number}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span><span>{details.data.token}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span><span>{details.data.recharge_token.match(/.{1,4}/g).join("-")}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>{details.data.units}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
               <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
