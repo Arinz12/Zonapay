@@ -240,13 +240,13 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
 <input onKeyUp={()=>{
   if(amt.current.value<600){amtcheck.current.innerHTML="Amount must be up to 600"}
   else{amtcheck.current.innerHTML=""}
-}} onInput={confirm} ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/><br/>
+}} onInput={confirm} ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
 <span ref={amtcheck} className="text-yellow-700  rubik-b " style={{fontSize:"12px"}}></span>
 
         </div>
         {/* Button for submission */}
 <div className="mx-auto">
-    <Button disabled={!btnready} style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ArrowForward/>}>Proceed</Button>
+    <Button disabled={!btnready} style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ArrowForward sx={{height:"24px"}}/>}>Proceed</Button>
 </div>
 {loading&&<Delay/>}
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
