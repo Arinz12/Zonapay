@@ -233,14 +233,13 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
 <input onInput={confirm} onBlur={veri} placeholder="XXXXXXXXXXX" ref={acct} type="number" inputMode="numeric" name="meter" className="ac rounded-t-xl my-4 focus:outline-none ml-3 rounded-2xl p-3 border-blue-600 w-11/12 h-12 font-bold " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
 <span id='userinfo' className="rubik-b ml-4"></span>
         </div>
-
         {/* Amount field */}
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
 <input onKeyUp={()=>{
   if(amt.current.value<600){amtcheck.current.innerHTML="Amount must be up to 600"}
   else{amtcheck.current.innerHTML=""}
-}} onInput={confirm} ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
+}} onInput={confirm} ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 mt-4 mb-2 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
 <span ref={amtcheck} className="text-yellow-700  rubik-b " style={{fontSize:"12px"}}></span>
 
         </div>

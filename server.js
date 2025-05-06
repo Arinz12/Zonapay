@@ -290,7 +290,7 @@ req.logout((err)=>{
 if(err){
   next(err);
 }
-res.redirect("/")
+res.redirect("/login")
 });
   })
 

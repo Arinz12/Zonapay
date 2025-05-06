@@ -7,13 +7,17 @@
       {
         "src": "/favicon.png",
         "type": "image/png",
-        "sizes": "482x285"
+        "sizes": "192x192"
+      },{
+        "src": "/favicon.png",
+        "type": "image/png",
+        "sizes": "512x512"
       }
     ],
     "display":"standalone",
     "purpose": "any maskable",
     "start_url":"/dashboard",
-    "background_color":"#000000",
-    "theme_color":"#000000"
+    "background_color":"#ffffff",
+    "theme_color":"#ffffff"
   }
   
