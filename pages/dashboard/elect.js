@@ -246,7 +246,8 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
         </div>
         {/* Button for submission */}
 <div className="mx-auto">
-    <Button disabled={!btnready} style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ArrowForward sx={{height:"24px"}}/>}>Proceed</Button>
+    <Button disabled={!btnready} style={{textTransform:"none"}} ref={btn} variant={"contained"} 
+    endIcon={<ArrowForward style={{height:"24px"}}/>}>Proceed</Button>
 </div>
 {loading&&<Delay/>}
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
