@@ -239,8 +239,9 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
 <input onKeyUp={()=>{
   if(amt.current.value<600){amtcheck.current.innerHTML="Amount must be up to 600"}
+  else{amtcheck.current.innerHTML=""}
 }} onInput={confirm} ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/><br/>
-<span ref={amtcheck} className="text-yellow-700 absolute rubik-b " style={{fontSize:"12px"}}></span>
+<span ref={amtcheck} className="text-yellow-700  rubik-b " style={{fontSize:"12px"}}></span>
 
         </div>
         {/* Button for submission */}
