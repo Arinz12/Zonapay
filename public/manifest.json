@@ -9,9 +9,9 @@
         "type": "image/png",
         "sizes": "192x192"
       },{
-        "src": "/cicon512.png",
+        "src": "/cicon256.png",
         "type": "image/png",
-        "sizes": "512x512"
+        "sizes": "256x256"
       },{
         "src": "/cicon512.png",
         "type": "image/png",
