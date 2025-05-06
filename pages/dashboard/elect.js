@@ -1,4 +1,4 @@
-import { ArrowBack, ArrowBackIosRounded,CheckCircle,Forward, ForwardRounded } from "@mui/icons-material"
+import { ArrowBack, ArrowBackIosRounded,CheckCircle,Forward, ArrowForward } from "@mui/icons-material"
 import { Button, Paper, Typography } from "@mui/material"
 import Head from "next/head"
 import { useEffect, useRef, useState } from "react"
@@ -21,6 +21,7 @@ const Elect=()=>{
     const acct=useRef([])
     const btn=useRef(null)
     const amt=useRef([])
+    const amtcheck=useRef("")
     const [btnready,setBtnready]=useState(false);
      async function veri(){
       // const matcher=/^\d{13}$/
@@ -44,7 +45,7 @@ document.getElementById("userinfo").style.color="green"
 console.log("user",result)
 document.getElementById("userinfo").innerHTML=result.data.name;
 setValid(true)
-confirm() }
+}
 else{
     document.getElementById("userinfo").style.color="red"
     document.getElementById("userinfo").innerHTML="failed to verify user";
@@ -73,9 +74,9 @@ catch(e){
   console.log(e)
 }
 }
-
+useEffect(()=>{confirm()},[valid])
 const confirm=()=>{
-  if((pre||post)&&provider.current.value&&acct.current.value&&amt.current.value>=200&&valid){
+  if((pre.current.checked||post.current.checked)&&provider.current.value&&acct.current.value&&amt.current.value>=600&&valid){
     setBtnready(true)
   }
   else{
@@ -144,6 +145,8 @@ return ()=>{
 }
 },[pincon])
 
+
+
     const handlePinSubmit= async (pin)=>{
         const data={pinn:pin}
         try{
@@ -174,7 +177,8 @@ return ()=>{
               <div className="monomaniac-one-regular  flex flex-row  justify-between"><span>Provider</span>
               <span>{details.data.network}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>M-no</span><span>{details.data.phone_number}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span><span>{details.data.recharge_token.match(/.{1,4}/g).join("-")}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span>
+              <span>{details.data.recharge_token.match(/.{1,4}/g).join("-")}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>{details.data.units}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
               <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
@@ -233,11 +237,15 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
         {/* Amount field */}
         <div className="flex flex-col w-11/12 mx-auto justify-start p-6 bg-white rounded-xl">
 <label  htmlFor="amt" className=" ml-3 rubik-h">Amount</label>
-<input onInput={confirm} ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/>
+<input onKeyUp={()=>{
+  if(amt.current.value<600){amtcheck.current.innerHTML="Amount must be up to 600"}
+}} onInput={confirm} ref={amt} placeholder="0.00" type={"number"} inputMode="numeric" name="amount" className="ac rounded-t-xl focus:outline-none font-bold ml-3 my-4 border-0 rounded-2xl p-3 border-blue-600 w-11/12 h-12 " style={{fontSize:"18px",backgroundColor:"whitesmoke"}}/><br/>
+<span ref={amtcheck} className="text-yellow-700 absolute rubik-b " style={{fontSize:"12px"}}></span>
+
         </div>
         {/* Button for submission */}
 <div className="mx-auto">
-    <Button disabled={!btnready} style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ForwardRounded/>}>Proceed</Button>
+    <Button disabled={!btnready} style={{textTransform:"none"}} ref={btn} variant={"contained"} endIcon={<ArrowForward/>}>Proceed</Button>
 </div>
 {loading&&<Delay/>}
 {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
