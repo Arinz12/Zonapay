@@ -198,10 +198,10 @@ return ()=>{
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div className=" w-full h-full flex flex-col gap-4 items-center" style={{backgroundColor:"whitesmoke",height:"100dvh"}}>
-    <div style={{fontSize:"23px"}} className="rubik-h w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-3">
+    <div style={{fontSize:"23px"}} className="rubik-h w-full  bg-white px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-3">
 
-<div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
-  <div>Electricity</div>
+<div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"#2563EB"}} className="" /> </div>
+  <div className="text-blue-600">Electricity</div>
   
   </div>
     <div className="w-full bg-white rounded-2xl mb-5">

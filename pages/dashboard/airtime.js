@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import NumericPad from "../../components/Numpad";
 import router from "next/router"
 import Delay from "../../components/Delay";
-
+ 
 const AirtimeForm=()=>{
   const [enable,setEnable]= useState(true)
   const [processed,setProcessed]=useState(false)
@@ -216,10 +216,10 @@ catch(e){
     <div style={{backgroundColor:"whitesmoke",height:"100dvh"}} className="fixed top-0  flex flex-col items-center mx-auto justify-start w-full md:w-9/12">
     
 
-        <div style={{fontSize:"23px"}} className="rubik-h sticky top-0 w-full text-white bg-blue-600 px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
+        <div style={{fontSize:"23px"}} className="rubik-h sticky top-0 w-full  bg-white px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
 
-        <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"white"}} className="" /> </div>
-          <div>Airtime</div>
+        <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"#2563EB"}} className="" /> </div>
+          <div className="text-blue-600">Airtime</div>
           
           </div>
 
