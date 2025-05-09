@@ -18,6 +18,9 @@ const AirtimeForm=()=>{
   const [delay,setDelay]=useState(false);
   const [showkeypad,setShowKeyPad]=useState(false);
   const ready=useRef(null)
+  const amtcheck=useRef("")
+  const amt=useRef("")
+
 
   useEffect(()=>{
     const form=  document.getElementById("form");
@@ -106,7 +109,7 @@ else{
 const nps=[mtne,airte,gloe]
 nps.forEach((a)=>{
   a.onclick=()=>{
-    if((amoun.value>0)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
+    if((amoun.value>=50)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
       checknet(pho.value)
   setEnable(false)
     }
@@ -116,7 +119,7 @@ nps.forEach((a)=>{
   }
 })
 amoun.onkeyup= ()=>{
-  if((amoun.value>=0)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
+  if((amoun.value>=50)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
     checknet(pho.value)
 setEnable(false)
   }
@@ -125,7 +128,7 @@ setEnable(false)
   }
 }
 pho.onkeyup= ()=>{
-  if((amoun.value>=0)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
+  if((amoun.value>=50)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
     checknet(pho.value)
 setEnable(false)
   }
@@ -249,7 +252,17 @@ catch(e){
 
 <div className="pt-7">
     <label HtmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input inputMode="numeric" autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2  w-full h-12 rubik-h border-0 rounded-2xl" /></div>
+<input onkeyup={()=>{
+  if(amt.current.value<50){
+    amtcheck.current.innerHTML="Amount must be up to 50"
+  }
+  else{
+
+  }
+}} ref={amt} inputMode="numeric" autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2  w-full h-12 rubik-h border-0 rounded-2xl" />
+<span ref={amtcheck} className="text-yellow-700  rubik-b " style={{fontSize:"12px"}}></span>
+
+</div>
 { loading?  <Delay/> :<div className="w-full flex flex-col justify-center items-center mt-4"> <Button  ref={ready} className=" mx-auto bg-blue-600 w-3/6 text-white  p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button></div>}
 </form>
 

@@ -1,4 +1,4 @@
 function otp(){
-    return String(Math.floor(1000000*Math.random()))
+    return  (crypto.randomBytes(4).readUInt32BE() % 1_000_000).toString()
 }
 module.exports= {otp}

@@ -29,7 +29,7 @@ const Elect=()=>{
         return
       }
         document.getElementById("userinfo").style.color="blue"
-        document.getElementById("userinfo").innerHTML="checking..."
+        document.getElementById("userinfo").innerHTML="verifing..."
         const type=(pre.current.checked)? pre.current.value:post.current.value
 
         const epp= document.getElementById("ep").value
@@ -180,10 +180,10 @@ return ()=>{
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span>
               <span>{details.data.recharge_token.match(/.{1,4}/g).join("-")}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>{details.data.units}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{"NA"}</span></div>
               <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
           </Paper>
-          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}>GO to Home</Button>}</Link>
+          <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}> Home</Button>}</Link>
           </div>
   </div> 
         </>
