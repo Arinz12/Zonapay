@@ -248,19 +248,22 @@ catch(e){
     </div>
     <div className="pt-7">
     <label htmlFor="amt" className="rubik-h pb-3">Amount</label>
-<input autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="number" id="amt"  name="amount" placeholder="0.00" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl " /></div>
-
-<div className="pt-7">
-    <label HtmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input onkeyup={()=>{
+<input 
+onkeyup={()=>{
   if(amt.current.value<50){
     amtcheck.current.innerHTML="Amount must be up to 50"
   }
   else{
-
+    amtcheck.current.innerHTML=""
   }
-}} ref={amt} inputMode="numeric" autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2  w-full h-12 rubik-h border-0 rounded-2xl" />
+}}
+ ref={amt} autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="number" id="amt"  name="amount" placeholder="0.00" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl " />
 <span ref={amtcheck} className="text-yellow-700  rubik-b " style={{fontSize:"12px"}}></span>
+</div>
+
+<div className="pt-7">
+    <label HtmlFor="phone" className="rubik-h pb-3">Phone number</label>
+<input  inputMode="numeric" autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2  w-full h-12 rubik-h border-0 rounded-2xl" />
 
 </div>
 { loading?  <Delay/> :<div className="w-full flex flex-col justify-center items-center mt-4"> <Button  ref={ready} className=" mx-auto bg-blue-600 w-3/6 text-white  p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button></div>}

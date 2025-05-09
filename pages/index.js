@@ -154,7 +154,7 @@ source.onerror= ()=>{console.log("An error occured")}
 <h1 className='mx-auto rubik-h mb-6 text-center border-t-2 p-3 mt-4' style={{fontSize:"30px"}}>How it works</h1>
 <div className="flex flex-col md:grid md:grid-cols-2 gap-12  justify-center items-center">
     <div style={{maxWidth:"390px"}} className=' flex flex-col md:justify-self-center mx-auto justify-center items-center ml-2 mr-2 p-2 '>
-      <WalletOutlinedIcon color={"#2563EB"} sx={{height:"40px",width:"40px"}} />
+      <WalletOutlinedIcon  sx={{height:"40px",width:"40px",color:"#2563EB"}}/>
         <h2 className="rubik-h   text-blue-500  text-center" style={{fontSize:'25px'}}>Fund</h2>
     <p className=' rubik-l p-2 text-center' style={{fontSize:"20px",textAlignLast:"center"}}>Add money through our various channels provided for you and start enjoying </p></div>
     <div style={{maxWidth:"390px"}} className=' md:justify-self-center flex flex-col justify-center mx-auto items-center ml-2 mr-2 p-2 '>

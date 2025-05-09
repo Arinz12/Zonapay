@@ -111,11 +111,11 @@ const val= async (e)=>{
 
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
     <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-20 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  md:border-4 border-0 border-blue-600 rounded-3xl  items-center">
+    <div className="mx-auto flex justify-center w-full my-2"><img src="cicon192.png" height="40px" width="40px"/></div>
+
 <div className=" monomaniac-one-regular text-black">Login</div>
 
-<div className="mx-auto flex justify-center w-full my-2"><img src="cicon192" height="40px" width="40px"/></div>
-
-<div className="form-control monomaniac-one-regular  ">
+<div className="form-control monomaniac-one-regular">
     <input type="text" name="email"  required/>
     <label>
 <span className="monomaniac-one-regular" style={{transitionDelay:"0ms"}}>E</span>
