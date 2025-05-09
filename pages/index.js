@@ -72,25 +72,25 @@ source.onerror= ()=>{console.log("An error occured")}
 <Button href="https://zonapay.onrender.com/signup"  variant="contained" className="mr-2 sticky top-1">Get started</Button>
 </Stack>
        <div className='relative w-full focus:outline-none'> <Carousel className='w-full focus:outline-none'  animation='fade' interval={6000}>
-            <Box className="flex flex-col gap-2 justify-center items-center" sx={{height:"80vh", textAlign:"center",backgroundImage:"url('phonewhite/whitestraight.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className="h-full  flex flex-row justify-center md:bg-no-repeat md:bg-contain bg-transparent p-1 md:justify-end items-center w-full font-semibold text-white md:pr-8">
+            <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent " sx={{height:"80vh", textAlign:"center",backgroundImage:"url('phonewhite/whitestraight.png')",backgroundSize:"cover"}}>
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className="h-full  flex flex-row justify-center  p-1 md:justify-end items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Simplify Your Payments</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Easily manage and pay all your bills in one place. Enjoy a seamless experience with secure transactions and timely reminders.</Typography></Box>
                 </div>
             </Box>
-            <Box className="flex flex-col gap-2 justify-center items-center" sx={{ height:"80vh",textAlign:"center"  ,backgroundImage:"url('phonewhite/whiteangle.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" flex flex-row md:justify-end md:bg-no-repeat md:bg-contain bg-transparent p-1 h-full justify-center items-center w-full font-semibold text-white md:pr-8">
+            <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent" sx={{ height:"80vh",textAlign:"center"  ,backgroundImage:"url('phonewhite/whiteangle.png')",backgroundSize:"cover"}}>
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" flex flex-row md:justify-end  p-1 h-full justify-center items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli"  sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Stay Organized with Our Dashboard</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Track due dates, view payment history, and set up automatic payments to never miss a deadline again</Typography></Box>
                 </div></Box>
             
-            <Box className="flex flex-col gap-2 justify-center items-center" sx={{ height:"80vh",textAlign:"center" ,backgroundImage:"url('phoneblack/blackstraight.png')",backgroundSize:"cover" }}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" h-full flex flex-row md:justify-end md:bg-no-repeat md:bg-contain bg-transparent p-1 justify-center items-center w-full font-semibold text-white md:pl-8">
+            <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent" sx={{ height:"80vh",textAlign:"center" ,backgroundImage:"url('phoneblack/blackstraight.png')",backgroundSize:"cover" }}>
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" h-full flex flex-row md:justify-end  p-1 justify-center items-center w-full font-semibold text-white md:pl-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Save Time and Avoid Late Fees</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>With our intuitive app, schedule payments ahead of time and receive notifications to keep your finances on track.</Typography></Box>
                 </div></Box>
-                <Box className="flex flex-col gap-2 justify-center items-center" sx={{ height:"80vh",textAlign:"center"   ,backgroundImage:"url('phoneblack/blackangle.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}}className="h-full flex flex-row p-1 md:justify-end md:bg-no-repeat md:bg-contain bg-transparent justify-center items-center w-full font-semibold text-white md:pr-8">
+                <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent" sx={{ height:"80vh",textAlign:"center"   ,backgroundImage:"url('phoneblack/blackangle.png')",backgroundSize:"cover"}}>
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}}className="h-full flex flex-row p-1 md:justify-end  justify-center items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Get Started Today!</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Sign up now for free and take control of your bills. Experience hassle-free payments and manage your expenses effortlessly!</Typography></Box>
                 </div></Box>
@@ -100,7 +100,7 @@ source.onerror= ()=>{console.log("An error occured")}
         </div>
         <div className='flex flex-col'>
 
-        <h1 className='mx-auto rubik-h mb-2' style={{fontSize:"30px"}}>OUR SERVICES</h1>
+        <h1 className='mx-auto rubik-h mb-2 ' style={{fontSize:"30px"}}>OUR SERVICES</h1>
         {/* list of  our services */}
  <Stack direction={"column"}  justifyContent={"center"} alignItems={"center"} className='md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-x-8 gap-y-9' >
  <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-3 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
