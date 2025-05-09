@@ -34,6 +34,7 @@ import Carousel from 'react-material-ui-carousel';
 import Slide from 'react-reveal/Slide';
 import FadeOutComponent from '../components/Fadeout';
 import SplitText from '../components/SplitText';
+import { PhoneOutlined } from '@mui/icons-material';
 
  const Dash=(props)=>{
   const handleAnimationComplete=()=>{console.log("Animation is completed")}
@@ -53,7 +54,9 @@ source.onerror= ()=>{console.log("An error occured")}
 
 </Head>
 <Stack className='focus:outline-none absolute bg-transparent top-2 z-10  w-full p-2 pt-1 pr-1 right-1 items-center' direction={"row"} justifyContent="space-between" sx={{bgcolor:"none"}} >
-    <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-white '>Billsly</Button>
+    <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-white '>
+      <span><img src='cicon192.png' height={"30px"} width="30px"/></span>
+      Billsly</Button>
     {/* <div><SplitText
   text="Zonapay"
   className="text-2xl font-semibold text-center"
@@ -70,24 +73,24 @@ source.onerror= ()=>{console.log("An error occured")}
 </Stack>
        <div className='relative w-full focus:outline-none'> <Carousel className='w-full focus:outline-none'  animation='fade' interval={6000}>
             <Box className="flex flex-col gap-2 justify-center items-center" sx={{height:"80vh", textAlign:"center",backgroundImage:"url('phonewhite/whitestraight.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className="h-full  flex flex-row justify-center p-1 md:justify-end items-center w-full font-semibold text-white md:pr-8">
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className="h-full  flex flex-row justify-center md:bg-no-repeat md:bg-contain bg-transparent p-1 md:justify-end items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Simplify Your Payments</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Easily manage and pay all your bills in one place. Enjoy a seamless experience with secure transactions and timely reminders.</Typography></Box>
                 </div>
             </Box>
             <Box className="flex flex-col gap-2 justify-center items-center" sx={{ height:"80vh",textAlign:"center"  ,backgroundImage:"url('phonewhite/whiteangle.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" flex flex-row md:justify-end p-1 h-full justify-center items-center w-full font-semibold text-white md:pr-8">
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" flex flex-row md:justify-end md:bg-no-repeat md:bg-contain bg-transparent p-1 h-full justify-center items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli"  sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Stay Organized with Our Dashboard</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Track due dates, view payment history, and set up automatic payments to never miss a deadline again</Typography></Box>
                 </div></Box>
             
             <Box className="flex flex-col gap-2 justify-center items-center" sx={{ height:"80vh",textAlign:"center" ,backgroundImage:"url('phoneblack/blackstraight.png')",backgroundSize:"cover" }}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" h-full flex flex-row md:justify-start p-1 justify-center items-center w-full font-semibold text-white md:pl-8">
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" h-full flex flex-row md:justify-end md:bg-no-repeat md:bg-contain bg-transparent p-1 justify-center items-center w-full font-semibold text-white md:pl-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Save Time and Avoid Late Fees</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>With our intuitive app, schedule payments ahead of time and receive notifications to keep your finances on track.</Typography></Box>
                 </div></Box>
                 <Box className="flex flex-col gap-2 justify-center items-center" sx={{ height:"80vh",textAlign:"center"   ,backgroundImage:"url('phoneblack/blackangle.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}}className="h-full flex flex-row p-1 md:justify-end justify-center items-center w-full font-semibold text-white md:pr-8">
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}}className="h-full flex flex-row p-1 md:justify-end md:bg-no-repeat md:bg-contain bg-transparent justify-center items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Get Started Today!</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Sign up now for free and take control of your bills. Experience hassle-free payments and manage your expenses effortlessly!</Typography></Box>
                 </div></Box>
@@ -101,47 +104,47 @@ source.onerror= ()=>{console.log("An error occured")}
         {/* list of  our services */}
  <Stack direction={"column"}  justifyContent={"center"} alignItems={"center"} className='md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-x-8 gap-y-9' >
  <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-3 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
-    <SpeakerPhoneTwoToneIcon sx={{height:"40px",width:"40px"}} />
-    <div><h2 className='rubik-h text-center' style={{fontSize:"25px"}}>Buy Airtime</h2>
+    <PhoneOutlined sx={{height:"40px",width:"40px",color:"#2563EB"}} />
+    <div><h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Buy Airtime</h2>
   <p className=' rubik-l p-2 text-center' style={{fontSize:"17px",textAlignLast:"center"}}>Recharge your mobile phone effortlessly with our quick airtime purchase feature. Enjoy instant top-ups and special promotions for frequent users!</p> </div>
 </div></FadeOutComponent> 
 
 <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-3 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     
-<CardGiftcardIcon sx={{height:"40px",width:"40px"}} />
-<h2 className='rubik-h text-center' style={{fontSize:"25px"}}>Purchase Gift cards</h2>
+<CardGiftcardIcon sx={{height:"40px",width:"40px",color:"#2563EB"}} />
+<h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Purchase Gift cards</h2>
   <p className=' rubik-l p-2 text-center' style={{fontSize:"17px",textAlignLast:"center"}}>Effortlessly gift your loved ones with our Gift Card Purchase  service! Choose from a wide selection of popular retailers and brands.</p> 
 </div></FadeOutComponent> 
 
 
 <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-3 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     
-<LanguageIcon sx={{height:"40px",width:"40px"}} />
-<h2 className='rubik-h text-center' style={{fontSize:"25px"}}> Purchase data</h2>
+<LanguageIcon sx={{height:"40px",width:"40px",color:"#2563EB"}} />
+<h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}> Purchase data</h2>
   <p className=' rubik-l p-2 text-center' style={{fontSize:"17px",textAlignLast:"center"}}>Stay connected without interruption by paying your internet bill easily. Experience hassle-free payments and keep your service active!</p> 
 </div>
 </FadeOutComponent>
 
 <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-3 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     
-<TungstenIcon sx={{height:"40px",width:"40px"}} />
-<h2 className='rubik-h text-center' style={{fontSize:"25px"}}>Pay Electricity Bills</h2>
+<TungstenIcon sx={{height:"40px",width:"40px",color:"#2563EB"}} />
+<h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Pay Electricity Bills</h2>
   <p className=' rubik-l p-2 text-center' style={{fontSize:"17px",textAlignLast:"center"}}>Quickly settle your electricity bills online with secure transactions and instant confirmations. Stay on top of your payments and avoid late fees!</p> 
 </div>
 </FadeOutComponent> 
 
 <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-3 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     
-<ConnectedTvIcon sx={{height:"40px",width:"40px"}} />
-<h2 className='rubik-h text-center' style={{fontSize:"25px"}}>Pay for Cable Tv  </h2>
+<ConnectedTvIcon sx={{height:"40px",width:"40px",color:"#2563EB"}} />
+<h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Pay for Cable Tv  </h2>
   <p className=' rubik-l p-2 text-center' style={{fontSize:"17px",textAlignLast:"center"}}>Enjoy uninterrupted entertainment by paying your cable TV bill with ease. Set up reminders for due dates and manage your subscriptions seamlessly!
 </p> 
 </div>
 </FadeOutComponent> 
 
 <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-3 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
-<SchoolIcon sx={{height:"40px",width:"40px"}} />
-<h2 className='rubik-h text-center' style={{fontSize:"25px"}}>Pay School fees  </h2>
+<SchoolIcon sx={{height:"40px",width:"40px",color:"#2563EB"}} />
+<h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Pay School fees  </h2>
   <p className=' rubik-l p-2 text-center' style={{fontSize:"17px",textAlignLast:"center"}}>Enjoy uninterrupted entertainment by paying your school fees with ease. Set up reminders for due dates and manage your subscriptions seamlessly!
 </p> 
 </div></FadeOutComponent> 
@@ -151,12 +154,12 @@ source.onerror= ()=>{console.log("An error occured")}
 <h1 className='mx-auto rubik-h mb-6 text-center border-t-2 p-3 mt-4' style={{fontSize:"30px"}}>How it works</h1>
 <div className="flex flex-col md:grid md:grid-cols-2 gap-12  justify-center items-center">
     <div style={{maxWidth:"390px"}} className=' flex flex-col md:justify-self-center mx-auto justify-center items-center ml-2 mr-2 p-2 '>
-      <WalletOutlinedIcon color={""} sx={{height:"40px",width:"40px"}} />
-        <h2 className="rubik-h  text-black  text-center" style={{fontSize:'25px'}}>Fund & Enjoy</h2>
+      <WalletOutlinedIcon color={"#2563EB"} sx={{height:"40px",width:"40px"}} />
+        <h2 className="rubik-h   text-blue-500  text-center" style={{fontSize:'25px'}}>Fund</h2>
     <p className=' rubik-l p-2 text-center' style={{fontSize:"20px",textAlignLast:"center"}}>Add money through our various channels provided for you and start enjoying </p></div>
     <div style={{maxWidth:"390px"}} className=' md:justify-self-center flex flex-col justify-center mx-auto items-center ml-2 mr-2 p-2 '>
-      <TipsAndUpdatesOutlinedIcon sx={{height:"40px",width:"40px"}}/>
-        <h2 className="rubik-h text-black text-center" style={{fontSize:'25px'}}>Stay put</h2>
+      <TipsAndUpdatesOutlinedIcon sx={{height:"40px",width:"40px",color:"#2563EB"}}/>
+        <h2 className="rubik-h text-blue-500 text-center" style={{fontSize:'25px'}}>Stay Active</h2>
     <p className=' rubik-l p-2 text-center' style={{fontSize:"20px",textAlignLast:"center"}}>Watch out for incredible offers from time to time </p></div>
 </div>
 

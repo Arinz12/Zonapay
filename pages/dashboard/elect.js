@@ -245,7 +245,7 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
         </div>
         {/* Button for submission */}
 <div className="mx-auto">
-    <Button disabled={!btnready} style={{textTransform:"none"}} ref={btn} variant={"contained"} 
+    <Button disabled={!btnready} style={{textTransform:"none",borderRadius:"12px"}} ref={btn} variant={"contained"} 
     endIcon={<ArrowForward style={{height:"24px"}}/>}>Proceed</Button>
 </div>
 {loading&&<Delay/>}
