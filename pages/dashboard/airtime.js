@@ -19,7 +19,7 @@ const AirtimeForm=()=>{
   const [showkeypad,setShowKeyPad]=useState(false);
   const ready=useRef(null)
   const amtcheck=useRef("")
-  const amt=useRef("")
+  const amt=useRef(null)
 
 
   useEffect(()=>{
@@ -249,13 +249,10 @@ catch(e){
     <div className="pt-7">
     <label htmlFor="amt" className="rubik-h pb-3">Amount</label>
 <input 
-onkeyup={()=>{
+onInput={()=>{
   if(amt.current.value<50){
-    amtcheck.current.innerHTML="Amount must be up to 50"
-  }
-  else{
-    amtcheck.current.innerHTML=""
-  }
+    amtcheck.current.innerHTML="Amount must be up to 50"}
+  else{ amtcheck.current.innerHTML=""}
 }}
  ref={amt} autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="number" id="amt"  name="amount" placeholder="0.00" className="focus:outline-none pl-2 w-full h-12 rubik-h border-0 rounded-2xl " />
 <span ref={amtcheck} className="text-yellow-700  rubik-b " style={{fontSize:"12px"}}></span>
