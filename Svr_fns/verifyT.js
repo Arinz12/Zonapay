@@ -62,7 +62,7 @@ async function vet(ref, transactionId, ID, user) {
         }
     }
      catch (error) {
-        console.log("Error was caught in the verifyT module")
+        console.log("Error was caught in the verifyT module",error)
 
         await sendd(
             "igwebuikea626@gmail.com",
