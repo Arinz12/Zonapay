@@ -146,7 +146,7 @@ const fundvals = [
     .escape()
     .notEmpty().withMessage("Please input amount")
     .isNumeric().withMessage("Must be a number")
-    .isInt({ min: 100, max: 300000 }).withMessage("Amount must be between 200 to 300000"),
+    .isInt({ min: 50, max: 300000 }).withMessage("Amount must be between 200 to 300000"),
 
   // Phone Validation
   body("phone")
@@ -706,19 +706,21 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 
 //verifying flutterwave transactions
 server.post("/done",cors(),async (req,res)=>{
+  console.log("done path has been entered")
+
   // Here req.body.data is ued to check requests coming from outside Billsly frontend
   // console.log(req);
 //check if request came from a webhook
-  if(req.body.data){
-    console.log("request came from a webhook")
+  if(req.body.data&&!req.isAuthenticated()){
+    console.log("request came from a webhook flutterwave to be supposed")
   if((req.headers["verif-hash"]!=="ariwa"||!req.headers["verif-hash"])){
     console.log("correct header was not passed");
-    return res.status(500).end()
+    return res.status(200).end()
   }}
   //handle failed transactions
-  if(req.body.data){
-  if(req.body.data.status!="successfull"){
-    sendd("igwebuikea626@gmail.com","This top up txn failed for "+req.body.dtat.customer.email)
+  if(req.body.data&&!req.isAuthenticated()){
+  if(req.body.data.status!="successful"){
+    sendd("igwebuikea626@gmail.com",`This top up txn failed for ${req.body.data.customer.email}`)
 return res.status(200).end()
   }}
   else{
@@ -726,12 +728,11 @@ return res.status(200).end()
       return res.end()}
   }
   let userEmail;
-      userEmail= (req.isAuthenticated)? req.user.Email : req.body.data.customer.email
+      userEmail= (req.isAuthenticated())? req.user.Email : req.body.data.customer.email
   let tx_ref;
   let transaction_id;
-  console.log("done path has been entered")
   const Id = (req.isAuthenticated())? mongoose.Types.ObjectId(req.user._id):mongoose.Types.ObjectId(await User.findOne({Email:req.body.data.customer.email})._id);
-  if(req.body.data){
+  if(req.body.data&&!req.isAuthenticated()){
     tx_ref=req.body.data.tx_ref;
     transaction_id= req.body.data.id;
   }else{
