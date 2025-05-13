@@ -190,7 +190,7 @@
                 callback: async (payment)=>{
 const res=await fetch("https://zonapay.onrender.com/done",{
     method:"POST",
-    headers:{"Content-Type":"application/json","verif-hash":"ariwa"},
+    headers:{"Content-Type":"application/json"},
     body:JSON.stringify({tx_ref:payment.tx_ref,transaction_id:payment.transaction_id})
 })
 if(res.ok){
@@ -202,7 +202,11 @@ else{
                 }
                 ,
                 onclose:(incomplete)=>{
-                    console.log("payment has not completed yet");
+                    if(incomplete){
+                    console.log("payment has not completed yet");}
+                    else{
+                        console.log("payment has been completed")
+                    }
                 },
                 meta: {
                    
@@ -215,7 +219,7 @@ else{
                 customizations: {
                     title: "The Titanic Store",
                     description: "Payment for an awesome cruise",
-                    logo: "https://www.logolynx.com/images/logolynx/22/2239ca38f5505fbfce7e55bbc0604386.jpeg",
+                    logo: "https://zonapay.onrender.com/cicon192.png",
                 }
             });
         };

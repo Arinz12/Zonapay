@@ -706,12 +706,15 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 
 //verifying flutterwave transactions
 server.post("/done",cors(),async (req,res)=>{
+  // Here req.body.data is ued to check requests coming from outside Billsly frontend
   console.log(req);
-  if(req.body.data){console.log("request came from a webhook")}
+//check if request came from a webhook
+  if(req.body.data){
+    console.log("request came from a webhook")
   if((req.headers["verif-hash"]!=="ariwa"||!req.headers["verif-hash"])){
     console.log("correct header was not passed");
     return res.status(500).end()
-  }
+  }}
   //handle failed transactions
   if(req.body.data){
   if(req.body.data.status!="successfull"){
@@ -723,7 +726,7 @@ return res.status(200).end()
       return res.end()}
   }
   let tx_ref;
-  let transaction_id
+  let transaction_id;
   console.log("done path has been entered")
   const Id = mongoose.Types.ObjectId(req.user._id);
   if(req.body.data){
