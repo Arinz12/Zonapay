@@ -146,7 +146,7 @@ const fundvals = [
     .escape()
     .notEmpty().withMessage("Please input amount")
     .isNumeric().withMessage("Must be a number")
-    .isInt({ min: 200, max: 300000 }).withMessage("Amount must be between 200 to 300000"),
+    .isInt({ min: 100, max: 300000 }).withMessage("Amount must be between 200 to 300000"),
 
   // Phone Validation
   body("phone")
@@ -707,7 +707,7 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 //verifying flutterwave transactions
 server.post("/done",cors(),async (req,res)=>{
   // Here req.body.data is ued to check requests coming from outside Billsly frontend
-  console.log(req);
+  // console.log(req);
 //check if request came from a webhook
   if(req.body.data){
     console.log("request came from a webhook")
@@ -718,17 +718,19 @@ server.post("/done",cors(),async (req,res)=>{
   //handle failed transactions
   if(req.body.data){
   if(req.body.data.status!="successfull"){
-    sendd("igwebuikea626@gmail.com","An already verified txn_id  attempted to be verified")
+    sendd("igwebuikea626@gmail.com","This top up txn failed for "+req.body.dtat.customer.email)
 return res.status(200).end()
   }}
   else{
     if(!req.isAuthenticated()){
       return res.end()}
   }
+  let userEmail;
+      userEmail= (req.isAuthenticated)? req.user.Email : req.body.data.customer.email
   let tx_ref;
   let transaction_id;
   console.log("done path has been entered")
-  const Id = mongoose.Types.ObjectId(req.user._id);
+  const Id = (req.isAuthenticated())? mongoose.Types.ObjectId(req.user._id):mongoose.Types.ObjectId(await User.findOne({Email:req.body.data.customer.email})._id);
   if(req.body.data){
     tx_ref=req.body.data.tx_ref;
     transaction_id= req.body.data.id;
@@ -737,7 +739,7 @@ return res.status(200).end()
  transaction_id= req.body.transaction_id;}
   console.log(tx_ref)
   //check if id has been verified before.
-  const flidObj=await Flid.findOne({Customer:req.user.Email})
+  const flidObj=await Flid.findOne({Customer:userEmail})
   if(flidObj.Ids.includes(transaction_id)){
     console.log("This transaction has already been settled")
     sendd("igwebuikea626@gmail.com","An already verified txn_id  attempted to be verified")
@@ -745,7 +747,7 @@ return res.status(200).end()
   }
   console.log(transaction_id)
     try{
-      await vet(tx_ref,transaction_id,Id,req.user.Email)
+      await vet(tx_ref,transaction_id,Id,userEmail)
   res.status(200).json({message:"Payment successfull"})
   }
   catch(e){
