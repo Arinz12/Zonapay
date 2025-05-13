@@ -745,13 +745,15 @@ return res.status(200).end()
  transaction_id= req.body.transaction_id;}
   console.log(tx_ref)
   //check if id has been verified before.
-  const flidObj=await Flid.findOne({Customer:userEmail})
+  let flidObj;
+  flidObj=await Flid.findOne({Customer:userEmail})
   if(!flidObj){
     await Flid.create({
       Customer:userEmail,
       Ids:[]
   })
   }
+  flidObj=await Flid.findOne({Customer:userEmail})
   if(flidObj.Ids.includes(transaction_id)){
     console.log("This transaction has already been settled")
     sendd("igwebuikea626@gmail.com","An already verified txn_id  attempted to be verified")
