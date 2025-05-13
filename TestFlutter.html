@@ -179,14 +179,31 @@
             
             const uid = await val({name:name, email:email, phone:phone, amount:amount});
             if(!uid) return;
-            
+             
             FlutterwaveCheckout({
                 public_key: "FLWPUBK-254af65d33d3f2e4cbfa5e025673d67f-X",
                 tx_ref: uid,
                 amount: amount,
                 currency: "NGN",
                 payment_options: "card, mobilemoneyghana, ussd",
-                redirect_url: "https://zonapay.onrender.com/done",
+                // redirect_url: "https://zonapay.onrender.com/done",
+                callback: async (payment)=>{
+const res=await fetch("https://zonapay.onrender.com/done",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","verif-hash":"ariwa"},
+    body:JSON.stringify({tx_ref:payment.tx_ref,transaction_id:payment.transaction_id})
+})
+if(res.ok){
+    console.log("Payment confirmed...")
+}
+else{
+    console.log("payment failed ...")
+}
+                }
+                ,
+                onclose:(incomplete)=>{
+                    console.log("payment has not completed yet");
+                },
                 meta: {
                    
                 },

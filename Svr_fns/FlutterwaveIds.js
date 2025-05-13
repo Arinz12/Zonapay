@@ -4,7 +4,7 @@ mongoose.set("strictQuery", false)
 const IdSchema= new mongoose.Schema({
 Customer:{
 type:String,required:true,trim:true
-},
+}, 
 Ids:{type:[Number],default:[]}
 })
 const Flid=mongoose.models.Flid||mongoose.model("Flid",IdSchema);

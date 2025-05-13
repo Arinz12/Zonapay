@@ -705,28 +705,48 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 
 
 //verifying flutterwave transactions
-server.get("/done",async (req,res)=>{
-  if(!req.isAuthenticated()){
-    res.redirect("/login")
+server.post("/done",cors(),async (req,res)=>{
+  if(!(req.headers["verif-hash"]!=="ariwa"||!req.headers["verif-hash"])){
+    console.log("correct header was not passed");
+    return res.status(500).end()
   }
+  console.log(req);
+  //handle failed transactions
+  if(req.body.data){
+  if(req.body.data.status!="successfull"){
+    sendd("igwebuikea626@gmail.com","An already verified txn_id  attempted to be verified")
+return res.status(200).end()
+  }}
+  else{
+    if(!req.isAuthenticated()){
+      return res.end()}
+  }
+  let tx_ref;
+  let transaction_id
   console.log("done path has been entered")
   const Id = mongoose.Types.ObjectId(req.user._id);
-  const tx_ref=req.query.tx_ref;
-  const transaction_id= req.query.transaction_id;
+  if(req.body.data){
+    tx_ref=req.body.data.tx_ref;
+    transaction_id= req.body.data.id;
+  }else{
+   tx_ref=req.body.tx_ref;
+ transaction_id= req.body.transaction_id;}
   console.log(tx_ref)
-  //check if id has been verified before. If yes redirect
+  //check if id has been verified before.
   const flidObj=await Flid.findOne({Customer:req.user.Email})
   if(flidObj.Ids.includes(transaction_id)){
     console.log("This transaction has already been settled")
-   return  res.redirect("/dashboard");
+    sendd("igwebuikea626@gmail.com","An already verified txn_id  attempted to be verified")
+   return  res.status(500).json({message:"this transaction has alrady been settled"})
   }
   console.log(transaction_id)
-    try{await vet(tx_ref,transaction_id,Id,req.user.Email)
-  res.redirect("/dashboard");
+    try{
+      await vet(tx_ref,transaction_id,Id,req.user.Email)
+  res.status(200).json({message:"Payment successfull"})
   }
   catch(e){
 console.log("Error caught...")
-    res.redirect("/dashboard")
+    res.status("500").json({message:"payment failed..."})
   } 
   
 })

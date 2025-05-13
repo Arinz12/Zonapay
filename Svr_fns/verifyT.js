@@ -28,7 +28,7 @@ async function vet(ref, transactionId, ID, user) {
         if (response.data.status === "successful" &&
             response.data.currency === "NGN" &&
             response.data.tx_ref === ref) {
-            
+              
             // Update user balance
             const updatedUser = await User.findByIdAndUpdate(
                 ID, 
