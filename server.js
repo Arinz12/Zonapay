@@ -731,7 +731,11 @@ return res.status(200).end()
       userEmail= (req.isAuthenticated())? req.user.Email : req.body.data.customer.email
   let tx_ref;
   let transaction_id;
-  const Id = (req.isAuthenticated())? mongoose.Types.ObjectId(req.user._id): await User.findOne({Email:req.body.data.customer.email})._id;
+  let usernow;
+  if(!req.isAuthenticated()){
+   usernow=await User.findOne({Email:req.body.data.customer.email})}
+   console.log("USERPASSPORT",usernow)
+  const Id = (req.isAuthenticated())? mongoose.Types.ObjectId(req.user._id): usernow._id;
   console.log(Id)
   if(req.body.data&&!req.isAuthenticated()){
     tx_ref=req.body.data.tx_ref;
@@ -754,7 +758,7 @@ return res.status(200).end()
   }
   catch(e){
 console.log("Error caught...")
-    res.status("500").json({message:"payment failed..."})
+    res.status(500).json({message:"payment failed..."})
   } 
   
 })
