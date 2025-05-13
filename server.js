@@ -706,11 +706,12 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 
 //verifying flutterwave transactions
 server.post("/done",cors(),async (req,res)=>{
-  if(!(req.headers["verif-hash"]!=="ariwa"||!req.headers["verif-hash"])){
+  console.log(req);
+  if(req.body.data){console.log("request came from a webhook")}
+  if((req.headers["verif-hash"]!=="ariwa"||!req.headers["verif-hash"])){
     console.log("correct header was not passed");
     return res.status(500).end()
   }
-  console.log(req);
   //handle failed transactions
   if(req.body.data){
   if(req.body.data.status!="successfull"){
