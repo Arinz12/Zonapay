@@ -731,7 +731,8 @@ return res.status(200).end()
       userEmail= (req.isAuthenticated())? req.user.Email : req.body.data.customer.email
   let tx_ref;
   let transaction_id;
-  const Id = (req.isAuthenticated())? mongoose.Types.ObjectId(req.user._id):mongoose.Types.ObjectId(await User.findOne({Email:req.body.data.customer.email})._id);
+  const Id = (req.isAuthenticated())? mongoose.Types.ObjectId(req.user._id): await User.findOne({Email:req.body.data.customer.email})._id;
+  console.log(Id)
   if(req.body.data&&!req.isAuthenticated()){
     tx_ref=req.body.data.tx_ref;
     transaction_id= req.body.data.id;
