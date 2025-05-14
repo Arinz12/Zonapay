@@ -31,6 +31,7 @@ const cors= require("cors");
 const { otp } = require('./flib/forgotPass');
 const { verif } = require("./Svr_fns/verifyBills");
 const { updateFlid,Flid } = require("./Svr_fns/FlutterwaveIds");
+const { Earning } = require("./Svr_fns/Dailyearn");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -207,7 +208,36 @@ if(resp.ok){
   if(resp2.status=="success"){
     const amt=resp2.data.amount
     await User.findByIdAndUpdate(Id, { $inc: { Balance: -amt } },  { new: true } )
-  res.status(200).json(resp2);
+    setTimeout( async ()=>{
+      const day= DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
+
+      const found= await Earning.findOne({Date:day});
+  if(found){
+    console.log("Day found")
+    await Earning.updateOne({Date:day},{$inc:{
+      Earning:(3/100)*amt,
+      Total:amt,
+      Airtime:amt,
+      Airtime_purchases:1
+  }});
+    console.log("Earning updated for airtime")
+
+  }
+  else{
+console.log("Day will now be created")
+await Earning.create({
+Date:day,
+Earning:(3/100)*amt,
+Total:amt,
+Airtime:amt,
+Airtime_purchases:1
+})
+console.log("Earning updated for airtime for the first time in the day")
+  }
+  return;
+    },2000)
+  return res.status(200).json(resp2);
+    
   }
 
   else{
@@ -402,8 +432,6 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
   res.status(400).json({code:"insufficientFund"})
   return;
   }
-  
- 
   try{
     const result= await fetch(`https://api.flutterwave.com/v3/billers/${billcode}/items/${itemcode}/payment`,
     {
@@ -426,7 +454,34 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
     console.log(result2);
     if(result2.status=="success"){
       const newamount=result2.data.amount;
-      await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
+      await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } );
+      setTimeout( async ()=>{
+        const day= DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
+  
+        const found= await Earning.findOne({Date:day});
+    if(found){
+      console.log("Day found")
+      await Earning.updateOne({Date:day},{$inc:{
+        Earning:(3/100)*newamount,
+        Total:amt,
+      Data:amt,
+      Data_purchases:1
+      }})
+      console.log("Earning updated for data")
+    }
+    else{
+  console.log("Day will now be created")
+  await Earning.create({
+  Date:day,
+  Earning:(3/100)*amt,
+  Total:amt,
+      Data:amt,
+      Data_purchases:1
+  })
+  console.log("Earning updated for data for the first time in the day")
+    }
+    return;
+      },2000)
       return res.status(200).json(result2);
     }
     else{
@@ -486,8 +541,37 @@ headers:{
     const data2= await data.json();
     console.log(data2)
    if(data2.status=="success"){
-    await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
-    res.status(200).json(data2)}
+    const newamount=data2.data.amount;
+    await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } );
+    setTimeout( async ()=>{
+      const day= DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
+      const found= await Earning.findOne({Date:day});
+  if(found){
+    console.log("Day found")
+    await Earning.updateOne({Date:day},{$inc:{
+      Earning: -70,
+      Total:amt,
+      Cable_tv:amt,
+     Cabletv_purchases:1
+    }})
+    console.log("Earning updated for cable tv")
+
+  }
+  else{
+console.log("Day will now be created")
+await Earning.create({
+Date:day,
+Earning: -70,
+Total:amt,
+Cable_tv:amt,
+Cabletv_purchases:1
+})
+console.log("Earning updated for cable tv for the first time in the day")
+
+  }
+  return;
+    },2000)
+   return res.status(200).json(data2)}
     else{
       console.log("returned  200 ok response but failed");
     }
@@ -571,9 +655,33 @@ if(result.status=="success"){
   console.log(result);
   const newamount= result.data.amount;
       await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
-  const now=DateTime.local()
-  const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
- res.status(200).json(result);
+      setTimeout( async ()=>{
+        const day= DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
+        const found= await Earning.findOne({Date:day});
+    if(found){
+      console.log("Day found")
+      await Earning.updateOne({Date:day},{$inc:{
+        Earning: -70,
+        Total:amt,
+      Electricity:amt,
+      Electricity_purchases:1
+      }})
+      console.log("Earning updated for electricity")
+    }
+    else{
+  console.log("Day will now be created")
+  await Earning.create({
+  Date:day,
+  Earning: -70,
+  Total:amt,
+      Electricity:amt,
+      Electricity_purchases:1
+  })
+  console.log("Earning updated for the first time in the day")
+    }
+    return;
+      },2000)
+ return res.status(200).json(result);
 }
 
 else{
