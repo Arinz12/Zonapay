@@ -32,6 +32,7 @@ const { otp } = require('./flib/forgotPass');
 const { verif } = require("./Svr_fns/verifyBills");
 const { updateFlid,Flid } = require("./Svr_fns/FlutterwaveIds");
 const { Earning } = require("./Svr_fns/Dailyearn");
+const { Otpmodel } = require("./Svr_fns/otps");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -815,7 +816,6 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 //verifying flutterwave transactions
 server.post("/done",cors(),async (req,res)=>{
   console.log("done path has been entered")
-
   // Here req.body.data is ued to check requests coming from outside Billsly frontend
   // console.log(req);
 //check if request came from a webhook
@@ -880,12 +880,19 @@ console.log("Error caught...")
 })
 
 //changing pin/password
-
-let otps=[]
 server.post("/change",async (req,res)=>{
   console.log(req.body);
 const otp_matcher= otp();
-otps.push(otp_matcher);
+await Otpmodel.deleteOne({Email:req.body.email});
+//save otp to database;\
+try{
+await Otpmodel.create({
+  Email:req.body.email,
+  Otp:otp_matcher
+})}
+catch(e){
+return res.end()
+}
 const msg=` <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -992,13 +999,10 @@ const msg=` <!DOCTYPE html>
 </html>`
 // sendd("arize1524@gmail.com",req.body.email)
 sendd(req.body.email,undefined,msg)
-setTimeout(()=>{
-  delete otps[otps.indexOf(otp_matcher)];
-  otps=otps.filter((ele)=>ele!==undefined)
-
+setTimeout(async ()=>{
+   await Otpmodel.deleteOne({Otp:otp_matcher})
 },300000);
 res.end()
-
 })
 server.post("/change2",cors(),async (req,res)=>{
   console.log(req.body);
@@ -1011,9 +1015,12 @@ res.redirect("/login");
   }
 }
 if(newpass){
+  const current_user=(req.isAuthenticated())? req.user.Email:req.body.email
   try{
-if(otps.includes(otp)){
+   const exist =await Otpmodel.findOne({Email:current_user});
+if(exist&&exist.Otp===otp){
 const found=await User.updateOne({Email:(req.isAuthenticated())? req.user.Email:req.body.email},{$set:{Password:bcrypt.hashSync(newpass,10)}},{upsert:false})
+await Otpmodel.deleteOne({Otp:otp});
 if(!found.acknowledged){
   throw new Error("User not found");
 }
@@ -1033,9 +1040,12 @@ res.status(400).end();
 }
 
 else{
+  const current_user=req.user.Email;
   try{
-  if(otps.includes(otp)){
-  const found=await User.updateOne({Email:req.user.Email},{$set:{Pin:bcrypt.hashSync(newpin,10)}},{upsert:false})
+    const exist= await Otpmodel.findOne({Email:current_user});
+  if(exist&&exist.Otp===otp){
+  const found=await User.updateOne({Email:req.user.Email},{$set:{Pin:bcrypt.hashSync(newpin,10)}},{upsert:false});
+  await Otpmodel.deleteOne({Otp:otp});
   if(!found.acknowledged){
     throw new Error("User not found");
   }

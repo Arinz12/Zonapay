@@ -1,8 +1,10 @@
 // @ts-nocheck
 require("dotenv").config();
 const Flutterwave = require('flutterwave-node-v3');
+const { DateTime } = require("luxon");
 const sendd = require("../flib/mailsender");
 const { User } = require("./createuser");
+const { Earning } = require("./Dailyearn");
 const { updateFlid } = require("./FlutterwaveIds");
 
 async function vet(ref, transactionId, ID, user) {
@@ -41,7 +43,19 @@ async function vet(ref, transactionId, ID, user) {
                 throw new Error('User not found');
             }
           await  updateFlid(updatedUser.Email,transactionId);
-
+          const day=DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
+const found=await Earning.findOne({Date:day});
+if (found){
+    await Earning.updateOne({Date:day},{$inc:{Earning:(response.data.amount_settled-response.data.amount)}})
+    console.log("Earning updated due to funding fees");
+}
+else{
+    await Earning.create({
+        Date:day,
+        Earning:(response.data.amount_settled-response.data.amount)
+    })
+    console.log("Earning updated for the day with a funding fee payment")
+}
             console.log(`Funding successful - Ref: ${ref}, Transaction ID: ${transactionId}, Amount: ${response.data.amount}`);
             
             // Send success notification

@@ -1,4 +1,7 @@
+const crypto= require("crypto")
+
 function otp(){
-    return  (crypto.randomBytes(4).readUInt32BE() % 1_000_000).toString()
+    const a= crypto.randomInt(100000,1000000)
+        return a;
 }
 module.exports= {otp}
