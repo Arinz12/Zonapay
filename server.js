@@ -463,8 +463,8 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
       console.log("Day found")
       await Earning.updateOne({Date:day},{$inc:{
         Earning:(3/100)*newamount,
-        Total:amt,
-      Data:amt,
+        Total:newamount,
+      Data:newamount,
       Data_purchases:1
       }})
       console.log("Earning updated for data")
@@ -473,9 +473,9 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
   console.log("Day will now be created")
   await Earning.create({
   Date:day,
-  Earning:(3/100)*amt,
-  Total:amt,
-      Data:amt,
+  Earning:(3/100)*newamount,
+  Total:newamount,
+      Data:newamount,
       Data_purchases:1
   })
   console.log("Earning updated for data for the first time in the day")
@@ -550,8 +550,8 @@ headers:{
     console.log("Day found")
     await Earning.updateOne({Date:day},{$inc:{
       Earning: -70,
-      Total:amt,
-      Cable_tv:amt,
+      Total:newamount,
+      Cable_tv:newamount,
      Cabletv_purchases:1
     }})
     console.log("Earning updated for cable tv")
@@ -562,8 +562,8 @@ console.log("Day will now be created")
 await Earning.create({
 Date:day,
 Earning: -70,
-Total:amt,
-Cable_tv:amt,
+Total:newamount,
+Cable_tv:newamount,
 Cabletv_purchases:1
 })
 console.log("Earning updated for cable tv for the first time in the day")
@@ -662,8 +662,8 @@ if(result.status=="success"){
       console.log("Day found")
       await Earning.updateOne({Date:day},{$inc:{
         Earning: -70,
-        Total:amt,
-      Electricity:amt,
+        Total:newamount,
+      Electricity:newamount,
       Electricity_purchases:1
       }})
       console.log("Earning updated for electricity")
@@ -673,8 +673,8 @@ if(result.status=="success"){
   await Earning.create({
   Date:day,
   Earning: -70,
-  Total:amt,
-      Electricity:amt,
+  Total:newamount,
+      Electricity:newamount,
       Electricity_purchases:1
   })
   console.log("Earning updated for the first time in the day")
