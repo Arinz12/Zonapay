@@ -179,8 +179,8 @@ return ()=>{
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>M-no</span><span>{details.data.phone_number}</span></div>
               <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span>
               <span>{details.data.recharge_token.match(/.{1,4}/g).join("-")}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>{details.data.units}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{"NA"}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>{"NA"}</span></div>
+              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount+100}</span></div>
               <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
           </Paper>
           <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}> Home</Button>}</Link>

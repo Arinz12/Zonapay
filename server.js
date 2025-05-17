@@ -299,7 +299,8 @@ catch(e){
 const {email,password}=req.body;
 try{
 const detail= await User.findOne({Email:email});
-console.log(detail)
+//This logs a user found
+// console.log(detail);
 if(detail){
   if(!bcrypt.compareSync(password,detail.Password)){
     return res.status(400).send("verificatin failed")
@@ -637,7 +638,7 @@ const isFundsSufficient= balance>amount
     body:JSON.stringify({
       country:"NG",
       customer_id:iuc,
-      amount:parseInt(amount),
+      amount:parseInt(amount)-100,
       reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
       callback_url:"https://zonapay.onrender.com/webhook"
     }),
@@ -655,16 +656,16 @@ if(result.status=="success"){
   //   `token ${result.data.token} units ${result.data.units} amount ${result.data.amount}`);
   console.log(result);
   const newamount= result.data.amount;
-      await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount } },  { new: true } )
+      await User.findByIdAndUpdate(Id, { $inc: { Balance: -newamount-100 } },  { new: true } )
       setTimeout( async ()=>{
         const day= DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
         const found= await Earning.findOne({Date:day});
     if(found){
       console.log("Day found")
       await Earning.updateOne({Date:day},{$inc:{
-        Earning: -70,
+        Earning: 30,
         Total:newamount,
-      Electricity:newamount,
+      Electricity:newamount+100,
       Electricity_purchases:1
       }})
       console.log("Earning updated for electricity")
@@ -673,9 +674,9 @@ if(result.status=="success"){
   console.log("Day will now be created")
   await Earning.create({
   Date:day,
-  Earning: -70,
+  Earning: 30,
   Total:newamount,
-      Electricity:newamount,
+      Electricity:newamount+100,
       Electricity_purchases:1
   })
   console.log("Earning updated for the first time in the day")
