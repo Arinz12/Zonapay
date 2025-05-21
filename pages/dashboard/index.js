@@ -11,6 +11,7 @@ import { Paper,Button } from '@mui/material';
 import router from "next/router";
 import {DateTime} from "luxon";
 import Carousel2 from '../../components/Carousel';
+import Ripples from "react-ripples"
 
 
 const Dashboard = ({obj}) => {
@@ -71,41 +72,42 @@ const Dashboard = ({obj}) => {
         <div className='text-center w-full  mt-5 mb-1 rubik-h'>Quick actions</div>
         <div  className='ml-2 mr-2 px-4 py-7 bg-white rounded-2xl '>
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
-               <Link href="/dashboard/airtime">{<div className="flex items-center flex-col gap-1">
+               <Link href="/dashboard/airtime">
+                {<Ripples color="#808080" during={1000}> <div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <PhoneRounded className='text-blue-600'sx={{height:"24px"}}/> </div>
-                <div className="text-black text-center font-bold rubik-b"> Airtime</div></div>
+                <div className="text-black text-center font-bold rubik-b"> Airtime</div></div></Ripples>
                   }</Link>
-           <Link href="/dashboard/data">{<div className="flex items-center flex-col gap-1">
+           <Link href="/dashboard/data">{<Ripples color="#808080" during={1000}><div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <LanguageRounded className='text-blue-600' sx={{height:"24px"}}/> </div>
-                <div className="text-black text-center font-bold rubik-b"> Data</div></div>}</Link>
+                <div className="text-black text-center font-bold rubik-b"> Data</div></div></Ripples>}</Link>
  
-            <Link href="/dashboard/ctv">{<div className="flex items-center flex-col gap-1">
+            <Link href="/dashboard/ctv">{<Ripples color="#808080" during={1000}><div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <TvRounded className='text-blue-600' sx={{height:"24px"}}/> </div>
-                <div className="text-black text-center font-bold rubik-b">Cable tv</div></div>}</Link>
+                <div className="text-black text-center font-bold rubik-b">Cable tv</div></div></Ripples>}</Link>
 
-                <div className="flex items-center flex-col gap-1 relative">
+                <Ripples color="#808080" during={1000}> <div className="flex items-center flex-col gap-1 relative">
                 <span style={{fontSize:"8px"}} className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
                Coming Soon
               </span>
                   <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <CardGiftcardRounded className='text-blue-600' sx={{height:"24px"}}/> </div>
-                <div className="text-black text-center font-bold rubik-b">Giftcard</div></div>
+                <div className="text-black text-center font-bold rubik-b">Giftcard</div></div></Ripples>
 
-            <Link href="/dashboard/elect">{  <div className="flex items-center flex-col gap-1">
+            <Link href="/dashboard/elect">{ <Ripples color="#808080" during={1000}><div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <BoltRoundedIcon className='text-blue-600' sx={{height:"24px"}}/> </div>
-                <div className="text-black text-center font-bold rubik-b">Electricity</div></div>}</Link>
+                <div className="text-black text-center font-bold rubik-b">Electricity</div></div></Ripples>}</Link>
 
-                <div className="flex items-center flex-col gap-1 relative">
+                <Ripples color="#808080" during={1000}> <div className="flex items-center flex-col gap-1 relative">
                 <span style={{fontSize:"8px"}} className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
                     Coming Soon
                  </span>
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
                 <SchoolRounded className='text-blue-600' sx={{height:"24px"}}/> </div>
-                <div className="text-black text-center font-bold rubik-b">Education</div></div>
+                <div className="text-black text-center font-bold rubik-b">Education</div></div></Ripples>
             </div>
         </div>
         <div className='mt-5 mb-9 w-full'>

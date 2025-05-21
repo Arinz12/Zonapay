@@ -221,7 +221,8 @@ catch(e){
 
         <div style={{fontSize:"23px"}} className="rubik-h sticky top-0 w-full  bg-white px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
 
-        <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center"><ArrowBack sx={{color:"#2563EB"}} className="" /> </div>
+        <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center">
+          <Ripples color="#808080" during={1000}><ArrowBack sx={{color:"#2563EB"}} className="" /></Ripples> </div>
           <div className="text-blue-600">Airtime</div>
           
           </div>
@@ -261,7 +262,7 @@ onInput={()=>{
 <input  inputMode="numeric" autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2  w-full h-12 rubik-h border-0 rounded-2xl" />
 
 </div>
-{ loading?  <Delay/> :<div className="w-full flex flex-col justify-center items-center mt-4"> <Button  ref={ready} className=" mx-auto bg-blue-600 w-3/6 text-white p-5" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button></div>}
+{ loading?  <Delay/> :<div className="w-full flex flex-col justify-center items-center mt-4"> <Button  ref={ready} className=" mx-auto bg-blue-600 w-3/6 text-white p-3" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button></div>}
 </form>
 
    {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
