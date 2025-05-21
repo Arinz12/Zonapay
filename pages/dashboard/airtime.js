@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import NumericPad from "../../components/Numpad";
 import router from "next/router"
 import Delay from "../../components/Delay";
- 
+ import Ripples from "react-ripples"
 const AirtimeForm=()=>{
   const [enable,setEnable]= useState(true)
   const [processed,setProcessed]=useState(false)
