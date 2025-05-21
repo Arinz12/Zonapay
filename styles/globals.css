@@ -33,8 +33,9 @@ body{
 .rubik-l {
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
   font-style: normal;
+  color: rgb(106 119 151);
+  font-weight: 500;
 }
 .sli{ 
   animation-name: slid;
@@ -336,4 +337,9 @@ button, a, input ,div {
     to{
       opacity: 1;
     }
+   }
+
+   .ctext{
+    color: rgb(106 119 151);
+    font-weight: 500;
    }
