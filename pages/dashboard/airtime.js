@@ -222,7 +222,7 @@ catch(e){
         <div style={{fontSize:"23px"}} className="rubik-h sticky top-0 w-full  bg-white px-4 py-4 flex flex-row justify-start gap-4 items-center rounded-b-3xl  mb-8">
 
         <div onClick={()=>{router.back()}} style={{}}className="p-2 flex flex-row items-center justify-center">
-          <Ripples color="#808080" during={1000}><ArrowBack sx={{color:"#2563EB"}} className="" /></Ripples> </div>
+          <ArrowBack sx={{color:"#2563EB"}} className="" /> </div>
           <div className="text-blue-600">Airtime</div>
           
           </div>

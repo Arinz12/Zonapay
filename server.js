@@ -36,7 +36,7 @@ const { Otpmodel } = require("./Svr_fns/otps");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
-mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true,connectTimeoutMS: 50000,serverSelectionTimeoutMS:5000,socketTimeoutMS:45000 })
+mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true,connectTimeoutMS: 50000,serverSelectionTimeoutMS:20000,socketTimeoutMS:45000 })
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 
