@@ -4,7 +4,8 @@ import Link from "next/link";
 //import styles from 'Home.module.css'
 import Carousel from 'react-material-ui-carousel';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { ConnectWithoutContactIcon, Diversity1Rounded, LogoutRounded} from '@mui/icons-material';
+import BoltRoundedIcon from '@mui/icons-material/BoltRounded';
+import { CardGiftcardRounded, ConnectWithoutContactIcon, Diversity1Rounded, LogoutRounded, PhoneRounded, SchoolRounded} from '@mui/icons-material';
 import { LocalAirportRounded,LanguageRounded,CardGiftcard, TvRounded, Tungsten, School, History, Visibility, VisibilityOff, PhoneOutlined } from '@mui/icons-material';
 import { Paper,Button } from '@mui/material';
 import router from "next/router";
@@ -72,7 +73,7 @@ const Dashboard = ({obj}) => {
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
                <Link href="/dashboard/airtime">{<div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
-                <PhoneOutlined className='text-blue-600'sx={{height:"24px"}}/> </div>
+                <PhoneRounded className='text-blue-600'sx={{height:"24px"}}/> </div>
                 <div className="text-black text-center font-bold rubik-b"> Airtime</div></div>
                   }</Link>
            <Link href="/dashboard/data">{<div className="flex items-center flex-col gap-1">
@@ -90,12 +91,12 @@ const Dashboard = ({obj}) => {
                Coming Soon
               </span>
                   <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
-                <CardGiftcard className='text-blue-600' sx={{height:"24px"}}/> </div>
+                <CardGiftcardRounded className='text-blue-600' sx={{height:"24px"}}/> </div>
                 <div className="text-black text-center font-bold rubik-b">Giftcard</div></div>
 
             <Link href="/dashboard/elect">{  <div className="flex items-center flex-col gap-1">
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
-                <Tungsten className='text-blue-600' sx={{height:"24px"}}/> </div>
+                <BoltRoundedIcon className='text-blue-600' sx={{height:"24px"}}/> </div>
                 <div className="text-black text-center font-bold rubik-b">Electricity</div></div>}</Link>
 
                 <div className="flex items-center flex-col gap-1 relative">
@@ -103,8 +104,8 @@ const Dashboard = ({obj}) => {
                     Coming Soon
                  </span>
                 <div style={{borderRadius:"50%",height:"30px",width:"30px",backgroundColor:"lavender"}} className="flex p-6    flex-col justify-center items-center">
-                <School className='text-blue-600' sx={{height:"24px"}}/> </div>
-                <div className="text-black text-center font-bold rubik-b">School</div></div>
+                <SchoolRounded className='text-blue-600' sx={{height:"24px"}}/> </div>
+                <div className="text-black text-center font-bold rubik-b">Education</div></div>
             </div>
         </div>
         <div className='mt-9 w-full'>

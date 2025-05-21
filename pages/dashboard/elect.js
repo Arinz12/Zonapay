@@ -21,7 +21,8 @@ const Elect=()=>{
     const acct=useRef([])
     const btn=useRef(null)
     const amt=useRef([])
-    const amtcheck=useRef("")
+    const user_address=useRef("");
+    const amtcheck=useRef("");
     const [btnready,setBtnready]=useState(false);
      async function veri(){
       // const matcher=/^\d{13}$/
@@ -44,6 +45,7 @@ const result= await res.json();
 document.getElementById("userinfo").style.color="green"
 console.log("user",result)
 document.getElementById("userinfo").innerHTML=result.data.name;
+user_address.current=result.data.address;
 setValid(true)
 }
 else{
@@ -165,7 +167,7 @@ return ()=>{
       }
       }  
 
-    if (processed){
+    if (processed){ 
         return (<>
         <div style={{height:"100lvh",width:"100vw"}} className="flex  flex-row items-center justify-center">
       <div className="flex flex-col gap-8 justify-center items-center w-full">
@@ -174,14 +176,15 @@ return ()=>{
       <div style={{fontSize:"20px"}} className="text-black rubik-b">{details.message}</div>
       </div>
         <Paper elevated={4} className=" flex flex-col  mt-4 space-y-2 text-center w-10/12 p-6 rounded-xl ">
-              <div className="monomaniac-one-regular  flex flex-row  justify-between"><span>Provider</span>
+              <div className="rubik-b  flex flex-row  justify-between"><span>Provider</span>
               <span>{details.data.network}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>M-no</span><span>{details.data.phone_number}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Token</span>
+              <div className="rubik-b  flex flex-row justify-between"><span>M-no</span><span>{details.data.phone_number}</span></div>
+              <div className="rubik-b  flex flex-row justify-between"><span>Token</span>
               <span>{details.data.recharge_token.match(/.{1,4}/g).join("-")}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Units</span><span>{"NA"}</span></div>
-              <div className="monomaniac-one-regular  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount+100}</span></div>
-              <div style={{fontSize:"14px"}} className="text-lg font-semibold flex flex-row justify-between"><span>reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
+              <div className="rubik-b  flex flex-row justify-between"><span>Units</span><span>{"NA"}</span></div>
+              <div className="rubik-b  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount+100}</span></div>
+              <div style={{fontSize:"14px"}} className=" rubik-b flex flex-row justify-between"><span>Reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
+              <div style={{fontSize:"14px"}} className=" rubik-b flex flex-row justify-between"><span>Address</span><span>{user_address.currrent}</span></div>
           </Paper>
           <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}> Home</Button>}</Link>
           </div>

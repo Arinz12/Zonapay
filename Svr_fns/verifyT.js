@@ -83,7 +83,6 @@ else{
             "igwebuikea626@gmail.com",
             `FUNDING ERROR for user ${user}`,
         );
-
         return
     }
 }

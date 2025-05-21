@@ -242,9 +242,7 @@ catch(e){
     <input type="radio" id="glo" name="nid" value="glo" className="mr-2" />
     <label htmlFor="glo"><img src="/images/glo2.png" width={"40px"} height={"40px"} /></label>
   </div>
-</div>
-
-
+</div> 
     </div>
     <div className="pt-7">
     <label htmlFor="amt" className="rubik-h pb-3">Amount</label>
@@ -263,7 +261,7 @@ onInput={()=>{
 <input  inputMode="numeric" autoComplete={"off"} style={{fontSize:"20px",backgroundColor:"whitesmoke"}} type="string"  id="phone" placeholder="XXXXXXXXX" name="Phoneno" className="focus:outline-none pl-2  w-full h-12 rubik-h border-0 rounded-2xl" />
 
 </div>
-{ loading?  <Delay/> :<div className="w-full flex flex-col justify-center items-center mt-4"> <Button  ref={ready} className=" mx-auto bg-blue-600 w-3/6 text-white  p-4" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button></div>}
+{ loading?  <Delay/> :<div className="w-full flex flex-col justify-center items-center mt-4"> <Button  ref={ready} className=" mx-auto bg-blue-600 w-3/6 text-white p-5" disabled={enable} type="submit" variant="contained" endIcon={<ArrowForward/> } sx={{textTransform:"none",borderRadius:"30px"  }} >proceed</Button></div>}
 </form>
 
    {showkeypad&&<NumericPad maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>}
@@ -271,7 +269,6 @@ onInput={()=>{
     </div>
     </>)
 }
-
 export async function getServerSideProps(context){
   if(!context.req.isAuthenticated()){
       return {
