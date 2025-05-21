@@ -34,7 +34,7 @@ import Carousel from 'react-material-ui-carousel';
 import Slide from 'react-reveal/Slide';
 import FadeOutComponent from '../components/Fadeout';
 import SplitText from '../components/SplitText';
-import { BoltRounded, CardGiftcardRounded, ConnectedTvRounded, LanguageRounded, PhoneOutlined, PhoneRounded, SchoolRounded, TipsAndUpdatesRounded } from '@mui/icons-material';
+import { BoltRounded, CardGiftcardRounded, ConnectedTvRounded, LanguageRounded, PhoneOutlined, PhoneRounded, SchoolRounded, TipsAndUpdatesRounded, WalletRounded } from '@mui/icons-material';
 
  const Dash=(props)=>{
   const handleAnimationComplete=()=>{console.log("Animation is completed")}

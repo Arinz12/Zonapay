@@ -108,7 +108,7 @@ const Dashboard = ({obj}) => {
                 <div className="text-black text-center font-bold rubik-b">Education</div></div>
             </div>
         </div>
-        <div className='mt-9 w-full'>
+        <div className='mt-5 mb-9 w-full'>
             <Carousel2 autoRotate={true} interval={4000} showIndicators={true} slideHeight={95}
         bgColor="white"
         activeIndicatorColor="#1976d2">
