@@ -251,7 +251,7 @@ const fundvals = [
     .escape()
     .notEmpty().withMessage("Please input amount")
     .isNumeric().withMessage("Must be a number")
-    .isInt({ min: 500, max: 1000000 }).withMessage("Amount must be between 200 to 300000"),
+    .isInt({ min: 100, max: 1000000 }).withMessage("Amount must be between 100 to 1000000"),
 
   // Phone Validation
   body("phone")
