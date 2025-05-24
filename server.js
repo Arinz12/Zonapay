@@ -33,12 +33,115 @@ const { verif } = require("./Svr_fns/verifyBills");
 const { updateFlid,Flid } = require("./Svr_fns/FlutterwaveIds");
 const { Earning } = require("./Svr_fns/Dailyearn");
 const { Otpmodel } = require("./Svr_fns/otps");
+const cron= require("node-cron");
+const Schedule = require("./Svr_fns/schedule");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
 mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true,connectTimeoutMS: 50000,serverSelectionTimeoutMS:20000,socketTimeoutMS:45000 })
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
+
+
+async function fufil(bc,ic,cu,amt,userr,bt){
+  try{
+  const usernow=  await User.findOne({Email:userr})
+const balance=usernow.Balance
+const isFundsSufficient= balance>amt
+if(!isFundsSufficient){
+throw new Error("Failed")
+}
+  let url;
+  url= (bt=="Airtime")? `https://api.flutterwave.com/v3/billers/"BIL099"/items/"AT099"/payment`:`https://api.flutterwave.com/v3/billers/${bc}/items/${ic}/payment`
+  
+	const resp= await fetch(url,{method:"POST", headers: {
+    'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`,
+    'Content-Type': 'application/json',
+    'accept': 'application/json'
+  },
+  body: JSON.stringify({
+    country: 'NG',
+    customer_id: cu,
+    amount: (bt=="Electricity")? amt-100: amt,
+    reference: userr.split("@")[0]+"split"+userr.split("@")[1].split(".")[0]+"split"+uuidv4(),
+    callback_url: 'https://zonapay.onrender.com/webhook'
+  })})
+  if(resp.ok){
+    const resp2= await resp.json();
+    console.log(resp2)
+    if(resp2.status=="success"){
+      const amt=resp2.data.amount
+      await User.findOneAndUpdate({Email:userr}, { $inc: { Balance: -amt } },  { new: true } )
+      setTimeout( async ()=>{
+        const day= DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
+  
+        const found= await Earning.findOne({Date:day});
+    if(found){
+      console.log("Day found")
+      await Earning.updateOne({Date:day},{$inc:{
+        Earning: (bt=="Airtime"||bt=="Data")? (3/100)*amt : (bt=="Electricity")? 30 : -70 ,
+        Total:amt,
+        Airtime:(bt=="Airtime")? amt: 0,
+        Airtime_purchases:(bt=="Airtime")? 1: 0,
+        Data_purchases:(bt=="Data")? 1: 0,
+    Cabletv_purchases:(bt=="Cable")? 1: 0,
+    Electricity_purchases:(bt=="Electricity")? 1: 0,
+    Data:(bt=="Data")? amt: 0,
+    Cable_tv:(bt=="Cable")? amt: 0,
+    Electricity:(bt=="Electricity")? amt: 0,
+  }});
+      console.log(`Earning updated for ${bt} from scheduler`)
+  
+    }
+    else{
+  console.log("Day will now be created")
+  await Earning.create({
+  Date:day,
+  Earning:(bt=="Airtime"||bt=="Data")? (3/100)*amt : (bt=="Electricity")? 30 : -70 ,
+  Total:amt,
+  Airtime:(bt=="Airtime")? amt: 0,
+        Airtime_purchases:(bt=="Airtime")? 1: 0,
+        Data_purchases:(bt=="Data")? 1: 0,
+    Cabletv_purchases:(bt=="Cable")? 1: 0,
+    Electricity_purchases:(bt=="Electricity")? 1: 0,
+    Data:(bt=="Data")? amt: 0,
+    Cable_tv:(bt=="Cable")? amt: 0,
+    Electricity:(bt=="Electricity")? amt: 0,
+  })
+  console.log(`Earning updated for ${bt} for the first time in the day from scheduler`)
+    }
+    return;
+      },2000)
+    return;
+    }
+  
+    else{
+      throw new Error("failed")
+    }
+  }
+  else{
+    const now=DateTime.local()
+  const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+    const history={user:req.user.Email,
+      tid:undefined,
+      time:timeinNigeria,
+      amount:amt,
+      phone:cu,
+      network:nid,
+      product:bt,
+    status:"failed"}
+    saveHistory(history);
+    const resp2= await resp.json();
+    if(resp2.status==="error"){
+      throw new Error("failed")      }
+      else{
+throw new Error("failed")      }
+  }
+  }
+  catch(e){
+console.log(e)
+  }
+}
 
 app.prepare().then(() => {
 
@@ -159,6 +262,15 @@ const fundvals = [
     .isLength({ min: 11, max: 11 }).withMessage('Phone number must be 11 digits long'),
 ];
 
+//Scheduling bills
+server.post("/schedule",async (req,res)=>{
+  if(!req.isAuthenticated()){
+    res.redirect("/login");
+  }
+  await Schedule.deleteMany({Status:"Completed"});
+  cron.schedule(cronExpression, fuf)
+
+})
 
 //  API routes
   server.post("/validatefundform",fundvals,(req,res)=>{
