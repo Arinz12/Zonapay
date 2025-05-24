@@ -53,7 +53,6 @@ throw new Error("Failed")
 }
   let url;
   url= (bt=="Airtime")? `https://api.flutterwave.com/v3/billers/"BIL099"/items/"AT099"/payment`:`https://api.flutterwave.com/v3/billers/${bc}/items/${ic}/payment`
-  
 	const resp= await fetch(url,{method:"POST", headers: {
     'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`,
     'Content-Type': 'application/json',
@@ -122,7 +121,7 @@ throw new Error("Failed")
   else{
     const now=DateTime.local()
   const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-    const history={user:req.user.Email,
+    const history={userr,
       tid:undefined,
       time:timeinNigeria,
       amount:amt,
@@ -263,12 +262,18 @@ const fundvals = [
 ];
 
 //Scheduling bills
-server.post("/schedule",async (req,res)=>{
-  if(!req.isAuthenticated()){
-    res.redirect("/login");
-  }
+server.post("/schedule",cors(),async (req,res)=>{
+  // if(!req.isAuthenticated()){
+  //   res.redirect("/login");
+  //}
+  const {billcode,itemcode,cus,amt,us,bt,m,h,dm,mo,dw}= req.body;
+  try{
   await Schedule.deleteMany({Status:"Completed"});
-  cron.schedule(cronExpression, fuf)
+  cron.schedule(`${m} ${h} ${dm} ${mo} ${dw}`, ()=>{fufil(billcode,itemcode,cus,amt,us,bt)});
+  res.status(200).json({message:"successful"})}
+  catch(e){
+    res.status(400).json({message:"failed"})
+  }
 
 })
 
