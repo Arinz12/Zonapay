@@ -139,6 +139,17 @@ throw new Error("failed")      }
   }
   catch(e){
 console.log(e)
+const now=DateTime.local()
+  const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
+    const history={userr,
+      tid:undefined,
+      time:timeinNigeria,
+      amount:amt,
+      phone:cu,
+      network:nid,
+      product:bt,
+    status:"failed"}
+    saveHistory(history);
   }
 }
 
@@ -266,11 +277,14 @@ server.post("/schedule",cors(),async (req,res)=>{
   // if(!req.isAuthenticated()){
   //   res.redirect("/login");
   //}
+  console.log("ready to schedule.")
   const {billcode,itemcode,cus,amt,us,bt,m,h,dm,mo,dw}= req.body;
+  console.log(req.body)
   try{
   await Schedule.deleteMany({Status:"Completed"});
-  cron.schedule(`${m} ${h} ${dm} ${mo} ${dw}`, ()=>{fufil(billcode,itemcode,cus,amt,us,bt)});
-  res.status(200).json({message:"successful"})}
+  cron.schedule(`${m} ${h} ${dm} ${mo} ${dw}`, async ()=>{fufil(billcode,itemcode,cus,amt,us,bt)});
+  console.log("scheduled")
+  res.status(200).json({message:"successful",time:new Date()})}
   catch(e){
     res.status(400).json({message:"failed"})
   }
