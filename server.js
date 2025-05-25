@@ -131,10 +131,10 @@ throw new Error("Failed")
     status:"failed"}
     saveHistory(history);
     const resp2= await resp.json();
-    if(resp2.status==="error"){
-      throw new Error("failed")      }
-      else{
-throw new Error("failed")      }
+//     if(resp2.status==="error"){
+//       throw new Error("failed")}
+//       else{
+// throw new Error("failed")      }
   }
   }
   catch(e){
