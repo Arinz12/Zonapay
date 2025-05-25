@@ -121,12 +121,12 @@ throw new Error("Failed")
   else{
     const now=DateTime.local()
   const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-    const history={userr,
+    const history={user:userr,
       tid:undefined,
       time:timeinNigeria,
       amount:amt,
       phone:cu,
-      network:nid,
+      network:bt,
       product:bt,
     status:"failed"}
     saveHistory(history);
@@ -141,12 +141,12 @@ throw new Error("failed")      }
 console.log(e)
 const now=DateTime.local()
   const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-    const history={userr,
+    const history={user:userr,
       tid:undefined,
       time:timeinNigeria,
       amount:amt,
       phone:cu,
-      network:nid,
+      network:bt,
       product:bt,
     status:"failed"}
     saveHistory(history);
@@ -282,7 +282,7 @@ server.post("/schedule",cors(),async (req,res)=>{
   console.log(req.body)
   try{
   await Schedule.deleteMany({Status:"Completed"});
-  cron.schedule(`${m} ${h} ${dm} ${mo} ${dw}`, async ()=>{fufil(billcode,itemcode,cus,amt,us,bt)});
+  cron.schedule(`${m} ${h} ${dm} ${mo} ${dw}`, ()=>{fufil(billcode,itemcode,cus,amt,us,bt)});
   console.log("scheduled")
   res.status(200).json({message:"successful",time:new Date()})}
   catch(e){
