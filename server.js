@@ -962,7 +962,7 @@ server.post("/done",cors(),async (req,res)=>{
   if(req.body.data.status!="successful"){
     sendd("igwebuikea626@gmail.com",`This top up txn failed for ${req.body.data.customer.email}`)
 return res.status(200).end()
-  }}
+  }} 
   else{
     if(!req.isAuthenticated()){
       return res.end()}
@@ -992,12 +992,13 @@ return res.status(200).end()
       Customer:userEmail,
       Ids:[]
   })
+  console.log(userEmail+" "+"history id has been created")
   }
   flidObj=await Flid.findOne({Customer:userEmail})
   if(flidObj.Ids.includes(transaction_id)){
     console.log("This transaction has already been settled")
     sendd("igwebuikea626@gmail.com","An already verified txn_id  attempted to be verified")
-   return  res.status(500).json({message:"this transaction has alrady been settled"})
+   return  res.status(200).json({message:"this transaction has alrady been settled"})
   }
   console.log(transaction_id)
     try{

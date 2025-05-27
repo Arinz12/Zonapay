@@ -186,21 +186,21 @@
                 amount: amount,
                 currency: "NGN",
                 payment_options: "card, mobilemoneyghana, ussd",
-                // redirect_url: "https://zonapay.onrender.com/done",
-                callback: async (payment)=>{
-const res=await fetch("https://zonapay.onrender.com/done",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({tx_ref:payment.tx_ref,transaction_id:payment.transaction_id})
-})
-if(res.ok){
-    console.log("Payment confirmed...")
-}
-else{
-    console.log("payment failed ...")
-}
-                }
-                ,
+                redirect_url: "https://zonapay.onrender.com/dashboard",
+//                 callback: async (payment)=>{
+// const res=await fetch("https://zonapay.onrender.com/done",{
+//     method:"POST",
+//     headers:{"Content-Type":"application/json"},
+//     body:JSON.stringify({tx_ref:payment.tx_ref,transaction_id:payment.transaction_id})
+// })
+// if(res.ok){
+//     console.log("Payment confirmed...")
+// }
+// else{
+//     console.log("payment failed ...")
+// }
+//                 }
+                
                 onclose:(incomplete)=>{
                     if(incomplete){
                     console.log("payment has not completed yet");}
@@ -217,8 +217,7 @@ else{
                     name: name,
                 },
                 customizations: {
-                    title: "Billsly",
-                    description: "Payment for an awesome cruise",
+                    description: "Payment to billsly",
                     logo: "https://zonapay.onrender.com/cicon192.png",
                 }
             });
