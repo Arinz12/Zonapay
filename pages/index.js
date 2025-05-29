@@ -54,7 +54,7 @@ source.onerror= ()=>{console.log("An error occured")}
 
 </Head>
 <Stack className='focus:outline-none absolute bg-transparent top-2 z-10  w-full p-2 pt-1 pr-1 right-1 items-center' direction={"row"} justifyContent="space-between" sx={{bgcolor:"none"}} >
-    <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-white '>
+    <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-blue-600 '>
       <span><img src='cicon192.png' height={"30px"} width="30px"/></span>
       Billsly</Button>
     {/* <div><SplitText
@@ -73,24 +73,24 @@ source.onerror= ()=>{console.log("An error occured")}
 </Stack>
        <div className='relative w-full focus:outline-none'> <Carousel className='w-full focus:outline-none'  animation='fade' interval={6000}>
             <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent " sx={{height:"80vh", textAlign:"center",backgroundImage:"url('phonewhite/whitestraight.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className="h-full  flex flex-row justify-center  p-1 md:justify-end md:bg-transparent items-center w-full font-semibold text-white md:pr-8">
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className="h-full  flex flex-row justify-center  p-1 md:justify-end md:hp items-center w-full font-semibold text-white md:pr-8"> 
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Simplify Your Payments</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Easily manage and pay all your bills in one place. Enjoy a seamless experience with secure transactions and timely reminders.</Typography></Box>
                 </div>
             </Box>
             <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent" sx={{ height:"80vh",textAlign:"center"  ,backgroundImage:"url('phonewhite/whiteangle.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" flex flex-row md:justify-end  p-1 h-full justify-center md:bg-transparent items-center w-full font-semibold text-white md:pr-8">
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" flex flex-row md:justify-end  p-1 h-full justify-center md:hp items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli"  sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Stay Organized with Our Dashboard</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Track due dates, view payment history, and set up automatic payments to never miss a deadline again</Typography></Box>
                 </div></Box>
             
             <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent" sx={{ height:"80vh",textAlign:"center" ,backgroundImage:"url('phoneblack/blackstraight.png')",backgroundSize:"cover" }}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" h-full flex flex-row md:justify-end  p-1 justify-center md:bg-transparent items-center w-full font-semibold text-white md:pl-8">
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}} className=" h-full flex flex-row md:justify-end  p-1 justify-center md:hp items-center w-full font-semibold text-white md:pl-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Save Time and Avoid Late Fees</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>With our intuitive app, schedule payments ahead of time and receive notifications to keep your finances on track.</Typography></Box>
                 </div></Box>
-                <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent" sx={{ height:"80vh",textAlign:"center"   ,backgroundImage:"url('phoneblack/blackangle.png')",backgroundSize:"cover"}}>
-                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}}className="h-full flex flex-row p-1 md:justify-end  justify-center md:bg-transparent items-center w-full font-semibold text-white md:pr-8">
+                <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain" sx={{ height:"80vh",textAlign:"center"   ,backgroundImage:"url('phoneblack/blackangle.png')",backgroundSize:"cover"}}>
+                <div style={ {backgroundColor: "rgba(0, 0, 0, 0.8)",cursor: 'pointer'}}className="h-full flex flex-row p-1 md:justify-end  justify-center md:hp items-center w-full font-semibold text-white md:pr-8">
                     <Box className="max-w-sm md:max-w-md sli" sx={{ textAlignLast:"center"}}><Typography className="rubik-h" sx={{fontSize:"40px"}}>Get Started Today!</Typography>
                     <Typography className="rubik-b" variant="body" sx={{fontSize:" 22px"}}>Sign up now for free and take control of your bills. Experience hassle-free payments and manage your expenses effortlessly!</Typography></Box>
                 </div></Box>
@@ -100,16 +100,16 @@ source.onerror= ()=>{console.log("An error occured")}
         </div>
         <div className='flex flex-col'>
 
-        <h1 className='mx-auto rubik-h mb-2 ' style={{fontSize:"30px"}}>OUR SERVICES</h1>
+        <h1 className='mx-auto rubik-b mb-1 ' style={{fontSize:"30px"}}>OUR SERVICES</h1>
         {/* list of  our services */}
  <Stack direction={"column"}  justifyContent={"center"} alignItems={"center"} className='md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-x-8 gap-y-9' >
- <FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
+ <FadeOutComponent><div className='t flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-xl ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     <PhoneRounded sx={{height:"40px",width:"40px",color:"#2563EB"}} />
-    <div><h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Buy Airtime</h2>
+    <div><h2 className='rubik-h  text-center text-blue-500' style={{fontSize:"25px"}}>Buy Airtime</h2>
   <p className=' rubik-l p-2 text-center' style={{fontSize:"17px",textAlignLast:"center"}}>Recharge your mobile phone effortlessly with our quick airtime purchase feature. Enjoy instant top-ups and special promotions for frequent users!</p> </div>
 </div></FadeOutComponent> 
 
-<FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
+<FadeOutComponent><div className='t flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-xl ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     
 <CardGiftcardRounded sx={{height:"40px",width:"40px",color:"#2563EB"}} />
 <h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Purchase Gift cards</h2>
@@ -117,7 +117,7 @@ source.onerror= ()=>{console.log("An error occured")}
 </div></FadeOutComponent> 
 
 
-<FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
+<FadeOutComponent><div className='t flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-xl ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     
 <LanguageRounded sx={{height:"40px",width:"40px",color:"#2563EB"}} />
 <h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}> Purchase data</h2>
@@ -125,7 +125,7 @@ source.onerror= ()=>{console.log("An error occured")}
 </div>
 </FadeOutComponent>
 
-<FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
+<FadeOutComponent><div className='t flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-xl ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     
 <BoltRounded sx={{height:"40px",width:"40px",color:"#2563EB"}} />
 <h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Pay Electricity Bills</h2>
@@ -133,7 +133,7 @@ source.onerror= ()=>{console.log("An error occured")}
 </div>
 </FadeOutComponent> 
 
-<FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
+<FadeOutComponent><div className='t flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-xl ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
     
 <ConnectedTvRounded sx={{height:"40px",width:"40px",color:"#2563EB"}} />
 <h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Pay for Cable Tv  </h2>
@@ -142,7 +142,7 @@ source.onerror= ()=>{console.log("An error occured")}
 </div>
 </FadeOutComponent> 
 
-<FadeOutComponent><div className='flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-lg ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
+<FadeOutComponent><div className='t flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-xl ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>
 <SchoolRounded sx={{height:"40px",width:"40px",color:"#2563EB"}} />
 <h2 className='rubik-h text-center text-blue-500' style={{fontSize:"25px"}}>Pay School fees  </h2>
   <p className=' rubik-l p-2 text-center' style={{fontSize:"17px",textAlignLast:"center"}}>Enjoy uninterrupted entertainment by paying your school fees with ease. Set up reminders for due dates and manage your subscriptions seamlessly!

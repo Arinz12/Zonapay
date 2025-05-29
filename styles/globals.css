@@ -343,3 +343,16 @@ button, a, input ,div {
     color: rgb(106 119 151);
     font-weight: 500;
    }
+
+   .hp{
+    background: linear-gradient(45deg, transparent 30%, #2563EB 70%)
+   }
+   .t{
+    transition: ease;
+    transition-delay: 0.8s;
+   }
+   .t:hover{
+    transform: scale(1.2,1.2);
+    transform: translateX(10px);
+   }
+  
