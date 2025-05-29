@@ -348,11 +348,14 @@ button, a, input ,div {
     background: linear-gradient(45deg, transparent 30%, #2563EB 70%)
    }
    .t{
-    transition: ease;
-    transition-delay: 0.8s;
+    transition: transform 0.3s ease
    }
    .t:hover{
-    transform: scale(1.2,1.2);
+    transform: scale(1.1);
     transform: translateX(10px);
    }
   
+   .hp0{
+    background-color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+   }
