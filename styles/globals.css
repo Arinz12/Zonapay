@@ -344,9 +344,7 @@ button, a, input ,div {
     font-weight: 500;
    }
 
-   .hp{
-    background: linear-gradient(45deg, transparent 30%, #2563EB 70%)
-   }
+   
    .t{
     transition: transform 0.3s ease
    }
@@ -358,4 +356,9 @@ button, a, input ,div {
    .hp0{
     background-color: rgba(0, 0, 0, 0.8);
     cursor: pointer;
+   }
+   @media (min-width:768px) {
+    .hp{
+      background: linear-gradient(45deg, transparent 30%, #2563EB 70%)
+     }
    }
