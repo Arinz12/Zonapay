@@ -6,6 +6,7 @@ import Head from "next/head";
 import Link from "next/link";
 import "../styles/transition.css"
 import Analytics from '../components/Analytics';
+import ChangingWordsComponent from '../components/Side';
 function MyApp({ Component, pageProps }) {
 const router=useRouter()
 const [transitioning, setTransitioning] = useState(false);
@@ -39,13 +40,14 @@ const pages2=["/dashboard/settings","/dashboard/history"]
 const shouldAnimate = !pages2.includes(router.pathname);
 
 return (
-  <div className={`page-container ${shouldAnimate ? (transitioning&&(router.pathname=="/dashboard") ? "fade-out2": transitioning? 'fade-out1' : 'fade-in') : ''}`}>
+  <div className={`${(router.pathname.split("/")[1]=="dashboard")? 'sm:flex sm:flex-row' : "" } page-container ${shouldAnimate ? (transitioning&&(router.pathname=="/dashboard") ? "fade-out2": transitioning? 'fade-out1' : 'fade-in') : ''}`}>
   <Head>
   <link rel="manifest" href="/manifest.json"/> 
   <link rel='icon' href='/cicon16.png' type="image/png"/>
   </Head>
   <Analytics/>
      <Component {...pageProps} />
+     <ChangingWordsComponent/>
    {pages.includes(router.pathname) && <Footer/>}
  </div> 
   )
