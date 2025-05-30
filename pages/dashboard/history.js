@@ -2,19 +2,21 @@ import "@fontsource/roboto"
 import { Paper } from "@mui/material"
 import Head from "next/head"
 import { useEffect } from "react"
+import Footer from '../../components/Footer';
+
 const History=({userhistory})=>{
 
 useEffect(()=>{
 document.getElementById("hiscon").lastChild.style.marginBottom="100px";
 },[])
-    return(<>
+    return(<div className="relative min-h-screen">
 <Head>
    <title>History </title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
   </Head>
-   <div style={{fontSize:"30px"}}  className="mt-0 py-7 w-full mx-auto  text-center bg-blue-600 text-white rounded-b-2xl rubik-h px-4">History</div>
+   <div style={{fontSize:"30px"}}  className="  mt-0 py-7 w-full mx-auto  text-center bg-blue-600 text-white rounded-b-2xl rubik-h px-4">History</div>
 {(userhistory.dataa.length!==0)? <div   id='hiscon' className="p-6 bg-white w-full gap-1 mx-auto rubik-b">
   {userhistory.dataa.map((a, index) => (
    <div style={{backgroundColor:"whitesmoke"}} className="rubik-b  flex  justify-between rounded items-start p-3 border-b mx-auto w-full font-sans">
@@ -34,7 +36,7 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
   ))}
 </div>:<div className="p-6 max-w-3xl mx-auto text-center w-full monomaniac-one-regular">There is no history at the moment</div>}
 <Footer/>
-    </>)
+    </div>)
 }
 export async function getServerSideProps(context){
   if(!context.req.isAuthenticated()){

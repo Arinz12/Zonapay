@@ -364,6 +364,7 @@ button, a, input ,div {
    }
    .parentt > :first-child{
     max-width: 500px;
+    
    }
 .parentt>:nth-child(2){
   display: none;
