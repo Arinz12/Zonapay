@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import Head from "next/head";
 import Link from "next/link";
 import "../styles/transition.css"
+import Analytics from '../components/Analytics';
 function MyApp({ Component, pageProps }) {
 const router=useRouter()
 const [transitioning, setTransitioning] = useState(false);
@@ -43,6 +44,7 @@ return (
   <link rel="manifest" href="/manifest.json"/> 
   <link rel='icon' href='/cicon16.png' type="image/png"/>
   </Head>
+  <Analytics/>
      <Component {...pageProps} />
    {pages.includes(router.pathname) && <Footer/>}
  </div> 

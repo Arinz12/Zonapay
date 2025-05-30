@@ -46,7 +46,7 @@ source.onerror= ()=>{console.log("An error occured")}
 
     return (<>
     <Head>
-        <title>Zona</title>
+        <title>Billsly</title>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
@@ -56,7 +56,7 @@ source.onerror= ()=>{console.log("An error occured")}
 <Stack className='focus:outline-none absolute bg-transparent top-2 z-10  w-full p-2 pt-1 pr-1 right-1 items-center' direction={"row"} justifyContent="space-between" sx={{bgcolor:"none"}} >
     <Button  variant="text" sx={{fontSize:"25px",textTransform: 'none' }} className='rubik-h mr-2 text-blue-600 '>
       <span><img src='cicon192.png' height={"30px"} width="30px"/></span>
-      Billsly</Button>
+      illsly</Button>
     {/* <div><SplitText
   text="Zonapay"
   className="text-2xl font-semibold text-center"
