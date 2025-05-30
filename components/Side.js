@@ -17,6 +17,7 @@ const ChangingWordsComponent = () => {
             border-radius: 8px;
             height:100vh;
             justify-content:center;
+            flex-grow:1
           }
           
           .changing-words {
