@@ -47,7 +47,7 @@ return (<>
   </Head>
   <Analytics/>
      <Component {...pageProps} />
-     <ChangingWordsComponent className="hidden sm:flex"/>
+     <ChangingWordsComponent/>
  </div> 
  {/* {pages.includes(router.pathname) && <Footer/>} */}
  </>
