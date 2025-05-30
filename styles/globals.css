@@ -362,3 +362,6 @@ button, a, input ,div {
       background: linear-gradient(45deg, transparent 30%, #2563EB 70%)
      }
    }
+   .parentt > :first-child{
+    max-width: 500px;
+   }

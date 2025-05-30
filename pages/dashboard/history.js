@@ -33,6 +33,7 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
  </div>
   ))}
 </div>:<div className="p-6 max-w-3xl mx-auto text-center w-full monomaniac-one-regular">There is no history at the moment</div>}
+<Footer/>
     </>)
 }
 export async function getServerSideProps(context){

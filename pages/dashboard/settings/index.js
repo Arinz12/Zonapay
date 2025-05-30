@@ -8,6 +8,7 @@ import Link from "next/link"
 import router from "next/router";
 import Delay from "../../../components/Delay";
 import { useState } from "react";
+import Footer from "../../../components/Footer";
 
 const Settings=()=>{
     const [logout,setLogout]=useState(false)
@@ -60,11 +61,7 @@ return(<>
    </div>}</Link>
 
    {logout&&<Delay/>}
-
-
-   
-
-
+<Footer/>
      </div>
 </>)
 }

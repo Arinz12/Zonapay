@@ -12,6 +12,7 @@ import router from "next/router";
 import {DateTime} from "luxon";
 import Carousel2 from '../../components/Carousel';
 import Ripples from "react-ripples"
+import Footer from '../../components/Footer';
 
 
 const Dashboard = ({obj}) => {
@@ -119,6 +120,7 @@ const Dashboard = ({obj}) => {
         <div style={{textAlignLast:"center"}} className="p-2 rubik-b text-center">Map out funds specifically for bills</div>
       </Carousel2>
         </div>
+        <Footer/>
     </div>
     </>
     )
