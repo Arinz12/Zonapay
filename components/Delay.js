@@ -6,12 +6,36 @@ export default function OrbitingBallLoader() {
     <>
       <Head>
         <title>Icon with Orbiting Ball</title>
-        <style jsx global>{`
+        <style>{`
           html, body {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
+          }
+          @keyframes pulse-custom {
+            0%, 100% {
+              transform: translate(-50%, -50%) scale(1);
+              opacity: 1;
+            }
+            50% {
+              transform: translate(-50%, -50%) scale(1.15);
+              opacity: 0.85;
+            }
+          }
+          .animate-pulse-custom {
+            animation: pulse-custom 1.5s ease-in-out infinite;
+          }
+          .animate-spin-slow {
+            animation: rotate 2s linear infinite;
+          }
+          @keyframes rotate {
+            from {
+              transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+              transform: translate(-50%, -50%) rotate(360deg);
+            }
           }
         `}</style>
       </Head>
@@ -40,32 +64,7 @@ export default function OrbitingBallLoader() {
       </div>
 
       {/* Custom Animation Definitions */}
-      <style jsx global>{`
-        @keyframes pulse-custom {
-          0%, 100% {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-          }
-          50% {
-            transform: translate(-50%, -50%) scale(1.15);
-            opacity: 0.85;
-          }
-        }
-        .animate-pulse-custom {
-          animation: pulse-custom 1.5s ease-in-out infinite;
-        }
-        .animate-spin-slow {
-          animation: rotate 2s linear infinite;
-        }
-        @keyframes rotate {
-          from {
-            transform: translate(-50%, -50%) rotate(0deg);
-          }
-          to {
-            transform: translate(-50%, -50%) rotate(360deg);
-          }
-        }
-      `}</style>
+      
     </>
   );
 }
