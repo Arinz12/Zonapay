@@ -5,7 +5,6 @@ import { useEffect } from "react"
 import Footer from '../../components/Footer';
 
 const History=({userhistory})=>{
-
 useEffect(()=>{
 document.getElementById("hiscon").lastChild.style.marginBottom="100px";
 },[])
@@ -36,7 +35,6 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
   ))}
 </div>:<div className="p-6 max-w-3xl mx-auto text-center w-full monomaniac-one-regular">There is no history at the moment</div>}
 <div className="sticky bottom-0"><Footer/></div>
-
     </div>)
 }
 export async function getServerSideProps(context){

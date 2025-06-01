@@ -251,7 +251,7 @@ setCp(selected.value);
                     <option className="rubik-b" value="startimes">STARTIMES</option>
                 </select>
                <div className="flex flex-col"><label htmlFor='iuc' className="rubik-h font-bold" style={{fontSize:"20px"}}>Iuc number</label>
-               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} onKeyUp={val}  id="iuc" className="border-0 rounded-xl p-3 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="XXXXXXXXXX"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
+               <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} onKeyUp={val}  id="iuc" className="border-b-2 border-0 rounded-xl p-3 border-blue-600 focus:outline-none rubik-h font-bold" type="number" name="iuc" placeholder="XXXXXXXXXX"/> <span style={{color:"blue"}} id="user" className="hidden font-bold"></span></div>
                <div className= "flex-col hidden  mt-4"><label htmlFor="pn" className="rubik-h font-bold" style={{fontSize:"20px"}}>Phone</label>
                <input style={{fontSize:"20px",backgroundColor:"whitesmoke"}} id="pn" className="border-0 rounded-2xl border-blue- p-3 focus:outline-none" type="text" placeholder="000000000000" name="phone" /></div>
    {/* //gotv options */}

@@ -40,14 +40,14 @@ const pages2=["/dashboard/settings","/dashboard/history"]
 const shouldAnimate = !pages2.includes(router.pathname);
 
 return (<>
-  <div className={` w-full ${(router.pathname.includes("dashboard"))? 'sm:flex md:flex md:flex-row sm:flex-row parentt' : "" } page-container ${shouldAnimate ? (transitioning&&(router.pathname=="/dashboard") ? "fade-out2": transitioning? 'fade-out1' : 'fade-in') : ''}`}>
+  <div className={`page-container ${shouldAnimate ? (transitioning&&(router.pathname=="/dashboard") ? "fade-out2": transitioning? 'fade-out1' : 'fade-in') : ''}`}>
   <Head>
   <link rel="manifest" href="/manifest.json"/> 
   <link rel='icon' href='/cicon16.png' type="image/png"/>
   </Head>
   <Analytics/>
      <Component {...pageProps} />
-     <ChangingWordsComponent/>
+     {/* <ChangingWordsComponent/> */}
  </div> 
  {/* {pages.includes(router.pathname) && <Footer/>} */}
  </>
