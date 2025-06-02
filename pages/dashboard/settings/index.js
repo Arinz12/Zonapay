@@ -11,7 +11,7 @@ import { useState } from "react";
 import Footer from "../../../components/Footer";
 
 const Settings=()=>{
-    const [logout,setLogout]=useState(false)
+    const [loading,setLoading]=useState(false)
 return(<>
 <Head>
     <title>Settings</title>
@@ -28,7 +28,9 @@ return(<>
     <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>
 
-  <Link href={"/forgotPass"}>{<div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
+  <Link href={"/forgotPass"}>{<div  onClick={()=>{
+        setLoading(true)
+    }}  style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
    <div className="flex flex-row justify-start items-center">
     <div style={{height:"40px",width:"40px", borderRadius:"50%"}}className="flex flex-row bg-blue-600 items-center justify-center" >
     <Seticon sx={{color:"white"}}/>  </div>
@@ -37,7 +39,9 @@ return(<>
 <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>}</Link>
 
-   <Link href={"/dashboard/settings/resetpin"} >{<div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
+   <Link href={"/dashboard/settings/resetpin"} >{<div  onClick={()=>{
+        setLoading(true)
+    }}  style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
    <div className="flex flex-row justify-start items-center">
     <div style={{height:"40px",width:"40px", borderRadius:"50%"}}className="flex flex-row bg-blue-600 items-center justify-center" >
     <Seticon sx={{color:"white"}}/>  </div>
@@ -45,12 +49,9 @@ return(<>
 </div>
 <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>}</Link>
-
-
-
    <Link href={"https://zonapay.onrender.com/zonapay/logout"}>
     {<div onClick={()=>{
-        setLogout(true)
+        setLoading(true)
     }} style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
    <div className="flex flex-row justify-start items-center">
     <div style={{height:"40px",width:"40px", borderRadius:"50%"}}className="flex flex-row bg-blue-600 items-center justify-center" >
@@ -60,7 +61,7 @@ return(<>
 <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>}</Link>
 
-   {logout&&<Delay/>}
+   {loading&&<Delay/>}
 <Footer/>
      </div>
 </>)

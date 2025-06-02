@@ -100,7 +100,7 @@ source.onerror= ()=>{console.log("An error occured")}
         </div>
         <div className='flex flex-col'>
 
-        <h1 className='mx-auto rubik-b mb-1 ' style={{fontSize:"30px"}}>OUR SERVICES</h1>
+        <h1 className='mx-auto rubik-b mb-1 ' style={{fontSize:"20px"}}>OUR SERVICES</h1>
         {/* list of  our services */}
  <Stack direction={"column"}  justifyContent={"center"} alignItems={"center"} className='md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-x-8 gap-y-9' >
  <FadeOutComponent><div className='t flex justify-center justify-self-center  items-center flex-col mx-auto rubik-h  border-1 p-4 rounded-xl ml-2 mr-2 ' style={{fontSize:"25px",backgroundColor:"whitesmoke"}}>

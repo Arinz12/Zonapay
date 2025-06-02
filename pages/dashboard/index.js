@@ -37,7 +37,7 @@ const Dashboard = ({obj}) => {
         greet="Good evening, ";
     }
 
-     return (<div className="relative min-h-screen">
+     return (<div className="relative min-h-screen h-full">
     <Head>
         <title>Dashboard</title>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>

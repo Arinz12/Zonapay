@@ -295,14 +295,10 @@ if(processed){
     <label htmlFor="glo"><img src="/images/glo2.png" width={"40px"} height={"40px"} /></label>
   </div>
 </div>
-
-
     </div>
-     
-
 <div className="pt-7">
     <label htmlFor="phone" className="rubik-h pb-3">Phone number</label>
-<input style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none mb-5 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
+<input placeholder="XXXXXXXXXX" style={{fontSize:"25px",backgroundColor:"whitesmoke"}} type="string" inputMode="numeric"  id="phone" name="Phoneno" className="focus:outline-none mb-5 pl-2 w-full h-12 rubik-h border-0 rounded-2xl" /></div>
 
 {net === "mtn" && (
   <div className="pt-4 pb-7">
