@@ -432,6 +432,7 @@ try{
 const detail= await User.findOne({Email:email});
 //This logs a user found
 // console.log(detail);
+ sendd(email,"You logged in ,if you did not initiate this report this login at");
 if(detail){
   if(!bcrypt.compareSync(password,detail.Password)){
     return res.status(400).send("verificatin failed")
@@ -915,6 +916,7 @@ server.post("/zonapay/confirmPin",(req,res)=>{
 
 //funding
 server.get("/dashboard/fund",(req,res)=>{
+  console.log(req.headers["user-agent"]);
   const filePath = path.join(__dirname, 'TestFlutter.html');
   
   // Send the file
