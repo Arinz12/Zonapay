@@ -542,7 +542,7 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
     <div class="container">
         <div class="header">
             <!-- Replace with your logo -->
-            <img src="https://zonapay.onrender.com/.png" alt="Company Logo" class="logo" />
+            <img src="https://zonapay.onrender.com/cicon.png" alt="Company Logo" class="logo" />
         </div>
         
         <div class="content">
@@ -610,7 +610,7 @@ if(detail){
 }
 else{
   console.log("Not verified")
-  return res.status(400).send("verificatin failed")
+  return res.status(400).send("verification failed")
 }}
 catch(e){
   console.log("connection error: "+e)
