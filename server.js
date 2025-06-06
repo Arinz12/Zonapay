@@ -35,6 +35,7 @@ const { Earning } = require("./Svr_fns/Dailyearn");
 const { Otpmodel } = require("./Svr_fns/otps");
 const cron= require("node-cron");
 const Schedule = require("./Svr_fns/schedule");
+const logout = require("./Svr_fns/logout");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -425,6 +426,14 @@ catch(e){
 }
 })
 
+server.get("/autologout",async(req,res)=>{
+  try{
+await logout(req.query.data)
+return res.status(200).send("successfully logged out")}
+catch(e){
+ return res.status(400).send("logout was not successfull")
+}
+})
 // validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
 const {email,password}=req.body;
@@ -432,7 +441,166 @@ try{
 const detail= await User.findOne({Email:email});
 //This logs a user found
 // console.log(detail);
- sendd(email,"You logged in ,if you did not initiate this report this login at");
+const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Notification</title>
+    <style type="text/css">
+        /* Client-specific styles */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+        
+        /* Reset styles */
+        body { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+        
+        /* iOS BLUE LINKS */
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+        
+        /* Main styles */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #333333;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+        
+        .content {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #999999;
+        }
+        
+        .button {
+            background-color: #007bff;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .info-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        
+        .info-table td {
+            padding: 10px;
+            border-bottom: 1px solid #eeeeee;
+        }
+        
+        .info-table td:first-child {
+            font-weight: bold;
+            width: 30%;
+        }
+        
+        .alert {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Replace with your logo -->
+            <img src="https://zonapay.onrender.com/.png" alt="Company Logo" class="logo" />
+        </div>
+        
+        <div class="content">
+            <h1>New Login Detected</h1>
+            <p>Hello,</p>
+            <p>We noticed a recent login to your account. Here are the details:</p>
+            
+            <table class="info-table">
+                <tr>
+                    <td>Date & Time:</td>
+                    <td>${DateTime.local().setZone("Africa/Lagos").toFormat("dd LLL, hh:mm a")}</td>
+                </tr>
+                <tr>
+                    <td>Device:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Browser:</td>
+                    <td>[Browser Type]</td>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td>[Approximate Location] (IP: [IP Address])</td>
+                </tr>
+            </table>
+            
+            <div class="alert">
+                <strong>Was this you?</strong> If you recognize this activity, you can ignore this message. If not, please secure your account immediately.
+            </div>
+            
+            <p>
+                <a href="https://zonapay.onrender.com/autologout?data${email}" class="button">Logout</a>
+            </p>
+            
+            <p>For your security, we recommend:</p>
+            <ul>
+                <li>Using a strong, unique password</li>
+                <li>Enabling two-factor authentication</li>
+                <li>Updating your password regularly</li>
+            </ul>
+            
+            <p>If you have any questions or concerns, please contact our support team.</p>
+            
+            <p>Thanks,<br />[Billsly] Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; ${DateTime.local().setZone("Africa/Lagos").toFormat("yyyy")} [Billsly]. All rights reserved.</p>
+            <p>
+                [Company Address] | <a href="[Privacy Policy Link]">Privacy Policy</a> | <a href="[Terms of Service Link]">Terms of Service</a>
+            </p>
+            
+        </div>
+    </div>
+</body>
+
+</html>`
+ sendd(email,undefined,message);
 if(detail){
   if(!bcrypt.compareSync(password,detail.Password)){
     return res.status(400).send("verificatin failed")
