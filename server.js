@@ -426,10 +426,10 @@ catch(e){
 }
 })
 
-server.get("/autologout",async(req,res)=>{
+server.get("/autologout/:id",async(req,res)=>{
   try{
-    console.log("req query is",req.query)
-await logout(req.query.data)
+    console.log("req params is",req.params)
+await logout(req.params.id)
 return res.status(200).send("successfully logged out")}
 catch(e){
  return res.status(400).send("logout was not successfull")
@@ -575,7 +575,7 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
             </div>
             
             <p>
-                <a href="https://zonapay.onrender.com/autologout?data=${email}" class="button">Logout</a>
+                <a href="https://zonapay.onrender.com/autologout/${email}" class="button">Logout</a>
             </p>
             
             <p>For your security, we recommend:</p>
