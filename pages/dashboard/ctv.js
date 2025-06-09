@@ -52,7 +52,7 @@ async function val(){
       data ={iuc:valu,provider:"BIL123",vid:"CB189"}
     }
         try{
-    const resp=await fetch("https://www.billsly.coerify",{method:"POST",body:JSON.stringify(data),headers:{
+    const resp=await fetch("https://www.billsly.co/verify",{method:"POST",body:JSON.stringify(data),headers:{
         "Content-Type": "application/json",
         "Accept": "application/json"
       }})
@@ -80,7 +80,7 @@ useEffect( ()=>{
   const fetchtv= async ()=>{
  
    try{
-     const res= await fetch("https://www.billsly.coay/ftp",
+     const res= await fetch("https://www.billsly.co/zonapay/ftp",
      {
        method:"post",
      body:JSON.stringify({bille:"BIL122"}),
@@ -88,7 +88,7 @@ useEffect( ()=>{
        "Content-Type":"application/json"
      }
    })
-   const res2= await fetch("https://www.billsly.coay/ftp",
+   const res2= await fetch("https://www.billsly.co/zonapay/ftp",
    {
      method:"post",
    body:JSON.stringify({bille:"BIL121"}),
@@ -96,7 +96,7 @@ useEffect( ()=>{
      "Content-Type":"application/json"
    }
  })
- const res3= await fetch("https://www.billsly.coay/ftp",
+ const res3= await fetch("https://www.billsly.co/zonapay/ftp",
  {
    method:"post",
  body:JSON.stringify({bille:"BIL123"}),
@@ -143,7 +143,7 @@ useEffect(()=>{
 const handlePinSubmit= async (pin)=>{
   const data={pinn:pin}
   try{
-const rep= await fetch("https://www.billsly.coay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+const rep= await fetch("https://www.billsly.co/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
 if(rep.ok){
   setPin(true);
   console.log(pincon);
@@ -178,7 +178,7 @@ useEffect(() => {
     
     try {
       setStart(true);
-      const response = await fetch("https://www.billsly.coay/cable", {
+      const response = await fetch("https://www.billsly.co/zonapay/cable", {
         method: "POST",
         body: JSON.stringify({
           iuc: document.getElementById("iuc").value,

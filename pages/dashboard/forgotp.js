@@ -6,7 +6,7 @@ const Forgotp = () => {
 
     useEffect(() => {
         document.getElementById("proceed").addEventListener("click", async (e) => {
-            const resp = await fetch("https://www.billsly.coay/ValEmail", {
+            const resp = await fetch("https://www.billsly.co/zonapay/ValEmail", {
                 method: "post",
                 body: JSON.stringify({ val: document.getElementById("email").value.trim() }),
                 headers: { "Content-Type": "application/json" }

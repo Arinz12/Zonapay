@@ -1,0 +1,252 @@
+# Query: billsly.co
+# ContextLines: 1
+
+61 results - 20 files
+
+next-app\README.md:
+  12  
+  13: Open [https://www.billsly.cos://www.biwww.billsly.cobrowser to see the result.
+  14  
+
+  16  
+  17: [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [https://www.billsly.coello](https://www.biwww.billsly.co This endpoint can be edited in `pages/api/hello.js`.
+  18  
+
+next-app\server.js:
+    66      reference: userr.split("@")[0]+"split"+userr.split("@")[1].split(".")[0]+"split"+uuidv4(),
+    67:     callback_url: 'https://www.billsly.co/webhook'
+    68    })})
+
+   334      reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
+   335:     callback_url: 'https://www.billsly.co/webhook'
+   336    })
+
+   545              <!-- Replace with your logo -->
+   546:             <img src="https://www.billsly.co/cicon.png" alt="Company Logo" class="logo" />
+   547          </div>
+
+   577              <p>
+   578:                 <a href="https://www.billsly.co/autologout/${email}" class="button">Logout</a>
+   579              </p>
+
+   752          reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
+   753:         callback_url: 'https://www.billsly.co/webhook'
+   754        })
+
+   833    reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
+   834:   callback_url:"https://www.billsly.co/webhook"
+   835  }),
+
+   943        reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
+   944:       callback_url:"https://www.billsly.co/webhook"
+   945      }),
+
+  1296              <p>
+  1297:                 <a href="https://www.billsly.co/#privacy" style="color: #4a90e2;">Privacy Policy</a> | 
+  1298:                 <a href="https://www.billsly.co/#contact" style="color: #4a90e2;">Contact Us</a>
+  1299              </p>
+
+next-app\TestFlutter.html:
+   45              <div class="text-center mb-8">
+   46:                     <div className="mx-auto flex flex-row justify-center w-full my-2"><img src="https://www.billsly.co/cicon192.png" height="40px" width="40px"/></div>
+   47  
+
+  142              try {
+  143:                 const res = await fetch("https://www.billsly.co/validatefundform", {
+  144                      method: "post",
+
+  188                  payment_options: "card, mobilemoneyghana, ussd",
+  189:                 redirect_url: "https://www.billsly.co/dashboard",
+  190  //                 callback: async (payment)=>{
+  191: // const res=await fetch("https://www.billsly.co/done",{
+  192  //     method:"POST",
+
+  220                      description: "Payment to billsly",
+  221:                     logo: "https://www.billsly.co/cicon192.png",
+  222                  }
+
+next-app\components\Footer.js:
+  18  
+  19:         {(router.pathname=="/b")?   <div className="flex flex-col justify-center items-center" ><AddCardRounded className="text-blue-600 bg-none" sx={{fontSize:"26px"}}/><div className="rubik-b text-blue-600">Fund</div> </div> :<Link href={"https://www.billsly.co/dashboard/fund"}>{<div onClick={
+  20              ()=>{setloading(true)}
+
+next-app\pages\forgotPass.js:
+   19  
+   20:       const resp = await fetch("https://www.billsly.co/change2", {
+   21          method: "post",
+
+  172    if (context.req.isAuthenticated()) {
+  173:     await fetch("https://www.billsly.co/change", {
+  174        method: "post",
+
+  179      console.log("Password change request",context.req.query)
+  180:     await fetch("https://www.billsly.co/change", {
+  181        method: "post",
+
+next-app\pages\index.js:
+  41  useEffect(()=>{
+  42: const source= new EventSource("https://www.billsly.co/stream");
+  43  source.onmessage= function(e){console.log(e.data)}
+
+  71      
+  72: <Button href="https://www.billsly.co/signup"  variant="contained" className="mr-2 sticky top-1">Get started</Button>
+  73  </Stack>
+
+  98          <div className="absolute w-full flex justify-center mx-auto bottom-16 z-10">
+  99:         <Button sx={{fontSize:"20px",textTransform: 'none'}} endIcon={<ArrowForwardTwoToneIcon/>} className="mx-auto" variant='contained' href="https://www.billsly.co/signup">Sign up</Button></div>
+  100          </div>
+
+next-app\pages\login.js:
+   15         try{
+   16:         const exist= await fetch("https://www.billsly.co/zonapay/valUser",
+   17          {method:"post",body:JSON.stringify({email:document.getElementsByName("email")[0].value.trim().toLowerCase() ,password:document.getElementsByName("password")[0].value.trim()}),headers:{"Content-Type":"application/json"}});
+
+   38      useEffect(()=>{
+   39:       // const socket = io('https://www.billsly.co', {
+   40        //     query: { userId: "123" } // Send user ID on connection
+
+   62  
+   63:     <form action="https://www.billsly.co/login" method="post" autoComplete="off" onSubmit={val}>
+   64      <div
+
+  166          <div className="text-black monomaniac-one-regular rubik-h " style={{fontSize:"16px"}}>
+  167:             Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://www.billsly.co/signup">Signup</Link></span>
+  168          </div>
+
+next-app\pages\signup.js:
+   53            try{
+   54: const already= await fetch("https://www.billsly.co/zonapay/ValEmail",{method:"post",body:JSON.stringify({val:email}),headers:{"Content-Type":"application/json"}});
+   55  if(!already.ok){
+
+  155      useEffect(()=>{
+  156:         // const socket = io('https://www.billsly.co', {
+  157          //     query: { userId: "123" } // Send user ID on connection
+
+  177      </Head>
+  178:     <form action="https://www.billsly.co/signup" method="post" autoComplete="off" onSubmit={handle}>
+  179          <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
+
+  249          <div className="text-black rubik-h monomaniac-one-regular" style={{fontSize:"16px"}}>
+  250:             Already have an account ? then <span className="text-blue-600 underline" > <Link href="https://www.billsly.co/login">Login</Link></span>
+  251          </div>
+
+next-app\pages\dashboard\admin.js:
+  39  else{
+  40:     const resp= await fetch("https://www.billsly.co/balances",{method:"POST",headers:{"Content-Type":"application/json"}})
+  41      if(resp.ok){
+
+next-app\pages\dashboard\airtime.js:
+   42        const formdata= new FormData(e.target)
+   43:      try{ const url="https://www.billsly.co/zonapay/airtime"
+   44        const res= await fetch(url,{method:"POST",body:formdata})
+
+  198    try{
+  199: const rep= await fetch("https://www.billsly.co/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+  200  if(rep.ok){
+
+next-app\pages\dashboard\ctv.js:
+   54          try{
+   55:     const resp=await fetch("https://www.billsly.co/verify",{method:"POST",body:JSON.stringify(data),headers:{
+   56          "Content-Type": "application/json",
+
+   82     try{
+   83:      const res= await fetch("https://www.billsly.co/zonapay/ftp",
+   84       {
+
+   90     })
+   91:    const res2= await fetch("https://www.billsly.co/zonapay/ftp",
+   92     {
+
+   98   })
+   99:  const res3= await fetch("https://www.billsly.co/zonapay/ftp",
+  100   {
+
+  145    try{
+  146: const rep= await fetch("https://www.billsly.co/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+  147  if(rep.ok){
+
+  180        setStart(true);
+  181:       const response = await fetch("https://www.billsly.co/zonapay/cable", {
+  182          method: "POST",
+
+next-app\pages\dashboard\data.js:
+   33    try{
+   34:     const res= await fetch("https://www.billsly.co/zonapay/fdp",
+   35      {
+
+   41    })
+   42:   const res2= await fetch("https://www.billsly.co/zonapay/fdp",
+   43    {
+
+   49  })
+   50: const res3= await fetch("https://www.billsly.co/zonapay/fdp",
+   51  {
+
+  172    setLoading(true)
+  173:   const url="https://www.billsly.co/zonapay/data"
+  174  
+
+  216    try{
+  217: const rep= await fetch("https://www.billsly.co/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+  218  if(rep.ok){
+
+next-app\pages\dashboard\elect.js:
+   39         const data={iuc:meter,provider:provider.current.value,vid:type}
+   40:        const res= await fetch("https://www.billsly.co/verify",{method:"POST",body:JSON.stringify(data),headers:{
+   41          "Content-Type":"application/json"
+
+   58  const billcode=provider.current.value;
+   59:     const res=await fetch(`https://www.billsly.co/zonapay/eitemcode`,{
+   60        method:"POST",
+
+   92      try{
+   93:     const billers= await fetch("https://www.billsly.co/zonapay/elects",{
+   94        method:"POST", 
+
+  124              setLoading(true)
+  125:             const res= await fetch("https://www.billsly.co/zonapay/electricity",{method:"POST",body:JSON.stringify(data),headers:{
+  126                  "Content-Type":"application/json"
+
+  154          try{
+  155:       const rep= await fetch("https://www.billsly.co/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+  156        if(rep.ok){
+
+next-app\pages\dashboard\forgotp.js:
+  8          document.getElementById("proceed").addEventListener("click", async (e) => {
+  9:             const resp = await fetch("https://www.billsly.co/zonapay/ValEmail", {
+  10                  method: "post",
+
+next-app\pages\dashboard\fundtest.js:
+  58          payment_options: "card, mobilemoneyghana, ussd",
+  59:         redirect_url: "https://www.billsly.co/done",
+  60          meta: {
+
+next-app\pages\dashboard\history.js:
+  49      try{
+  50: const data= await fetch("https://www.billsly.co/history",{method:"post"})
+  51     if(data.ok){
+
+next-app\pages\dashboard\index.js:
+  71                      } className='flex flex-col justify-center items-center '>
+  72:                     <Link href={"https://www.billsly.co/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
+  73:  <Link href={"https://www.billsly.co/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
+  74                  </div>
+
+next-app\pages\dashboard\settings\index.js:
+  51     </div>}</Link>
+  52:    <Link href={"https://www.billsly.co/zonapay/logout"}>
+  53      {<div onClick={()=>{
+
+next-app\pages\dashboard\settings\pin.js:
+  54          try {
+  55:             const response = await fetch("https://www.billsly.co/zonapay/setpin", {
+  56                  method: "POST",
+
+next-app\pages\dashboard\settings\resetpin.js:
+   16        };
+   17:       const resp = await fetch("https://www.billsly.co/change2", {
+   18          method: "post",
+
+  166    
+  167:   await fetch("https://www.billsly.co/change", {
+  168      method: "post",

@@ -69,8 +69,8 @@ const Dashboard = ({obj}) => {
                     <div onClick={
                         ()=>{setloading(true)}
                     } className='flex flex-col justify-center items-center '>
-                    <Link href={"https://www.billsly.cooard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
- <Link href={"https://www.billsly.cooard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
+                    <Link href={"https://www.billsly.co/dashboard/history"}>{<div className='rubik-b text-white z-10'>Txn History</div>}</Link>
+ <Link href={"https://www.billsly.co/dashboard/history"}>{<History begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
                 </div>
              
         </div>

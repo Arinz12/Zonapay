@@ -14,7 +14,7 @@ const ForgotPin = () => {
         otp: document.getElementById("otp").value.trim(),
         newpin: document.getElementById("newpin").value.trim()
       };
-      const resp = await fetch("https://www.billsly.coe2", {
+      const resp = await fetch("https://www.billsly.co/change2", {
         method: "post",
         body: JSON.stringify(data), 
         headers: {"Content-Type": "application/json"}
@@ -164,7 +164,7 @@ export async function getServerSideProps(context) {
     };
   }
   
-  await fetch("https://www.billsly.coe", {
+  await fetch("https://www.billsly.co/change", {
     method: "post",
     body: JSON.stringify({ email: context.req.user.Email }),
     headers: {"Content-Type": "application/json"}

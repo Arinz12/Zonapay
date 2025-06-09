@@ -37,7 +37,7 @@ else if(!context.req.user.Admin){
       };
 }
 else{
-    const resp= await fetch("https://www.billsly.coalances",{method:"POST",headers:{"Content-Type":"application/json"}})
+    const resp= await fetch("https://www.billsly.co/balances",{method:"POST",headers:{"Content-Type":"application/json"}})
     if(resp.ok){
 const result= await resp.json();
 return {
