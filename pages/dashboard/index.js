@@ -74,9 +74,9 @@ const Dashboard = ({obj}) => {
                 </div>
              
         </div>
-        <div className='text-center w-full  mt-5 mb-1 rubik-h flex flex-row justify-between'>
+        <div className='text-center w-full  mt-5 mb-1 rubik-b flex flex-row justify-center gap-8'>
             <div>Quick actions</div>
-            {(obj.isAdmin)&&<Link href="/dashboard/admin" color='#2563EB'>View balances</Link>}
+            {(obj.isAdmin)&&<Link href="/dashboard/admin"><span className="text-blue-600">View balances</span></Link>}
         </div>
         <div  className='ml-2 mr-2 px-4 py-7 bg-white rounded-2xl '>
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>

@@ -8,7 +8,7 @@ const Footer=()=>{
     const router=useRouter()
     const [loading,setloading]=useState(false)
     return (<>
-    <div className="absolute z-10 w-full flex flex-row bg-white border-t-2 border-blue-500 justify-between items-center rounded-t-2xl p-4  rounded-md bottom-0">
+    <div className="fixed shp z-10 w-full flex flex-row bg-white border-t-2 border-blue-500 justify-between items-center rounded-t-2xl p-4  rounded-md bottom-0">
         {(router.pathname=="/dashboard")?   <div className="flex flex-col justify-center items-center" ><HomeRounded className="text-blue-600 bg-none"  sx={{fontSize:"26px"}}/><div className="rubik-b text-blue-600">Home</div> </div> : <Link href={"/dashboard"}>{<div  onClick={
             ()=>{setloading(true)}}
              className="flex flex-col justify-center items-center" > <HomeRounded  sx={{fontSize:"30px",color:"#36454F"}}/>
