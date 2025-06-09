@@ -49,7 +49,7 @@ return(<>
 </div>
 <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
    </div>}</Link>
-   <Link href={"https://www.billsly.coay/logout"}>
+   <Link href={"https://www.billsly.co/logout"}>
     {<div onClick={()=>{
         setLoading(true)
     }} style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
