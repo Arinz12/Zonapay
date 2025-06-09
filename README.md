@@ -10,11 +10,11 @@ npm run dev
 yarn dev
 ```
 
-Open [https://zonapay.onrender.com](https://zonapay.onrender.com) with your browser to see the result.
+Open [https://www.billsly.cos://www.biwww.billsly.cobrowser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [https://zonapay.onrender.com/api/hello](https://zonapay.onrender.com/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [https://www.billsly.coello](https://www.biwww.billsly.co This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 

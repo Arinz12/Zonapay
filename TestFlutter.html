@@ -43,7 +43,7 @@
     <div class="flex justify-center items-center min-h-screen p-4">
         <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-100">
             <div class="text-center mb-8">
-                    <div className="mx-auto flex flex-row justify-center w-full my-2"><img src="https://zonapay.onrender.com/cicon192.png" height="40px" width="40px"/></div>
+                    <div className="mx-auto flex flex-row justify-center w-full my-2"><img src="https://www.billsly.co/cicon192.png" height="40px" width="40px"/></div>
 
                 <h2 class="text-3xl font-bold mt-4 text-gray-800">Payment Details</h2>
                 <p class="text-gray-500 mt-2">Complete your secure transaction</p>
@@ -140,7 +140,7 @@
     <script>
         async function val(data){
             try {
-                const res = await fetch("https://zonapay.onrender.com/validatefundform", {
+                const res = await fetch("https://www.billsly.co/validatefundform", {
                     method: "post",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
@@ -186,9 +186,9 @@
                 amount: amount,
                 currency: "NGN",
                 payment_options: "card, mobilemoneyghana, ussd",
-                redirect_url: "https://zonapay.onrender.com/dashboard",
+                redirect_url: "https://www.billsly.co/dashboard",
 //                 callback: async (payment)=>{
-// const res=await fetch("https://zonapay.onrender.com/done",{
+// const res=await fetch("https://www.billsly.co/done",{
 //     method:"POST",
 //     headers:{"Content-Type":"application/json"},
 //     body:JSON.stringify({tx_ref:payment.tx_ref,transaction_id:payment.transaction_id})
@@ -218,7 +218,7 @@
                 },
                 customizations: {
                     description: "Payment to billsly",
-                    logo: "https://zonapay.onrender.com/cicon192.png",
+                    logo: "https://www.billsly.co/cicon192.png",
                 }
             });
         };

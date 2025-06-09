@@ -17,7 +17,7 @@ const Forgot = () => {
         email: document.getElementById("email").value.trim()
       };
 
-      const resp = await fetch("https://zonapay.onrender.com/change2", {
+      const resp = await fetch("https://www.billsly.co/change2", {
         method: "post",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" }
@@ -170,14 +170,14 @@ const Forgot = () => {
 
 export async function getServerSideProps(context) {
   if (context.req.isAuthenticated()) {
-    await fetch("https://zonapay.onrender.com/change", {
+    await fetch("https://www.billsly.co/change", {
       method: "post",
       body: JSON.stringify({ email: context.req.user.Email }),
       headers: { "Content-Type": "application/json" }
     });
   } else {
     console.log("Password change request",context.req.query)
-    await fetch("https://zonapay.onrender.com/change", {
+    await fetch("https://www.billsly.co/change", {
       method: "post",
       body: JSON.stringify({ email: context.req.query.data }),
       headers: { "Content-Type": "application/json" }

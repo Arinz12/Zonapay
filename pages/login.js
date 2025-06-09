@@ -13,7 +13,7 @@ const val= async (e)=>{
     e.preventDefault();
     console.log("entered")
        try{
-        const exist= await fetch("https://zonapay.onrender.com/zonapay/valUser",
+        const exist= await fetch("https://www.billsly.co/zonapay/valUser",
         {method:"post",body:JSON.stringify({email:document.getElementsByName("email")[0].value.trim().toLowerCase() ,password:document.getElementsByName("password")[0].value.trim()}),headers:{"Content-Type":"application/json"}});
       if(!exist.ok){
       document.getElementById("note").style.display="flex"
@@ -36,7 +36,7 @@ const val= async (e)=>{
         const socket=io()
     })
     useEffect(()=>{
-      // const socket = io('https://zonapay.onrender.com', {
+      // const socket = io('https://www.billsly.co', {
       //     query: { userId: "123" } // Send user ID on connection
       // });
       //         socket.on("createdS",showS)
@@ -60,7 +60,7 @@ const val= async (e)=>{
     </Head>
     <div style={{fontSize:"30px"}} className=" absolute top-1 w-full monomaniac-one-regular text-center text-black">WELCOME BACK</div>
 
-    <form action="https://zonapay.onrender.com/login" method="post" autoComplete="off" onSubmit={val}>
+    <form action="https://www.billsly.co/login" method="post" autoComplete="off" onSubmit={val}>
     <div
   id="note"
   className="fixed top-2 right-2 flex-col gap-4 w-60 sm:w-72 text-xs sm:text-sm z-50 hidden"
@@ -110,7 +110,7 @@ const val= async (e)=>{
 </div>
 
 <Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
-    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-20 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12  md:border-4 border-0 border-blue-600 rounded-3xl  items-center">
+    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-20 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12   border-0 border-blue-600 rounded-3xl  items-center">
     <div className="mx-auto flex justify-center w-full my-2"><img src="cicon192.png" height="40px" width="40px"/></div>
 
 <div className=" monomaniac-one-regular text-black">Login</div>
@@ -164,7 +164,7 @@ const val= async (e)=>{
         </button>
 
         <div className="text-black monomaniac-one-regular rubik-h " style={{fontSize:"16px"}}>
-            Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://zonapay.onrender.com/signup">Signup</Link></span>
+            Don't have an account yet? then <span className="text-blue-600 underline" > <Link href="https://www.billsly.co/signup">Signup</Link></span>
         </div>
 
         <div className="text-black monomaniac-one-regular rubik-h " style={{fontSize:"13px"}}>

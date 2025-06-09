@@ -37,7 +37,7 @@ const Elect=()=>{
       const meter= acct.current.value
       
        const data={iuc:meter,provider:provider.current.value,vid:type}
-       const res= await fetch("https://zonapay.onrender.com/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
+       const res= await fetch("https://www.billsly.coerify",{method:"POST",body:JSON.stringify(data),headers:{
         "Content-Type":"application/json"
        }})
        if(res.ok){
@@ -56,7 +56,7 @@ else{
 async function ver1(){
   try{
 const billcode=provider.current.value;
-    const res=await fetch(`https://zonapay.onrender.com/zonapay/eitemcode`,{
+    const res=await fetch(`https://www.billsly.coay/eitemcode`,{
       method:"POST",
       body:JSON.stringify({data:billcode}), headers:{
       "Content-Type":"application/json"}
@@ -90,7 +90,7 @@ useEffect(()=>{
   
   const fetchElect= async ()=>{
     try{
-    const billers= await fetch("https://zonapay.onrender.com/zonapay/elects",{
+    const billers= await fetch("https://www.billsly.coay/elects",{
       method:"POST", 
       headers:{
       "Content-Type":"application/json"}
@@ -122,7 +122,7 @@ console.log(e)
               const type=(pre.current.checked)? pre.current.value:post.current.value
             const data={iuc:acct.current.value,provider:provider.current.value,amount:amt.current.value,kind:type}
             setLoading(true)
-            const res= await fetch("https://zonapay.onrender.com/zonapay/electricity",{method:"POST",body:JSON.stringify(data),headers:{
+            const res= await fetch("https://www.billsly.coay/electricity",{method:"POST",body:JSON.stringify(data),headers:{
                 "Content-Type":"application/json"
             }})
             if(res.ok){
@@ -152,7 +152,7 @@ return ()=>{
     const handlePinSubmit= async (pin)=>{
         const data={pinn:pin}
         try{
-      const rep= await fetch("https://zonapay.onrender.com/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+      const rep= await fetch("https://www.billsly.coay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
       if(rep.ok){
         setPincon(true);
         console.log("okayyy") 

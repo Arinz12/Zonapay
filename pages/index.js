@@ -39,7 +39,7 @@ import { BoltRounded, CardGiftcardRounded, ConnectedTvRounded, LanguageRounded, 
  const Dash=(props)=>{
   const handleAnimationComplete=()=>{console.log("Animation is completed")}
 useEffect(()=>{
-const source= new EventSource("https://zonapay.onrender.com/stream");
+const source= new EventSource("https://www.billsly.co/stream");
 source.onmessage= function(e){console.log(e.data)}
 source.onerror= ()=>{console.log("An error occured")}
 },[])
@@ -69,7 +69,7 @@ source.onerror= ()=>{console.log("An error occured")}
   onLetterAnimationComplete={handleAnimationComplete}
 /></div> */}
     
-<Button href="https://zonapay.onrender.com/signup"  variant="contained" className="mr-2 sticky top-1">Get started</Button>
+<Button href="https://www.billsly.co/signup"  variant="contained" className="mr-2 sticky top-1">Get started</Button>
 </Stack>
        <div className='relative w-full focus:outline-none'> <Carousel className='w-full focus:outline-none'  animation='fade' interval={6000}>
             <Box className="flex flex-col gap-2 justify-center items-center md:bg-no-repeat md:bg-contain md:bg-transparent " sx={{height:"80vh", textAlign:"center",backgroundImage:"url('phonewhite/whitestraight.png')",backgroundSize:"cover"}}>
@@ -96,7 +96,7 @@ source.onerror= ()=>{console.log("An error occured")}
                 </div></Box>
         </Carousel>
         <div className="absolute w-full flex justify-center mx-auto bottom-16 z-10">
-        <Button sx={{fontSize:"20px",textTransform: 'none'}} endIcon={<ArrowForwardTwoToneIcon/>} className="mx-auto" variant='contained' href="https://zonapay.onrender.com/signup">Sign up</Button></div>
+        <Button sx={{fontSize:"20px",textTransform: 'none'}} endIcon={<ArrowForwardTwoToneIcon/>} className="mx-auto" variant='contained' href="https://www.billsly.co/signup">Sign up</Button></div>
         </div>
         <div className='flex flex-col'>
 

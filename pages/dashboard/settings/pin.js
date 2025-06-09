@@ -52,7 +52,7 @@ const Pin = () => {
         }
 
         try {
-            const response = await fetch("https://zonapay.onrender.com/zonapay/setpin", {
+            const response = await fetch("https://www.billsly.co/zonapay/setpin", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ pin: pin1 })

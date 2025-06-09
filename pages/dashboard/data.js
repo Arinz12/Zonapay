@@ -31,7 +31,7 @@ useEffect( ()=>{
  const fetchdata= async ()=>{
 
   try{
-    const res= await fetch("https://zonapay.onrender.com/zonapay/fdp",
+    const res= await fetch("https://www.billsly.coay/fdp",
     {
       method:"post",
     body:JSON.stringify({bille:"BIL108"}),
@@ -39,7 +39,7 @@ useEffect( ()=>{
       "Content-Type":"application/json"
     }
   })
-  const res2= await fetch("https://zonapay.onrender.com/zonapay/fdp",
+  const res2= await fetch("https://www.billsly.coay/fdp",
   {
     method:"post",
   body:JSON.stringify({bille:"BIL109"}),
@@ -47,7 +47,7 @@ useEffect( ()=>{
     "Content-Type":"application/json"
   }
 })
-const res3= await fetch("https://zonapay.onrender.com/zonapay/fdp",
+const res3= await fetch("https://www.billsly.coay/fdp",
 {
   method:"post",
 body:JSON.stringify({bille:"BIL110"}),
@@ -170,7 +170,7 @@ const handleSubmit = async (e)=>{
 
  try{ 
   setLoading(true)
-  const url="https://zonapay.onrender.com/zonapay/data"
+  const url="https://www.billsly.coay/data"
 
   const res= await fetch(url,{method:"POST",body:formdata})
   if(res.ok){
@@ -214,7 +214,7 @@ return ()=>{
 const handlePinSubmit= async (pin)=>{
   const data={pinn:pin}
   try{
-const rep= await fetch("https://zonapay.onrender.com/zonapay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+const rep= await fetch("https://www.billsly.coay/confirmPin",{method:"post",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
 if(rep.ok){
   document.getElementById("keyPad").style.display="none"
   console.log(pincon);

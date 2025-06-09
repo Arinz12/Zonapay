@@ -56,7 +56,7 @@ export default function Fund() {
         amount: formData.amount,
         currency: "NGN",
         payment_options: "card, mobilemoneyghana, ussd",
-        redirect_url: "https://zonapay.onrender.com/done",
+        redirect_url: "https://www.billsly.co/done",
         meta: {
           consumer_id: 23,
           consumer_mac: "92a3-912ba-1192a",

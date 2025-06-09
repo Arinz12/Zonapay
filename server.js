@@ -64,7 +64,7 @@ throw new Error("Failed")
     customer_id: cu,
     amount: (bt=="Electricity")? amt-100: amt,
     reference: userr.split("@")[0]+"split"+userr.split("@")[1].split(".")[0]+"split"+uuidv4(),
-    callback_url: 'https://zonapay.onrender.com/webhook'
+    callback_url: 'https://www.billsly.co/webhook'
   })})
   if(resp.ok){
     const resp2= await resp.json();
@@ -332,7 +332,7 @@ return;
     customer_id: Phoneno,
     amount: amount,
     reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
-    callback_url: 'https://zonapay.onrender.com/webhook'
+    callback_url: 'https://www.billsly.co/webhook'
   })
 })
 if(resp.ok){
@@ -543,7 +543,7 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
     <div class="container">
         <div class="header">
             <!-- Replace with your logo -->
-            <img src="https://zonapay.onrender.com/cicon.png" alt="Company Logo" class="logo" />
+            <img src="https://www.billsly.co/cicon.png" alt="Company Logo" class="logo" />
         </div>
         
         <div class="content">
@@ -575,7 +575,7 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
             </div>
             
             <p>
-                <a href="https://zonapay.onrender.com/autologout/${email}" class="button">Logout</a>
+                <a href="https://www.billsly.co/autologout/${email}" class="button">Logout</a>
             </p>
             
             <p>For your security, we recommend:</p>
@@ -750,7 +750,7 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
         amount: parseInt(amount),
         type:type,
         reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
-        callback_url: 'https://zonapay.onrender.com/webhook'
+        callback_url: 'https://www.billsly.co/webhook'
       })
     })
     const result2= await result.json()
@@ -831,7 +831,7 @@ body:JSON.stringify({
   customer_id:iuc,
   amount:amount,
   reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
-  callback_url:"https://zonapay.onrender.com/webhook"
+  callback_url:"https://www.billsly.co/webhook"
 }),
 headers:{
   "Content-Type":"application/json",
@@ -941,7 +941,7 @@ const isFundsSufficient= balance>amount
       customer_id:iuc,
       amount:parseInt(amount)-100,
       reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
-      callback_url:"https://zonapay.onrender.com/webhook"
+      callback_url:"https://www.billsly.co/webhook"
     }),
     headers:{
       "Content-Type":"application/json",
@@ -1294,8 +1294,8 @@ const msg=` <!DOCTYPE html>
             <p>© 2025 Your Company Name. All rights reserved.</p>
             <p>N0 24 nwogbo nkwomma lane Awka</p>
             <p>
-                <a href="https://zonapay.onrender.com/#privacy" style="color: #4a90e2;">Privacy Policy</a> | 
-                <a href="https://zonapay.onrender.com/#contact" style="color: #4a90e2;">Contact Us</a>
+                <a href="https://www.billsly.co/#privacy" style="color: #4a90e2;">Privacy Policy</a> | 
+                <a href="https://www.billsly.co/#contact" style="color: #4a90e2;">Contact Us</a>
             </p>
         </div>
     </div>
