@@ -16,7 +16,8 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
   </Head>
    <div style={{fontSize:"30px"}}  className="sticky top-0 mt-0 py-7 w-full mx-auto border-b-2  text-center bg-white text-blue-500 rounded-b-2xl rubik-h px-4">History</div>
-{(userhistory.dataa.length!==0)? <div   id='hiscon' className="p-6 bg-white w-full gap-1 mx-auto rubik-b">
+{(userhistory.dataa.length!==0)? 
+<div   id='hiscon' className="p-6 bg-white w-full gap-1 mx-auto rubik-b">
   {userhistory.dataa.map((a, index) => (
    <div style={{backgroundColor:"whitesmoke"}} className="rubik-b  flex  justify-between rounded items-start p-3 border-b mx-auto w-full font-sans">
    
@@ -47,7 +48,7 @@ export async function getServerSideProps(context){
     }
   }
     try{
-const data= await fetch("https://www.billsly.co/history",{method:"post"})
+const data= await fetch("https://www.billsly.co/api/history",{method:"post"})
    if(data.ok){
     const data1= await  data.json()
     const data2a=data1.data.sort((a, b) => new Date(b.Time) - new Date(a.Time));

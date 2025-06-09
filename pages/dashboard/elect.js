@@ -37,7 +37,7 @@ const Elect=()=>{
       const meter= acct.current.value
       
        const data={iuc:meter,provider:provider.current.value,vid:type}
-       const res= await fetch("https://www.billsly.co/verify",{method:"POST",body:JSON.stringify(data),headers:{
+       const res= await fetch("https://www.billsly.co/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
         "Content-Type":"application/json"
        }})
        if(res.ok){
@@ -157,6 +157,7 @@ return ()=>{
         setPincon(true);
         console.log("okayyy") 
       }else{
+        document.getElementById("wrongpin").style.display="block"
         console.log("wrong pin")
         setTimeout(()=>{  
       },3000)
@@ -248,7 +249,7 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
         </div>
         {/* Button for submission */}
 <div className="mx-auto">
-    <Button disabled={!btnready} style={{textTransform:"none",borderRadius:"12px"}} ref={btn} variant={"contained"} 
+    <Button disabled={!btnready} style={{textTransform:"none",borderRadius:"3px"}} ref={btn} variant={"contained"} 
     endIcon={<ArrowForward style={{height:"24px"}}/>}>Proceed</Button>
 </div>
 {loading&&<Delay/>}
@@ -263,6 +264,7 @@ id="ep" name="provider" style={{fontSize:"17px"}} className="bg-transparent my-3
 </section>
 
 </div>
+<div id="wrongpin" className=" z-20 fixed top-0 w-full pt-4 pb-4 text-red-600 mx-auto bg-blue-600 p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
     </div>
     </>)
 }

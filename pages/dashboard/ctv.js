@@ -52,7 +52,7 @@ async function val(){
       data ={iuc:valu,provider:"BIL123",vid:"CB189"}
     }
         try{
-    const resp=await fetch("https://www.billsly.co/verify",{method:"POST",body:JSON.stringify(data),headers:{
+    const resp=await fetch("https://www.billsly.co/api/verify",{method:"POST",body:JSON.stringify(data),headers:{
         "Content-Type": "application/json",
         "Accept": "application/json"
       }})
@@ -370,7 +370,7 @@ setTv({amount:opts.amount,biller:opts.biller_code,item:opts.item_code})
                 </div>
             </form>
             {showkeypad&& (<NumericPad className="" maxLength={4} onSubmit={handlePinSubmit} hideComp={()=>{setShowKeyPad(false)}}/>)}
-    <div id="wrongpin" className="z-20 absolute w-full pt-4 pb-4 text-red-600 mx-auto bg-black p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
+    <div id="wrongpin" className="z-20 fixed top-0 w-full pt-4 pb-4 text-red-600 mx-auto bg-blue-600 p-2 rounded-xl text-center hidden shp">Incorrect pin</div>
         </div>}
     </>)
 }
