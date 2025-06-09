@@ -76,7 +76,7 @@ const Dashboard = ({obj}) => {
         </div>
         <div className='text-center w-full  mt-5 mb-1 rubik-h flex flex-row justify-between'>
             <div>Quick actions</div>
-            <Link href="/dashboard/admin" color='#2563EB'>View balances</Link>
+            {(obj.isAdmin)&&<Link href="/dashboard/admin" color='#2563EB'>View balances</Link>}
         </div>
         <div  className='ml-2 mr-2 px-4 py-7 bg-white rounded-2xl '>
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
@@ -145,7 +145,7 @@ if(!context.req.isAuthenticated()){
 else{
     
     const ob = context.req.user;
-    const obj = {Username:ob.Username,Balance:ob.Balance,Email:ob.Email,isPinset:ob.Pin}; // Shallow copy of the object
+    const obj = {Username:ob.Username,Balance:ob.Balance,Email:ob.Email,isPinset:ob.Pin,isAdmin:ob.Admin}; // Shallow copy of the object
     
 return {
     props:{obj}
