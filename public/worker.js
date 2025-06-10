@@ -1,5 +1,5 @@
 const cacheName="v2"
-const files=["/","/dashboard","/login","/signup"]
+const files=["/offline"]
 self.addEventListener('install', (e) => {
     console.log('Service Worker installed');
     e.waitUntil(
@@ -30,14 +30,13 @@ myCache.addAll(files)
     );
   });
   
-
   self.addEventListener("fetch", (e) => {
     console.log("fetching");
     e.respondWith(
       fetch(e.request)
         .catch(() => {
           // If network request fails, serve from cache
-          return caches.match(e.request);
+          return caches.match("offline");
         })
     );
   });
