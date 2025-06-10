@@ -81,6 +81,7 @@ return ()=>{
   useEffect(()=>{
   const mtne=document.getElementById("mtn")
   const airte=document.getElementById("airtel")
+  const nmobile=document.getElementById("9mobile")
   const gloe=document.getElementById("glo")
   const amoun= document.getElementById("amt")
   const pho=document.getElementById("phone")
@@ -88,6 +89,7 @@ return ()=>{
 const mtnRegex = /^(?:\+234|0)(?:703|704|706|803|806|810|813|814|816|903|906|913|916|818|909|917|918|919)\d{7}$/;
 const airtelRegex = /^(?:\+234|0)(?:701|702|708|802|808|812|902|904|907|912)\d{7}$/;
 const gloRegex = /^(?:\+234|0)(?:705|805|807|811|815|905|915)\d{7}$/;
+const nmobileRegex=/^(0(809|817|818|908|909)|(\+234[7-9]|234[7-9]|0)[89]0[1789])\d{7}$/;
 
 function checknet(pno){
 if(mtnRegex.test(pno)){
@@ -98,6 +100,10 @@ else if(airtelRegex.test(pno)){
   airte.checked=true
   return
 }
+else if(nmobileRegex.test(pno)){
+  nmobile.checked=true
+  return
+}
 else if(gloRegex.test(pno)){
   gloe.checked=true;
   return;
@@ -106,7 +112,7 @@ else{
   return;
 }
 }
-const nps=[mtne,airte,gloe]
+const nps=[mtne,airte,gloe,nmobile]
 nps.forEach((a)=>{
   a.onclick=()=>{
     if((amoun.value>=50)&&(amoun.value<50000)&& nigeriaPhoneRegex.test(pho.value) ){
@@ -242,6 +248,10 @@ catch(e){
   <div className="flex items-center">
     <input type="radio" id="glo" name="nid" value="glo" className="mr-2" />
     <label htmlFor="glo"><img src="/images/glo2.png" width={"40px"} height={"40px"} /></label>
+  </div>
+  <div className="flex items-center">
+  <input type="radio" id="9mobile" name="nid" value="9mobile" className="mr-2"/>
+  <label htmlFor="9mobile"><img src="/images/9mobile.svg" width={"40px"} height={"40px"} /></label>
   </div>
 </div> 
     </div>

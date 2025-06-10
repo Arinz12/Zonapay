@@ -171,6 +171,13 @@ if(!already.ok){
     return(<>
     <Head>
         <title>Signup</title>
+        <meta name="description" content=" signup on Billsly to experience seamless bill payments "/>
+        <meta name="keywords" content="signup,Airtime, data purchase, Electricity, Cabletv,Bill payment, Billsly"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta property="og:title" content="Bill payment"/>
+<meta property="og:description" content="Experience seamless bill payment"/>
+<meta property="og:image" content="https://billsly.co/cicon192.png"/>
+<meta property="og:url" content="https://billsly.co"/>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>

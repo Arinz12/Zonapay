@@ -47,6 +47,13 @@ source.onerror= ()=>{console.log("An error occured")}
     return (<>
     <Head>
         <title>Billsly</title>
+        <meta name="description" content="Experience seamless bill payments when you use billsly" />
+        <meta name="keywords" content="Airtime, data purchase, Electricity, Cabletv"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta property="og:title" content="Bill payment"/>
+<meta property="og:description" content="Experience seamless bill payment"/>
+<meta property="og:image" content="https://billsly.co/cicon192.png"/>
+<meta property="og:url" content="https://billsly.co"/>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>

@@ -20,9 +20,11 @@ const Data=()=>{
   const [mtnready,setmtnReady]=useState(false)
   const [gloready,setgloReady]=useState(false)
   const [airtelready,setairtelReady]=useState(false)
+  const [nmobileready,setnmobileReady]=useState(false)
   const [vid,setVid]=useState("")
 const mtnplans= useRef([]);
 const airtelplans= useRef([]);
+const nmobileplans=useRef([]);
 const gloplans= useRef([]);
 const [showkeypad,setShowKeyPad]=useState(false)
 const ready=useRef(null)
@@ -56,6 +58,14 @@ headers:{
 }
 })
 
+const res4= await fetch("https://www.billsly.co/zonapay/fdp",
+{
+  method:"post",
+body:JSON.stringify({bille:"BIL111"}),
+headers:{
+  "Content-Type":"application/json"
+}
+})
   if(res.ok){
     const resp=await res.json();
   mtnplans.current=resp.data
@@ -77,7 +87,13 @@ headers:{
   }else{
     console.log("failed to fetch data plans for airtel")
   }
-
+  if(res4.ok){
+    const resp=await res4.json();
+  nmobileplans.current=resp.data
+  setnmobileReady(true);
+  }else{
+    console.log("failed to fetch data plans for 9mobile")
+  }
   }
 catch(e){
   console.log("erroR  "+e)
@@ -89,6 +105,7 @@ catch(e){
   useEffect(()=>{
   const mtne=document.getElementById("mtn")
   const airte=document.getElementById("airtel")
+  const nmobile=document.getElementById("9mobile")
   const gloe=document.getElementById("glo")
   const plan= document.getElementById("opts")
   const pho=document.getElementById("phone")
@@ -96,7 +113,7 @@ catch(e){
   const mtnRegex = /^(?:\+234|0)(803|806|808|810|813|814|815|816|817|818|903|906|907|908|913|915|917|918|703|704|706|708|92)\d{7}$/;
   const airtelRegex = /^(?:\+234|0)(701|708|802|808|812|813|814|815|816|902|907|908|912|913|916)\d{7}$/;
   const gloRegex = /^(?:\+234|0)(705|805|807|809|811|813|814|815|905|906|907|913|915)\d{7}$/;
-
+  const nmobileRegex=/^(0(809|817|818|908|909)|(\+234[7-9]|234[7-9]|0)[89]0[1789])\d{7}$/;
 function checknet(pno){
 if(mtnRegex.test(pno)){
   mtne.checked=true
@@ -106,6 +123,12 @@ if(mtnRegex.test(pno)){
 else if(airtelRegex.test(pno)){
   airte.checked=true
   setNet("airtel")
+
+  return
+}
+else if(nmobileRegex.test(pno)){
+  nmobile.checked=true
+  setNet("9mobile")
 
   return
 }
@@ -119,7 +142,7 @@ else{
   return;
 }
 }
-const nps=[mtne,airte,gloe]
+const nps=[mtne,airte,gloe,nmobile]
 nps.forEach((a)=>{
   a.onclick=()=>{
     if( nigeriaPhoneRegex.test(pho.value) ){
@@ -294,6 +317,10 @@ if(processed){
     <input type="radio" id="glo" name="nid" value="glo" className="mr-2" />
     <label htmlFor="glo"><img src="/images/glo2.png" width={"40px"} height={"40px"} /></label>
   </div>
+  <div className="flex items-center">
+  <input type="radio" id="9mobile" name="nid" value="9mobile" className="mr-2"/>
+  <label htmlFor="9mobile"><img src="/images/9mobile.svg" width={"40px"} height={"40px"} /></label>
+  </div>
 </div>
     </div>
 <div className="pt-7">
@@ -375,6 +402,33 @@ if(processed){
       {gloready&&gloplans.current.map((opt) => (
         <option data-amount={opt.amount} data-billcode={opt.biller_code} key={opt.id} className="rubik-b" value={opt.item_code}>
           {opt.name}
+        </option>
+      ))}
+    </select>
+  </div>
+)}
+
+{net === "9mobile" && (
+  <div className="pt-4 pb-7">
+    <label htmlFor="opts" className="rubik-h pb-3">Plan</label>
+    <select onChange={(e) => {
+    // Get the selected option element
+    const selectedOption = e.target.options[e.target.selectedIndex];
+    // Access the data-amount attribute
+    const amount = selectedOption.dataset.amount;
+    const vid={item_code:selectedOption.value,biller_code:selectedOption.dataset.billcode,type:selectedOption.innerHTML}
+    setVid(vid);
+    setPrice(amount);
+  }}
+      style={{ backgroundColor: "" }}
+      className="rubik-b p-4 border-b-2 border-black focus:outline-none" 
+      name="plan" 
+      id="opts"
+    >
+      <option value="" className="rubik-b">Choose plan</option>
+      {nmobileready&&nmobileplans.current.map((opt) => (
+        <option data-amount={opt.amount} data-billcode={opt.biller_code} key={opt.id} className="rubik-b" value={opt.item_code}>
+        {opt.name}
         </option>
       ))}
     </select>
