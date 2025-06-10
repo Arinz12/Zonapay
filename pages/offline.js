@@ -33,9 +33,8 @@ const OfflinePage = () => {
           <p className="subtext">
             You're offline right now. Check your network or try again later.
           </p>
-          <button 
+          <button onclick={() => window.location.reload()}
             className="retry-button"
-            onClick={() => window.location.reload()}
           >
             Retry Connection
           </button>
