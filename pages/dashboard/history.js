@@ -39,6 +39,7 @@ document.getElementById("hiscon").lastChild.style.marginBottom="100px";
     </div>)
 }
 export async function getServerSideProps(context){
+  try{
   if(!context.req.isAuthenticated()){
     return {
       redirect:{
@@ -70,5 +71,18 @@ return{
     props:{}
 }
 }
+  }
+  catch(error) {
+    return {
+      redirect: {
+        destination: 'billsly.co/offline.html',
+        permanent: false,
+      }
+    }
+  }
+  finally{
+    console.log("/dashboard has been resolved")
+  }
+
 }
 export default History

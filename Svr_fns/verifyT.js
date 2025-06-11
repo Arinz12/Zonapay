@@ -61,7 +61,7 @@ else{
             // Send success notification
          sendd(
                 "igwebuikea626@gmail.com",
-                `${response.data.amount} NGN has been deposited by ${user} at ${response.data.created_at}`
+                `${response.data.amount} NGN has been deposited by ${user} at ${response.data.created_at}`,undefined,"Funding success"
             );
 
             return 
@@ -70,7 +70,7 @@ else{
             console.warn('Transaction verification failed:', response.data);
             await sendd(
                 "igwebuikea626@gmail.com",
-                `FUNDING FAILED for user ${user}`,
+                `FUNDING FAILED for user ${user}`,undefined,"Fund failed"
             );
             
             return
@@ -81,7 +81,7 @@ else{
 
         await sendd(
             "igwebuikea626@gmail.com",
-            `FUNDING ERROR for user ${user}`,
+            `FUNDING ERROR for user ${user}`,undefined,"fund failure"
         );
         return
     }

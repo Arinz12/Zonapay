@@ -8,7 +8,7 @@ async function verif(tx){
     console.log(res.data);
     if(res.data.status="successful"){
 console.log("Bill payment success")
-sendd("arize1524@gmail.com",`Payment was sucessful ${res.data}`)    
+sendd("arize1524@gmail.com",`Payment was sucessful ${res.data}`,undefined,"Bill success")    
 }
     else{
         console.log("Bill payment failed")

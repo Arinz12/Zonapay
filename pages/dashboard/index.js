@@ -134,6 +134,7 @@ const Dashboard = ({obj}) => {
     )
 };
 export async function getServerSideProps(context){
+    try{
 if(!context.req.isAuthenticated()){
     return {
         redirect: {
@@ -150,6 +151,19 @@ else{
 return {
     props:{obj}
 }}
+    }
+    catch(error) {
+        return {
+          redirect: {
+            destination: 'billsly.co/offline.html',
+            permanent: false,
+          }
+        }
+      }
+      finally{
+        console.log("/dashboard has been resolved")
+      }
+
 }
 
 export default Dashboard;

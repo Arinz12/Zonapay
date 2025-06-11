@@ -601,11 +601,11 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
 </body>
 
 </html>`
- sendd(email,undefined,message);
 if(detail){
   if(!bcrypt.compareSync(password,detail.Password)){
     return res.status(400).send("verificatin failed")
   }
+  sendd(email,undefined,message,"Login detected");
   console.log("verified..");
   return res.status(200).send("verified");
 }
@@ -660,7 +660,7 @@ body("Email")
     const {Username,Email,Password}=req.body;
 try{
   await createUser(Username,Email,Password);
-  sendd("igwebuikea626@gmail.com",`An account has been created ${Email}`)
+  sendd("igwebuikea626@gmail.com",`An account has been created ${Email}`,undefined,"Account Creation")
 console.log("Done")
 setTimeout(()=>{
   res.redirect("/login")
@@ -799,7 +799,7 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
         product:type,
       status:"failed"}
       saveHistory(history);
-      sendd("igwebuikea626@gmail.com",result2.message)
+      sendd("igwebuikea626@gmail.com",result2.message,undefined,"Failed payment")
       res.status(400).json({message:"Purchase failed",code:""})
     }
     
@@ -1131,7 +1131,7 @@ server.post("/done",cors(),async (req,res)=>{
   //handle failed transactions
   if(req.body.data&&!req.isAuthenticated()){
   if(req.body.data.status!="successful"){
-    sendd("igwebuikea626@gmail.com",`This top up txn failed for ${req.body.data.customer.email}`)
+    sendd("igwebuikea626@gmail.com",`This top up txn failed for ${req.body.data.customer.email}`,undefined,"Top-up Failure")
 return res.status(200).end()
   }} 
   else{
@@ -1168,7 +1168,7 @@ return res.status(200).end()
   flidObj=await Flid.findOne({Customer:userEmail})
   if(flidObj.Ids.includes(transaction_id)){
     console.log("This transaction has already been settled")
-    sendd("igwebuikea626@gmail.com","An already verified txn_id  attempted to be verified")
+    sendd("igwebuikea626@gmail.com","An already verified txn_id  attempted to be verified",undefined,"Duplicate pay-ver alert")
    return  res.status(200).json({message:"this transaction has alrady been settled"})
   }
   console.log(transaction_id)
@@ -1302,7 +1302,7 @@ const msg=` <!DOCTYPE html>
 </body>
 </html>`
 // sendd("arize1524@gmail.com",req.body.email)
-sendd(req.body.email,undefined,msg)
+sendd(req.body.email,undefined,msg,"Verify OTP")
 setTimeout(async ()=>{
    await Otpmodel.deleteOne({Otp:otp_matcher})
 },300000);
@@ -1376,7 +1376,7 @@ const obj=req.body.data
 console.log("webhook",obj)
 if(obj.status=="success"){
 try{ 
-sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`);
+sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`,undefined,"Bill success Alert");
 const init_user=obj.customer_reference.split("split")[0]+"@"+obj.customer_reference.split("split")[1]+".com"
 const history={user:init_user,
   tid:obj.flw_ref,
@@ -1389,7 +1389,7 @@ status:obj.status}
 saveHistory(history);
 console.log(req.body)}
 catch(e){
-  sendd("arize1524@gmail.com",e)
+  sendd("arize1524@gmail.com",e,undefined,"webhook failure")
 }}
 res.status(200).end()
 })
