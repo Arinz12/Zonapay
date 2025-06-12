@@ -55,12 +55,12 @@ export default function SettingsPage() {
       onKeyDown={(e) => e.key === 'Enter' && onClick()}
     >
       <div className="item-content">
-        <div className="item-icon">
+        {/* <div className="item-icon">
           {React.cloneElement(icon, {
             fontSize: "medium",
             color: isDanger ? "error" : "primary"
           })}
-        </div>
+        </div> */}
         <div className="item-text">
           <h3>{title}</h3>
           <p>{description}</p>
