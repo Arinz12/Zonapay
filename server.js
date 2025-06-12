@@ -36,6 +36,7 @@ const { Otpmodel } = require("./Svr_fns/otps");
 const cron= require("node-cron");
 const Schedule = require("./Svr_fns/schedule");
 const logout = require("./Svr_fns/logout");
+const { addNote } = require("./Svr_fns/Note");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -1114,7 +1115,28 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
     });
 
 })
+//send email to massively
+server.post("/sendNote", async (req,res)=>{
+  if(!req.isAuthenticated()){
+    res.redirect("/login")
+  }
+  if(!req.user.isAdmin){
+    return res.status(200).end()
+  }
+  try{
+const {val}=req.body;
+await addNote(val)
+const email1 =await User.find()
+const emails=email1.map((a)=>a.Email)
+sendd(emails,val,undefined,"Notification");
 
+res.status(200).end()}
+catch(e){
+  res.status(400).end()
+}
+
+
+})
 
 //verifying flutterwave transactions
 server.post("/done",cors(),async (req,res)=>{

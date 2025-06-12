@@ -2,7 +2,7 @@ require("dotenv").config()
 const mongoose= require("mongoose")
 mongoose.set("strictQuery",false)
 const Eschema=new mongoose.Schema({
-    Date:{type:String,unique:true},
+    Date:{type:String,unique:true}, 
     Earning:{type:Number},
     Airtime_purchases:{type:Number,default:0},
     Data_purchases:{type:Number,default:0},
