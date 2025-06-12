@@ -151,7 +151,7 @@ const SettingsPage = () => {
 
   const LogoutModal = useCallback(() => (
     <div 
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black bg-opacity-50  flex items-center justify-center z-10"
       onClick={() => setShowLogoutModal(false)}
     >
       <div 
@@ -186,12 +186,12 @@ const SettingsPage = () => {
   return (
     <>
       <Head>
-        <title>Settings | BillPay App</title>
+        <title>Settings | Billsly App</title>
         <meta name="description" content="Manage your account settings" />
       </Head>
 
       <div className="max-w-2xl mx-auto my-5 bg-white rounded-xl shadow-sm overflow-hidden">
-        <div className="flex items-center gap-4 p-5 border-b border-gray-200">
+        <div className="flex sticky top-0 items-center gap-4 p-5 border-b border-gray-200">
           <button 
             className="flex items-center justify-center p-1 text-blue-600" 
             onClick={() => window.history.back()}
@@ -207,7 +207,7 @@ const SettingsPage = () => {
             Account Settings
           </li>
           
-          <Link href="/info" passHref>
+          <Link href="/dashboard/info" passHref>
             <a>
               <SettingItem
                 icon={<Person />}
@@ -217,7 +217,7 @@ const SettingsPage = () => {
             </a>
           </Link>
           
-          <Link href="/sec" passHref>
+          <Link href="/dashboard/settings/sec" passHref>
             <a>
               <SettingItem
                 icon={<Lock />}

@@ -1,6 +1,6 @@
 const Info=()=>{
     return (<>
-    <div>Info Page</div>
+    <div className="mx-auto w-full mt-2">Info Page</div>
     </>)
 }
 export default Info;
