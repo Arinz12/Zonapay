@@ -41,7 +41,7 @@ return(<>
 {/* Notify users through email and update their notifications*/}
 <div className="bg-white border-r-2 border-l-2 rounded p-5">
 <input ref={data}  typeof="textArea"/>
-<button typeof="button" className="rounded-md bg-blue-600">send</button>
+<button ref={btn} typeof="button" className="rounded-md bg-blue-600">send</button>
 </div>
 </div>
 </>)

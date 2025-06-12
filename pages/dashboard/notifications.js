@@ -26,12 +26,12 @@ if(!res){
         props:{obj:0}
     }
 }
-const obj= res.Notes
+const obj= res[0].Notes
 
 const sodObj = [...obj].sort((a, b) => {
-    const timeA = DateTime.fromFormat(a.time, "LLL dd yyyy hh:mm", { zone: "Africa/Lagos" });
-    const timeB = DateTime.fromFormat(b.time, "LLL dd yyyy hh:mm", { zone: "Africa/Lagos" });
-    return timeB - timeA;
+    const timeA = new Date(a.time)
+    const timeB = new Date(b.time)
+    return timeA - timeB;
   });
 return{
     props:{sodObj}
