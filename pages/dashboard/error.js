@@ -1,5 +1,6 @@
-import {Button,Link} from "@mui/material"
+import {Button} from "@mui/material"
 import {Cancel,ArrowBack} from "@mui/icons-material"
+import Link from "next/link"
 
  const Error = ()=>{
     return(<>
