@@ -53,11 +53,11 @@ const Dashboard = ({obj}) => {
          </Paper></div>
         <div className='flex pb-5 pt-1 flex-row justify-between items-center ml-2 mr-2'>
         <div className='flex flex-row gap-2 items-center '>
-            <AccountCircleIcon onClick={router.push("/dashboard/info")} className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
+            <Link href="/dashboard/info">{<AccountCircleIcon  className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>}</Link>
             <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
             </div>
-          <div ><CircleNotificationsRoundedIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
-          </div>
+          <Link href="dashboard/notifications">{<div><CircleNotificationsRoundedIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
+     </div>}</Link>
         </div>
         <div className=''>
             
