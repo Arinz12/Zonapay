@@ -9,7 +9,7 @@ import router from "next/router";
 import Delay from "../../../components/Delay";
 import { useState } from "react";
 import Footer from "../../../components/Footer";
-const Settings=()=>{
+const Security=()=>{
     const [loading,setLoading]=useState(false)
 return(<>
 <Head>
@@ -65,4 +65,4 @@ return(<>
      </div>
 </>)
 }
-export default Settings
+export default Security
