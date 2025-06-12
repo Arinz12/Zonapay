@@ -43,7 +43,7 @@ export default function SettingsPage() {
 
   const handleLogout = useCallback(() => {
     console.log('User logged out');
-    setloading(true);
+    setLoading(true);
   }, []);
 
   const SettingItem = ({ icon, title, description, onClick, isDanger = false }) => (
