@@ -14,6 +14,8 @@ import Carousel2 from '../../components/Carousel';
 import Ripples from "react-ripples"
 import Footer from '../../components/Footer';
 import Delay from '../../components/Delay';
+import CircleNotificationsRoundedIcon from '@mui/icons-material/CircleNotificationsRounded';
+import Router from 'next/router';
 
 
 const Dashboard = ({obj}) => {
@@ -55,7 +57,8 @@ const Dashboard = ({obj}) => {
             <AccountCircleIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
             <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
             </div>
-          
+          <div onClick={Router.push("/info")}><CircleNotificationsRoundedIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
+          </div>
         </div>
         <div className=''>
             
