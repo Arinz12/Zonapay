@@ -24,7 +24,7 @@ return(<>
           >
             <ArrowBack color="primary" />
           </button>
-          <div className="text-xl font-semibold">Security</div>
+          <div className="text-xl text-black font-semibold">Security</div>
         </div>
 
   <Link href={"/forgotPass"}>{<div  onClick={()=>{
