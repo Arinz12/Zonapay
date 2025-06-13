@@ -9,15 +9,16 @@ const send= async(e)=>{
   if(data.current.value=""){
     return;
   }
+  btn.current.textContent="sending..."
 const res=await fetch("https://www.billsly.co/sendNote",{method:"Post",body:JSON.stringify({val:data.current.value}),headers:{
   "Content-Type":'application/json'
 }})
 if(res.ok){
-  btn.current.value="sent"
+  btn.current.textContent="sent"
   console.log("send success")
 }
 else{
-  btn.current.value="not sent"
+  btn.current.textContent="not sent"
   console.log("send failure")
 }
 
@@ -47,8 +48,8 @@ return(<>
 </div>
 </div>
 {/* Notify users through email and update their notifications*/}
-<div className="bg-white border-r-2 border-l-2 rounded p-5">
-<input ref={data}  typeof="textArea"/>
+<div className=" flex-col items-center justify-center gap-3 bg-white border-r-2 border-l-2 border-blue-600 rounded p-5">
+<textarea ref={data} className="border-r-2 border-l-2 border-blue-600"  rows={5}/>
 <button ref={btn} typeof="button" className="rounded-md bg-blue-600">send</button>
 </div>
 </div>

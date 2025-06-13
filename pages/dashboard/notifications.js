@@ -1,7 +1,18 @@
+import { ArrowBack } from "@mui/icons-material"
+
 const Note=({sodObj})=>{
     return (<>
-    <div className="mx-auto mt-2 w-full text-center">Notifications </div>
-    {(sodObj)?
+<div className="flex sticky top-0 items-center gap-4 p-5 border-b border-gray-200">
+          <button 
+            className="flex items-center justify-center p-1 text-blue-600" 
+            onClick={() => window.history.back()}
+            aria-label="Go back"
+          >
+            <ArrowBack color="primary" />
+          </button>
+          <div className="text-xl font-semibold">Notification</div>
+        </div> 
+         {(sodObj)?
         sodObj.map((a)=>(
             <div style={{width:"90%"}} className="p-2 rounded mb-3 rubik-b">{a.value}</div>
         )) : <div className="rubik-l mx-auto text-center my-2">There are no notifications yet</div>
