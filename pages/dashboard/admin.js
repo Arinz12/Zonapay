@@ -2,10 +2,10 @@ import {Button,Paper} from "@mui/material"
 import { useEffect, useRef } from "react"
 const Admin =({result})=>{
   const data=useRef("")
-  const btn=useRef("")
+  const btn=useRef(null)
 
   useEffect(()=>{
-btn.current.onclick= async(e)=>{
+const send= async(e)=>{
   if(data.current.value=""){
     return;
   }
@@ -20,6 +20,14 @@ else{
   btn.current.value="not sent"
   console.log("send failure")
 }
+
+}
+if (btn.current) {
+  btn.current.addEventListener('click', send);
+}return ()=>{
+  if(btn.current){
+    btn.current.removeEventListener("click",send)
+  }
 }
   })
 return(<>

@@ -1115,7 +1115,7 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
     });
 
 })
-//send email to massively
+//send email  massively
 server.post("/sendNote", async (req,res)=>{
   if(!req.isAuthenticated()){
     res.redirect("/login")
