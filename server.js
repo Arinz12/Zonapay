@@ -1117,10 +1117,12 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 })
 //send email  massively
 server.post("/sendNote", async (req,res)=>{
+  console.log("email notification path entered")
   if(!req.isAuthenticated()){
     res.redirect("/login")
   }
   if(!req.user.isAdmin){
+    console.log("A nonAdmin tried to visit the admin page")
     return res.status(200).end()
   }
   try{

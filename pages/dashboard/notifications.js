@@ -10,6 +10,7 @@ const Note=({sodObj})=>{
 }
 export default Note
 export async function getServerSideProps(context){
+    const {Note}=require("../../Svr_fns/Note")
 try{
 if(!context.req.isAuthenticated()){
 return {
@@ -19,7 +20,6 @@ return {
 },}
 }
 else{
-    const {Note}=require("../../Svr_fns/Note")
 const res= await Note.find();
 if(res.length==0){
     return{
