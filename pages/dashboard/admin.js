@@ -1,8 +1,8 @@
 import { ArrowBack } from "@mui/icons-material"
 import {Button,Paper} from "@mui/material"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 const Admin =({result})=>{
-  const data=useRef("")
+  const [data,setData]= useState("Default text")
   const btn=useRef(null)
   useEffect(()=>{
 const send= async(e)=>{
@@ -10,7 +10,7 @@ const send= async(e)=>{
     return;
   }
   btn.current.textContent="sending..."
-const res=await fetch("https://www.billsly.co/sendNote",{method:"Post",body:JSON.stringify({val:data.current.value}),headers:{
+const res=await fetch("https://www.billsly.co/sendNote",{method:"Post",body:JSON.stringify({val:data}),headers:{
   "Content-Type":'application/json'
 }})
 if(res.ok){
@@ -30,7 +30,7 @@ if (btn.current) {
     btn.current.removeEventListener("click",send)
   }
 }
-  },[])
+  },[data])
 return(<>
 <div style={{backgroundColor:"whitesmoke",height:"100vh"}} className="h-full w-full flex flex-col justify-center">
 
@@ -61,7 +61,7 @@ return(<>
 </div>
 {/* Notify users through email and update their notifications*/}
 <div className=" flex-col items-center w-full justify-center gap-3 bg-white border-r-2 border-l-2 border-blue-600 rounded p-5">
-<div className="text-center"><textarea  ref={data} className="border-2 border-blue-600"  rows={5} placeholder="write notification here"/></div>
+<div className="text-center"><textarea onKeyUp={(e)=>{setData(e.target.value)}}   className="border-2 border-blue-600"  rows={5} placeholder="write notification here"/></div>
 <div className="text-center"><button ref={btn} typeof="button" className="rounded-md bg-blue-600">send</button></div>
 </div>
 </div>

@@ -24,6 +24,10 @@ const Dashboard = ({obj}) => {
         if(!obj.isPinset){
         setTimeout(()=>{document.getElementById("createpin").style.display="flex"},3000)}
     })
+    function capitalizeFirstLetter(str) {
+        if (!str) return str; // handle empty string
+        return str.charAt(0).toUpperCase() + str.slice(1);
+      }
     const timinit=DateTime.now().setZone("Africa/Lagos")
     const timer=timinit.toFormat("a").toLowerCase();
     let greet;
@@ -54,7 +58,7 @@ const Dashboard = ({obj}) => {
         <div className='flex pb-5 pt-1 flex-row justify-between items-center ml-2 mr-2'>
         <div className='flex flex-row gap-2 items-center '>
             <Link href="/dashboard/info">{<AccountCircleIcon  className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>}</Link>
-            <div style={{}} className='rubik-h font-bold text-black'>{greet+obj.Username}</div>
+            <div style={{}} className='rubik-h font-bold text-black'>{greet+ capitalizeFirstLetter(obj.Username)}</div>
             </div>
           <Link href="dashboard/notifications">{<div><CircleNotificationsRoundedIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
      </div>}</Link>

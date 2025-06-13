@@ -681,9 +681,86 @@ body("Email")
     console.log(errors)
     if(errors.isEmpty()){
     const {Username,Email,Password}=req.body;
+    const message=`<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Account Has Been Created</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333333;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .header {
+                text-align: center;
+                padding: 20px 0;
+                border-bottom: 1px solid #eaeaea;
+            }
+            .logo {
+                max-width: 150px;
+            }
+            .content {
+                padding: 30px 20px;
+            }
+            .button {
+                display: inline-block;
+                padding: 12px 24px;
+                background-color: #2563eb;
+                color: white !important;
+                text-decoration: none;
+                border-radius: 4px;
+                font-weight: 600;
+                margin: 20px 0;
+            }
+            .footer {
+                text-align: center;
+                padding: 20px;
+                font-size: 12px;
+                color: #666666;
+                border-top: 1px solid #eaeaea;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <!-- Replace with your logo -->
+            <img src="https:www.//billsly.com/cicon192.png" alt="Company Logo" class="logo">
+        </div>
+        
+        <div class="content">
+            <h1>Welcome to [BILLSLY]!</h1>
+            <p>Your account has been successfully created. We're excited to have you on board!</p>
+            
+            <p>Here are your account details:</p>
+            <ul>
+                <li><strong>Email:</strong> ${req.user.Email}</li>
+                <li><strong>Created On:</strong> ${DateTime.local().setZone("Africa/Lagos").toFormat("LLL dd yyyy hh:mm")}</li>
+            </ul>
+            
+            
+            <p>If you didn't create this account, please <a href="https://x.com/Zona_it_is?t=HDE0ckMLkV-DJgGBrfQJQA&s=09">contact our support team</a> immediately.</p>
+            
+            <p>Best regards,<br>The [Billsly] Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>© {${DateTime.local().setZone("Africa/Lagos").toFormat("yyyy")} [Your Company Name]. All rights reserved.</p>
+            <p>
+                [support@billsly.co] | <a href="{{privacy_url}}">Privacy Policy</a> | 
+                <a href="{{terms_url}}">Terms of Service</a>
+            </p>
+        </div>
+    </body>
+    </html>`
 try{
   await createUser(Username,Email,Password);
   sendd("igwebuikea626@gmail.com",`An account has been created ${Email}`,undefined,"Account Creation")
+sendd(req.user.Email,undefined,message,"Account Creation")
 console.log("Done")
 setTimeout(()=>{
   res.redirect("/login")

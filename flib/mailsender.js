@@ -22,7 +22,7 @@ function sendd(emaill,messagee,htmll,sub){
   // Define email options
   if (messagee==undefined){
     mailOptions = {
-      from: '"Billsly support" support@billsly.co', // Sender address
+      from: '"Billsly" support@billsly.co', // Sender address
       to: emaill, // List of recipients
       subject: sub, // Subject line
       html: htmll, // Plain text body

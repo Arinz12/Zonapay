@@ -182,7 +182,7 @@ source.onerror= ()=>{console.log("An error occured")}
     <div id="contact" className='flex flex-col'>
       <h3 className='rubik-h text-center 'style={{fontSize:"17px"}}>Get in touch</h3>
       < Button className="text-center" sx={{textTransform:"none"}}>+2348166041953</ Button>
-      < Button href="mailto:arize1524@gmail.com" className="text-center" sx={{textTransform:"none"}}>Email us</ Button>
+      < Button href="mailto:support@billsly.co" className="text-center" sx={{textTransform:"none"}}>Email us</ Button>
     </div>
     <div className='flex flex-col '>
       <h3 className='rubik-h text-center'style={{fontSize:"17px"}}>Social media</h3>

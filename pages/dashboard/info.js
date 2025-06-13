@@ -9,11 +9,15 @@ export default function ProfilePage({obj}) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  function capitalizeFirstLetter(str) {
+    if (!str) return str; // handle empty string
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
   const handleLogout = async () => {
     setIsLoading(true);
-    await fetch("https://www.billsly.co/zonapay/logout2")
+    await fetch("https://www.billsly.co/zonapay/logout2",{method:"post"})
     console.log("user logged out from profile page")
-    router.push('/login');
+    router.replace('/login');
   };
 
   const handleDeleteAccount = async () => {
@@ -46,15 +50,15 @@ export default function ProfilePage({obj}) {
         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div className="p-8">
             <div className="flex flex-col items-center">
-            <AccountCircleIcon  className="text-blue-600" sx={{height:"120px",width:"120px",color:"white"}}/>  
+            <AccountCircleIcon  sx={{height:"120px",width:"120px",color:"#2563EB"}}/> 
+            <Link href="/dashboard">{<div className='w-full text-center'>Back to Dashboard</div>}</Link> 
              <div className="relative w-24 h-24 mb-6">
-               
               </div>
 
               {/* User Info */}
               <div className="text-center mb-8 w-full">
                 <h2 className="text-2xl font-bold text-gray-800 mb-1">
-                  {obj.username}
+                  {capitalizeFirstLetter(obj.username)}
                 </h2>
                 <p className="text-gray-600 mb-6">{obj.email}</p>
                 
