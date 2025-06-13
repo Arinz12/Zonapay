@@ -16,7 +16,7 @@ return(<>
     <title>Security</title>
 </Head>
 <div style={{fontSize:"",height:"100vh"}} className="relative min-h-screen mx-auto bg-white gap-8 text-white flex flex-col  items-start">
-<div className="flex sticky top-0 items-center gap-4 p-5 border-b border-gray-200">
+<div className="flex w-full absolute mx-auto top-0 items-center gap-4 p-5 border-b border-gray-200">
           <button 
             className="flex items-center justify-center p-1 text-blue-600" 
             onClick={() => window.history.back()}
@@ -26,14 +26,6 @@ return(<>
           </button>
           <div className="text-xl font-semibold">Security</div>
         </div>
-{/* <div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
-   <div className="flex flex-row justify-start items-center">
-    <div style={{height:"40px",width:"40px", borderRadius:"50%"}}className="flex flex-row bg-blue-600 items-center justify-center" >
-    <AlarmAddRounded sx={{color:"white"}}/>  </div>
-<div style={{fontSize:"20px"}} className="ml-3 rubik-b text-black ">Notifications</div>
-</div>
-    <ArrowForwardIosRounded sx={{color:""}} className="text-blue-600"/>
-   </div> */}
 
   <Link href={"/forgotPass"}>{<div  onClick={()=>{
         setLoading(true)

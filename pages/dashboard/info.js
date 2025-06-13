@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Head from 'next/head';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import Link from "next/link"
 export default function ProfilePage({obj}) {
   const router = useRouter();
   const [showDeleteModal, setShowDeleteModal] = useState(false);

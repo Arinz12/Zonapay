@@ -6,7 +6,7 @@ const Admin =({result})=>{
   const btn=useRef(null)
   useEffect(()=>{
 const send= async(e)=>{
-  if(data.current.value=""){
+  if(data=""){
     return;
   }
   btn.current.textContent="sending..."
