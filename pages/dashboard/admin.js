@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react"
 const Admin =({result})=>{
   const data=useRef("")
   const btn=useRef(null)
-
   useEffect(()=>{
 const send= async(e)=>{
   if(data.current.value=""){
@@ -30,9 +29,21 @@ if (btn.current) {
     btn.current.removeEventListener("click",send)
   }
 }
-  })
+  },[])
 return(<>
 <div style={{backgroundColor:"whitesmoke",height:"100vh"}} className="h-full w-full flex flex-col justify-center">
+
+<div className="flex sticky top-0 items-center gap-4 p-5 border-b border-gray-200">
+          <button 
+            className="flex items-center justify-center p-1 text-blue-600" 
+            onClick={() => window.history.back()}
+            aria-label="Go back"
+          >
+            <ArrowBack color="primary" />
+          </button>
+          <div className="text-xl font-semibold">Admin</div>
+        </div> 
+
 <div className="bg-white p-5 rounded-lg w-w-full mx-auto h-3/6 flex flex-row justify-between items-center gap-1">
 <div className="rubik-h ml-1">
     <span className="mb-3">ClientBalance</span><br/>
@@ -48,14 +59,15 @@ return(<>
 </div>
 </div>
 {/* Notify users through email and update their notifications*/}
-<div className=" flex-col items-center justify-center gap-3 bg-white border-r-2 border-l-2 border-blue-600 rounded p-5">
-<textarea ref={data} className="border-r-2 border-l-2 border-blue-600"  rows={5}/>
-<button ref={btn} typeof="button" className="rounded-md bg-blue-600">send</button>
+<div className=" flex-col items-center w-full justify-center gap-3 bg-white border-r-2 border-l-2 border-blue-600 rounded p-5">
+<div className="text-center"><textarea ref={data} className="border-2 border-blue-600"  rows={5} placeholder="write notification here"/></div>
+<div className="text-center"><button ref={btn} typeof="button" className="rounded-md bg-blue-600">send</button></div>
 </div>
 </div>
 </>)
 }
 export async function getServerSideProps(context){
+  try{
 if(!context.req.isAuthenticated){
     return {
         redirect: {
@@ -88,6 +100,12 @@ return {
             },
           };
     }
+}}
+catch(e){
+  console.log("This is wrong",e)
+}
+finally{
+  console.log("Admin page has been settled")
 }
 }
 
