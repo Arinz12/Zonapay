@@ -760,7 +760,7 @@ body("Email")
 try{
   await createUser(Username,Email,Password);
   sendd("igwebuikea626@gmail.com",`An account has been created ${Email}`,undefined,"Account Creation")
-sendd(req.user.Email,undefined,message,"Account Creation")
+sendd(Email,undefined,message,"Account Creation")
 console.log("Done")
 setTimeout(()=>{
   res.redirect("/login")
