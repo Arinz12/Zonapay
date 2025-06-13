@@ -544,7 +544,7 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
     <div class="container">
         <div class="header">
             <!-- Replace with your logo -->
-            <img src="https://www.billsly.co/cicon.png" alt="Company Logo" class="logo" />
+            <img src="https://www.billsly.co/cicon192.png" alt="Company Logo" class="logo" />
         </div>
         
         <div class="content">
@@ -652,6 +652,134 @@ catch(e){
   console.log("This error occured while deleting user",e)
 }
       })
+      //welcome email 
+      const getWelcomeEmail = (user) => {
+        const date = DateTime.local().setZone("Africa/Lagos").toFormat("LLL dd yyyy hh:mm a");
+        const year = DateTime.local().setZone("Africa/Lagos").toFormat("yyyy");
+      
+        return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml">
+      <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Your Billsly Account Has Been Created</title>
+          <style type="text/css">
+              /* Client-specific styles */
+              body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+              table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+              img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+              
+              /* Main styles */
+              body {
+                  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                  line-height: 1.6;
+                  color: #333333;
+                  width: 100% !important;
+                  margin: 0 !important;
+                  padding: 0 !important;
+              }
+              
+              .email-container {
+                  max-width: 600px;
+                  margin: 0 auto;
+                  padding: 20px;
+              }
+              
+              .header {
+                  text-align: center;
+                  padding: 20px 0;
+                  border-bottom: 1px solid #eaeaea;
+              }
+              
+              .logo {
+                  max-width: 150px;
+                  height: auto;
+              }
+              
+              .content {
+                  padding: 30px 20px;
+              }
+              
+              .button {
+                  display: inline-block;
+                  padding: 12px 24px;
+                  background-color: #2563eb;
+                  color: #ffffff;
+                  text-decoration: none;
+                  border-radius: 4px;
+                  font-weight: 600;
+                  margin: 20px 0;
+              }
+              
+              .footer {
+                  text-align: center;
+                  padding: 20px;
+                  font-size: 12px;
+                  color: #666666;
+                  border-top: 1px solid #eaeaea;
+              }
+              
+              /* Responsive styles */
+              @media screen and (max-width: 600px) {
+                  .email-container {
+                      width: 100% !important;
+                  }
+              }
+          </style>
+      </head>
+      <body style="margin: 0; padding: 0;">
+          <!-- Email container -->
+          <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                  <td align="center" style="padding: 20px 0;">
+                      <table class="email-container" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600">
+                          <!-- Header -->
+                          <tr>
+                              <td class="header">
+                                  <img src="https://www.billsly.com/cicon192.png" alt="Billsly Logo" class="logo" width="150" style="display: block; margin: 0 auto;" />
+                              </td>
+                          </tr>
+                          
+                          <!-- Content -->
+                          <tr>
+                              <td class="content">
+                                  <h1 style="margin-top: 0;">Welcome to Billsly!</h1>
+                                  <p>Your account has been successfully created. We're excited to have you on board!</p>
+                                  
+                                  <p>Here are your account details:</p>
+                                  <ul style="padding-left: 20px; margin: 10px 0;">
+                                      <li><strong>Email:</strong> ${user.Email}</li>
+                                      <li><strong>Created On:</strong> ${date}</li>
+                                  </ul>
+                                  
+                                  <div style="text-align: center; margin: 25px 0;">
+                                      <a href="https://www.billsly.com/login" class="button" style="color: #ffffff;">Login to Your Account</a>
+                                  </div>
+                                  
+                                  <p>If you didn't create this account, please <a href="https://x.com/Zona_it_is" style="color: #2563eb;">contact our support team</a> immediately.</p>
+                                  
+                                  <p>Best regards,<br>The Billsly Team</p>
+                              </td>
+                          </tr>
+                          
+                          <!-- Footer -->
+                          <tr>
+                              <td class="footer">
+                                  <p>© ${year} Billsly. All rights reserved.</p>
+                                  <p>
+                                      <a href="mailto:support@billsly.co" style="color: #666666; text-decoration: none;">support@billsly.co</a> | 
+                                      <a href="https://www.billsly.com/privacy" style="color: #666666; text-decoration: none;">Privacy Policy</a> | 
+                                      <a href="https://www.billsly.com/terms" style="color: #666666; text-decoration: none;">Terms of Service</a>
+                                  </p>
+                              </td>
+                          </tr>
+                      </table>
+                  </td>
+              </tr>
+          </table>
+      </body>
+      </html>`;
+      };
 //signup a user
 const validateInfo=[
   body("Username").toLowerCase()
@@ -681,86 +809,11 @@ body("Email")
     console.log(errors)
     if(errors.isEmpty()){
     const {Username,Email,Password}=req.body;
-    const message=`<!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Your Account Has Been Created</title>
-        <style>
-            body {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                line-height: 1.6;
-                color: #333333;
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-            }
-            .header {
-                text-align: center;
-                padding: 20px 0;
-                border-bottom: 1px solid #eaeaea;
-            }
-            .logo {
-                max-width: 150px;
-            }
-            .content {
-                padding: 30px 20px;
-            }
-            .button {
-                display: inline-block;
-                padding: 12px 24px;
-                background-color: #2563eb;
-                color: white !important;
-                text-decoration: none;
-                border-radius: 4px;
-                font-weight: 600;
-                margin: 20px 0;
-            }
-            .footer {
-                text-align: center;
-                padding: 20px;
-                font-size: 12px;
-                color: #666666;
-                border-top: 1px solid #eaeaea;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="header">
-            <!-- Replace with your logo -->
-            <img src="https:www.//billsly.com/cicon192.png" alt="Company Logo" class="logo">
-        </div>
-        
-        <div class="content">
-            <h1>Welcome to [BILLSLY]!</h1>
-            <p>Your account has been successfully created. We're excited to have you on board!</p>
-            
-            <p>Here are your account details:</p>
-            <ul>
-                <li><strong>Email:</strong> ${req.user.Email}</li>
-                <li><strong>Created On:</strong> ${DateTime.local().setZone("Africa/Lagos").toFormat("LLL dd yyyy hh:mm")}</li>
-            </ul>
-            
-            
-            <p>If you didn't create this account, please <a href="https://x.com/Zona_it_is?t=HDE0ckMLkV-DJgGBrfQJQA&s=09">contact our support team</a> immediately.</p>
-            
-            <p>Best regards,<br>The [Billsly] Team</p>
-        </div>
-        
-        <div class="footer">
-            <p>© {${DateTime.local().setZone("Africa/Lagos").toFormat("yyyy")} [Your Company Name]. All rights reserved.</p>
-            <p>
-                [support@billsly.co] | <a href="{{privacy_url}}">Privacy Policy</a> | 
-                <a href="{{terms_url}}">Terms of Service</a>
-            </p>
-        </div>
-    </body>
-    </html>`
+    const message=getWelcomeEmail({Email})
 try{
   await createUser(Username,Email,Password);
   sendd("igwebuikea626@gmail.com",`An account has been created ${Email}`,undefined,"Account Creation")
-sendd(req.user.Email,undefined,message,"Account Creation")
+sendd(Email,undefined,message,"Account Creation")
 console.log("Done")
 setTimeout(()=>{
   res.redirect("/login")
@@ -1216,7 +1269,8 @@ const interval = setInterval(()=>{res.write(`data:${data}\n\n`)}, 3000);
 })
 //send email  massively
 server.post("/sendNote", async (req,res)=>{
-  const {val}=req.body;
+  console.log("req body",req.body)
+  const {val}=req.body
 console.log("Value is ",val)
   console.log("email notification path entered")
   if(!req.isAuthenticated()){

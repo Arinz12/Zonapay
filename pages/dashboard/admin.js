@@ -6,7 +6,7 @@ const Admin =({result})=>{
   const btn=useRef(null)
   useEffect(()=>{
 const send= async(e)=>{
-  if(data=""){
+  if(data==""){
     return;
   }
   btn.current.textContent="sending..."
@@ -61,8 +61,8 @@ return(<>
 </div>
 {/* Notify users through email and update their notifications*/}
 <div className=" flex-col items-center w-full justify-center gap-3 bg-white border-r-2 border-l-2 border-blue-600 rounded p-5">
-<div className="text-center"><textarea onKeyUp={(e)=>{setData(e.target.value)}}   className="border-2 border-blue-600"  rows={5} placeholder="write notification here"/></div>
-<div className="text-center"><button ref={btn} typeof="button" className="rounded-md bg-blue-600">send</button></div>
+<div className="text-center"><textarea onChange={(e)=>{setData(e.target.value)}}   className="border-2 border-blue-600"  rows={5} placeholder="write notification here"/></div>
+<div className="text-center "><button ref={btn} type="button" className="rounded-md bg-blue-600">send</button></div>
 </div>
 </div>
 </>)

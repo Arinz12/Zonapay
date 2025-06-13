@@ -51,7 +51,7 @@ export default function ProfilePage({obj}) {
           <div className="p-8">
             <div className="flex flex-col items-center">
             <AccountCircleIcon  sx={{height:"120px",width:"120px",color:"#2563EB"}}/> 
-            <Link href="/dashboard">{<div className='w-full text-center'>Back to Dashboard</div>}</Link> 
+            <Link href="/dashboard">{<div className='w-full text-center text-blue-500'>Back to Dashboard</div>}</Link> 
              <div className="relative w-24 h-24 mb-6">
               </div>
 

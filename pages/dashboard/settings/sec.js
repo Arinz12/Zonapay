@@ -16,7 +16,7 @@ return(<>
     <title>Security</title>
 </Head>
 <div style={{fontSize:"",height:"100vh"}} className="relative min-h-screen mx-auto bg-white gap-8 text-white flex flex-col  items-start">
-<div className="flex w-full absolute mx-auto top-0 items-center gap-4 p-5 border-b border-gray-200">
+<div className="flex w-full sticky mx-auto top-0 items-center gap-4 p-5 border-b border-gray-200">
           <button 
             className="flex items-center justify-center p-1 text-blue-600" 
             onClick={() => window.history.back()}
