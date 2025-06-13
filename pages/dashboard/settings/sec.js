@@ -1,5 +1,5 @@
 import { Button } from "@mui/material"
-import { AlarmAddRounded, LogoutRounded, SettingsAccessibilityRounded } from "@mui/icons-material"
+import { AlarmAddRounded, ArrowBack, LogoutRounded, SettingsAccessibilityRounded } from "@mui/icons-material"
 import { ArrowForwardIosRounded } from "@mui/icons-material"
 import { Settings as Seticon } from "@mui/icons-material";
 import Head from "next/head"
@@ -16,8 +16,16 @@ return(<>
     <title>Security</title>
 </Head>
 <div style={{fontSize:"",height:"100vh"}} className="relative min-h-screen mx-auto bg-white gap-8 text-white flex flex-col  items-start">
-   <div style={{fontSize:"30px"}} className="mt-0 mb-8 text-center bg-white border-b-2 border-blue-500 text-blue-600 w-full rounded-b-2xl px-4 py-4 rubik-h ">Security</div>
-   
+<div className="flex sticky top-0 items-center gap-4 p-5 border-b border-gray-200">
+          <button 
+            className="flex items-center justify-center p-1 text-blue-600" 
+            onClick={() => window.history.back()}
+            aria-label="Go back"
+          >
+            <ArrowBack color="primary" />
+          </button>
+          <div className="text-xl font-semibold">Security</div>
+        </div>
 {/* <div style={{backgroundColor:""}} className="flex flex-row justify-between items-center p-2 w-full">
    <div className="flex flex-row justify-start items-center">
     <div style={{height:"40px",width:"40px", borderRadius:"50%"}}className="flex flex-row bg-blue-600 items-center justify-center" >

@@ -1,7 +1,11 @@
 import { ArrowBack } from "@mui/icons-material"
+import Head from "next/head"
 
 const Note=({sodObj})=>{
     return (<>
+    <Head>
+        <title>Notifications</title>
+    </Head>
 <div className="flex sticky top-0 items-center gap-4 p-5 border-b border-gray-200">
           <button 
             className="flex items-center justify-center p-1 text-blue-600" 
@@ -10,7 +14,7 @@ const Note=({sodObj})=>{
           >
             <ArrowBack color="primary" />
           </button>
-          <div className="text-xl font-semibold">Notification</div>
+          <div className="text-xl font-semibold">Notifications</div>
         </div> 
          {(sodObj)?
         sodObj.map((a)=>(

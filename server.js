@@ -628,8 +628,30 @@ res.redirect("/login")
 });
   })
 
+  server.post("/zonapay/logout2",(req,res,next)=>{
+    req.logout((err)=>{
+    if(err){
+      next(err);
+    }
+    res.status(200).end()
+    });
+      })
 
-
+  server.delete("/delete-account", async (req,res)=>{
+    console.log("delete path entered")
+    try{
+if(!req.isAuthenticated()){
+  return res.status(400).end()
+}
+else{
+  const found= await User.deleteOne({Email:req.user.Email})
+  console.log("Deleted User",found)
+return res.status(200).end();
+}}
+catch(e){
+  console.log("This error occured while deleting user",e)
+}
+      })
 //signup a user
 const validateInfo=[
   body("Username").toLowerCase()
