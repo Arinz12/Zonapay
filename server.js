@@ -736,7 +736,7 @@ catch(e){
                           <!-- Header -->
                           <tr>
                               <td class="header">
-                                  <img src="https://www.billsly.com/cicon192.png" alt="Billsly Logo" class="logo" width="150" style="display: block; margin: 0 auto;" />
+                                  <img src="https://www.billsly.co/cicon192.png" alt="Billsly Logo" class="logo" width="150" style="display: block; margin: 0 auto;" />
                               </td>
                           </tr>
                           
@@ -753,7 +753,7 @@ catch(e){
                                   </ul>
                                   
                                   <div style="text-align: center; margin: 25px 0;">
-                                      <a href="https://www.billsly.com/login" class="button" style="color: #ffffff;">Login to Your Account</a>
+                                      <a href="https://www.billsly.co/login" class="button" style="color: #ffffff;">Login to Your Account</a>
                                   </div>
                                   
                                   <p>If you didn't create this account, please <a href="https://x.com/Zona_it_is" style="color: #2563eb;">contact our support team</a> immediately.</p>
