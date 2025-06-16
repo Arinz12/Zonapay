@@ -16,15 +16,15 @@ const History = ({ userhistory }) => {
 
   const categorizeBill = (item) => {
     const product = item.Product?.toLowerCase() || '';
-    const network = item.network?.toLowerCase() || '';
+    const network = item.Network?.toLowerCase() || '';
 
     if (/airtime|mtn|airtel|glo|9mobile/.test(product) || /airtime|mtn|airtel|glo|9mobile/.test(network)) {
       return "Airtime";
-    } else if (/electricity/.test(product) || /electricity/.test(network)) {
+    } else if (/electricity|disco/.test(product) || /electricity|disco/.test(network)){
       return "Electricity";
-    } else if (/gotv|dstv|startimes|cabletv/.test(product) || /gotv|dstv|startimes|cabletv/.test(network)) {
+    } else if (/gotv|dstv|startimes|cabletv/.test(product) || /gotv|dstv|startimes|cabletv/.test(network)){
       return "Cable TV";
-    } else if (/data|mb|gb|tb|bundle/.test(product)) {
+    } else if (/data|mb|gb|tb|bundle/.test(product)){
       return "Data";
     }
     return "Other";
@@ -64,24 +64,23 @@ const History = ({ userhistory }) => {
         <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
       </Head>
       
-      <div style={{fontSize:"30px"}} className="sticky top-0 mt-0 py-7 w-full mx-auto border-b-2 text-center bg-white text-blue-500 rounded-b-2xl rubik-h px-4">
+      <div style={{fontSize:"30px"}} className="sticky top-0 mt-0 py-3 w-full mx-auto border-b-2 text-center bg-white text-blue-500 rounded-b-2xl rubik-h px-4">
         History
       </div>
 
       {/* Filter Controls */}
-      <div className="sticky top-20 z-10 bg-white py-3 px-4 border-b flex overflow-x-auto gap-2">
+      <div className="sticky top-20  bg-white py-3 px-4 border-b flex overflow-x-auto gap-2">
         <button onClick={() => setFilter("All")} className={getFilterButtonClass("All")}>All</button>
-        <button onClick={() => setFilter("Airtime")} className={getFilterButtonClass("Airtime")}>Airtime</button>
-        <button onClick={() => setFilter("Data")} className={getFilterButtonClass("Data")}>Data</button>
+        <button onClick={() => setFilter("Airtime")} className={getFilterButtonClass("Airtime")}>Airtime & Data</button>
+        {/* <button onClick={() => setFilter("Data")} className={getFilterButtonClass("Data")}>Data</button> */}
         <button onClick={() => setFilter("Cable TV")} className={getFilterButtonClass("Cable TV")}>Cable TV</button>
         <button onClick={() => setFilter("Electricity")} className={getFilterButtonClass("Electricity")}>Electricity</button>
       </div>
-
       {(userhistory.dataa.length !== 0) ? 
         <div id='hiscon' className="p-6  bg-white w-full gap-1 mx-auto rubik-b">
           {Object.entries(groupedHistory).map(([monthYear, items]) => (
             <div key={monthYear} className="mb-6">
-              <h3 className="text-lg font-semibold text-gray-700 mb-3 sticky top-32 bg-white py-2 z-10">
+              <h3 className="text-lg font-semibold text-gray-700 mb-3 sticky top-32 bg-white py-2 ">
                 {monthYear} {/* This will show "June 2025" format */}
               </h3>
               {items.map((a, index) => (

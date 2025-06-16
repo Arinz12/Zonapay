@@ -9,12 +9,14 @@ const Footer=()=>{
     const [loading,setloading]=useState(false)
     return (<>
     <div className="fixed shp z-10 w-full flex flex-row bg-white border-t-2 border-blue-500 justify-between items-center rounded-t-2xl p-4  rounded-md bottom-0">
-        {(router.pathname=="/dashboard")?   <div className="flex flex-col justify-center items-center" ><HomeRounded className="text-blue-600 bg-none"  sx={{fontSize:"26px"}}/><div className="rubik-b text-blue-600">Home</div> </div> : <Link href={"/dashboard"}>{<div  onClick={
+        {(router.pathname=="/dashboard")?   <div className="flex flex-col justify-center items-center" ><HomeRounded className="text-blue-600 bg-none"  sx={{fontSize:"26px"}}/><div className="rubik-b text-blue-600">Home</div> </div> : <Link href={"/dashboard"}>{<div onClick={
             ()=>{setloading(true)}}
              className="flex flex-col justify-center items-center" > <HomeRounded  sx={{fontSize:"30px",color:"#36454F"}}/>
         <div style={{color:"#36454F"}} className="rubik-b">Home</div></div>}</Link>}
     
-        {(router.pathname=="/a")?   <div className="flex flex-col justify-center items-center"  ><WalletRounded className="text-blue-600 bg-none"  sx={{fontSize:"26px"}}/><div className="rubik-b text-blue-600">Wallet</div>  </div> :<div className="flex flex-col justify-center items-center" ><WalletRounded  sx={{fontSize:"30px",color:"#36454F"}}/><div style={{color:"#36454F"}}  className="rubik-b" >Wallet</div></div>}
+        {(router.pathname=="/a")?   <div className="flex flex-col justify-center items-center"  ><WalletRounded className="text-blue-600 bg-none"  sx={{fontSize:"26px"}}/><div className="rubik-b text-blue-600">Wallet</div>  </div> :<Link href={"/dashboard/wallethistory"}><div onClick={
+            ()=>{setloading(true)}}
+         className="flex flex-col justify-center items-center" ><WalletRounded  sx={{fontSize:"30px",color:"#36454F"}}/><div style={{color:"#36454F"}}  className="rubik-b" >Wallet</div></div></Link>}
 
         {(router.pathname=="/b")?   <div className="flex flex-col justify-center items-center" ><AddCardRounded className="text-blue-600 bg-none" sx={{fontSize:"26px"}}/><div className="rubik-b text-blue-600">Fund</div> </div> :<Link href={"https://www.billsly.co/dashboard/fund"}>{<div onClick={
             ()=>{setloading(true)}

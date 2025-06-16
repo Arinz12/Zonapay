@@ -15,6 +15,7 @@ import Ripples from "react-ripples"
 import Footer from '../../components/Footer';
 import Delay from '../../components/Delay';
 import CircleNotificationsRoundedIcon from '@mui/icons-material/CircleNotificationsRounded';
+import EnhancedCarousel from '../../components/caro';
 
 
 const Dashboard = ({obj}) => {
@@ -176,7 +177,7 @@ const Dashboard = ({obj}) => {
                 <div className="text-black text-center font-bold rubik-b">Education</div></div>
             </div>
         </div>
-        <div className='mt-5 mb-9 w-full'>
+        {/* <div className='mt-5 mb-9 w-full'>
             <Carousel2 autoRotate={true} interval={4000} showIndicators={true} slideHeight={95}
         bgColor="white"
         activeIndicatorColor="#1976d2">
@@ -184,7 +185,8 @@ const Dashboard = ({obj}) => {
         <div style={{textAlignLast:"center"}} className="p-2 rubik-b text-center">Schedule bill payments so you worry not about forgetting</div>
         <div style={{textAlignLast:"center"}} className="p-2 rubik-b text-center">Map out funds specifically for bills</div>
       </Carousel2>
-        </div>
+        </div> */}
+        <EnhancedCarousel/>
         <Footer/>
     </div>
     {loading&&<Delay/>}
