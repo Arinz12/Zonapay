@@ -20,16 +20,6 @@ const EnhancedCarousel = () => {
         swipeable={true}
         dynamicHeight={false}
         emulateTouch={true}
-        renderIndicator={(onClickHandler, isSelected, index, label) => (
-          <button
-            type="button"
-            onClick={onClickHandler}
-            onKeyDown={onClickHandler}
-            key={index}
-            className={`mx-1 w-3 h-3 rounded-full ${isSelected ? 'bg-blue-500' : 'bg-gray-300'}`}
-            aria-label={`Slide ${index + 1}`}
-          />
-        )}
       >
         {/* Slide 1 */}
         <div className="p-1 flex flex-col items-center">
