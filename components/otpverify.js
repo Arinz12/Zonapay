@@ -81,7 +81,7 @@ export default function OTPVerification({email,hideOtp}) {
 
       
       if (response.ok) {
-        setMessage({ text: 'Verified successfully!', color: 'green' });
+        setMessage({ text: 'Email Verified successfully!', color: 'green' });
         // Clear OTP on success
         setOtp(['', '', '', '', '', '']);
         if (inputRefs.current[0]) inputRefs.current[0].focus();
