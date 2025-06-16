@@ -9,7 +9,8 @@ const History = ({ userhistory }) => {
   const [groupedHistory, setGroupedHistory] = useState({});
 
   useEffect(() => {
-    // document.getElementById("hiscon").lastChild.style.marginBottom = "100px";
+    if(document.getElementById("hiscon")){
+    document.getElementById("hiscon").lastChild.style.marginBottom = "100px";}
     groupAndFilterHistory();
   }, [userhistory, filter]);
 
@@ -23,7 +24,7 @@ const History = ({ userhistory }) => {
       return "Electricity";
     } else if (/gotv|dstv|startimes|cabletv/.test(product) || /gotv|dstv|startimes|cabletv/.test(network)) {
       return "Cable TV";
-    } else if (/\d+(mb|gb|tb)/.test(product)) {
+    } else if (/data|mb|gb|tb|bundle/.test(product)) {
       return "Data";
     }
     return "Other";
@@ -52,7 +53,7 @@ const History = ({ userhistory }) => {
   };
 
   const getFilterButtonClass = (filterName) => 
-    `px-3 py-1 rounded-full text-sm ${filter === filterName ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`;
+    `px-3 py-1 rounded-full text-sm ${filter === filterName ? 'bg-blue-500 focus:bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`;
 
   return (
     <div className="relative min-h-screen">
