@@ -363,3 +363,16 @@ button, a, input ,div {
      }
    }
    
+   .main-content {
+    max-width: 1200px; /* Adjust this value as needed */
+    margin: 0 auto;
+    padding: 0 1rem; /* Adds some padding on smaller screens */
+    width: 100%;
+  }
+  
+  /* Optional: Add responsive behavior */
+  @media (min-width: 768px) {
+    .main-content {
+      padding: 0 2rem;
+    }
+  }

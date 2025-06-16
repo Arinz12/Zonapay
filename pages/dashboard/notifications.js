@@ -16,11 +16,27 @@ const Note=({sodObj})=>{
           </button>
           <div className="text-xl font-semibold">Notifications</div>
         </div> 
-         {(sodObj)?
-        sodObj.map((a)=>(
-            <div style={{backgroundColor:"whitesmoke"}} className="p-2 text-center mx-1 rounded mb-3 rubik-b">{a.value}</div>
-        )) : <div className="rubik-l mx-auto text-center my-2">There are no notifications yet</div>
-    }
+        {
+  sodObj?.length > 0 ? (
+    <div className="flex flex-col gap-3 max-w-md mx-auto px-4 w-full">
+      {sodObj.map((notification, index) => (
+        <div
+          key={index}
+          className="bg-gray-50 p-4 rounded-lg shadow-sm border-l-4 border-blue-500 
+                    transition-all duration-200 hover:shadow-md hover:-translate-y-0.5
+                    text-gray-800 font-medium text-center"
+        >
+          {notification.value}
+        </div>
+      ))}
+    </div>
+  ) : (
+    <div className="text-center py-8 px-4 bg-gray-50 rounded-lg max-w-md mx-auto 
+                   text-gray-500 font-light my-4">
+      There are no notifications yet
+    </div>
+  )
+}
     </>)
 }
 export default Note

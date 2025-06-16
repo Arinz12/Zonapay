@@ -18,6 +18,7 @@ import {
 } from '@mui/icons-material';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import ThemeToggle from '../../../components/themeToggle';
 
 // Dynamically import the Delay component to avoid loading it unless needed
 const Delay = dynamic(() => import('../../../components/Delay'), { ssr: false });
@@ -241,13 +242,16 @@ const SettingsPage = () => {
           <li className="px-5 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">
             App Preferences
           </li>
-          
+
+          <div className='relative '>
           <SettingItem
             icon={<Palette />}
             title="Appearance"
             description="Dark mode and theme settings"
             onClick={() => console.log('Appearance settings clicked')}
-          />
+          /><div className='left-0'>
+          <ThemeToggle/></div>
+          </div>
           
           <SettingItem
             icon={<Language />}
