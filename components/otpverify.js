@@ -79,18 +79,19 @@ export default function OTPVerification({email,hideOtp}) {
         body: JSON.stringify({ rotp: otpValue }),
       });
 
-      const data = await response.json();
       
       if (response.ok) {
-        setMessage({ text: data.message || 'Verified successfully!', color: 'green' });
+        setMessage({ text: 'Verified successfully!', color: 'green' });
         // Clear OTP on success
         setOtp(['', '', '', '', '', '']);
         if (inputRefs.current[0]) inputRefs.current[0].focus();
-        setTimeout(()=>{hideOtp()},3000)
+        console.log("verified")
+        setTimeout(()=>{hideOtp()},1000)
       } else {
-        setMessage({ text: data.message || 'Verification failed', color: 'red' });
+        setMessage({ text: 'Verification failed', color: 'red' });
       }
     } catch (error) {
+        console.log("this from otp ",error)
       setMessage({ text: 'Error verifying OTP', color: 'red' });
     }
   };
@@ -107,27 +108,25 @@ export default function OTPVerification({email,hideOtp}) {
           'Content-Type': 'application/json',
         },
       });
-
-      const data = await response.json();
-      
       if (response.ok) {
-        setMessage({ text: data.message || 'New code sent!', color: 'green' });
+        setMessage({ text: 'New code sent!', color: 'green' });
       } else {
-        setMessage({ text: data.message || 'Failed to send new code', color: 'red' });
+        setMessage({ text:'Failed to send new code', color: 'red' });
       }
     } catch (error) {
+        console.log("this", error)
       setMessage({ text: 'Error sending new code', color: 'red' });
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4 z-50">
+    <div className="fixed top-0 h-full w-full inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4 z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-xs relative">
-        <h2 className="text-xl font-bold mb-4 text-center">Enter Verification Code</h2>
+        <h2 className="text-xl font-bold mt-3 mb-4 text-center">Enter Email Verification Code</h2>
         
         {/* Message display */}
         {message.text && (
-          <div className={`absolute top-20 left-0 right-0 text-center text-sm text-${message.color}-500`}>
+          <div className={`absolute top-0 left-0 right-0 text-center text-sm text-${message.color}-500`}>
             {message.text}
           </div>
         )}

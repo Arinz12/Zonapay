@@ -26,7 +26,7 @@ console.log("Db connected")
     Username:username,
     Email:email,
     Password:bcrypt.hashSync(password,10),
-    Balance:60,
+    Balance:0,
     Pin:null,
     Admin:false,
 })
