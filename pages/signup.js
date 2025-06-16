@@ -181,9 +181,9 @@ if(!already.ok){
     
 
     })
-    useEffect(()=>{
+   /** useEffect(()=>{
       if(verified){btn.current.innerHTML="proceed"}
-    },[verified])
+    },[verified])*/
     return(<>
     <Head>
         <title>Signup</title>
