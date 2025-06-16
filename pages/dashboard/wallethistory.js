@@ -123,10 +123,10 @@ return {
 const profile= await Flid.find({Customer:context.req.user.Email});
 const obj=profile.Ids;
 let arr;
-obj.forEach((a)=>{
-    const detail=await flw.Transaction.verify({id:a})
+for(const item of arr){
+    const detail=await flw.Transaction.verify({id:item})
     arr.push({status:detail.status,amount:detail.data.amount,date:newDate(detail.data.created_at),funder:detail.meta.originatorname});
-})
+}
 
 return{
     props:{arr}
