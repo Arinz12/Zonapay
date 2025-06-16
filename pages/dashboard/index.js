@@ -22,7 +22,7 @@ const Dashboard = ({obj}) => {
     const [loading,setloading]=useState(false)
     useEffect(()=>{
         if(!obj.isPinset){
-        setTimeout(()=>{document.getElementById("createpin").style.display="flex"},3000)}
+        setTimeout(()=>{document.getElementById("createPinModal").style.display="flex"},3000)}
     })
     function capitalizeFirstLetter(str) {
         if (!str) return str; // handle empty string
@@ -50,11 +50,61 @@ const Dashboard = ({obj}) => {
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet"/>
     </Head>
     <div style={{backgroundColor:"whitesmoke",height:"100vh"}}>
-     <div
-         id="createpin" className='hidden  h-full justify-center z-10 items-center fixed top-0 w-full '><Paper elevated={12}   className="relative w-2/3  mx-auto p-7  flex flex-col justify-center items-center gap-2" ><div className="rubik-b">Pin is required </div>
-        <Button onClick={()=>{router.push("/dashboard/settings/pin")}} variant={"contained"}>Create pin</Button>
-        <span onClick={()=>{document.getElementById("createpin").style.display="none"}}className='absolute top-1 text-3xl right-1'>&times;</span>
-         </Paper></div>
+    <div
+  id="createPinModal"
+  className="hidden h-screen w-full fixed top-0 left-0 z-50  items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn"
+>
+  <div className="relative w-full max-w-md mx-4 p-8 bg-white rounded-xl shadow-2xl flex flex-col items-center gap-6 border border-gray-100">
+    {/* Close button */}
+    <button
+      onClick={() => document.getElementById('createPinModal').classList.add('hidden')}
+      className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl transitionColors p-1 rounded-full hover:bg-gray-100 w-8 h-8 flex items-center justify-center"
+      ariaLabel="Close"
+    >
+      &times;
+    </button>
+
+    {/* Icon */}
+    <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-8 w-8 text-blue-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+        />
+      </svg>
+    </div>
+
+    {/* Text content */}
+    <div className="text-center">
+      <h2 className="text-2xl font-bold text-gray-800 mb-2">Security PIN Required</h2>
+      <p className="text-gray-600">To access this feature, please set up a secure 4-digit PIN</p>
+    </div>
+
+    {/* Action buttons */}
+    <div className="w-full flex flex-col gap-3">
+      <button
+        onClick={() => window.location.href = '/dashboard/settings/pin'}
+        className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transitionAll transform hover:-translate-y-0.5"
+      >
+        Create PIN Now
+      </button>
+      <button
+        onClick={() => document.getElementById('createPinModal').classList.add('hidden')}
+        className="w-full py-3 px-6 text-gray-600 font-medium rounded-lg hover:bg-gray-50 transitionColors"
+      >
+        Maybe Later
+      </button>
+    </div>
+  </div>
+</div>
         <div className='flex pb-5 pt-1 flex-row justify-between items-center ml-2 mr-2'>
         <div className='flex flex-row gap-2 items-center '>
             <Link href="/dashboard/info">{<AccountCircleIcon  className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>}</Link>

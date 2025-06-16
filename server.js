@@ -1284,7 +1284,9 @@ console.log("Value is ",val)
 await addNote(val)
 const email1 =await User.find()
 const emails=email1.map((a)=>a.Email)
-sendd(emails,val,undefined,"Notification");
+emails.forEach((a)=>{
+  sendd(a,val,undefined,"Notification");
+})
 
 res.status(200).end()}
 catch(e){
