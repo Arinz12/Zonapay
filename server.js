@@ -1486,6 +1486,17 @@ setTimeout(async ()=>{
 },300000);
 res.end()
 })
+server.post("/verifyEmail",async (req,res)=>{
+  const {rotp}=req.body;
+const otps=Otpmodel.find()
+const otp=otps.filter((a)=>a.Otp===rotp)
+if(otp.length>0){
+return res.status(200).end()
+}
+else{
+  res.status(400).end()
+}
+})
 server.post("/change2",cors(),async (req,res)=>{
   console.log(req.body);
   const newpass=req.body.newpass;

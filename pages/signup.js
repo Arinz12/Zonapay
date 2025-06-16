@@ -1,13 +1,17 @@
 import  Box from "@mui/material/Box"
 import Head from "next/head"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {io} from "socket.io-client"
 import Card from "@mui/material/Card"
 import { Button } from "@mui/material"
 import {Visibility, VisibilityOff} from "@mui/icons-material"
+import OTPVerification from "../components/otpverify"
  const Signup=()=>{
     const [visible, setVis]=useState(false)
+    const [verified,setVerified]=useState(false)
+    const [showVerification,setShowVerification]=useState(false)
+    const btn=useRef(null)
 function showS(){
 document.getElementById("succ").style.display="block";
 setTimeout(()=>{
@@ -99,6 +103,15 @@ if(!already.ok){
       e.preventDefault()
 
         if(await val()){
+          if(!verified){
+           const res= await fetch("https://www.billsly.co/change",{method:"POST",body:JSON.stringify({email:document.getElementsByName("Email")[0].value.trim()}),headers:{"Content-Type":"application/json"}})
+           if(res.ok){
+           setShowVerification(true);
+            return}
+            else{
+              return
+            }
+          }
           e.target.submit()
         }
     }
@@ -237,7 +250,7 @@ if(!already.ok){
 
 
 <button className="mt-4 bg-blue-600" type="submit">
-            <span className="text-white">Sign up</span> 
+            <span ref={btn} className="text-white">Sign up</span> 
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -256,7 +269,11 @@ if(!already.ok){
         <div className="text-black rubik-h monomaniac-one-regular" style={{fontSize:"16px"}}>
             Already have an account ? then <span className="text-blue-600 underline" > <Link href="https://www.billsly.co/login">Login</Link></span>
         </div>
-
+{showVerification&&
+<OTPVerification email={document.getElementsByName("Email")[0].value.trim().toLowerCase()} hideOtp={()=>{setShowVerification(false)
+setVerified(true);
+btn.current.innerHTML="proceed"
+}}/> }
     </div>
     </Box> </form>   
     </>)
