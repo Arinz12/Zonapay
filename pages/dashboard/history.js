@@ -9,8 +9,8 @@ const History = ({ userhistory }) => {
   const [groupedHistory, setGroupedHistory] = useState({});
 
   useEffect(() => {
-    if(document.getElementById("hiscon")){
-    document.getElementById("hiscon").lastChild.style.marginBottom = "100px";}
+    // if(document.getElementById("hiscon")){
+    // document.getElementById("hiscon").lastChild.style.marginBottom = "100px";}
     groupAndFilterHistory();
   }, [userhistory, filter]);
 
@@ -78,7 +78,7 @@ const History = ({ userhistory }) => {
       </div>
 
       {(userhistory.dataa.length !== 0) ? 
-        <div id='hiscon' className="p-6 bg-white w-full gap-1 mx-auto rubik-b">
+        <div id='hiscon' className="p-6  bg-white w-full gap-1 mx-auto rubik-b">
           {Object.entries(groupedHistory).map(([monthYear, items]) => (
             <div key={monthYear} className="mb-6">
               <h3 className="text-lg font-semibold text-gray-700 mb-3 sticky top-32 bg-white py-2 z-10">

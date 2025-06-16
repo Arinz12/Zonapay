@@ -109,10 +109,10 @@ const Dashboard = ({obj}) => {
 )}
         <div className='flex pb-5 pt-1 flex-row justify-between items-center ml-2 mr-2'>
         <div className='flex flex-row gap-2 items-center '>
-            <Link href="/dashboard/info">{<AccountCircleIcon  className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>}</Link>
+            <Link href="/dashboard/info">{<AccountCircleIcon  className="text-blue-600" sx={{height:"36px",width:"36px",color:"#2563EB"}}/>}</Link>
             <div style={{}} className='rubik-h font-bold text-black'>{greet+ capitalizeFirstLetter(obj.Username)}</div>
             </div>
-          <Link href="dashboard/notifications">{<div><CircleNotificationsRoundedIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"white"}}/>
+          <Link href="dashboard/notifications">{<div><CircleNotificationsRoundedIcon className="text-blue-600" sx={{height:"36px",width:"36px",color:"#2536EB"}}/>
      </div>}</Link>
         </div>
         <div className=''>
