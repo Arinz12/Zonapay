@@ -57,7 +57,8 @@ const Dashboard = ({obj}) => {
   <div className="relative w-full max-w-md mx-4 p-8 bg-white rounded-xl shadow-2xl flex flex-col items-center gap-6 border border-gray-100">
     {/* Close button */}
     <button
-      onClick={() => document.getElementById('createPinModal').classList.add('hidden')}
+      onClick={() => document.getElementById('createPinModal').classList.remove('flex');
+          document.getElementById('createPinModal').classList.add('hidden')}
       className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl transitionColors p-1 rounded-full hover:bg-gray-100 w-8 h-8 flex items-center justify-center"
       ariaLabel="Close"
     >
@@ -92,13 +93,14 @@ const Dashboard = ({obj}) => {
     <div className="w-full flex flex-col gap-3">
       <button
         onClick={() => window.location.href = '/dashboard/settings/pin'}
-        className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transitionAll transform hover:-translate-y-0.5"
+        className=" block w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg shadow-md hover:shadow-lg transitionAll transform hover:-translate-y-0.5"
       >
         Create PIN Now
       </button>
       <button
-        onClick={() => document.getElementById('createPinModal').classList.add('hidden')}
-        className="w-full py-3 px-6 text-gray-600 font-medium rounded-lg hover:bg-gray-50 transitionColors"
+        onClick={() => document.getElementById('createPinModal').classList.remove('flex');
+            document.getElementById('createPinModal').classList.add('hidden')}
+        className="block w-full py-3 px-6 text-gray-600 font-medium rounded-lg hover:bg-gray-50 transitionColors"
       >
         Maybe Later
       </button>
