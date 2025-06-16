@@ -9,7 +9,7 @@ const History = ({ userhistory }) => {
   const [groupedHistory, setGroupedHistory] = useState({});
 
   useEffect(() => {
-    document.getElementById("hiscon")?.lastChild?.style.marginBottom = "100px";
+    document.getElementById("hiscon").lastChild.style.marginBottom = "100px";
     groupAndFilterHistory();
   }, [userhistory, filter]);
 
