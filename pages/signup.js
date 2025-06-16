@@ -276,6 +276,7 @@ if(!already.ok){
 {showVerification&&
 <OTPVerification email={document.getElementsByName("Email")[0].value.trim().toLowerCase()} hideOtp={()=>{
 setVerified(true);
+setShowVerification(false);
 }}/> }
     </div>
     </Box> </form>   
