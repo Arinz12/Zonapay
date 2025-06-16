@@ -53,7 +53,7 @@ const Dashboard = ({obj}) => {
     <div style={{backgroundColor:"whitesmoke",height:"100vh"}}>
     {showModal&&<div
   id="createPinModal"
-  className="hidden h-screen w-full fixed top-0 left-0 z-50  items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn"
+  className="h-screen w-full fixed top-0 left-0 z-50  items-center justify-center bg-black/30 backdrop-blur-sm animate-fadeIn"
 >
   <div className="relative w-full max-w-md mx-4 p-8 bg-white rounded-xl shadow-2xl flex flex-col items-center gap-6 border border-gray-100">
     {/* Close button */}

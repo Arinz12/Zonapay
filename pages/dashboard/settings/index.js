@@ -243,15 +243,12 @@ const SettingsPage = () => {
             App Preferences
           </li>
 
-          <div className='relative '>
           <SettingItem
             icon={<Palette />}
             title="Appearance"
             description="Dark mode and theme settings"
             onClick={() => console.log('Appearance settings clicked')}
-          /><div className='left-0'>
-          <ThemeToggle/></div>
-          </div>
+          />
           
           <SettingItem
             icon={<Language />}
