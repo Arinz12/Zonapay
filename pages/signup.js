@@ -181,6 +181,9 @@ if(!already.ok){
     
 
     })
+    useEffect(()=>{
+      if(verified){btn.current.innerHTML="proceed"}
+    },[verified])
     return(<>
     <Head>
         <title>Signup</title>
@@ -272,7 +275,6 @@ if(!already.ok){
 {showVerification&&
 <OTPVerification email={document.getElementsByName("Email")[0].value.trim().toLowerCase()} hideOtp={()=>{setShowVerification(false)
 setVerified(true);
-btn.current.innerHTML="proceed"
 }}/> }
     </div>
     </Box> </form>   

@@ -18,7 +18,7 @@ const Note=({sodObj})=>{
         </div> 
          {(sodObj)?
         sodObj.map((a)=>(
-            <div style={{backgroundColor:"#e9e3e3"}} className="p-2 text-center mx-1 rounded mb-3 rubik-b">{a.value}</div>
+            <div style={{backgroundColor:"whitesmoke"}} className="p-2 text-center mx-1 rounded mb-3 rubik-b">{a.value}</div>
         )) : <div className="rubik-l mx-auto text-center my-2">There are no notifications yet</div>
     }
     </>)

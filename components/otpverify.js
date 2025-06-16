@@ -148,7 +148,7 @@ export default function OTPVerification({email,hideOtp}) {
 
         <button
           onClick={handleSubmit}
-          className="w-full py-3 bg-blue-500 text-center text-white rounded-lg hover:bg-blue-600 transition mb-3"
+          className="w-full py-3 block bg-blue-500 text-center text-white rounded-lg hover:bg-blue-600 transition mb-3"
         >
           Verify
         </button>

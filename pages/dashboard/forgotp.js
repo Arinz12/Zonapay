@@ -50,7 +50,7 @@ const Forgotp = () => {
 
                         <button
                             id="proceed"
-                            className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-center" 
+                            className="w-full py-3 block px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-center" 
                         >
                             Continue
                         </button>
