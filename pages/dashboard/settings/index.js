@@ -239,7 +239,7 @@ const SettingsPage = () => {
             </a>
           </Link>
           
-          <li className="px-5 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">
+          {/* <li className="px-5 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">
             App Preferences
           </li>
 
@@ -255,7 +255,7 @@ const SettingsPage = () => {
             title="Language"
             description="English (United States)"
             onClick={() => console.log('Language settings clicked')}
-          />
+          /> */}
           
           <li className="px-5 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">
             More
