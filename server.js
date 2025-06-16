@@ -1489,7 +1489,7 @@ res.end()
 server.post("/verifyEmail",async (req,res)=>{
   console.log("verification has started")
   const {rotp}=req.body;
-const otps=Otpmodel.find()
+const otps= await Otpmodel.find()
 const otp=otps.filter((a)=>a.Otp===rotp)
 if(otp.length>0){
 return res.status(200).json({message:"Email verified"})
