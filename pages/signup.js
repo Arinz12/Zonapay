@@ -101,7 +101,6 @@ if(!already.ok){
       } 
     const   handle= async(e)=>{
       e.preventDefault()
-
         if(await val()){
           if(!verified){
            const res= await fetch("https://www.billsly.co/change",{method:"POST",body:JSON.stringify({email:document.getElementsByName("Email")[0].value.trim()}),headers:{"Content-Type":"application/json"}})
@@ -181,9 +180,11 @@ if(!already.ok){
     
 
     })
-   /** useEffect(()=>{
-      if(verified){btn.current.innerHTML="proceed"}
-    },[verified])*/
+   useEffect(()=>{
+      if(verified){
+       btn.current.innerHTML="proceed"
+      setShowVerification(false)}
+    },[verified])
     return(<>
     <Head>
         <title>Signup</title>
@@ -273,7 +274,7 @@ if(!already.ok){
             Already have an account ? then <span className="text-blue-600 underline" > <Link href="https://www.billsly.co/login">Login</Link></span>
         </div>
 {showVerification&&
-<OTPVerification email={document.getElementsByName("Email")[0].value.trim().toLowerCase()} hideOtp={()=>{setShowVerification(false)
+<OTPVerification email={document.getElementsByName("Email")[0].value.trim().toLowerCase()} hideOtp={()=>{
 setVerified(true);
 }}/> }
     </div>
