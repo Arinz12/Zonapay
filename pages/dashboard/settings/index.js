@@ -18,7 +18,7 @@ import {
 } from '@mui/icons-material';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import ThemeToggle from '../../../components/themeToggle';
+import ThemeToggle from '../../../components/ThemeToggle';
 
 // Dynamically import the Delay component to avoid loading it unless needed
 const Delay = dynamic(() => import('../../../components/Delay'), { ssr: false });
