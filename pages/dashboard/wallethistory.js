@@ -10,6 +10,7 @@ import {
   FiCalendar
 } from 'react-icons/fi';
 import { format } from 'date-fns';
+import Footer from "../../components/Footer";
 
 const Wallethistory = ({ arr }) => {
   // Sort transactions by date (newest first)
