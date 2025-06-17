@@ -8,7 +8,7 @@ import {
 
 const EnhancedCarousel = () => {
   return (
-    <div className="max-w-lg mx-auto my-0">
+    <div className="max-w-lg mx-auto mt-1">
       <Carousel
         autoPlay={true}
         interval={4000}

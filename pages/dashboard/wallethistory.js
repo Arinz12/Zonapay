@@ -125,7 +125,7 @@ const obj=profile.Ids;
 let arr;
 for(const item of obj){
     const detail=await flw.Transaction.verify({id:item})
-    console.log(detail.status)
+    console.log(detail.meta.originatorname)
     arr.push({status:detail.status,amount:detail.data.amount,date:newDate(detail.data.created_at),funder:detail.meta.originatorname});
 }
 
@@ -133,8 +133,8 @@ return {
     props:{arr}
 }
     }
-    catch{
-        console.log("Wallet history failed to load")
+    catch(e){
+        console.log("Wallet history failed to load",e)
         return {
             props:{arr:[]}
         }
