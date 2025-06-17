@@ -19,7 +19,7 @@ useEffect(() => {
   const handleComplete = () => setTransitioning(false);
 
   router.events.on('routeChangeStart', handleStart);
-  router.events.on('routeChangeComplete', handleComplete);
+  router.events.on('routeChangeComplete',handleComplete);
   router.events.on('routeChangeError', handleComplete);
 
   return () => {
