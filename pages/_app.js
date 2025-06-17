@@ -1,43 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
+import '../styles/globals.css'
 import { useRouter } from 'next/router';
-import '../styles/globals.css';
 import Head from "next/head";
 import Analytics from '../components/Analytics';
-import Delay from '../components/Delay';
+import "../styles/transition.css"
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
+  const router = useRouter()
   const [transitioning, setTransitioning] = useState(false);
-  const [waitingForProps, setWaitingForProps] = useState(false);
+  const [showCustomLoader, setShowCustomLoader] = useState(false);
 
-  // Pages that should show the loader during getServerSideProps
-  const LOADER_PAGES = ['/dashboard/history', '/dashboard/wallethistory'];
+  // Define paths that should show the custom loader
+  const LOADER_PATHS = ['/his', '/wall'];
 
   useEffect(() => {
-    const handleRouteChangeStart = (url) => {
+    const handleStart = (url) => {
       setTransitioning(true);
-      if (LOADER_PAGES.includes(url.split('?')[0])) {
-        setWaitingForProps(true);
+      const path = url.split('?')[0]; // Remove query parameters
+      if (LOADER_PATHS.includes(path)) {
+        setShowCustomLoader(true);
       }
     };
 
-    const handleRouteChangeComplete = (url) => {
+    const handleComplete = () => {
       setTransitioning(false);
-      setWaitingForProps(false);
+      setShowCustomLoader(false);
     };
 
-    router.events.on('routeChangeStart', handleRouteChangeStart);
-    router.events.on('routeChangeComplete', handleRouteChangeComplete);
-    router.events.on('routeChangeError', handleRouteChangeComplete);
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
 
     return () => {
-      router.events.off('routeChangeStart', handleRouteChangeStart);
-      router.events.off('routeChangeComplete', handleRouteChangeComplete);
-      router.events.off('routeChangeError', handleRouteChangeComplete);
+      router.events.off('routeChangeStart', handleStart);
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
     };
   }, []);
 
-  // Your existing service worker code
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/worker.js')
@@ -57,15 +57,20 @@ function MyApp({ Component, pageProps }) {
         <link rel='icon' href='/cicon16.png' type="image/png"/>
       </Head>
       <Analytics/>
-      
-      {/* Show loader only for specific pages */}
-      {waitingForProps && <Delay/>}
-      
+
+      {/* Custom loader for specific paths */}
+      {showCustomLoader && (
+        <div className="custom-loader">
+          {/* Your custom loader component */}
+          Loading content...
+        </div>
+      )}
+
       <div className={`page-container ${shouldAnimate ? (transitioning && (router.pathname=="/dashboard") ? "fade-out2" : transitioning ? 'fade-out1' : 'fade-in') : ''}`}>
         <Component {...pageProps} />
       </div>
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
