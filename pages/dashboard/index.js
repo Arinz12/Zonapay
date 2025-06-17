@@ -118,7 +118,7 @@ const Dashboard = ({obj}) => {
         </div>
         <div className=''>
             
-                <div className='h-36 ml-2 mr-2 rounded-3xl p-4 bg-blue-600 flex flex-row items-center justify-between'>
+                <div className='h-32 mb-3 ml-2 mr-2 rounded-3xl p-4 bg-blue-600 flex flex-row items-center justify-between'>
                     <div className='flex flex-col items-start '>
                     <div className='text-white rubik-h'>Account Balance <span>{visible? <VisibilityOff onClick={()=>{setVisible(false)}} sx={{height:"24px"}}/> :<Visibility onClick={()=>{setVisible(true)}} sx={{height:"24px"}}/>}</span></div>
                     <div className=' flex items-center text-white rubik-b' style={{fontSize:"25px"}} >
@@ -137,7 +137,7 @@ const Dashboard = ({obj}) => {
             <div>Quick actions</div>
             {(obj.isAdmin)&&<Link href="/dashboard/admin"><span className="text-blue-600">Admin</span></Link>}
         </div>
-        <div  className='ml-2 mr-2 px-4 py-5 bg-white rounded-2xl '>
+        <div  className='ml-2 mr-2 px-4 py-8 bg-white rounded-2xl '>
             <div className='grid grid-cols-3  mx-auto gap-4 justify-center items-center justify-items-center'>
                <Link href="/dashboard/airtime">
                 { <div className="flex items-center flex-col gap-1">

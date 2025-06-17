@@ -71,9 +71,9 @@ const Wallethistory = ({ arr }) => {
                       txn.amount >= 0 ? 'text-green-600' : 'text-red-600'
                     }`}>
                       {txn.amount >= 0 ? '+' : ''}
-                      {txn.amount.toLocaleString('en-US', {
+                      {txn.amount.toLocaleString('en-NG', {
                         style: 'currency',
-                        currency: 'USD'
+                        currency: 'NGN'
                       })}
                     </p>
                     <p className="text-xs text-gray-500 mt-1 capitalize">

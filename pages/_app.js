@@ -7,10 +7,15 @@ import Link from "next/link";
 import "../styles/transition.css"
 import Analytics from '../components/Analytics';
 import ChangingWordsComponent from '../components/Side';
+import Delay from '../components/Delay';
 function MyApp({ Component, pageProps }) {
 const router=useRouter()
 const [transitioning, setTransitioning] = useState(false);
+const [loading, setLoading]=useState(false)
 
+function hideLoading(){
+  setLoading(false)
+}
 useEffect(() => {
   const handleStart = () => setTransitioning(true);
   const handleComplete = () => setTransitioning(false);
@@ -34,6 +39,10 @@ useEffect(() => {
         .catch(error => console.log('Registration failed:', error));
   }
   })
+
+  useEffect(()=>{
+    setLoading(false)
+  })
 const pages=["/dashboard","/dashboard/settings","/dashboard/history"]
 const pages2=["/dashboard/settings","/dashboard/history"]
 
@@ -46,10 +55,11 @@ return (<>
   <link rel='icon' href='/cicon16.png' type="image/png"/>
   </Head>
   <Analytics/>
+  {router.pathname=="/dashboard/wallethistory"? setLoading(true): null } 
      <Component {...pageProps} />
      {/* <ChangingWordsComponent/> */}
  </div> 
- {/* {pages.includes(router.pathname) && <Footer/>} */}
+ {loading && <Delay/>}
  </>
   )
 }
