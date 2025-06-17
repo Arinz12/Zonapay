@@ -11,7 +11,6 @@ import Delay from '../components/Delay';
 function MyApp({ Component, pageProps }) {
 const router=useRouter()
 const [transitioning, setTransitioning] = useState(false);
-const [loading, setLoading]=useState(false)
 
 
 useEffect(() => {
@@ -38,9 +37,7 @@ useEffect(() => {
   }
   })
 
-  useEffect(()=>{
-    setLoading(false)
-  })
+ 
 const pages=["/dashboard","/dashboard/settings","/dashboard/history"]
 const pages2=["/dashboard/settings","/dashboard/history"]
 
@@ -53,11 +50,9 @@ return (<>
   <link rel='icon' href='/cicon16.png' type="image/png"/>
   </Head>
   <Analytics/>
-  {router.pathname=="/dashboard/wallethistory"? setLoading(true): null } 
      <Component {...pageProps} />
      {/* <ChangingWordsComponent/> */}
  </div> 
- {loading && <Delay/>}
  </>
   )
 }
