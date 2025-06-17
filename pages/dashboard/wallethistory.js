@@ -29,7 +29,7 @@ const Wallethistory = ({ arr }) => {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Transaction History</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Wallet History</h2>
       
       {Object.entries(groupedTransactions).map(([monthYear, transactions]) => (
         <div key={monthYear} className="mb-8">
@@ -130,7 +130,7 @@ const obj=profile.Ids;
 let arr=[];
 for(const item of obj){
     const detail=await flw.Transaction.verify({id:item})
-    arr.push({status:detail.status,amount:detail.data.amount,date:newDate(detail.data.created_at),funder:detail.data.meta.originatorname});
+    arr.push({status:detail.status,amount:detail.data.amount,date:new Date(detail.data.created_at),funder:detail.data.meta.originatorname});
 }
 
 return {
