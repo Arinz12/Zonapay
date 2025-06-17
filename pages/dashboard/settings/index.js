@@ -234,7 +234,7 @@ const SettingsPage = () => {
                 icon={<Notifications />}
                 title="Notifications"
                 description="Configure alert preferences"
-                onClick={() => setShowNotificationModal(true)}
+                onClick={() => setShowNotificationModal(false)}
               />
             </a>
           </Link>

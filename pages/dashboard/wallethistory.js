@@ -121,8 +121,13 @@ return {
 }
 }
 const profile= await Flid.findOne({Customer:context.req.user.Email});
+if(!profile){
+  return {
+    props:{arr}
+}
+}
 const obj=profile.Ids;
-let arr;
+let arr=[];
 for(const item of obj){
     const detail=await flw.Transaction.verify({id:item})
     arr.push({status:detail.status,amount:detail.data.amount,date:newDate(detail.data.created_at),funder:detail.data.meta.originatorname});
