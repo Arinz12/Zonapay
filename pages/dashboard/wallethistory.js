@@ -1,6 +1,7 @@
 require("dotenv").config()
 import { Flid } from "../../Svr_fns/FlutterwaveIds"
 import { useState } from 'react';
+import Head from 'next/head';
 import { 
   FiCheckCircle, 
   FiXCircle, 
@@ -28,10 +29,37 @@ const Wallethistory = ({ arr }) => {
     return acc;
   }, {});
 
-  return (
+  return (<>
+  <Head>
+    <title>Wallet history</title>
+  </Head>
     <div className="max-w-3xl mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Wallet Fund History</h2>
-      
+<div className="flex items-center justify-between mb-6">
+  <div className="flex items-center space-x-4">
+    <button 
+      onClick={() => router.back()}
+      className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+      aria-label="Go back"
+    >
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        className="h-5 w-5 text-gray-600" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke="currentColor"
+      >
+        <path 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          strokeWidth={2} 
+          d="M10 19l-7-7m0 0l7-7m-7 7h18" 
+        />
+      </svg>
+    </button>
+    <h2 className="text-2xl font-bold text-gray-800">Wallet Fund History</h2>
+  </div>
+  {/* Optional: Add additional header actions here */}
+</div>      
       {Object.entries(groupedTransactions).map(([monthYear, transactions]) => (
         <div key={monthYear} className="mb-8">
           <h3 className="text-lg font-semibold text-gray-700 mb-3 sticky top-0 bg-white py-2 z-10">
@@ -99,8 +127,8 @@ const Wallethistory = ({ arr }) => {
           <p className="text-gray-500">No transactions found</p>
         </div>
       )}
-      <Footer/>
     </div>
+    </>
   );
 };
 

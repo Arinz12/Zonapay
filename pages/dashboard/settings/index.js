@@ -261,7 +261,7 @@ const SettingsPage = () => {
             More
           </li>
           
-          <Link href="/help" passHref>
+          <Link href="https://billsly.co/dashboard/help" passHref>
             <a>
               <SettingItem
                 icon={<Help />}

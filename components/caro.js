@@ -22,7 +22,7 @@ const EnhancedCarousel = () => {
         emulateTouch={true}
       >
         {/* Slide 1 */}
-        <div className="p-1 flex flex-col items-center">
+        <div className="p-2 flex flex-col items-center">
           <div className="bg-blue-100 p-2 rounded-full mb-2">
             <MdVisibility className="text-blue-600 text-3xl" />
           </div>
@@ -33,7 +33,7 @@ const EnhancedCarousel = () => {
         </div>
 
         {/* Slide 2 */}
-        <div className="p-1 flex flex-col items-center">
+        <div className="p-2 flex flex-col items-center">
           <div className="bg-green-100 p-4 rounded-full mb-4">
             <MdSchedule className="text-green-600 text-3xl" />
           </div>
@@ -44,7 +44,7 @@ const EnhancedCarousel = () => {
         </div>
 
         {/* Slide 3 */}
-        <div className="p-1 flex flex-col items-center">
+        <div className="p-2 flex flex-col items-center">
           <div className="bg-purple-100 p-4 rounded-full mb-4">
             <MdAccountBalance className="text-purple-600 text-3xl" />
           </div>
