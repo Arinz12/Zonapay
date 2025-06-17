@@ -13,9 +13,7 @@ const router=useRouter()
 const [transitioning, setTransitioning] = useState(false);
 const [loading, setLoading]=useState(false)
 
-function hideLoading(){
-  setLoading(false)
-}
+
 useEffect(() => {
   const handleStart = () => setTransitioning(true);
   const handleComplete = () => setTransitioning(false);
