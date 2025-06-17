@@ -1,37 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import '../styles/globals.css'
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Footer from '../components/Footer';
+import '../styles/globals.css';
 import Head from "next/head";
-import Link from "next/link";
-import "../styles/transition.css"
 import Analytics from '../components/Analytics';
-import ChangingWordsComponent from '../components/Side';
 import Delay from '../components/Delay';
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter()
+  const router = useRouter();
   const [transitioning, setTransitioning] = useState(false);
   const [waitingForProps, setWaitingForProps] = useState(false);
 
-  // Track when getServerSideProps starts/ends
+  // Pages that should show the loader during getServerSideProps
+  const LOADER_PAGES = ['/dashboard/history', '/dashboard/wallethistory'];
+
   useEffect(() => {
     const handleRouteChangeStart = (url) => {
       setTransitioning(true);
-      setWaitingForProps(true); // Start waiting for props
+      if (LOADER_PAGES.includes(url.split('?')[0])) {
+        setWaitingForProps(true);
+      }
     };
 
-    const handleRouteChangeComplete = () => {
+    const handleRouteChangeComplete = (url) => {
       setTransitioning(false);
-      setWaitingForProps(false); // Props received
+      setWaitingForProps(false);
     };
 
     router.events.on('routeChangeStart', handleRouteChangeStart);
     router.events.on('routeChangeComplete', handleRouteChangeComplete);
-    router.events.on('routeChangeError', () => {
-      setTransitioning(false);
-      setWaitingForProps(false);
-    });
+    router.events.on('routeChangeError', handleRouteChangeComplete);
 
     return () => {
       router.events.off('routeChangeStart', handleRouteChangeStart);
@@ -40,7 +37,7 @@ function MyApp({ Component, pageProps }) {
     };
   }, []);
 
-  // Service Worker registration (unchanged)
+  // Your existing service worker code
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/worker.js')
@@ -61,14 +58,14 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Analytics/>
       
-      {/* Show loader while waiting for getServerSideProps */}
+      {/* Show loader only for specific pages */}
       {waitingForProps && <Delay/>}
       
       <div className={`page-container ${shouldAnimate ? (transitioning && (router.pathname=="/dashboard") ? "fade-out2" : transitioning ? 'fade-out1' : 'fade-in') : ''}`}>
         <Component {...pageProps} />
       </div>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;
