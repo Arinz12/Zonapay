@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Head from "next/head";
 import Analytics from '../components/Analytics';
 import "../styles/transition.css"
+import Delay from '../components/Delay';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -59,12 +60,7 @@ function MyApp({ Component, pageProps }) {
       <Analytics/>
 
       {/* Custom loader for specific paths */}
-      {showCustomLoader && (
-        <div className="custom-loader">
-          {/* Your custom loader component */}
-          Loading content...
-        </div>
-      )}
+      {showCustomLoader && <Delay/>}
 
       <div className={`page-container ${shouldAnimate ? (transitioning && (router.pathname=="/dashboard") ? "fade-out2" : transitioning ? 'fade-out1' : 'fade-in') : ''}`}>
         <Component {...pageProps} />
