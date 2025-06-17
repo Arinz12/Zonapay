@@ -29,7 +29,7 @@ const Wallethistory = ({ arr }) => {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Wallet History</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Wallet Fund History</h2>
       
       {Object.entries(groupedTransactions).map(([monthYear, transactions]) => (
         <div key={monthYear} className="mb-8">
@@ -67,7 +67,7 @@ const Wallethistory = ({ arr }) => {
                   </div>
                   
                   <div className="text-right">
-                    <p className={`font-semibold ${
+                    <p className={`font-semibold w-20 ${
                       txn.amount >= 0 ? 'text-green-600' : 'text-red-600'
                     }`}>
                       {txn.amount >= 0 ? '+' : ''}
@@ -98,6 +98,7 @@ const Wallethistory = ({ arr }) => {
           <p className="text-gray-500">No transactions found</p>
         </div>
       )}
+      <Footer/>
     </div>
   );
 };
