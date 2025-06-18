@@ -13,8 +13,9 @@ import {
 import { format } from 'date-fns';
 import Footer from "../../components/Footer";
 import { useRouter } from 'next/router';
-const router = useRouter()
 const Wallethistory = ({ arr }) => {
+  const router = useRouter()
+
   // Sort transactions by date (newest first)
   const sortedTransactions = [...arr].sort((a, b) => 
     new Date(b.date) - new Date(a.date)
