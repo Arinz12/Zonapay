@@ -23,7 +23,7 @@ export default function HelpPage() {
               <ul className="space-y-2">
                 <li className="flex items-center">
                   <PhoneIcon className="h-5 w-5 text-blue-500 mr-3" />
-                  <span className="text-gray-700">Main Support: <a href="tel:+2348166041953" className="text-blue-600 hover:underline">+234 (701)8237160</a></span>
+                  <span className="text-gray-700">Main Support: <a href="tel:+2347018237160" className="text-blue-600 hover:underline">+2347018237160</a></span>
                 </li>
                
               </ul>
@@ -41,10 +41,10 @@ export default function HelpPage() {
             </div>
 
             <div className="pt-4">
-              <Link href="/">
+              <Link href="/settings">
                 <a className="text-blue-600 hover:underline flex items-center">
                   <ArrowLeftIcon className="h-4 w-4 mr-1" />
-                  Back to Home
+                  Back
                 </a>
               </Link>
             </div>
