@@ -271,12 +271,7 @@ const SettingsPage = () => {
             </a>
           </Link>
           
-          <SettingItem
-            icon={<Info />}
-            title="About"
-            description="App version and legal information"
-            onClick={() => console.log('About clicked')}
-          />
+          
           
           <SettingItem
             icon={<ExitToApp />}
