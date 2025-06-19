@@ -41,7 +41,7 @@ export default function HelpPage() {
             </div>
 
             <div className="pt-4">
-              <Link href="/settings">
+              <Link href="/dashboard/settings">
                 <a className="text-blue-600 hover:underline flex items-center">
                   <ArrowLeftIcon className="h-4 w-4 mr-1" />
                   Back
