@@ -186,13 +186,11 @@ source.onerror= ()=>{console.log("An error occured")}
     </div>
     <div className='flex flex-col '>
       <h3 className='rubik-h text-center'style={{fontSize:"17px"}}>Social media</h3>
- <a href={"https://www.instagram.com/gift.igwebuike.37?igsh=MWt4bW93Zm15eTg3OA=="}>
+ <a href={"https://www.instagram.com/officialbillsly?igsh=OWo0NXExMDB2aWFn"}>
    {<Button  startIcon={<InstagramIcon />} variant="text" sx={{textTransform:"none"}}className="text-center">Instagram</Button>}
    </a>
 
-     <a href={"https://x.com/Zona_it_is?t=HDE0ckMLkV-DJgGBrfQJQA&s=09"}> 
-     {<Button startIcon={<XIcon />} sx={{textTransform:"none"}} variant="text" className="text-center">Twitter</Button>}
-     </a>
+   
       </div>
       <div className="mx-auto font-bold md:col-span-4">&copy;2025 Zona enterprise</div>
 </div>
