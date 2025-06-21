@@ -215,7 +215,7 @@ return {
     catch(error) {
         return {
           redirect: {
-            destination: 'billsly.co/offline.html',
+            destination: '/offline.html',
             permanent: false,
           }
         }
