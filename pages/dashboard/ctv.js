@@ -194,6 +194,7 @@ useEffect(() => {
       if (!response.ok) throw new Error("Request failed");
       
       setStatus(await response.json());
+      setStart(false)
     } catch (error) {
       console.log("Error:", error);
       router.push("/dashboard/error");
