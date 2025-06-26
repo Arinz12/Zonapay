@@ -37,122 +37,38 @@ const cron= require("node-cron");
 const Schedule = require("./Svr_fns/schedule");
 const logout = require("./Svr_fns/logout");
 const { addNote } = require("./Svr_fns/Note");
+const bill = require("./Svr_fns/bill");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
 mongoose.connect(process.env.DATABASEURL , { useNewUrlParser: true, useUnifiedTopology: true,connectTimeoutMS: 50000,serverSelectionTimeoutMS:20000,socketTimeoutMS:45000 })
-.then(() => console.log('MongoDB connected successfully'))
+.then(() => {console.log('MongoDB connected successfully');
+loadScheduledBills().then(()=>{  console.log("Scheduled bills have been loaded successfully")
+}).catch(err=> console.error("failed to load scheduled bills",err));
+})
 .catch(err => console.error('MongoDB connection error:', err));
 
-
-async function fufil(bc,ic,cu,amt,userr,bt){
-  try{
-  const usernow=  await User.findOne({Email:userr})
-const balance=usernow.Balance
-const isFundsSufficient= balance>amt
-if(!isFundsSufficient){
-throw new Error("Failed")
+function convertToCronExpression(dateString) {
+  const date = new Date(dateString);
+  
+  // Extract components
+  const seconds = '0'; // Cron typically starts with seconds (0)
+  const minutes = date.getMinutes();
+  const hours = date.getHours();
+  const dayOfMonth = date.getDate();
+  const month = date.getMonth() + 1; // Months are 0-indexed in JS
+  const dayOfWeek = date.getDay(); // 0 (Sunday) to 6 (Saturday)
+  
+  // Return as space-separated string
+  return `${seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`;
 }
-  let url;
-  url= (bt=="Airtime")? `https://api.flutterwave.com/v3/billers/"BIL099"/items/"AT099"/payment`:`https://api.flutterwave.com/v3/billers/${bc}/items/${ic}/payment`
-	const resp= await fetch(url,{method:"POST", headers: {
-    'Authorization': `Bearer ${process.env.FLW_SECRET_KEY}`,
-    'Content-Type': 'application/json',
-    'accept': 'application/json'
-  },
-  body: JSON.stringify({
-    country: 'NG',
-    customer_id: cu,
-    amount: (bt=="Electricity")? amt-100: amt,
-    reference: userr.split("@")[0]+"split"+userr.split("@")[1].split(".")[0]+"split"+uuidv4(),
-    callback_url: 'https://www.billsly.co/webhook'
-  })})
-  if(resp.ok){
-    const resp2= await resp.json();
-    console.log(resp2)
-    if(resp2.status=="success"){
-      const amt=resp2.data.amount
-      await User.findOneAndUpdate({Email:userr}, { $inc: { Balance: -amt } },  { new: true } )
-      setTimeout( async ()=>{
-        const day= DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
+
+async function loadScheduledBills(){
+  const bills= await Schedule.find();
+  for(ScheduleDoc of bills){
+    cron.schedule(convertToCronExpression(ScheduleDoc.Time), async ()=>{bill()})
+  }
   
-        const found= await Earning.findOne({Date:day});
-    if(found){
-      console.log("Day found")
-      await Earning.updateOne({Date:day},{$inc:{
-        Earning: (bt=="Airtime"||bt=="Data")? (3/100)*amt : (bt=="Electricity")? 30 : -70 ,
-        Total:amt,
-        Airtime:(bt=="Airtime")? amt: 0,
-        Airtime_purchases:(bt=="Airtime")? 1: 0,
-        Data_purchases:(bt=="Data")? 1: 0,
-    Cabletv_purchases:(bt=="Cable")? 1: 0,
-    Electricity_purchases:(bt=="Electricity")? 1: 0,
-    Data:(bt=="Data")? amt: 0,
-    Cable_tv:(bt=="Cable")? amt: 0,
-    Electricity:(bt=="Electricity")? amt: 0,
-  }});
-      console.log(`Earning updated for ${bt} from scheduler`)
-  
-    }
-    else{
-  console.log("Day will now be created")
-  await Earning.create({
-  Date:day,
-  Earning:(bt=="Airtime"||bt=="Data")? (3/100)*amt : (bt=="Electricity")? 30 : -70 ,
-  Total:amt,
-  Airtime:(bt=="Airtime")? amt: 0,
-        Airtime_purchases:(bt=="Airtime")? 1: 0,
-        Data_purchases:(bt=="Data")? 1: 0,
-    Cabletv_purchases:(bt=="Cable")? 1: 0,
-    Electricity_purchases:(bt=="Electricity")? 1: 0,
-    Data:(bt=="Data")? amt: 0,
-    Cable_tv:(bt=="Cable")? amt: 0,
-    Electricity:(bt=="Electricity")? amt: 0,
-  })
-  console.log(`Earning updated for ${bt} for the first time in the day from scheduler`)
-    }
-    return;
-      },2000)
-    return;
-    }
-  
-    else{
-      throw new Error("failed")
-    }
-  }
-  else{
-    const now=DateTime.local()
-  const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-    const history={user:userr,
-      tid:undefined,
-      time:timeinNigeria,
-      amount:amt,
-      phone:cu,
-      network:bt,
-      product:bt,
-    status:"failed"}
-    saveHistory(history);
-    const resp2= await resp.json();
-//     if(resp2.status==="error"){
-//       throw new Error("failed")}
-//       else{
-// throw new Error("failed")      }
-  }
-  }
-  catch(e){
-console.log(e)
-const now=DateTime.local()
-  const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-    const history={user:userr,
-      tid:undefined,
-      time:timeinNigeria,
-      amount:amt,
-      phone:cu,
-      network:bt,
-      product:bt,
-    status:"failed"}
-    saveHistory(history);
-  }
 }
 
 app.prepare().then(() => {
@@ -280,17 +196,34 @@ server.post("/schedule",cors(),async (req,res)=>{
   //   res.redirect("/login");
   //}
   console.log("ready to schedule.")
-  const {billcode,itemcode,cus,amt,us,bt,m,h,dm,mo,dw}= req.body;
-  console.log(req.body)
+  const {billcode,itemcode,customer,amt,billtype,time,id,nid,repeat}= req.body;
   try{
-  await Schedule.deleteMany({Status:"Completed"});
-  cron.schedule(`${m} ${h} ${dm} ${mo} ${dw}`, ()=>{fufil(billcode,itemcode,cus,amt,us,bt)});
+  //save to db
+  await Schedule.create({
+User:req.user.Email,
+Idd:id,
+Bill:billtype,
+Nid:nid,
+Time:time,
+Type:datatype||"",
+Details:{
+  biller_code:billcode,
+  item_code:itemcode,
+  customer:customer,
+  amount:amt
+}
+  })
+  //get it by idd and then load it
+  console.log(req.body)
+  
+  const ScheduledDoc=await Schedule.findOne({Idd:idd})
+  cron.schedule(convertToCronExpression(ScheduledDoc.Time), async ()=>{bill()});
   console.log("scheduled")
+  sendd("arize1524@gmail.com","A payment has been scheduled",undefined,"Bill Scheduled")
   res.status(200).json({message:"successful",time:new Date()})}
   catch(e){
     res.status(400).json({message:"failed"})
   }
-
 })
 
 //  API routes
