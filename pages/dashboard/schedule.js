@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styles from '../../styles/schedule.js';
+import styles from '../../styles/schedule.module.css';
 
 export default function BillSchedule() {
   const [formData, setFormData] = useState({
