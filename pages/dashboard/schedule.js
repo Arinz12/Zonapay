@@ -159,7 +159,7 @@ export default function BillSchedule() {
     };
 
     // Log all values being sent to server
-    console.log('Submitting data:', Object.entries(submissionData).map(([name, value]) => ({ name, value }));
+    console.log('Submitting data:', Object.entries(submissionData).map(([name, value]) => ({ name, value })));
 
     // Submit to server
     setIsLoading(true);
