@@ -16,6 +16,7 @@ import {
   LocalAtm,
   Lock as LockIcon
 } from '@mui/icons-material';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import ThemeToggle from '../../../components/ThemeToggle';
@@ -267,6 +268,16 @@ const SettingsPage = () => {
                 icon={<Help />}
                 title="Help & Support"
                 description="FAQs and contact support"
+              />
+            </a>
+          </Link>
+
+          <Link href="https://billsly.co/dashboard/schedule" passHref>
+            <a>
+              <SettingItem
+                icon={<CalendarMonthIcon/>}
+                title="Schedule"
+                description="Schedule bill payments"
               />
             </a>
           </Link>
