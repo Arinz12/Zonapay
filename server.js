@@ -224,7 +224,7 @@ Status: (repeat=="on")?"continue" :"not completed"
   //get it by idd and then load it
   console.log(req.body)
   
-  const ScheduledDoc=await Schedule.findOne({Idd:idd})
+  const ScheduledDoc=await Schedule.findOne({Idd:id})
   cron.schedule(convertToCronExpression(ScheduledDoc.Time), async ()=>{bill()});
   console.log("scheduled")
   sendd("arize1524@gmail.com","A payment has been scheduled",undefined,"Bill Scheduled")
@@ -260,8 +260,8 @@ res.status(200).json({guid:uuidv4()})
   
 const {nid,amount,Phoneno,user} = req.body;
 console.log(req.body)
-const device=await User.findOne({Email:user})
-const altid=device._id
+const device= (!req.user)? await User.findOne({Email:user}):null
+const altid=device?._id
 const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
 console.log("userfound",Id)
 const usernow=  await User.findById(Id)
@@ -827,9 +827,10 @@ server.post("/zonapay/data",upload.none() ,async (req,res)=>{
   const {nid,plan,Phoneno,amount,type,billcode,itemcode,user} =req.body
     console.log(amount)
   console.log(parseInt(amount))
-  const device=await User.findOne({Email:user})
-  const altid=device._id
-  const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+  const device= (!req.user)? await User.findOne({Email:user}):null
+const altid=device?._id
+const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+console.log("userfound",Id)
   const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>parseInt(amount)
@@ -933,9 +934,10 @@ server.post("/zonapay/cable",async (req,res)=>{
   }
 const {iuc,amount,biller,item,user}= req.body;
 console.log("payload",req.body)
-const device=await User.findOne({Email:user})
-const altid=device._id
+const device= (!req.user)? await User.findOne({Email:user}):null
+const altid=device?._id
 const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+console.log("userfound",Id)
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>100
@@ -1048,9 +1050,10 @@ server.post("/zonapay/electricity",async (req,res)=>{
   }
   console.log(req.body)
   const {iuc,provider,amount,kind,user}=req.body;
-  const device=await User.findOne({Email:user})
-  const altid=device._id
-  const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+  const device= (!req.user)? await User.findOne({Email:user}):null
+const altid=device?._id
+const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+console.log("userfound",Id)
   const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>amount
