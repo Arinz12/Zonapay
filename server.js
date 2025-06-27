@@ -199,9 +199,9 @@ const fundvals = [
 
 //Scheduling bills
 server.post("/schedule",cors(),async (req,res)=>{
-  // if(!req.isAuthenticated()){
-  //   res.redirect("/login");
-  //}
+  if(!req.isAuthenticated()){
+    res.redirect("/login");
+  }
   console.log("ready to schedule.",req.body)
   const {billcode,itemcode,customer,amt,billtype,time,id,nid,repeat}= req.body;
   try{
@@ -225,6 +225,7 @@ Status: (repeat=="on")?"continue" :"not completed"
   console.log(req.body)
   
   const ScheduledDoc=await Schedule.findOne({Idd:id})
+  console.log("sobj found",ScheduledDoc)
   cron.schedule(convertToCronExpression(ScheduledDoc.Time), async ()=>{bill()});
   console.log("scheduled")
   sendd("arize1524@gmail.com","A payment has been scheduled",undefined,"Bill Scheduled")
@@ -283,7 +284,7 @@ return;
     customer_id: Phoneno,
     amount: amount,
     reference:(req.user)? emailHash(req.user.Email)+"--"+uuidv4() :emailHash(user)+"--"+uuidv4(),
-    callback_url: 'https://www.billsly.co/webhook'
+    callback_url: 'https://www.billsly.co/webhookb'
   })
 })
 if(resp.ok){
@@ -864,7 +865,7 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
         amount: parseInt(amount),
         type:type,
         reference:(req.user)? emailHash(req.user.Email)+"--"+uuidv4() :emailHash(user)+"--"+uuidv4(),
-        callback_url: 'https://www.billsly.co/webhook'
+        callback_url: 'https://www.billsly.co/webhookb'
       })
     })
     const result2= await result.json()
@@ -952,7 +953,7 @@ body:JSON.stringify({
   customer_id:iuc,
   amount:amount,
   reference:(req.user)? emailHash(req.user.Email)+"--"+uuidv4() :emailHash(user)+"--"+uuidv4(),
-  callback_url:"https://www.billsly.co/webhook"
+  callback_url:"https://www.billsly.co/webhookb"
 }),
 headers:{
   "Content-Type":"application/json",
@@ -1069,7 +1070,7 @@ const isFundsSufficient= balance>amount
       customer_id:iuc,
       amount:parseInt(amount)-100,
       reference:(req.user)? emailHash(req.user.Email)+"--"+uuidv4() :emailHash(user)+"--"+uuidv4(),
-      callback_url:"https://www.billsly.co/webhook"
+      callback_url:"https://www.billsly.co/webhookb"
     }),
     headers:{
       "Content-Type":"application/json",
@@ -1534,7 +1535,7 @@ else{
 }
 )
 
-server.post("/webhook",cors(), async (req,res)=>{
+server.post("/webhookb", async (req,res)=>{
 // await verif(req.body.data.tx_ref)
 console.log("THIS IS THE USER",req.user)
 const now=DateTime.local()

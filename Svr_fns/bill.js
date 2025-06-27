@@ -8,6 +8,7 @@ async function bill(){
 console.log("bill settled already")
 return;}
     if(ScheduledDoc.Bill=="airtime"){
+        console.log("bill recon has started")
         const [nid,amount,Phoneno]=[ScheduledDoc.Nid,ScheduledDoc.Details.amount,ScheduledDoc.Details.customer];
         const data={nid,amount,Phoneno,user:ScheduledDoc.User}
      res= await fetch("https://www.billsly.co/zonapay/airtime",{method:"post",body:JSON.stringify({data}),
