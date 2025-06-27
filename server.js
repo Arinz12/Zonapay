@@ -211,7 +211,8 @@ Details:{
   item_code:itemcode,
   customer:customer,
   amount:amt
-}
+},
+Status: (repeat=="on")?"continue" :"not completed"
   })
   //get it by idd and then load it
   console.log(req.body)

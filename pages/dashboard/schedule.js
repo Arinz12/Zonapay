@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styles from '../../styles/schedule.module.css';
+import styles from '../../schedule.module.css';
 
 export default function BillSchedule() {
   const [formData, setFormData] = useState({
@@ -14,24 +14,25 @@ export default function BillSchedule() {
     selectedBillcode: ''
   });
 
-  const [billItems, setBillItems] = useState([]);
+  const [dataPlans, setDataPlans] = useState([]);
+  const [cablePlans, setCablePlans] = useState([]);
+  const [electricityOptions, setElectricityOptions] = useState([]);
   const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [network, setNetwork] = useState(null);
-  const [isFetchingItems, setIsFetchingItems] = useState(false);
-  const [electricityBillCodes, setElectricityBillCodes] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
 
-  // Cable TV providers with their billcodes
+  // Cable TV providers
   const cableProviders = [
     { name: 'GOtv', value: 'BIL122' },
     { name: 'DStv', value: 'BIL121' },
     { name: 'Startimes', value: 'BIL123' }
   ];
 
-  // Electricity types
+  // Electricity types with direct itemcodes
   const electTypes = [
-    { name: 'Prepaid', value: 'prepaid' },
-    { name: 'Postpaid', value: 'postpaid' }
+    { name: 'Prepaid', value: 'prepaid', itemcode: 'UB163' },
+    { name: 'Postpaid', value: 'postpaid', itemcode: 'UB164' }
   ];
 
   // Network detection
@@ -54,82 +55,111 @@ export default function BillSchedule() {
     }
   }, [formData.customer, formData.billtype]);
 
-  // Fetch items based on billtype
+  // Fetch data plans when network is detected
   useEffect(() => {
-    const fetchItems = async () => {
-      if (!formData.billtype) return;
+    const fetchDataPlans = async () => {
+      if (formData.billtype !== 'data' || !network) return;
 
-      setIsFetchingItems(true);
+      setIsFetching(true);
       try {
-        if (formData.billtype === 'data' && network) {
-          const billcode = {
-            mtn: '108',
-            airtel: '110',
-            glo: '109',
-            '9mobile': '111'
-          }[network];
+        const billcode = {
+          mtn: '108',
+          airtel: '110', 
+          glo: '109',
+          '9mobile': '111'
+        }[network];
 
-          const response = await fetch('https://www.billsly.co/zonapay/fdp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ bille: billcode })
-          });
-          const result = await response.json();
-          setBillItems(result.data);
-        }
-        else if (formData.billtype === 'cabletv' && formData.cableProvider) {
-          const response = await fetch('https://www.billsly.co/zonapay/ftp', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ bille: formData.cableProvider })
-          });
-          const result = await response.json();
-          setBillItems(result.data);
-        }
-        else if (formData.billtype === 'elect') {
-          const response = await fetch('https://www.billsly.co/zonapay/elects', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-          });
-          const result = await response.json();
-          setElectricityBillCodes([...new Set(result.data.map(item => item.biller_code))]);
-        }
+        const response = await fetch('https://www.billsly.co/zonapay/fdp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+
+          body: JSON.stringify({ bille: billcode })
+        });
+        const result = await response.json();
+        setDataPlans(result.data);
       } catch (error) {
-        console.error('Error fetching items:', error);
+        console.error('Error fetching data plans:', error);
       } finally {
-        setIsFetchingItems(false);
+        setIsFetching(false);
       }
     };
 
-    fetchItems();
-  }, [network, formData.billtype, formData.cableProvider]);
+    fetchDataPlans();
+  }, [network, formData.billtype]);
 
-  // Fetch electricity plans when billcode is selected
-  const fetchElectricityPlans = async (billcode) => {
-    setIsFetchingItems(true);
-    try {
-      const response = await fetch('https://www.billsly.co/zonapay/fdp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bille: billcode })
-      });
-      const result = await response.json();
-      setBillItems(result.data);
-    } catch (error) {
-      console.error('Error fetching electricity plans:', error);
-    } finally {
-      setIsFetchingItems(false);
+  // Fetch cable plans when provider is selected
+  useEffect(() => {
+    const fetchCablePlans = async () => {
+      if (formData.billtype !== 'cabletv' || !formData.cableProvider) return;
+
+      setIsFetching(true);
+      try {
+        const response = await fetch('https://www.billsly.co/zonapay/ftp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ bille: formData.cableProvider })
+        });
+        const result = await response.json();
+        setCablePlans(result.data);
+      } catch (error) {
+        console.error('Error fetching cable plans:', error);
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    fetchCablePlans();
+  }, [formData.cableProvider, formData.billtype]);
+
+  // Fetch electricity options when elect is selected
+  useEffect(() => {
+    const fetchElectricityOptions = async () => {
+      if (formData.billtype !== 'elect') return;
+
+      setIsFetching(true);
+      try {
+        const response = await fetch('https://www.billsly.co/zonapay/elects', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const result = await response.json();
+        
+        // Map response to options with billcode and description
+        const options = result.data.map(item => ({
+          billcode: item.biller_code,
+          description: item.description || item.biller_name || `Electricity (${item.biller_code})`
+        }));
+        
+        setElectricityOptions(options);
+      } catch (error) {
+        console.error('Error fetching electricity options:', error);
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    fetchElectricityOptions();
+  }, [formData.billtype]);
+
+  // Update itemcode when electType changes
+  useEffect(() => {
+    if (formData.billtype === 'elect') {
+      const selectedType = electTypes.find(type => type.value === formData.electType);
+      setFormData(prev => ({
+        ...prev,
+        itemcode: selectedType ? selectedType.itemcode : ''
+      }));
     }
-  };
+  }, [formData.electType, formData.billtype]);
 
   // Form validation
   useEffect(() => {
-    const { billtype, customer, time, amt, itemcode, cableProvider } = formData;
+    const { billtype, customer, time, amt, itemcode, cableProvider, selectedBillcode } = formData;
     let valid = billtype && customer && time && amt;
     
     if (billtype === 'data') valid = valid && network && itemcode;
     if (billtype === 'cabletv') valid = valid && cableProvider && itemcode;
-    if (billtype === 'elect') valid = valid && itemcode && formData.selectedBillcode;
+    if (billtype === 'elect') valid = valid && selectedBillcode && itemcode;
     
     setIsValid(valid);
   }, [formData, network]);
@@ -139,10 +169,9 @@ export default function BillSchedule() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Prepare final submission data
     const submissionData = {
       billtype: formData.billtype,
       customer: formData.customer,
@@ -152,25 +181,27 @@ export default function BillSchedule() {
       repeat: formData.repeat,
       id: Math.random().toString(36).substring(2, 15),
       nid: network || formData.billtype,
-      billcode: formData.billtype === 'data' ? 
-        { mtn: '108', airtel: '110', glo: '109', '9mobile': '111' }[network] :
-        formData.billtype === 'cabletv' ? formData.cableProvider :
-        formData.selectedBillcode
+      billcode: formData.billtype === 'data' 
+        ? { mtn: '108', airtel: '110', glo: '109', '9mobile': '111' }[network] 
+        : formData.billtype === 'cabletv' 
+          ? formData.cableProvider 
+          : formData.selectedBillcode,
+      electType: formData.electType
     };
 
-    // Log all values being sent to server
-    console.log('Submitting data:', Object.entries(submissionData).map(([name, value]) => ({ name, value })));
+    console.log('Submitting:', submissionData);
 
-    // Submit to server
     setIsLoading(true);
-    fetch('/submitdetails', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(submissionData)
-    })
-    .then(response => {
+    try {
+      const response = await fetch('https://www.billsly.co/schedule', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(submissionData)
+      });
+
       if (!response.ok) throw new Error('Submission failed');
       alert('Bill scheduled successfully!');
+      
       // Reset form
       setFormData({
         billtype: '',
@@ -183,15 +214,14 @@ export default function BillSchedule() {
         electType: 'prepaid',
         selectedBillcode: ''
       });
-      setNetwork(null);
-      setBillItems([]);
-      setElectricityBillCodes([]);
-    })
-    .catch(error => {
+      setDataPlans([]);
+      setCablePlans([]);
+      setElectricityOptions([]);
+    } catch (error) {
       console.error('Error:', error);
-      alert('Failed to schedule bill');
-    })
-    .finally(() => setIsLoading(false));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -246,13 +276,15 @@ export default function BillSchedule() {
             >
               <option value="">Select provider</option>
               {cableProviders.map(provider => (
-                <option key={provider.value} value={provider.value}>{provider.name}</option>
+                <option key={provider.value} value={provider.value}>
+                  {provider.name}
+                </option>
               ))}
             </select>
           </div>
         )}
 
-        {/* Electricity Type Selection */}
+        {/* Electricity Section */}
         {formData.billtype === 'elect' && (
           <>
             <div className={styles.formGroup}>
@@ -267,29 +299,42 @@ export default function BillSchedule() {
                       checked={formData.electType === type.value}
                       onChange={handleChange}
                     />
-                    {type.name}
+                    {type.name} ({type.itemcode})
                   </label>
                 ))}
               </div>
             </div>
 
-            {/* Electricity Billcode Selection */}
-            {electricityBillCodes.length > 0 && (
+            {electricityOptions.length > 0 && (
               <div className={styles.formGroup}>
                 <label>Electricity Provider:</label>
                 <select
                   value={formData.selectedBillcode}
-                  onChange={(e) => {
-                    setFormData(prev => ({ ...prev, selectedBillcode: e.target.value }));
-                    fetchElectricityPlans(e.target.value);
-                  }}
+                  onChange={(e) => setFormData(prev => ({
+                    ...prev,
+                    selectedBillcode: e.target.value
+                  }))}
                   required
                 >
                   <option value="">Select provider</option>
-                  {electricityBillCodes.map(billcode => (
-                    <option key={billcode} value={billcode}>{billcode}</option>
+                  {electricityOptions.map((option, index) => (
+                    <option key={index} value={option.billcode}>
+                      {option.description}
+                    </option>
                   ))}
                 </select>
+              </div>
+            )}
+
+            {formData.itemcode && (
+              <div className={styles.formGroup}>
+                <label>Item Code:</label>
+                <input
+                  type="text"
+                  value={formData.itemcode}
+                  readOnly
+                  className={styles.readOnlyInput}
+                />
               </div>
             )}
           </>
@@ -319,37 +364,60 @@ export default function BillSchedule() {
             onChange={handleChange}
             required
             min="0"
-            readOnly={billItems.length > 0}
+            readOnly={formData.billtype === 'data' || formData.billtype === 'cabletv'}
           />
         </div>
 
-        {/* Item Selection (Data/Cable/Electricity) */}
-        {isFetchingItems ? (
-          <div className={styles.loading}>Loading options...</div>
-        ) : billItems.length > 0 && (
+        {/* Data Plans Selection */}
+        {formData.billtype === 'data' && dataPlans.length > 0 && (
           <div className={styles.formGroup}>
-            <label htmlFor="itemcode">
-              {formData.billtype === 'data' ? 'Data Plan' :
-               formData.billtype === 'cabletv' ? 'Cable Package' : 'Electricity Plan'}:
-            </label>
+            <label htmlFor="itemcode">Data Plan:</label>
             <select
               id="itemcode"
               name="itemcode"
               value={formData.itemcode}
               onChange={(e) => {
-                const selectedItem = billItems.find(item => item.item_code === e.target.value);
+                const selectedPlan = dataPlans.find(plan => plan.item_code === e.target.value);
                 setFormData(prev => ({
                   ...prev,
                   itemcode: e.target.value,
-                  amt: selectedItem?.amount?.toString() || ''
+                  amt: selectedPlan?.amount?.toString() || ''
                 }));
               }}
               required
             >
-              <option value="">Select plan</option>
-              {billItems.map(item => (
-                <option key={item.item_code} value={item.item_code}>
-                  {item.name} - ₦{item.amount}
+              <option value="">Select data plan</option>
+              {dataPlans.map(plan => (
+                <option key={plan.item_code} value={plan.item_code}>
+                  {plan.name} - ₦{plan.amount}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        {/* Cable Plans Selection */}
+        {formData.billtype === 'cabletv' && cablePlans.length > 0 && (
+          <div className={styles.formGroup}>
+            <label htmlFor="itemcode">Cable Package:</label>
+            <select
+              id="itemcode"
+              name="itemcode"
+              value={formData.itemcode}
+              onChange={(e) => {
+                const selectedPlan = cablePlans.find(plan => plan.item_code === e.target.value);
+                setFormData(prev => ({
+                  ...prev,
+                  itemcode: e.target.value,
+                  amt: selectedPlan?.amount?.toString() || ''
+                }));
+              }}
+              required
+            >
+              <option value="">Select cable package</option>
+              {cablePlans.map(plan => (
+                <option key={plan.item_code} value={plan.item_code}>
+                  {plan.name} - ₦{plan.amount}
                 </option>
               ))}
             </select>
@@ -387,7 +455,7 @@ export default function BillSchedule() {
         <button
           type="submit"
           className={styles.submitButton}
-          disabled={!isValid || isLoading || isFetchingItems}
+          disabled={!isValid || isLoading || isFetching}
         >
           {isLoading ? 'Scheduling...' : 'Schedule Bill'}
         </button>
