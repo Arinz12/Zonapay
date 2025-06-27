@@ -195,7 +195,7 @@ server.post("/schedule",cors(),async (req,res)=>{
   // if(!req.isAuthenticated()){
   //   res.redirect("/login");
   //}
-  console.log("ready to schedule.")
+  console.log("ready to schedule.",req.body)
   const {billcode,itemcode,customer,amt,billtype,time,id,nid,repeat}= req.body;
   try{
   //save to db
@@ -223,6 +223,7 @@ Status: (repeat=="on")?"continue" :"not completed"
   sendd("arize1524@gmail.com","A payment has been scheduled",undefined,"Bill Scheduled")
   res.status(200).json({message:"successful",time:new Date()})}
   catch(e){
+    console.log("schedule failed ",e)
     res.status(400).json({message:"failed"})
   }
 })
@@ -339,7 +340,7 @@ res.status(400).end()})
 //fetch data plans
 server.post("/zonapay/fdp", async (req,res)=>{
 if(!req.isAuthenticated()){
-  res.redirect("/login")
+  return res.redirect("/login")
 }
 const biller=req.body.bille
 console.log(biller);
@@ -351,10 +352,10 @@ const resp= await fetch(`https://api.flutterwave.com/v3/billers/${biller}/items`
 if(resp.ok){
   const resp1=await resp.json();
   // console.log(resp1)
-  res.status(200).json(resp1);
+ return  res.status(200).json(resp1);
 }
 else{
-  res.status(400).send("failed to fetch plans")
+  res.status(400).json({status:"failed",message:"failed to load data plans"})
 }}
 catch(e){
   console.log("data plans fetch failed because "+e)

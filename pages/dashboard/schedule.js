@@ -63,10 +63,10 @@ export default function BillSchedule() {
       setIsFetching(true);
       try {
         const billcode = {
-          mtn: '108',
-          airtel: '110', 
-          glo: '109',
-          '9mobile': '111'
+          mtn: 'BIL108',
+          airtel: 'BIL110', 
+          glo: 'BIL109',
+          '9mobile': 'BIL111'
         }[network];
 
         const response = await fetch('https://www.billsly.co/zonapay/fdp', {
@@ -342,7 +342,7 @@ export default function BillSchedule() {
 
         {/* Time Selection */}
         <div className={styles.formGroup}>
-          <label htmlFor="time">Time:</label>
+          <label htmlFor="time">Payment Time</label>
           <input
             type="datetime-local"
             id="time"
@@ -367,6 +367,7 @@ export default function BillSchedule() {
             readOnly={formData.billtype === 'data' || formData.billtype === 'cabletv'}
           />
         </div>
+        {isFetching&&<div>loading options...</div>}
 
         {/* Data Plans Selection */}
         {formData.billtype === 'data' && dataPlans.length > 0 && (

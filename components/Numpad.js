@@ -1,12 +1,13 @@
 import { Button } from "@mui/material";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 const NumericPad = ({ maxLength = 4, onSubmit, hideComp }) => {
   const [pin, setPin] = useState("");
   const inputRefs = useRef([]);
+  const primaryColor = "#2563eb"; // Stored in memory
 
-  // Handle button clicks
-  const handleButtonClick = (value) => {
+  // Memoized button click handler
+  const handleButtonClick = useCallback((value) => {
     if (value === "clear") {
       setPin("");
     } else if (value === "delete") {
@@ -14,14 +15,14 @@ const NumericPad = ({ maxLength = 4, onSubmit, hideComp }) => {
     } else {
       setPin((prev) => (prev.length < maxLength ? prev + value : prev));
     }
-  };
+  }, [maxLength]);
 
-  // Handle submit action
-  const handleSubmit = () => {
+  // Memoized submit handler
+  const handleSubmit = useCallback(() => {
     if (onSubmit) onSubmit(pin);
-  };
+  }, [onSubmit, pin]);
 
-  // Focus the appropriate input box when pin changes
+  // Focus management
   useEffect(() => {
     if (pin.length < maxLength && pin.length >= 0) {
       inputRefs.current[pin.length]?.focus();
@@ -32,24 +33,26 @@ const NumericPad = ({ maxLength = 4, onSubmit, hideComp }) => {
     <div 
       id="keyPad" 
       style={{
-        backgroundColor: "rgba(0, 0, 0, 0.253)",
-        backdropFilter: "blur(9px)"
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        backdropFilter: "blur(8px)",
+        animation: "fadeIn 0.3s ease-out"
       }} 
-      className="flex-col items-center mt-10 fixed z-10 w-full bottom-0 h-full pt-36 fdn flex"
+      className="flex flex-col items-center fixed z-10 w-full h-full bottom-0 pt-28 px-4"
     >
       <span 
         onClick={() => {
           setPin("");
           hideComp();
         }}
-        className="absolute text-black text-4xl top-1 right-3"
+        className="absolute text-white text-3xl top-4 right-6 cursor-pointer hover:scale-110 transition-transform"
+        aria-label="Close"
       >
         &times;
       </span>
 
       {/* PIN Input Boxes */}
-      <div className="flex gap-3 mb-6">
-        {[...Array(maxLength)].map((_, index) => (
+      <div className="flex gap-4 mb-8">
+        {Array.from({ length: maxLength }).map((_, index) => (
           <input
             key={index}
             ref={(el) => (inputRefs.current[index] = el)}
@@ -57,34 +60,32 @@ const NumericPad = ({ maxLength = 4, onSubmit, hideComp }) => {
             value={pin[index] || ""}
             readOnly
             maxLength={1}
-            className="w-7 h-7 text-center text-2xl rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-10 h-10 text-center text-2xl rounded-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
             style={{
-              border: "1px solid #ddd",
-              backgroundColor: "white"
+              boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
             }}
           />
         ))}
       </div>
 
       {/* Numeric Pad */}
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-3 gap-4 w-full max-w-xs">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, "clear", 0, "delete"].map((item) => (
           <Button 
-            style={{
-              borderRadius: "40%",
-              width: "48px",
-              height: "48px",
-              backgroundColor: "white"
-            }}
             key={item}
             onClick={() => handleButtonClick(item.toString())}
-            className={`w-12 h-12 keypad text-xl shadow-md ${
-              item === "clear"
-                ? "bg-none text-black hover:bg-none"
-                : item === "delete"
-                ? "bg-none text-black hover:bg-none"
-                : "bg-none text-black hover:bg-none"
-            }`}
+            style={{
+              borderRadius: "50%",
+              minWidth: "60px",
+              height: "60px",
+              backgroundColor: "white",
+              color: "#1f2937",
+              fontSize: "1.25rem",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+              transition: "all 0.2s ease",
+              margin: "0 auto"
+            }}
+            className="hover:bg-gray-50 active:scale-95"
           >
             {item === "clear" ? "C" : item === "delete" ? "⌫" : item}
           </Button>
@@ -94,7 +95,9 @@ const NumericPad = ({ maxLength = 4, onSubmit, hideComp }) => {
       {/* Submit Button */}
       <button
         onClick={handleSubmit}
-        className="mt-6 px-6 py-2 text-xl text-white bg-blue-600 rounded-full shadow-md hover:bg-blue-600"
+        disabled={pin.length !== maxLength}
+        style={{ backgroundColor: primaryColor }}
+        className="mt-8 px-8 py-3 text-xl text-white rounded-full shadow-md hover:bg-blue-700 active:scale-95 transition-all disabled:opacity-50 disabled:transform-none"
       >
         Proceed
       </button>
@@ -102,4 +105,4 @@ const NumericPad = ({ maxLength = 4, onSubmit, hideComp }) => {
   );
 };
 
-export default NumericPad;
+export default React.memo(NumericPad);
