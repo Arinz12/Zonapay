@@ -38,6 +38,8 @@ const Schedule = require("./Svr_fns/schedule");
 const logout = require("./Svr_fns/logout");
 const { addNote } = require("./Svr_fns/Note");
 const bill = require("./Svr_fns/bill");
+const CryptoJs=require("crypto-js");
+const { emailHash } = require("./flib/emailhash");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -48,18 +50,23 @@ loadScheduledBills().then(()=>{  console.log("Scheduled bills have been loaded s
 })
 .catch(err => console.error('MongoDB connection error:', err));
 
-function convertToCronExpression(dateString) {
+// /**
+//  * Converts a date string to a cron expression in UTC timezone
+//  * @param {string} dateString - Date string (e.g., 'Fri, 27 Jun 2025 11:39:50 GMT')
+//  * @returns {string} - Cron expression string in UTC
+//    **/
+ function convertToCronExpression(dateString) {
   const date = new Date(dateString);
   
-  // Extract components
+  // Convert to UTC components
   const seconds = '0'; // Cron typically starts with seconds (0)
-  const minutes = date.getMinutes();
-  const hours = date.getHours();
-  const dayOfMonth = date.getDate();
-  const month = date.getMonth() + 1; // Months are 0-indexed in JS
-  const dayOfWeek = date.getDay(); // 0 (Sunday) to 6 (Saturday)
+  const minutes = date.getUTCMinutes();
+  const hours = date.getUTCHours();
+  const dayOfMonth = date.getUTCDate();
+  const month = date.getUTCMonth() + 1; // Months are 0-indexed in JS
+  const dayOfWeek = date.getUTCDay(); // 0 (Sunday) to 6 (Saturday)
   
-  // Return as space-separated string
+  // Return as space-separated UTC-based string
   return `${seconds} ${minutes} ${hours} ${dayOfMonth} ${month} ${dayOfWeek}`;
 }
 
@@ -205,7 +212,7 @@ Idd:id,
 Bill:billtype,
 Nid:nid,
 Time:time,
-Type:datatype||"",
+Type:"",
 Details:{
   biller_code:billcode,
   item_code:itemcode,
@@ -243,12 +250,14 @@ res.status(200).json({guid:uuidv4()})
   });
   //for buying airtime
   server.post("/zonapay/airtime", upload.none(),async (req,res)=>{
-    if(!req.isAuthenticated()){
+    if(!req.isAuthenticated()&&req.headers["passid"]!=="ariwa"){
       res.redirect("/signup")
       return;
     }
-const {nid,amount,Phoneno} =req.body;
-const Id = mongoose.Types.ObjectId(req.user._id);
+const {nid,amount,Phoneno,user} =req.body;
+const device=await User.findOne({Email:user})
+const altid=device._id
+const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>amount
@@ -267,7 +276,7 @@ return;
     country: 'NG',
     customer_id: Phoneno,
     amount: amount,
-    reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
+    reference:(req.user)? emailHash(req.user.Email)+"--"+uuidv4() :emailHash(user)+"--"+uuidv4(),
     callback_url: 'https://www.billsly.co/webhook'
   })
 })
@@ -305,7 +314,7 @@ console.log("Earning updated for airtime for the first time in the day")
   }
   return;
     },2000)
-  return res.status(200).json(resp2);
+   res.status(200).json(resp2);
     
   }
 
@@ -316,7 +325,7 @@ console.log("Earning updated for airtime for the first time in the day")
 else{
   const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-  const history={user:req.user.Email,
+  const history={user:(req.user)? req.user.Email:user,
     tid:undefined,
     time:timeinNigeria,
     amount:amount,
@@ -801,17 +810,23 @@ server.post("/login",logged,passport.authenticate("local",{
 }))
 //Data purchase
 server.post("/zonapay/data",upload.none() ,async (req,res)=>{
-  const {nid,plan,Phoneno,amount,type,billcode,itemcode} =req.body
+  if(!req.isAuthenticated()&&req.headers["passid"]!=="ariwa"){
+    res.redirect("/signup")
+    return;
+  }
+  const {nid,plan,Phoneno,amount,type,billcode,itemcode,user} =req.body
     console.log(amount)
   console.log(parseInt(amount))
-  const Id = mongoose.Types.ObjectId(req.user._id);
-const usernow=  await User.findById(Id)
+  const device=await User.findOne({Email:user})
+  const altid=device._id
+  const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+  const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>parseInt(amount)
   if(!isFundsSufficient){
     const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-      const history={user:req.user.Email,
+      const history={user:(req.user)?req.user.Email:user,
         tid:undefined,
         time:timeinNigeria,
         amount:parseInt(amount),
@@ -837,7 +852,7 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
         customer_id: Phoneno,
         amount: parseInt(amount),
         type:type,
-        reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
+        reference:(req.user)? emailHash(req.user.Email)+"--"+uuidv4() :emailHash(user)+"--"+uuidv4(),
         callback_url: 'https://www.billsly.co/webhook'
       })
     })
@@ -873,12 +888,12 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
     }
     return;
       },2000)
-      return res.status(200).json(result2);
+       res.status(200).json(result2);
     }
     else{
       const now=DateTime.local()
 const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-      const history={user:req.user.Email,
+      const history={user:(req.user)?req.user.Email:user,
         tid:undefined,
         time:timeinNigeria,
         amount:parseInt(amount),
@@ -902,9 +917,15 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
 
 //Cable tv
 server.post("/zonapay/cable",async (req,res)=>{
-const {iuc,amount,biller,item}= req.body;
+  if(!req.isAuthenticated()&&req.headers["passid"]!=="ariwa"){
+    res.redirect("/signup")
+    return;
+  }
+const {iuc,amount,biller,item,user}= req.body;
 console.log("payload",req.body)
-const Id = mongoose.Types.ObjectId(req.user._id);
+const device=await User.findOne({Email:user})
+const altid=device._id
+const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>100
@@ -918,7 +939,7 @@ body:JSON.stringify({
   country:"NG",
   customer_id:iuc,
   amount:amount,
-  reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
+  reference:(req.user)? emailHash(req.user.Email)+"--"+uuidv4() :emailHash(user)+"--"+uuidv4(),
   callback_url:"https://www.billsly.co/webhook"
 }),
 headers:{
@@ -962,7 +983,7 @@ console.log("Earning updated for cable tv for the first time in the day")
   }
   return;
     },2000)
-   return res.status(200).json(data2)}
+   res.status(200).json(data2)}
     else{
       console.log("returned  200 ok response but failed");
     }
@@ -970,7 +991,7 @@ console.log("Earning updated for cable tv for the first time in the day")
   else{
     const now=DateTime.local()
     const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-      const history={user:req.user.Email,
+      const history={user:(req.user)?req.user.Email:user,
         tid:undefined,
         time:timeinNigeria,
         amount:amount,
@@ -1011,10 +1032,16 @@ else{
 
 //Electricity
 server.post("/zonapay/electricity",async (req,res)=>{
+  if(!req.isAuthenticated()&&req.headers["passid"]!=="ariwa"){
+    res.redirect("/signup")
+    return;
+  }
   console.log(req.body)
-  const {iuc,provider,amount,kind}=req.body;
-  const Id = mongoose.Types.ObjectId(req.user._id);
-const usernow=  await User.findById(Id)
+  const {iuc,provider,amount,kind,user}=req.body;
+  const device=await User.findOne({Email:user})
+  const altid=device._id
+  const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+  const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>amount
   if(!isFundsSufficient){
@@ -1028,7 +1055,7 @@ const isFundsSufficient= balance>amount
       country:"NG",
       customer_id:iuc,
       amount:parseInt(amount)-100,
-      reference: req.user.Email.split("@")[0]+"split"+req.user.Email.split("@")[1].split(".")[0]+"split"+uuidv4(),
+      reference:(req.user)? emailHash(req.user.Email)+"--"+uuidv4() :emailHash(user)+"--"+uuidv4(),
       callback_url:"https://www.billsly.co/webhook"
     }),
     headers:{
@@ -1072,7 +1099,7 @@ if(result.status=="success"){
     }
     return;
       },2000)
- return res.status(200).json(result);
+  res.status(200).json(result);
 }
 
 else{
@@ -1083,7 +1110,7 @@ else{
   else{
     const now=DateTime.local()
     const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a')
-      const history={user:req.user.Email,
+      const history={user:(req.user)?req.user.Email:user,
         tid:undefined,
         time:timeinNigeria,
         amount:parseInt(amount),
@@ -1504,7 +1531,7 @@ console.log("webhook",obj)
 if(obj.status=="success"){
 try{ 
 sendd("arize1524@gmail.com",` ${obj.customer} has successfully purchased ${obj.network} of ${obj.amount}`,undefined,"Bill success Alert");
-const init_user=obj.customer_reference.split("split")[0]+"@"+obj.customer_reference.split("split")[1]+".com"
+const init_user=emailHashRvsl(obj.customer_reference.split("--")[0])
 const history={user:init_user,
   tid:obj.flw_ref,
   time:timeinNigeria,

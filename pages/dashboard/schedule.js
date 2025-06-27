@@ -1,3 +1,4 @@
+import { IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/schedule.module.css';
 
@@ -182,7 +183,7 @@ export default function BillSchedule() {
       id: Math.random().toString(36).substring(2, 15),
       nid: network || formData.billtype,
       billcode: formData.billtype === 'data' 
-        ? { mtn: '108', airtel: '110', glo: '109', '9mobile': '111' }[network] 
+        ? { mtn: 'BIL108', airtel: 'BIL110', glo: 'BIL109', '9mobile': 'BIL111' }[network] 
         : formData.billtype === 'cabletv' 
           ? formData.cableProvider 
           : formData.selectedBillcode,
@@ -226,8 +227,21 @@ export default function BillSchedule() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Bill Scheduling</h1>
-      
+<div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+  <Link href={"https://www.billsly.co/dashboard/settings"}>{<IconButton 
+    onClick={() => window.history.back()} 
+    aria-label="back"
+    sx={{
+      color: 'primary.main', // Or any color you prefer
+      '&:hover': {
+        backgroundColor: 'action.hover' // Subtle hover effect
+      }
+    }}
+  >
+    <ArrowBackIcon />
+  </IconButton>}</Link>
+  <h1 className={styles.title}>Bill Scheduling</h1>
+</div>
       <form onSubmit={handleSubmit} className={styles.form}>
         {/* Bill Type Selection */}
         <div className={styles.formGroup}>
@@ -367,7 +381,7 @@ export default function BillSchedule() {
             readOnly={formData.billtype === 'data' || formData.billtype === 'cabletv'}
           />
         </div>
-        {isFetching&&<div>loading options...</div>}
+        {isFetching&&<div className='text-blue-500'>loading options...</div>}
 
         {/* Data Plans Selection */}
         {formData.billtype === 'data' && dataPlans.length > 0 && (

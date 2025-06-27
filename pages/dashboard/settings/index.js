@@ -194,13 +194,12 @@ const SettingsPage = () => {
 
       <div className="max-w-2xl mx-auto my-5 bg-white rounded-xl shadow-sm overflow-hidden">
         <div className="flex sticky top-0 items-center gap-4 p-5 border-b border-gray-200">
-          <button 
+         <Link href="https://billsly.co/dashboard">{<button 
             className="flex items-center justify-center p-1 text-blue-600" 
-            onClick={() => window.history.back()}
             aria-label="Go back"
           >
             <ArrowBack color="primary" />
-          </button>
+          </button>}</Link>
           <div className="text-xl font-semibold">Settings</div>
         </div>
         
@@ -261,6 +260,15 @@ const SettingsPage = () => {
           <li className="px-5 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50">
             More
           </li>
+          <Link href="https://billsly.co/dashboard/schedule" passHref>
+            <a>
+              <SettingItem
+                icon={<CalendarMonthIcon/>}
+                title="Schedule"
+                description="Schedule bill payments"
+              />
+            </a>
+          </Link>
           
           <Link href="https://billsly.co/dashboard/help" passHref>
             <a>
@@ -272,15 +280,7 @@ const SettingsPage = () => {
             </a>
           </Link>
 
-          <Link href="https://billsly.co/dashboard/schedule" passHref>
-            <a>
-              <SettingItem
-                icon={<CalendarMonthIcon/>}
-                title="Schedule"
-                description="Schedule bill payments"
-              />
-            </a>
-          </Link>
+         
           
           
           
