@@ -195,7 +195,7 @@ const handleSubmit = async (e)=>{
   setLoading(true)
   const url="https://www.billsly.co/zonapay/data"
 
-  const res= await fetch(url,{method:"POST",body:formdata})
+  const res= await fetch(url,{method:"POST",body:formdata,headers:{"passid":""}})
   if(res.ok){
   const res1=await res.json();
 setDetails(res1)

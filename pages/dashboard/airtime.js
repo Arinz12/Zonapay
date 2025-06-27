@@ -41,7 +41,7 @@ setShowKeyPad(false)
       setLoading(true)
       const formdata= new FormData(e.target)
      try{ const url="https://www.billsly.co/zonapay/airtime"
-      const res= await fetch(url,{method:"POST",body:formdata})
+      const res= await fetch(url,{method:"POST",body:formdata,headers:{"passid":""}})
       if(res.ok){
         const res1 = await res.json();
         console.log(res1);

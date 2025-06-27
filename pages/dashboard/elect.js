@@ -123,7 +123,7 @@ console.log(e)
             const data={iuc:acct.current.value,provider:provider.current.value,amount:amt.current.value,kind:type}
             setLoading(true)
             const res= await fetch("https://www.billsly.co/zonapay/electricity",{method:"POST",body:JSON.stringify(data),headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json","passid":""
             }})
             if(res.ok){
 const result= await res.json();

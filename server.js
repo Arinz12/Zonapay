@@ -250,14 +250,20 @@ res.status(200).json({guid:uuidv4()})
   });
   //for buying airtime
   server.post("/zonapay/airtime", upload.none(),async (req,res)=>{
+
+    try{
     if(!req.isAuthenticated()&&req.headers["passid"]!=="ariwa"){
+      console.log("redirected to signup")
       res.redirect("/signup")
       return;
     }
-const {nid,amount,Phoneno,user} =req.body;
+  
+const {nid,amount,Phoneno,user} = req.body;
+console.log(req.body)
 const device=await User.findOne({Email:user})
 const altid=device._id
 const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+console.log("userfound",Id)
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
 const isFundsSufficient= balance>amount
@@ -288,7 +294,6 @@ if(resp.ok){
     await User.findByIdAndUpdate(Id, { $inc: { Balance: -amt } },  { new: true } )
     setTimeout( async ()=>{
       const day= DateTime.local().setZone("Africa/Lagos").toFormat("LLLL dd yyyy");
-
       const found= await Earning.findOne({Date:day});
   if(found){
     console.log("Day found")
@@ -342,7 +347,12 @@ const timeinNigeria=now.setZone("Africa/Lagos").toFormat('LLLL dd, yyyy hh:mm a'
       res.status(400).json(resp2) 
     }
 }
-res.status(400).end()})
+res.status(400).end()
+
+}
+catch(e){
+  console.log("error on airtime",e)
+}})
 
 
 
