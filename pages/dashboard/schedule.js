@@ -1,3 +1,4 @@
+import { ArrowBack } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/schedule.module.css';
@@ -238,7 +239,7 @@ export default function BillSchedule() {
       }
     }}
   >
-    <ArrowBackIcon />
+    <ArrowBack />
   </IconButton>}</Link>
   <h1 className={styles.title}>Bill Scheduling</h1>
 </div>
@@ -477,4 +478,17 @@ export default function BillSchedule() {
       </form>
     </div>
   );
+}
+export async function getServerSideProps(context){
+  if(!context.req.isAuthenticated()){
+      return {
+          redirect: {
+            destination: '/login',  // URL to redirect to
+            permanent: false,       // Set to true for 301 redirect, false for 302 (default)
+          },
+        };
+  }
+return {
+  props:{}
+}
 }
