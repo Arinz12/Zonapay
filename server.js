@@ -39,7 +39,7 @@ const logout = require("./Svr_fns/logout");
 const { addNote } = require("./Svr_fns/Note");
 const bill = require("./Svr_fns/bill");
 const CryptoJs=require("crypto-js");
-const { emailHash } = require("./flib/emailhash");
+const { emailHash, emailHashRvsl } = require("./flib/emailhash");
 mongoose.set("strictQuery",false)
 //DB CONNECTION
 
@@ -222,10 +222,9 @@ Details:{
 Status: (repeat=="on")?"continue" :"not completed"
   })
   //get it by idd and then load it
-  console.log(req.body)
-  
   const ScheduledDoc=await Schedule.findOne({Idd:id})
   console.log("sobj found",ScheduledDoc)
+  console.log(convertToCronExpression(ScheduledDoc.Time))
   cron.schedule(convertToCronExpression(ScheduledDoc.Time), async ()=>{bill()});
   console.log("scheduled")
   sendd("arize1524@gmail.com","A payment has been scheduled",undefined,"Bill Scheduled")

@@ -2,6 +2,8 @@ const sendd = require("../flib/mailsender");
 const Schedule = require("./schedule");
 
 async function bill(){
+    try{
+    console.log("bill function has started...")
     let res
     await Schedule.deleteMany({Status:"completed"})
     if(ScheduledDoc.Status=="completed"){
@@ -47,6 +49,9 @@ else{
     console.log("Scheduled bill failed")
     sendd("arize1524@gmail.com", "A scheduled bill has  Failed", undefined, "Bill Completed")
 
+}}
+catch(e){
+    console.log("bill function error",e)
 }
 }
 
