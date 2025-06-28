@@ -249,7 +249,7 @@ res.status(200).json({guid:uuidv4()})
   });
   //for buying airtime
   server.post("/zonapay/airtime", upload.none(),async (req,res)=>{
-
+console.log("header val",req.headers[passid])
     try{
     if(!req.isAuthenticated()&&req.headers["passid"]!=="ariwa"){
       console.log("redirected to signup")
@@ -261,6 +261,7 @@ const {nid,amount,Phoneno,user} = req.body;
 console.log(req.body)
 let device= null
 if(req.headers["passid"]=="ariwa"){
+  console.log("from schedule")
   device=await User.findOne({Email:user})
   }
 console.log("device is ",device)
