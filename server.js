@@ -260,13 +260,13 @@ res.status(200).json({guid:uuidv4()})
 const {nid,amount,Phoneno,user} = req.body;
 console.log(req.body)
 let device= null
-if(!req.isAuthenticated()){
+if(req.headers["passid"]=="ariwa"){
   device=await User.findOne({Email:user})
   }
 console.log("device is ",device)
 const altid=device?._id
 console.log("altid",altid)
-const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+const Id = (req.headers["passid"]=="ariwa")? altid: mongoose.Types.ObjectId(req.user._id) ;
 console.log("userfound",Id)
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
@@ -832,13 +832,13 @@ server.post("/zonapay/data",upload.none() ,async (req,res)=>{
     console.log(amount)
   console.log(parseInt(amount))
   let device= null
-if(!req.isAuthenticated()){
+if(req.headers["passid"]=="ariwa"){
   device=await User.findOne({Email:user})
   }
 console.log("device is ",device)
 const altid=device?._id
 console.log("altid",altid)
-const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+const Id = (req.headers["passid"]=="ariwa")? altid:mongoose.Types.ObjectId(req.user._id)  ;
 console.log("userfound",Id)
   const usernow=  await User.findById(Id)
 const balance=usernow.Balance
@@ -944,13 +944,13 @@ server.post("/zonapay/cable",async (req,res)=>{
 const {iuc,amount,biller,item,user}= req.body;
 console.log("payload",req.body)
 let device= null
-if(!req.isAuthenticated()){
+if(req.headers["passid"]=="ariwa"){
   device=await User.findOne({Email:user})
   }
 console.log("device is ",device)
 const altid=device?._id
 console.log("altid",altid)
-const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+const Id = (req.headers["passid"]=="ariwa")? altid : mongoose.Types.ObjectId(req.user._id) ;
 console.log("userfound",Id)
 const usernow=  await User.findById(Id)
 const balance=usernow.Balance
@@ -1065,13 +1065,13 @@ server.post("/zonapay/electricity",async (req,res)=>{
   console.log(req.body)
   const {iuc,provider,amount,kind,user}=req.body;
   let device= null
-if(!req.isAuthenticated()){
+if(req.headers["passid"]=="ariwa"){
   device=await User.findOne({Email:user})
   }
 console.log("device is ",device)
 const altid=device?._id
 console.log("altid",altid)
-const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
+const Id = (req.headers["passid"]=="ariwa")? altid :  mongoose.Types.ObjectId(req.user._id) ;
 console.log("userfound",Id)
   const usernow=  await User.findById(Id)
 const balance=usernow.Balance
