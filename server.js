@@ -259,8 +259,10 @@ res.status(200).json({guid:uuidv4()})
   
 const {nid,amount,Phoneno,user} = req.body;
 console.log(req.body)
-const device= (!req.user)? await User.findOne({Email:user}):null
+const device= (!req.isAuthenticated())? await User.findOne({Email:user}):null
+console.log("device is ",device)
 const altid=device?._id
+console.log("altid",altid)
 const Id = (req.user)? mongoose.Types.ObjectId(req.user._id) : altid;
 console.log("userfound",Id)
 const usernow=  await User.findById(Id)
