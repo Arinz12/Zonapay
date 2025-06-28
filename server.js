@@ -57,7 +57,6 @@ loadScheduledBills().then(()=>{  console.log("Scheduled bills have been loaded s
 //    **/
  function convertToCronExpression(dateString) {
   const date = new Date(dateString);
-  
   // Convert to UTC components
   const seconds = '0'; // Cron typically starts with seconds (0)
   const minutes = date.getUTCMinutes();

@@ -178,7 +178,7 @@ export default function BillSchedule() {
     const submissionData = {
       billtype: formData.billtype,
       customer: formData.customer,
-      time: formData.time,
+      time: new Date(formData.time).toUTCString(),
       amt: formData.amt,
       itemcode: formData.itemcode,
       repeat: formData.repeat,
