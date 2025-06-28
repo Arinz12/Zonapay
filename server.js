@@ -71,8 +71,8 @@ loadScheduledBills().then(()=>{  console.log("Scheduled bills have been loaded s
 
 async function loadScheduledBills(){
   const bills= await Schedule.find();
-  for(ScheduleDoc of bills){
-    cron.schedule(convertToCronExpression(ScheduleDoc.Time), async ()=>{bill()})
+  for(ScheduledDoc of bills){
+    cron.schedule(convertToCronExpression(ScheduledDoc.Time), async ()=>{bill(ScheduledDoc)})
   }
   
 }
@@ -224,7 +224,7 @@ Status: (repeat=="on")?"continue" :"not completed"
   const ScheduledDoc=await Schedule.findOne({Idd:id})
   console.log("sobj found",ScheduledDoc)
   console.log(convertToCronExpression(ScheduledDoc.Time))
-  cron.schedule(convertToCronExpression(ScheduledDoc.Time), async ()=>{bill()});
+  cron.schedule(convertToCronExpression(ScheduledDoc.Time), async ()=>{bill(ScheduledDoc)});
   console.log("scheduled")
   sendd("arize1524@gmail.com","A payment has been scheduled",undefined,"Bill Scheduled")
   res.status(200).json({message:"successful",time:new Date()})}
