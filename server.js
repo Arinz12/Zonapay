@@ -249,8 +249,9 @@ res.status(200).json({guid:uuidv4()})
   });
   //for buying airtime
   server.post("/zonapay/airtime", upload.none(),async (req,res)=>{
-console.log("header val",req.headers[passid])
+
     try{
+     console.log("header val",req.headers[passid])
     if(!req.isAuthenticated()&&req.headers["passid"]!=="ariwa"){
       console.log("redirected to signup")
       res.redirect("/signup")
