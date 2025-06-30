@@ -42,13 +42,13 @@ export default function BillSchedule() {
   useEffect(() => {
     if (formData.billtype === 'airtime' || formData.billtype === 'data') {
       const number = formData.customer;
-      if (/^0803|^0806|^0813|^0816|^0810|^0814|^0903|^0906|^0703|^0706|^0805|^0807|^0815|^0811|^0705|^0701/.test(number)) {
+      if (/^(?:\+234|0)(?:703|704|706|803|806|810|813|814|816|903|906|913|916|818|909|917|918|919)\d{7}$/.test(number)) { 
         setNetwork('mtn');
-      } else if (/^0802|^0808|^0812|^0708|^0902|^0907|^0909/.test(number)) {
+      } else if (/^(?:\+234|0)(?:701|702|708|802|808|812|902|904|907|912)\d{7}$/.test(number)) {
         setNetwork('airtel');
-      } else if (/^0805|^0807|^0811|^0815|^0705|^0905/.test(number)) {
+      } else if (/^(?:\+234|0)(?:705|805|807|811|815|905|915)\d{7}$/.test(number)) {
         setNetwork('glo');
-      } else if (/^0809|^0817|^0818|^0908|^0909/.test(number)) {
+      } else if (/^(0(809|817|818|908|909)|(\+234[7-9]|234[7-9]|0)[89]0[1789])\d{7}$/.test(number)) {
         setNetwork('9mobile');
       } else {
         setNetwork(null);

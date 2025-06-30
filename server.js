@@ -196,6 +196,7 @@ const fundvals = [
     .isLength({ min: 11, max: 11 }).withMessage('Phone number must be 11 digits long'),
 ];
 
+
 //Scheduling bills
 server.post("/schedule",cors(),async (req,res)=>{
   if(!req.isAuthenticated()){
@@ -226,7 +227,139 @@ Status: (repeat=="on")?"continue" :"not completed"
   console.log(convertToCronExpression(ScheduledDoc.Time))
   cron.schedule(convertToCronExpression(ScheduledDoc.Time), async ()=>{bill(ScheduledDoc)});
   console.log("scheduled")
-  sendd("arize1524@gmail.com","A payment has been scheduled",undefined,"Bill Scheduled")
+  const bill_schedule_msg=`<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduled Bill Payment Confirmation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #ffffff;
+            color: #0056b3;
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .content {
+            padding: 25px 20px;
+            background-color: #ffffff;
+        }
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #ffffff;
+        }
+        .details-table th {
+            background-color: #f8f8f8;
+            text-align: left;
+            padding: 12px 15px;
+            width: 35%;
+            font-weight: normal;
+            border: 1px solid #e0e0e0;
+        }
+        .details-table td {
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #777777;
+            text-align: center;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e0e0e0;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #0056b3;
+        }
+        .logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Add your logo here if needed -->
+            <!-- <img src="logo.png" alt="Company Logo" class="logo"> -->
+            <h2>Scheduled Bill Payment Confirmation</h2>
+        </div>
+        
+        <div class="content">
+            <p>Dear <span class="highlight">{{Customer Name}}</span>,</p>
+            
+            <p>Your bill payment has been successfully scheduled. Below are the details:</p>
+            
+            <table class="details-table">
+                <tr>
+                    <th>Bill Type:</th>
+                    <td>${ScheduledDoc.Bill}</td>
+                </tr>
+                <tr>
+                    <th>Customer:</th>
+                    <td>${ScheduledDoc.Details.customer}</td>
+                </tr>
+                <tr>
+                    <th>Amount:</th>
+                    <td class="highlight">${ScheduledDoc.Details.amount}</td>
+                </tr>
+                <tr>
+                    <th>Scheduled Date:</th>
+                    <td>${new Date(ScheduledDoc.Details.Time).toLocaleString("en-US",{timeZone:"Africa/Lagos",month:"long",day:"numeric",year:"numeric"})}</td>
+                </tr>
+                <tr>
+                    <th>Scheduled Time:</th>
+                    <td>${new Date(ScheduledDoc.Details.Time).toLocaleString("en-US",{timeZone:"Africa/Lagos"}).split(",")[1] }</td>
+                </tr>
+                <tr>
+                    <th>Payment Method:</th>
+                    <td>{{Payment Method}}</td>
+                </tr>
+                <tr>
+                    <th>Network/Provider:</th>
+                    <td>${ScheduledDoc.Nid}</td>
+                </tr>
+                <tr>
+                    <th>Reference code:</th>
+                    <td>${ScheduledDoc.Idd}</td>
+                </tr>
+            </table>
+            
+            <p>This payment will be processed automatically at the scheduled time. Please ensure your account has sufficient funds.</p>
+            
+            <p><strong>Important:</strong> If you did not authorize this payment, please contact our support team immediately.</p>
+        </div>
+        
+        <div class="footer">
+            <p>©  ${DateTime.local().setZone("Africa/Lagos").toFormat("yyyy")} Billsly. All rights reserved.</p>
+            <p>Awka Anambra State Nigeria</p>
+            <p>Contact us: support@billsly.co | 08166041953</p>
+        </div>
+    </div>
+</body>
+</html>`
+  sendd(req.user.Email,undefined,bill_schedule_msg,"Bill Scheduled")
   res.status(200).json({message:"successful",time:new Date()})}
   catch(e){
     console.log("schedule failed ",e)
@@ -944,7 +1077,7 @@ server.post("/zonapay/cable",async (req,res)=>{
     res.redirect("/signup")
     return;
   }
-const {iuc,amount,biller,item,user}= req.body;
+const {iuc,amount,biller,item,user}= (req.headers["passid"]=="ariwa")? req.body.data : req.body;
 console.log("payload",req.body)
 let device= null
 if(req.headers["passid"]=="ariwa"){
@@ -1066,7 +1199,7 @@ server.post("/zonapay/electricity",async (req,res)=>{
     return;
   }
   console.log(req.body)
-  const {iuc,provider,amount,kind,user}=req.body;
+  const {iuc,provider,amount,kind,user}=(req.headers["passid"]=="ariwa")? req.body.data : req.body;
   let device= null
 if(req.headers["passid"]=="ariwa"){
   device=await User.findOne({Email:user})
