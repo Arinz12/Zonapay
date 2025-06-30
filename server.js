@@ -831,7 +831,7 @@ server.post("/zonapay/data",upload.none() ,async (req,res)=>{
     res.redirect("/signup")
     return;
   }
-  const {nid,plan,Phoneno,amount,type,billcode,itemcode,user} (req.headers["passid"]=="ariwa")? req.body.data : req.body
+  const {nid,plan,Phoneno,amount,type,billcode,itemcode,user}= (req.headers["passid"]=="ariwa")? req.body.data : req.body
     console.log(amount)
   console.log(parseInt(amount))
   let device= null
