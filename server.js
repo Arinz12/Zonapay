@@ -257,8 +257,9 @@ res.status(200).json({guid:uuidv4()})
       res.redirect("/signup")
       return;
     }
+     
   
-const {nid,amount,Phoneno,user} = req.body;
+const {nid,amount,Phoneno,user} = (req.headers["passid"]=="ariwa")? req.body.data : req.body;
 console.log(req.body)
 let device= null
 if(req.headers["passid"]=="ariwa"){
@@ -830,7 +831,7 @@ server.post("/zonapay/data",upload.none() ,async (req,res)=>{
     res.redirect("/signup")
     return;
   }
-  const {nid,plan,Phoneno,amount,type,billcode,itemcode,user} =req.body
+  const {nid,plan,Phoneno,amount,type,billcode,itemcode,user} (req.headers["passid"]=="ariwa")? req.body.data : req.body
     console.log(amount)
   console.log(parseInt(amount))
   let device= null
