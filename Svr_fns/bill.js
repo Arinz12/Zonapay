@@ -14,7 +14,7 @@ return;}
         const [nid,amount,Phoneno]=[DocfromSchedule.Nid,DocfromSchedule.Details.amount,DocfromSchedule.Details.customer];
         const data={nid,amount,Phoneno,user:DocfromSchedule.User}
      res= await fetch("https://www.billsly.co/zonapay/airtime",{method:"post",body:JSON.stringify({data}),
-    headers:{"passid":"ariwa"}
+    headers:{"Content-Type":"application/json","passid":"ariwa"}
 
 })
 }
