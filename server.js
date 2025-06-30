@@ -262,7 +262,7 @@ const {nid,amount,Phoneno,user} = req.body;
 console.log(req.body)
 let device= null
 if(req.headers["passid"]=="ariwa"){
-  console.log("from schedule")
+  console.log("from schedule",user)
   device=await User.findOne({Email:user})
   }
 console.log("device is ",device)
