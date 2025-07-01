@@ -302,12 +302,12 @@ Status: (repeat=="on")?"continue" :"not completed"
     <div class="container">
         <div class="header">
             <!-- Add your logo here if needed -->
-            <!-- <img src="logo.png" alt="Company Logo" class="logo"> -->
+             <img src="https://billsly.co/cicon24.png" alt="Company Logo" class="logo"> -->
             <h2>Scheduled Bill Payment Confirmation</h2>
         </div>
         
         <div class="content">
-            <p>Dear <span class="highlight">{{Customer Name}}</span>,</p>
+            <p>Dear <span class="highlight">${req.user.Username}</span>,</p>
             
             <p>Your bill payment has been successfully scheduled. Below are the details:</p>
             
@@ -326,16 +326,13 @@ Status: (repeat=="on")?"continue" :"not completed"
                 </tr>
                 <tr>
                     <th>Scheduled Date:</th>
-                    <td>${new Date(ScheduledDoc.Details.Time).toLocaleString("en-US",{timeZone:"Africa/Lagos",month:"long",day:"numeric",year:"numeric"})}</td>
+                    <td>${new Date(ScheduledDoc.Details.time).toLocaleString("en-US",{timeZone:"Africa/Lagos",month:"long",day:"numeric",year:"numeric"})}</td>
                 </tr>
                 <tr>
                     <th>Scheduled Time:</th>
-                    <td>${new Date(ScheduledDoc.Details.Time).toLocaleString("en-US",{timeZone:"Africa/Lagos"}).split(",")[1] }</td>
+                    <td>${new Date(ScheduledDoc.Details.time).toLocaleString("en-US",{timeZone:"Africa/Lagos"}).split(",")[1] }</td>
                 </tr>
-                <tr>
-                    <th>Payment Method:</th>
-                    <td>{{Payment Method}}</td>
-                </tr>
+                
                 <tr>
                     <th>Network/Provider:</th>
                     <td>${ScheduledDoc.Nid}</td>
