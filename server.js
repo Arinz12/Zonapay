@@ -326,11 +326,11 @@ Status: (repeat=="on")?"continue" :"not completed"
                 </tr>
                 <tr>
                     <th>Scheduled Date:</th>
-                    <td>${new Date(ScheduledDoc.Details.time).toLocaleString("en-US",{timeZone:"Africa/Lagos",month:"long",day:"numeric",year:"numeric"})}</td>
+                    <td>${new Date(ScheduledDoc.Time).toLocaleString("en-US",{timeZone:"Africa/Lagos",month:"long",day:"numeric",year:"numeric"})}</td>
                 </tr>
                 <tr>
                     <th>Scheduled Time:</th>
-                    <td>${new Date(ScheduledDoc.Details.time).toLocaleString("en-US",{timeZone:"Africa/Lagos"}).split(",")[1] }</td>
+                    <td>${new Date(ScheduledDoc.Time).toLocaleString("en-US",{timeZone:"Africa/Lagos"}).split(",")[1] }</td>
                 </tr>
                 
                 <tr>
@@ -1700,7 +1700,7 @@ const init_user=emailHashRvsl(obj.customer_reference.split("--")[0])
 const history={user:init_user,
   tid:obj.flw_ref,
   time:timeinNigeria,
-  amount:obj.amount,
+  amount:(obj.network.toLowerCase.includes("electric"||"disco"))?obj.amount+100: obj.amount,
   phone:obj.customer,
   network:obj.network,
   product:obj.network,

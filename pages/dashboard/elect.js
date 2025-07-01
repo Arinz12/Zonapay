@@ -1,4 +1,4 @@
-import { ArrowBack, ArrowBackIosRounded,CheckCircle,Forward, ArrowForward } from "@mui/icons-material"
+import { ArrowBack, ArrowBackIosRounded,CheckCircle,Forward, ArrowForward, Home } from "@mui/icons-material"
 import { Button, Paper, Typography } from "@mui/material"
 import Head from "next/head"
 import { useEffect, useRef, useState } from "react"
@@ -185,7 +185,7 @@ return ()=>{
               <div className="rubik-b  flex flex-row justify-between"><span>Units</span><span>{"NA"}</span></div>
               <div className="rubik-b  flex flex-row justify-between"><span>Amount</span><span>{details.data.amount+100}</span></div>
               <div style={{fontSize:"14px"}} className=" rubik-b flex flex-row justify-between"><span>Reference</span><span>{details.data.tx_ref.split("-")[2]}</span></div>
-              <div style={{fontSize:"14px"}} className=" rubik-b flex flex-row justify-between"><span>Address</span><span>{user_address.currrent}</span></div>
+              <div style={{fontSize:"14px"}} className=" rubik-b flex flex-row justify-between"><span>Address</span><span>{user_address.current}</span></div>
           </Paper>
           <Link href={"/dashboard"} className="rubik-b mt-8 rounded-full w-9/12">{<Button startIcon={<Home /> } variant="contained" sx={{textTransform:"none",backgroundColor:"#2563EB"}}> Home</Button>}</Link>
           </div>
