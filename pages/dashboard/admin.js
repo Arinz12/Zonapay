@@ -1,6 +1,7 @@
 import { ArrowBack } from "@mui/icons-material"
 import {Button,Paper} from "@mui/material"
 import { useEffect, useRef, useState } from "react"
+import { User } from "../../Svr_fns/createuser"
 const Admin =({result})=>{
   const [data,setData]= useState("Default text")
   const btn=useRef(null)
@@ -59,6 +60,12 @@ return(<>
     <span>{result.Notsettled}</span>
 </div>
 </div>
+
+<div className="w-full mx-auto flex flex-row">
+  <span>Users:</span>
+  <span>${result.users}</span>
+
+</div>
 {/* Notify users through email and update their notifications*/}
 <div className=" flex-col items-center w-full justify-center gap-3 bg-white border-r-2 border-l-2 border-blue-600 rounded p-5">
 <div className="text-center"><textarea onChange={(e)=>{setData(e.target.value)}}   className="border-2 border-blue-600"  rows={5} placeholder="write notification here"/></div>
@@ -89,6 +96,8 @@ else{
     const resp= await fetch("https://www.billsly.co/api/balances",{method:"POST",headers:{"Content-Type":"application/json"}})
     if(resp.ok){
 const result= await resp.json();
+const users=await User.countDocuments()
+Object.assign(result,{"users":users})
 return {
     props:{result}
 }

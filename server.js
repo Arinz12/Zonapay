@@ -1700,7 +1700,7 @@ const init_user=emailHashRvsl(obj.customer_reference.split("--")[0])
 const history={user:init_user,
   tid:obj.flw_ref,
   time:timeinNigeria,
-  amount:(obj.network.toLowerCase.includes("electric"||"disco"))?obj.amount+100: obj.amount,
+  amount:(obj.network.toLowerCase().includes("electric"||"disco"))? obj.amount+100: obj.amount,
   phone:obj.customer,
   network:obj.network,
   product:obj.network,
