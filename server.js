@@ -491,7 +491,21 @@ catch(e){
   console.log("error on airtime",e)
 }})
 
-
+//force complete a schedule
+server.post("/completeSchedule",async (req,res)=>{
+  try{
+const {id}=req.body
+const found=await Schedule.updateOne({Idd:id},{$set:{Status:"completed"}},{upsert:false})
+if(!found.acknowledged){
+return res.status(400).end()
+}
+res.status(200).end()
+}
+catch(e){
+console.log("Error from completeSchedule: ",e)
+res.status(400).end()
+}
+})
 
 //fetch data plans
 server.post("/zonapay/fdp", async (req,res)=>{

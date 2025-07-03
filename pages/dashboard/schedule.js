@@ -3,8 +3,11 @@ import { IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/schedule.module.css';
 import Link from "next/link";
+import { SuccessScheduleComponent } from '../../components/ScheduleSuccess';
 
 export default function BillSchedule() {
+  const [success,setSuccess]=useState(false)
+
   const [formData, setFormData] = useState({
     billtype: '',
     customer: '',
@@ -203,8 +206,7 @@ export default function BillSchedule() {
       });
 
       if (!response.ok) throw new Error('Submission failed');
-      alert('Bill scheduled successfully!');
-      
+setSuccess(true)      
       // Reset form
       setFormData({
         billtype: '',
@@ -229,7 +231,7 @@ export default function BillSchedule() {
 
   return (
     <div className={styles.container}>
-<div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+<div className='flex flex-row gap-4 justify-between items-center'>
   <Link href={"https://www.billsly.co/dashboard/settings"}>{<IconButton 
     onClick={() => window.history.back()} 
     aria-label="back"
@@ -469,7 +471,7 @@ export default function BillSchedule() {
         </div>
 
         {/* Submit Button */}
-        <button
+        <button style={{display:block}}
           type="submit"
           className={styles.submitButton}
           disabled={!isValid || isLoading || isFetching}
@@ -477,6 +479,7 @@ export default function BillSchedule() {
           {isLoading ? 'Scheduling...' : 'Schedule Bill'}
         </button>
       </form>
+      {success && <SuccessScheduleComponent hide={()=>{setSuccess(false)}}/>}
     </div>
   );
 }

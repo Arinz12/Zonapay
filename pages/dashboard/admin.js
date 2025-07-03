@@ -61,10 +61,9 @@ return(<>
 </div>
 </div>
 
-<div className="w-full mx-auto flex flex-row">
-  <span>Users:</span>
-  <span>${result.users}</span>
-
+<div className="w-full mx-auto rubik-b p-5 bg-blue-500 justify-center items-center rounded  flex flex-row">
+  <span className="text-white">Users:</span>
+  <span className="text-white">{result.users}</span>
 </div>
 {/* Notify users through email and update their notifications*/}
 <div className=" flex-col items-center w-full justify-center gap-3 bg-white border-r-2 border-l-2 border-blue-600 rounded p-5">
