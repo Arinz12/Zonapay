@@ -471,7 +471,7 @@ setSuccess(true)
         </div>
 
         {/* Submit Button */}
-        <button style={{display:block}}
+        <button style={{display:"block"}}
           type="submit"
           className={styles.submitButton}
           disabled={!isValid || isLoading || isFetching}
