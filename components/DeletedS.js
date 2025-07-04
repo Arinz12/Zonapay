@@ -17,7 +17,7 @@ export function SuccessDeleteComponent({ hide }) {
           <div className="mt-4">
             <div className="-mx-2 -my-1.5 flex">
               <button
-              onClick={()=>{hide}}
+              onClick={()=>{hide()}}
                 type="button"
                 className="rounded-md bg-blue-50 px-2 py-1.5 text-sm font-medium text-blue-800 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-blue-50"
               >

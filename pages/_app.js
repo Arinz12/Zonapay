@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   const [showCustomLoader, setShowCustomLoader] = useState(false);
 
   // Define paths that should show the custom loader
-  const LOADER_PATHS = ['/dashboard/history', '/dashboard/wallethistory'];
+  const LOADER_PATHS = ['/dashboard/history', '/dashboard/wallethistory','/dashboard/viewSchedules'];
 
   useEffect(() => {
     const handleStart = (url) => {

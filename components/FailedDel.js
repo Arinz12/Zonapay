@@ -30,7 +30,7 @@ router.push("https://www.billsly.co/dashboard")
                 Home
                               </button>
               <button
-              onClick={()=>{hide}}
+              onClick={()=>{hide()}}
                 type="button"
                 className="rounded-md bg-red-50 px-2 py-1.5 text-sm font-medium text-red-800 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-red-50"
               >

@@ -135,6 +135,7 @@ const Dashboard = ({obj}) => {
         </div>
         <div className='text-center w-full  mt-1 mb-1 rubik-b flex flex-row justify-center gap-8'>
             <div>Quick actions</div>
+            <Link href="/dashboard/viewSchedules"><span className="text-blue-600">View schedules</span></Link>
             {(obj.isAdmin)&&<Link href="/dashboard/admin"><span className="text-blue-600">Admin</span></Link>}
         </div>
         <div  className='ml-2 mr-2 px-4 py-8 bg-white rounded-2xl '>

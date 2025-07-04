@@ -244,7 +244,7 @@ setSuccess(true)
   >
     <ArrowBack />
   </IconButton>}</Link>
-  <h1 className={styles.title}>Bill Scheduling</h1>
+  <h1 style={{color: "#333"}} className="text-center rubik-h ">Bill Scheduling</h1>
 </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         {/* Bill Type Selection */}
