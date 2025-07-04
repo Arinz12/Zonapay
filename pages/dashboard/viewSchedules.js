@@ -27,7 +27,7 @@ const View = ({obj}) => {
         <div className=" sticky top-0 text-2xl font-bold mb-6 flex flex-row justify-between items-center" >
         <h1 className="  text-2xl font-bold mb-6">Scheduled Bills</h1>
         <div  className='flex flex-col justify-center items-center '>
-                    <Link href={"https://www.billsly.co/dashboard/history"}>{<div className='rubik-b text-white z-10'>Add schedule</div>}</Link>
+                    <Link href={"https://www.billsly.co/dashboard/schedule"}>{<div className='rubik-b text-white z-10'>Add schedule</div>}</Link>
  <Link href={"https://www.billsly.co/dashboard/schedule"}>{<AddBox begin={"txn"} sx={{color:"white",fontSize:"30px",zIndex:10}}/>}</Link></div>
         </div>
         
