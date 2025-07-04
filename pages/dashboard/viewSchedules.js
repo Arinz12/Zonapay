@@ -5,6 +5,7 @@ import Schedule from "../../Svr_fns/schedule"
 import router from "next/router"
 import { AddBox } from "@mui/icons-material";
 import {DateTime} from "luxon"
+import Link from "next/link"
 const View = ({obj}) => {
     const [deleted,setSuccess]=useState(false)
     const [failed,setFailed]=useState(false)
@@ -50,7 +51,8 @@ const View = ({obj}) => {
                   
                   <div>
                     <h3 className="text-sm font-medium text-gray-500">Time</h3>
-                    <p className="mt-1 text-sm text-gray-900">{bill.Time}</p>
+                    <p className="mt-1 text-sm text-gray-900">{new Date(bill.Time).toLocaleDateString("en-US",{weekday: 'long', year: 'numeric',month: 'long',
+  day: 'numeric',hour:"2-digit",minute:"2-digit",second:"2-digit"})}</p>
                   </div>
                   
                   <div>
