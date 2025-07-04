@@ -231,7 +231,7 @@ setSuccess(true)
 
   return (
     <div className={styles.container}>
-<div className='flex flex-row gap-4 justify-between items-center'>
+<div className='flex flex-row gap-4 mb-8 items-center'>
   <Link href={"https://www.billsly.co/dashboard/settings"}>{<IconButton 
     onClick={() => window.history.back()} 
     aria-label="back"
@@ -244,7 +244,7 @@ setSuccess(true)
   >
     <ArrowBack />
   </IconButton>}</Link>
-  <h1 style={{color: "#333"}} className="text-center rubik-h ">Bill Scheduling</h1>
+  <h1 style={{color: "#333"}} className="text-center text-2xl rubik-h ">Bill Scheduling</h1>
 </div>
       <form onSubmit={handleSubmit} className={styles.form}>
         {/* Bill Type Selection */}
