@@ -11,25 +11,30 @@ const View = ({obj}) => {
     const [failed,setFailed]=useState(false) 
     const deletedIds=[]  
     const handleCancelSchedule = async (billId) => {
-      document.getElementById(billId).innerHTML="cancelling"
+      document.getElementById(billId+"btn").innerHTML="cancelling"
       // Implement your cancellation logic here
       console.log(`Canceling bill with ID: ${billId}`);
   const res= await fetch("https://www.billsly.co/completeSchedule",{method:"post",body:JSON.stringify({id:billId}),headers:{"Content-Type":"application/json"}})
   if(res.ok){
-    deletedIds.push(billId)
-    document.getElementById(billId).innerHTML="cancelled";
+    deletedIds.push(billId+"con");
+    document.querySelectorAll("#"+billId+"con").forEach((a)=>{
+      if(deletedIds.includes(billId+"con")){
+a.style.display="none";
+      }
+    })
+    document.getElementById(billId+"btn").innerHTML="cancelled";
       setSuccess(true)
       console.log("successful")
   }
   else{
-    document.getElementById(billId).innerHTML="cancel schedule"
+    document.getElementById(billId+"btn").innerHTML="cancel schedule"
       setFailed(true)
       console.log("failed")
   }
     };
     return (
       <div className="container mx-auto px-4 py-8">
-        <div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(10px)"}} className="  sticky top-0 text-2xl font-bold mb-6 flex flex-row justify-between items-center" >
+        <div style={{backgroundColor:"white"}} className="  sticky top-0 text-2xl font-bold mb-6 flex flex-row justify-between items-center" >
         <h1 className="  text-2xl font-bold mb-6">Scheduled Bills</h1>
         <div  className='flex flex-col justify-center items-center '>
                     <Link href={"https://www.billsly.co/dashboard/schedule"}>{<div style={{fontSize:"15px"}} className='rubik-b text-black z-10'>Add schedule</div>}</Link>
@@ -41,8 +46,8 @@ const View = ({obj}) => {
         ) : (
           <div className="space-y-4">
             {obj.map((bill, index) => (
-            (!deletedIds.includes(bill.Idd))?
-              (<div key={index} className="bg-white rounded-lg shadow p-6">
+            
+              <div id={bill.Idd+"con"} key={index} className="bg-white rounded-lg shadow p-6">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                   <div>
                     <h3 className="text-sm font-medium text-gray-500">Bill</h3>
@@ -74,7 +79,7 @@ const View = ({obj}) => {
                 </div>
                 
                 <div className="mt-4 flex justify-end">
-                  <button
+                  <button id={bill.Idd+"btn"}
                     onClick={() => handleCancelSchedule(bill.Idd)}
                     className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                   >
@@ -82,10 +87,8 @@ const View = ({obj}) => {
                   </button>
 
                 </div>
-              </div>):null
-
+              </div>
             )
-            
             )}
           </div>
         )}
