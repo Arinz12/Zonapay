@@ -302,7 +302,7 @@ Status: (repeat=="on")?"continue" :"not completed"
     <div class="container">
         <div class="header">
             <!-- Add your logo here if needed -->
-             <img src="https://billsly.co/cicon24.png" alt="Company Logo" class="logo"> -->
+             <img src="https://billsly.co/cicon16.png" alt="Company Logo" class="logo"> -->
             <h2>Scheduled Bill Payment Confirmation</h2>
         </div>
         
@@ -536,14 +536,201 @@ server.get("/autologout/:id",async(req,res)=>{
   try{
     console.log("req params is",req.params)
 await logout(req.params.id)
-return res.status(200).send("successfully logged out")}
+const msg=`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out Successfully</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .logout-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .checkmark-circle {
+            stroke: #4CAF50;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            fill: none;
+        }
+        .checkmark-check {
+            stroke: #4CAF50;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-miterlimit: 10;
+            fill: none;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <!-- SVG Checkmark -->
+        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25"/>
+            <path class="checkmark-check" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        <h1>Successfully Logged Out</h1>
+        <p>You have  securely logged out from your account.</p>
+        <a href="https://www.billsly.co/login" class="btn">Return to Login</a>
+    </div>
+</body>
+</html>`
+const failed=`<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Failed</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .logout-failed-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+        }
+        .warning-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        .warning-icon-circle {
+            stroke: #FF9800;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            fill: none;
+        }
+        .warning-icon-exclamation {
+            stroke: #FF9800;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-miterlimit: 10;
+            fill: none;
+        }
+        h1 {
+            color: #d32f2f;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        .btn-retry {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #d32f2f;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn-retry:hover {
+            background: #b71c1c;
+        }
+        .btn-secondary {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #757575;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn-secondary:hover {
+            background: #616161;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-failed-container">
+        <!-- SVG Warning Icon -->
+        <svg class="warning-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+            <circle class="warning-icon-circle" cx="26" cy="26" r="25"/>
+            <path class="warning-icon-exclamation" d="M26 15v16M26 37v0" /> <!-- Exclamation mark -->
+        </svg>
+        <h1>Logout Failed</h1>
+        <p>We couldn't securely log out your account. Please try again.</p>
+        <div>
+            <a href="/dashboard" class="btn-secondary">Back to login</a>
+        </div>
+    </div>
+</body>
+</html>`
+return res.status(200).send(msg)}
 catch(e){
- return res.status(400).send("logout was not successfull")
+ return res.status(400).send(failed)
 }
 })
 // validate user for login
   server.post("/zonapay/valUser",async (req,res)=>{
 const {email,password}=req.body;
+const id=uuidv4()
+//get ip info
+let ipInfoo
+try{
+const query=req.ip;
+console.log("Ip is",query)
+const ipInfo= await fetch(`http://ip-api.com/json/${query}`,{method:"Get"})
+ ipInfoo= await ipInfo.json()}
+catch(e){
+  console.log("error at finding ip at /ValUser",e)
+ipInfoo={regionName:"Not found"}
+}
 try{
 const detail= await User.findOne({Email:email});
 //This logs a user found
@@ -662,32 +849,30 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
                     <td>Date & Time:</td>
                     <td>${DateTime.local().setZone("Africa/Lagos").toFormat("dd LLL, hh:mm a")}</td>
                 </tr>
-                <tr>
-                    <td>Device:</td>
-                    <td></td>
-                </tr>
+                
                 <tr>
                     <td>Browser:</td>
-                    <td>[Browser Type]</td>
+                    <td>[${req.headers["user-agent"]}]</td>
                 </tr>
                 <tr>
                     <td>Location:</td>
-                    <td>[Approximate Location] (IP: [IP Address])</td>
+                    <td>[${ipInfoo.regionName}] (IP: ${req.ip})</td>
                 </tr>
             </table>
             
             <div class="alert">
-                <strong>Was this you?</strong> If you recognize this activity, you can ignore this message. If not, please secure your account immediately.
+                <strong>Was this you?</strong> If you recognize this activity, you can ignore this message. If not, please secure your account immediately.</br></br>
+                Note that each logout button is unique and cannot be used twice.</br>
+                After you logout from here you can proceed to change your password.
             </div>
             
             <p>
-                <a href="https://www.billsly.co/autologout/${email}" class="button">Logout</a>
+                <a href="https://www.billsly.co/autologout/${id}" class="button">Logout</a>
             </p>
             
             <p>For your security, we recommend:</p>
             <ul>
                 <li>Using a strong, unique password</li>
-                <li>Enabling two-factor authentication</li>
                 <li>Updating your password regularly</li>
             </ul>
             
@@ -710,6 +895,12 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
 if(detail){
   if(!bcrypt.compareSync(password,detail.Password)){
     return res.status(400).send("verificatin failed")
+  }
+  try{
+  await User.updateOne({Email:email},{$set:{Loginid:id}},{upsert:true})}
+  catch(e){
+    console.log("login failed")
+   return res.redirect("/login")
   }
   sendd(email,undefined,message,"Login detected");
   console.log("verified..");

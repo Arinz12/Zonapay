@@ -9,16 +9,20 @@ import Link from "next/link"
 const View = ({obj}) => {
     const [deleted,setSuccess]=useState(false)
     const [failed,setFailed]=useState(false)
+    const [submitted,setSubmitted]=useState(false)
 
     const handleCancelSchedule = async (billId) => {
+      setSubmitted(true)
       // Implement your cancellation logic here
       console.log(`Canceling bill with ID: ${billId}`);
   const res= await fetch("https://www.billsly.co/completeSchedule",{method:"post",body:JSON.stringify({id:billId}),headers:{"Content-Type":"application/json"}})
   if(res.ok){
+    setSubmitted(false)
       setSuccess(true)
       console.log("successful")
   }
   else{
+    setSubmitted(false)
       setFailed(true)
       console.log("failed")
   }
@@ -73,7 +77,7 @@ const View = ({obj}) => {
                     onClick={() => handleCancelSchedule(bill.Idd)}
                     className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                   >
-                    Cancel Schedule
+                  {submitted?"cancelling":"Cancel Schedule"}
                   </button>
                 </div>
               </div>

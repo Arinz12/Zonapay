@@ -2,7 +2,7 @@ import { ExclamationTriangleIcon, XCircleIcon } from "@heroicons/react/24/solid"
 import router from "next/router"
 export function FailedDeleteComponent({ billId, errorMessage }) {
   return (
-    <div className="rounded-md bg-red-50 p-4 mb-4">
+    <div className="rounded-md fixed top-0 left-1 bg-red-50 p-4 mb-4">
       <div className="flex">
         <div className="flex-shrink-0">
           <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />

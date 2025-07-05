@@ -1,7 +1,7 @@
 import { TrashIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 export function SuccessDeleteComponent({ hide }) {
   return (
-    <div className="rounded-md bg-blue-50 p-4 mb-4">
+    <div className="rounded-md fixed top-0 left-1 bg-blue-50 p-4 mb-4">
       <div className="flex">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />

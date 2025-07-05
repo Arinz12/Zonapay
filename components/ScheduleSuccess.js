@@ -2,7 +2,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import router from "next/router"
 export function SuccessScheduleComponent({ hide }) {
   return (
-    <div className="rounded-md bg-green-50 p-4 mb-4">
+    <div className="rounded-md fixed top-0 left-1 bg-green-50 p-4 mb-4">
       <div className="flex">
         <div className="flex-shrink-0">
           <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
