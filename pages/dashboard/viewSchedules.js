@@ -8,28 +8,28 @@ import {DateTime} from "luxon"
 import Link from "next/link"
 const View = ({obj}) => {
     const [deleted,setSuccess]=useState(false)
-    const [failed,setFailed]=useState(false)
-    const [submitted,setSubmitted]=useState(false)
-
+    const [failed,setFailed]=useState(false) 
+    const deletedIds=[]  
     const handleCancelSchedule = async (billId) => {
-      setSubmitted(true)
+      document.getElementById(billId).innerHTML="cancelling"
       // Implement your cancellation logic here
       console.log(`Canceling bill with ID: ${billId}`);
   const res= await fetch("https://www.billsly.co/completeSchedule",{method:"post",body:JSON.stringify({id:billId}),headers:{"Content-Type":"application/json"}})
   if(res.ok){
-    setSubmitted(false)
+    deletedIds.push(billId)
+    document.getElementById(billId).innerHTML="cancelled";
       setSuccess(true)
       console.log("successful")
   }
   else{
-    setSubmitted(false)
+    document.getElementById(billId).innerHTML="cancel schedule"
       setFailed(true)
       console.log("failed")
   }
     };
     return (
       <div className="container mx-auto px-4 py-8">
-        <div className=" sticky top-0 text-2xl font-bold mb-6 flex flex-row justify-between items-center" >
+        <div style={{backgroundColor:"rgba(0, 0, 0, 0.253)",backdropFilter:"blur(10px)"}} className="  sticky top-0 text-2xl font-bold mb-6 flex flex-row justify-between items-center" >
         <h1 className="  text-2xl font-bold mb-6">Scheduled Bills</h1>
         <div  className='flex flex-col justify-center items-center '>
                     <Link href={"https://www.billsly.co/dashboard/schedule"}>{<div style={{fontSize:"15px"}} className='rubik-b text-black z-10'>Add schedule</div>}</Link>
@@ -41,14 +41,15 @@ const View = ({obj}) => {
         ) : (
           <div className="space-y-4">
             {obj.map((bill, index) => (
-              <div key={index} className="bg-white rounded-lg shadow p-6">
+            (!deletedIds.includes(bill.Idd))?
+              (<div key={index} className="bg-white rounded-lg shadow p-6">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                   <div>
                     <h3 className="text-sm font-medium text-gray-500">Bill</h3>
                     <p className="mt-1 text-sm text-gray-900">{bill.Bill}</p>
                   </div>
                   
-                  <div>
+                  <div id={bill.Idd}>
                     <h3 className="text-sm font-medium text-gray-500">ID</h3>
                     <p className="mt-1 text-sm text-gray-900">{bill.Idd}</p>
                   </div>
@@ -77,11 +78,15 @@ const View = ({obj}) => {
                     onClick={() => handleCancelSchedule(bill.Idd)}
                     className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                   >
-                  {submitted?"cancelling":"Cancel Schedule"}
+                  Cancel Schedule
                   </button>
+
                 </div>
-              </div>
-            ))}
+              </div>):null
+
+            )
+            
+            )}
           </div>
         )}
 
