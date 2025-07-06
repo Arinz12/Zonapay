@@ -496,6 +496,7 @@ server.post("/completeSchedule",async (req,res)=>{
   try{
 const {id}=req.body
 const found=await Schedule.updateOne({Idd:id},{$set:{Status:"completed"}},{upsert:false})
+await Schedule.deleteMany({Status:"completed"})
 if(!found.acknowledged){
 return res.status(400).end()
 }
@@ -897,7 +898,9 @@ if(detail){
     return res.status(400).send("verificatin failed")
   }
   try{
-  await User.updateOne({Email:email},{$set:{"Loginid":id}})}
+    console.log("Email is",email)
+  await User.updateOne({Email:email},{$set:{Loginid:id}},{upsert:false})
+}
   catch(e){
     console.log("login failed")
    return res.redirect("/login")
