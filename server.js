@@ -895,11 +895,11 @@ const message=`<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
 </html>`
 if(detail){
   if(!bcrypt.compareSync(password,detail.Password)){
-    return res.status(400).send("verificatin failed")
+    return res.status(400).send("verification failed")
   }
   try{
     console.log("Email is",email)
-  const found=await User.updateOne({Email:email},{$set:{Loginid:id}})
+  const found=await User.updateOne({Email:detail.Email},{$set:{Loginid:id}})
   console.log("update result",found)
 }
   catch(e){
