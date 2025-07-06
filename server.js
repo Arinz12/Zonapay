@@ -899,7 +899,8 @@ if(detail){
   }
   try{
     console.log("Email is",email)
-  await User.updateOne({Email:email},{$set:{Loginid:id}},{upsert:false})
+  const found=await User.updateOne({Email:email},{$set:{Loginid:id}})
+  console.log("update result",found)
 }
   catch(e){
     console.log("login failed")
