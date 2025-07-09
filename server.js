@@ -533,7 +533,7 @@ catch(e){
 }
 })
 
-server.get("/autologout/:id",async(req,res)=>{
+server.get("/autologout/:id",async (req,res)=>{
   try{
     console.log("req params is",req.params)
 await logout(req.params.id)
@@ -899,7 +899,7 @@ if(detail){
   }
   try{
     console.log("Email is",email)
-  const found=await User.updateOne({Email:detail.Email},{$set:{Loginid:id}})
+  const found=await User.updateOne({Email:email} ,{$set:{Loginid:1234}})
   console.log("update result",found)
 }
   catch(e){
