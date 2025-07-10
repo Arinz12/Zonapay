@@ -111,6 +111,7 @@ if(!already.ok){
               return
             }
           }
+          verified && setShowVerification(false)
          verified && e.target.submit()
         }
     }
