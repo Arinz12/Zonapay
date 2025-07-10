@@ -1822,7 +1822,7 @@ sendd(req.body.email,undefined,msg,"Verify OTP")
 setTimeout(async ()=>{
    await Otpmodel.deleteOne({Otp:otp_matcher})
 },300000);
-res.end()
+return res.end()
 })
 server.post("/verifyEmail",async (req,res)=>{
   console.log("verification has started")
@@ -1836,6 +1836,7 @@ else{
   res.status(400).end()
 }
 })
+//for pin/password change
 server.post("/change2",cors(),async (req,res)=>{
   console.log(req.body);
   const newpass=req.body.newpass;

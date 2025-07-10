@@ -126,7 +126,7 @@ export default function OTPVerification({email,hideOtp}) {
         
         {/* Message display */}
         {message.text && (
-          <div className={`absolute top-0 left-0 right-0 text-center text-sm text-${message.color}-500`}>
+          <div className={`absolute  top-0 left-0 right-0 text-center text-sm text-${message.color}-500`}>
             {message.text}
           </div>
         )}
@@ -135,6 +135,7 @@ export default function OTPVerification({email,hideOtp}) {
           {otp.map((digit, index) => (
             <input
               key={index}
+              inputMode="numeric"
               type="text"
               maxLength="1"
               value={digit}

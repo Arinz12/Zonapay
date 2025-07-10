@@ -111,7 +111,7 @@ if(!already.ok){
               return
             }
           }
-          e.target.submit()
+         verified && e.target.submit()
         }
     }
 
@@ -182,7 +182,8 @@ if(!already.ok){
     })
    useEffect(()=>{
       if(verified){
-       btn.current.innerHTML="proceed"
+       btn.current.innerHTML="proceeding..."
+       btn.current.click();
       setShowVerification(false)}
     },[verified])
     return(<>
