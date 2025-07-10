@@ -256,7 +256,7 @@ if(!already.ok){
 
 <button className="mt-4 bg-blue-600" type="submit">
             <span ref={btn} className="text-white">Sign up</span> 
-            <svg
+            <svg className={`${verified? "hidden": "block"}`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 74 74"

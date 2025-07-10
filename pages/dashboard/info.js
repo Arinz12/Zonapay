@@ -43,7 +43,7 @@ export default function ProfilePage({obj}) {
   return (
     <>
       <Head>
-        <title>Profile | Your App Name</title>
+        <title>Profile | Billsly</title>
       </Head>
 
       <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
