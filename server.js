@@ -899,7 +899,7 @@ if(detail){
   }
   try{
     console.log("Email is",email,"id is",id)
-  const found=await User.findOne({Email:email})
+  const found=await User.updateOne({Email:email.toString()},{$set:{Loginid:id}})
   console.log("update result",found)
 }
   catch(e){

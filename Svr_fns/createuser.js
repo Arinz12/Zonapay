@@ -10,7 +10,8 @@ const Userschema= new mongoose.Schema(
         Password:{type:String},
         Balance:{type:Number},
         Pin:{type:String},
-        Admin:{type:Boolean}
+        Admin:{type:Boolean},
+        Loginid:{type:String}
     })
     const User = mongoose.models.User || mongoose.model("User", Userschema);
 

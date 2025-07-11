@@ -53,7 +53,7 @@ const val= async (e)=>{
   })
     return(<>
     <Head>
-        <title>Login</title>
+        <title>Login | Billsly</title>
         <meta name="description" content=" Login to Billsly to experience seamless bill payments "/>
         <meta name="keywords" content="login,Airtime, data purchase, Electricity, Cabletv,Bill payment"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>

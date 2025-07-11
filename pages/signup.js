@@ -189,7 +189,7 @@ if(!already.ok){
     })
     return(<>
     <Head>
-        <title>Signup</title>
+        <title>Signup | Billsly</title>
         <meta name="description" content=" signup on Billsly to experience seamless bill payments "/>
         <meta name="keywords" content="signup,Airtime, data purchase, Electricity, Cabletv,Bill payment, Billsly"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
