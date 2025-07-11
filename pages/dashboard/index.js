@@ -22,9 +22,11 @@ const Dashboard = ({obj}) => {
     const [visible,setVisible]=useState(true);
     const [loading,setloading]=useState(false)
     const [showModal,setShowModal]=useState(false)
+    //initailizations including saving user's email to local storage
     useEffect(()=>{
         if(!obj.isPinset){
         setTimeout(()=>{setShowModal(true)},3000)}
+        localStorage.setItem("email",obj.Email);
     },[])
 
     useEffect(()=>{

@@ -898,8 +898,8 @@ if(detail){
     return res.status(400).send("verification failed")
   }
   try{
-    console.log("Email is",email)
-  const found=await User.updateOne({Email:email} ,{$set:{Loginid:1234}})
+    console.log("Email is",email,"id is",id)
+  const found=await User.findOne({Email:email})
   console.log("update result",found)
 }
   catch(e){

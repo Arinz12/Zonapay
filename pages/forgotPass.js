@@ -96,7 +96,7 @@ const Forgot = () => {
             name="email"
             type="email"
             readOnly
-            value={router.query.auth ? router.query.data : null}
+            value={router.query.auth ? router.query.data : localStorage.getItem("email")}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
           />
         </div>

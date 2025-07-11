@@ -16,5 +16,6 @@ console.log("user is ", id)
 }
 catch(e){
   console.log("error from logout",e)
+  throw new Error("failed")
 }}
 module.exports=logout
