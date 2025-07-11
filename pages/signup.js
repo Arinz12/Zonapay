@@ -202,8 +202,8 @@ if(!already.ok){
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
     </Head>
 
-    <div class="div" style="background-image: url('cicon192.png'); height: 100vh;">
-        <div class="in">
+    <div className="div" style="background-image: url('https://billsly.co/cicon192.png'); height: 100vh;">
+        <div className="in">
     <form action="https://www.billsly.co/signup" method="post" autoComplete="off" onSubmit={handle}>
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
         <Card id="fai" className="z-10 hidden ml-1 mr-1 p-3 absolute top-1 left-1 font-bold" sx={{maxWidth:"400px"}}> <Button color="error">Email already exist !!!</Button> </Card>

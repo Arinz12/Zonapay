@@ -65,8 +65,8 @@ const val= async (e)=>{
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
     </Head>
-    <div class="div" style="background-image: url('cicon192.png'); height: 100vh;">
-        <div class="in">
+    <div className="div" style="background-image: url('https://billsly.co/cicon192.png'); height: 100vh;">
+        <div className="in">
 
     <div style={{fontSize:"30px"}} className=" absolute top-1 w-full monomaniac-one-regular text-center text-black">WELCOME BACK</div>
 
