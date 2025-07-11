@@ -86,7 +86,7 @@ export default function OTPVerification({email,hideOtp}) {
         setOtp(['', '', '', '', '', '']);
         if (inputRefs.current[0]) inputRefs.current[0].focus();
         console.log("verified")
-        setTimeout(()=>{hideOtp()},1000)
+        setTimeout(()=>{hideOtp()},500)
       } else {
         setMessage({ text: 'Verification failed', color: 'red' });
       }

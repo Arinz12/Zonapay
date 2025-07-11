@@ -65,7 +65,11 @@ const val= async (e)=>{
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
     </Head>
+    <div class="div" style="background-image: url('cicon192.png'); height: 100vh;">
+        <div class="in">
+
     <div style={{fontSize:"30px"}} className=" absolute top-1 w-full monomaniac-one-regular text-center text-black">WELCOME BACK</div>
+
 
     <form action="https://www.billsly.co/login" method="post" autoComplete="off" onSubmit={val}>
     <div
@@ -116,8 +120,8 @@ const val= async (e)=>{
   </div>
 </div>
 
-<Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
-    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-20 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12   border-0 border-blue-600 rounded-3xl  items-center">
+<Box sx={{height:"100svh",backgroundColor:"transparent",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
+    <div style={{backgroundColor:"transparent",backdropFilter:"blur(9px)",fontSize:"35px"}} className=" pt-20 gap-4 flex flex-col h-5/6 mx-auto md:w-6/12 w-11/12   border-0 border-blue-600 rounded-3xl  items-center">
     <div className="mx-auto flex justify-center w-full my-2"><img src="cicon192.png" height="40px" width="40px"/></div>
 
 <div className=" monomaniac-one-regular text-black">Login</div>
@@ -180,6 +184,8 @@ const val= async (e)=>{
     </div>
     </Box>  
     </form>  
+    </div>
+    </div>
     {progress? <Delay2/>:null}
     </>)
 }

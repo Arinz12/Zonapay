@@ -186,7 +186,7 @@ if(!already.ok){
        btn.current.innerHTML="proceeding..."
        btn.current.click();
       setShowVerification(false)}
-    },[verified])
+    })
     return(<>
     <Head>
         <title>Signup</title>
@@ -201,12 +201,15 @@ if(!already.ok){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
     </Head>
+
+    <div class="div" style="background-image: url('cicon192.png'); height: 100vh;">
+        <div class="in">
     <form action="https://www.billsly.co/signup" method="post" autoComplete="off" onSubmit={handle}>
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
         <Card id="fai" className="z-10 hidden ml-1 mr-1 p-3 absolute top-1 left-1 font-bold" sx={{maxWidth:"400px"}}> <Button color="error">Email already exist !!!</Button> </Card>
-<Box sx={{height:"100svh",backgroundColor:"white",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
+<Box sx={{height:"100svh",backgroundColor:"transparent",backgroundSize:"cover",backgroundRepeat:"no-repeat"}} className="flex flex-col items-center justify-center">
 
-    <div style={{backgroundColor:"white",backdropFilter:"blur(9px)",fontSize:"35px"}} className="  gap-2 flex flex-col h-5/6 mx-auto  md:w-6/12 w-11/12 border-0   border-blue-600 rounded-3xl  items-center">
+    <div style={{backgroundColor:"transparent",backdropFilter:"blur(9px)",fontSize:"35px"}} className="  gap-2 flex flex-col h-5/6 mx-auto  md:w-6/12 w-11/12 border-0   border-blue-600 rounded-3xl  items-center">
     <div className="mx-auto flex justify-center w-full my-2">
   <img src="cicon192.png" height="40px" width="40px"/></div>
 <div className=" monomaniac-one-regular text-black">Signup</div>
@@ -282,6 +285,8 @@ setShowVerification(false);
 }}/> }
     </div>
     </Box> </form>   
+    </div>
+    </div>
     </>)
 }
 export default Signup
