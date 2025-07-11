@@ -366,13 +366,14 @@ button, a, input ,div {
   #hiscon > :last-child{
     margin-bottom: 100px;
   }
-  .div{
+  .logincontainer{
     background-repeat: space;
+    background-image: url('https://billsly.co/cicon192.png');
+     height: 100vh;
 
 }
 .in{
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.829);
-
     backdrop-filter: blur(7px);
 }

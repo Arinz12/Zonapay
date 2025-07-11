@@ -202,7 +202,7 @@ if(!already.ok){
 <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet"></link>
     </Head>
 
-    <div className="div" style="background-image: url('https://billsly.co/cicon192.png'); height: 100vh;">
+    <div className="logincontainer">
         <div className="in">
     <form action="https://www.billsly.co/signup" method="post" autoComplete="off" onSubmit={handle}>
         <Card id="succ" className="hidden ml-1 mr-1 p-3 absolute top-0" sx={{maxWidth:"400px"}}> <Button color="success">Account successfully created</Button> </Card>
